@@ -1,7 +1,9 @@
 /**
+ *
+ *  Server
  * 
- *  Server Webservice
  *  @module server
+ *  @description Provides Backend Services
  * 
  */
 
@@ -9,24 +11,36 @@
 import express from 'express'
 import morgan from 'morgan'
 
+import MainRouter from './routes/main.routes'
+
 
 export default
     /**
      * 
-     *  Initializes the Server
      *  @class Server
+     *  @classdesc Initializes the Server
      * 
      */
     class Server {
-
+        
+        /**
+         * 
+         *  @property { express.Application } server
+         * 
+         */
         private server: express.Application
+        /**
+         * 
+         *  @property { number | string } port
+         * 
+         */
         private port? : number | string
 
 
         /**
          * 
          *  @constructor
-         *  @param port? : number | string
+         *  @param { number | string } port? - Port number
          * 
          */
         constructor( port? : number | string ) {
@@ -35,14 +49,16 @@ export default
 
             this.settings()
             this.middlewares()
+            this.routes()
         }
 
 
         /**
          * 
          *  Settings for Server
+         *  @method settings
          * 
-         *  @method
+         *  @private
          *  @returns void
          * 
          */
@@ -54,8 +70,9 @@ export default
         /**
          * 
          *  Sets All Middlewares
+         *  @method middlewares
          *  
-         *  @method
+         *  @private
          *  @returns void
          * 
          */
@@ -66,10 +83,24 @@ export default
 
         /**
          * 
-         *  Runs the Server on specified/system/default port
+         *  Makes Routes for Server
+         *  @method routes
+         *  
+         *  @private
+         *  @returns void
          * 
-         *  @method
-         *  @returns Promise
+         */
+        private routes(): void {
+            this.server.use( MainRouter )
+        }
+
+
+        /**
+         * 
+         *  Runs the Server on specified/system/default port
+         *  @method listen
+         * 
+         *  @returns { Promise }
          * 
          */
         public async listen(): Promise <any> {

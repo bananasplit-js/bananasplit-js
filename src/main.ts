@@ -1,7 +1,7 @@
 /**
  * 
  *  Main
- *  @module index
+ *  @module main
  * 
  */
 
