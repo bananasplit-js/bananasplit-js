@@ -14,7 +14,7 @@ export default
     /**
      * 
      *  Initializes the Server
-     *  @class
+     *  @class Server
      * 
      */
     class Server {
@@ -41,17 +41,21 @@ export default
         /**
          * 
          *  Settings for Server
+         * 
+         *  @method
          *  @returns void
          * 
          */
         private settings(): void {
-            this.server.set( 'port', this.port || process.env.PORT || 3000 )
+            this.server.set( 'port', this.port || process.env.PORT || 4000 )
         }
 
 
         /**
          * 
          *  Sets All Middlewares
+         *  
+         *  @method
          *  @returns void
          * 
          */
@@ -63,6 +67,8 @@ export default
         /**
          * 
          *  Runs the Server on specified/system/default port
+         * 
+         *  @method
          *  @returns Promise
          * 
          */
