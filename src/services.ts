@@ -36,10 +36,10 @@ export
         
         /**
          * 
-         *  @property { express.Application } server
+         *  @property { Express.Application } server
          * 
          */
-        private server: Express.Application
+        private server: ( Express.Application | null ) = null
 
         /**
          * 
@@ -48,22 +48,57 @@ export
          */
         private port? : number | string
 
+        /**
+         *
+         *  Singleton Instance
+         *  @private @property { Server } instance
+         * 
+         */
+        private static instance: Server
+        
 
         /**
          * 
          *  @constructor
+         *  @private
+         * 
+         *  Not Accesible.
+         *  Implements: Singleton Pattern
+         * 
+         */
+        private constructor() {
+            // Singleton      
+        }
+
+        /**
+         *  
+         *  Singleton
+         *  @description Creates or returns a Singleton Instance for Server
+         * 
+         *  @method create
          *  @param { number | string } port? - Port number
          * 
          */
-        constructor( { port }: ServerProps ) {
+        public static create( { port }: ServerProps ): Server {
 
-            this.server = Express()
-            this.port = port
+            if ( ! Server.instance ) {
 
-            this.settings()
-            this.middlewares()
-            this.routes()
-            
+                // Creates a new Instance:
+                Server.instance = new Server()
+                Server.instance.server = Express()
+
+                // Sets properties:
+                Server.instance.port = port
+
+                // Executes methods:
+                Server.instance.settings()
+                Server.instance.middlewares()
+                Server.instance.routes()
+
+            }
+
+            return Server.instance
+
         }
 
 
@@ -74,7 +109,7 @@ export
          *  
          */
         public getService(): Express.Application {
-            return this.server
+            return <Express.Application> this.server
         }
 
 
@@ -87,7 +122,8 @@ export
          * 
          */
         private settings(): void {
-            this.server.set( 'port', this.port || process.env.PORT || 4000 )
+            const $this = <Express.Application> this.server
+            $this.set( 'port', this.port || process.env.PORT || 4000 )
         }
 
 
@@ -100,7 +136,8 @@ export
          * 
          */
         private middlewares(): void {
-            this.server.use( Morgan('dev') )
+            const $this = <Express.Application> this.server
+            $this.use( Morgan('dev') )
         }
 
 
@@ -113,7 +150,8 @@ export
          * 
          */
         private routes(): void {
-            this.server.use( MainRouter )
+            const $this = <Express.Application> this.server
+            $this.use( MainRouter )
         }
 
 
@@ -126,9 +164,10 @@ export
          * 
          */
         public async listen(): Promise <any> {
+            const $this = <Express.Application> this.server
 
-            await this.server.listen( this.server.get('port') )
-            console.log( 'Server: Nodejs running on port', this.server.get('port') )
+            await $this.listen( $this.get('port') )
+            console.log( 'Server: Nodejs running on port', $this.get('port') )
 
         }
 
@@ -171,47 +210,79 @@ export
          *  @private @property { number } port
          * 
          */
-        private port: number
+        private port?: number
 
         /**
          *
          *  @private @property { ApolloServer } server
          * 
          */
-        private server: ApolloServerExpress | ApolloServer
+        private server: ( ApolloServerExpress | ApolloServer | null ) = null
+        
+        /**
+         *
+         *  Singleton instance
+         *  @private @property { Server } instance
+         * 
+         */
+        private static instance: Apollo
 
 
         /**
-         *
-         *  @constructor
          * 
-         *  @param { number } port?
-         *  @param { Server } middleware?
+         *  @constructor
+         *  @private
+         * 
+         *  Not Accesible.
+         *  Implements: Singleton Pattern
          * 
          */
-        constructor( { port, middleware }: ApolloProps ) {
+        private constructor() {
+            // Singleton
+        }
 
-            this.port = ( port || process.env.PORT || 5000 ) as number
 
-            const config: object = {
-                typeDefs: [ Schemas ],
-                resolvers: [ Resolvers ]
+        /**
+         *  
+         *  Singleton
+         *  @description Creates or returns a Singleton Instance for Apollo Server
+         * 
+         *  @method create
+         *  @param { number | string } port? - Port number
+         * 
+         */
+        public static create( { port, middleware }: ApolloProps ) {
+
+            if ( ! Apollo.instance ) {
+
+                Apollo.instance =  new Apollo()
+
+                Apollo.instance.port = ( port || process.env.PORT || 5000 ) as number
+
+                const config: object = {
+                    typeDefs: [ Schemas ],
+                    resolvers: [ Resolvers ]
+                }
+
+                if ( middleware ) {
+
+                    Apollo.instance.server = new ApolloServerExpress( config )
+
+                    Apollo.instance.server.applyMiddleware({
+                        app: middleware.getService()
+                    })
+
+                    console.log( 'Server: Apollo running on', Apollo.instance.server.graphqlPath )
+
+                } else
+
+                    Apollo.instance.server = new ApolloServer( config )
+
+                ;
+
             }
 
-            if ( middleware ) {
-
-                this.server = new ApolloServerExpress( config )
-
-                this.server.applyMiddleware({
-                    app: middleware.getService()
-                })
-
-                console.log( 'Server: Apollo running on', this.server.graphqlPath )
-
-            } else
-
-                this.server = new ApolloServer( config )
-            ;
+            return Apollo.instance
 
         }
 
@@ -223,7 +294,7 @@ export
          *  
          */
         public getService(): ApolloServerExpress | ApolloServer {
-            return this.server
+            return <ApolloServer> this.server
         }
 
 
@@ -237,9 +308,9 @@ export
          */
         public async listen(): Promise <void> {
             
-            const server = this.server as ApolloServer
+            const $this = <ApolloServer> this.server 
 
-            await server.listen( this.port )
+            await $this.listen( this.port )
             console.log( 'Server: Apollo running on port', this.port )
 
         }

@@ -21,12 +21,12 @@ import { Server, Apollo as ApolloServer } from './services'
 ( async () => {
 
     // Nodejs Server:
-    const server: Server = new Server({
+    const server: Server = Server.create({
         port: 4000
     })
 
     // Apollo Server:
-    const apollo: ApolloServer = new ApolloServer({
+    const apollo: ApolloServer = ApolloServer.create({
         port: 5000,
         middleware: server
     })
