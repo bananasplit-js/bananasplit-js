@@ -20,7 +20,7 @@ import MainRouter from './routes/main.routes'
  * 
  */
 type ServerProps = {
-    port? : number | string
+    port?: number | string
 }
 
 
@@ -42,8 +42,7 @@ export
 
         /**
          * 
-         *  @property { number | string } port
-         *  @private
+         *  @private @property { number | string } port
          * 
          */
         private port? : number | string
@@ -81,9 +80,8 @@ export
         /**
          * 
          *  Settings for Server
-         *  @method settings
          * 
-         *  @private
+         *  @private @method settings
          *  @returns void
          * 
          */
@@ -95,9 +93,8 @@ export
         /**
          * 
          *  Sets All Middlewares
-         *  @method middlewares
-         *  
-         *  @private
+         * 
+         *  @private @method middlewares
          *  @returns void
          * 
          */
@@ -109,9 +106,8 @@ export
         /**
          * 
          *  Makes Routes for Server
-         *  @method routes
-         *  
-         *  @private
+         * 
+         *  @private @method routes
          *  @returns void
          * 
          */
@@ -123,8 +119,8 @@ export
         /**
          * 
          *  Runs the Server on specified/system/default port
-         *  @method listen
          * 
+         *  @method listen
          *  @returns { Promise }
          * 
          */
@@ -154,8 +150,8 @@ import Resolvers from './resolvers'
  * 
  */
 type ApolloProps = {
-    port? : number
-    middleware? : Server
+    port?: number
+    middleware?: Server
 }
 
 
@@ -170,16 +166,14 @@ export
 
         /**
          *
-         *  @property { number } port
-         *  @private
+         *  @private @property { number } port
          * 
          */
         private port: number
 
         /**
          *
-         *  @property { ApolloServer } server
-         *  @private
+         *  @private @property { ApolloServer } server
          * 
          */
         private server: ApolloServerExpress | ApolloServer
