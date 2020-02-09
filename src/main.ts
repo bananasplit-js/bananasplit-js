@@ -6,15 +6,19 @@
  */
 
 
-import { Server, Apollo as ApolloServer } from './services'
+import Server from './server'
+import ApolloServer from './apollo-server'
 
 
 /**
- *  If you want to run Nodejs server and Apollo Server in separated ports, you have to declarate apollo new instance
- *  argument without key parameter 'middleware'. Then just run the process with: await apollo.listen()
+ *  If you want to run Nodejs Server and/or Apollo Server as separated ports, you have to create the services throw 'create' function
+ *  without the key parameter 'middleware' for Apollo and passing a valid port value into it. Finally call his 'listen' method, as below:
  * 
- *  Key parameters 'port' and 'middleware' in both cases are OPTIONALS. If there is not port specified, then Services uses
- *  system defined ports or defaults.
+ *  await server.listen()
+ *  await apollo.listen()
+ * 
+ *  Key parameters 'port' and 'middleware' are always OPTIONALS. If there is not port specified, then services uses the system
+ *  defined port or the default value.
  */
 
 
@@ -27,7 +31,6 @@ import { Server, Apollo as ApolloServer } from './services'
 
     // Apollo Server:
     const apollo: ApolloServer = ApolloServer.create({
-        port: 5000,
         middleware: server
     })
 

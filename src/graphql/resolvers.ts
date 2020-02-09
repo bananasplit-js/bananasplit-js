@@ -1,22 +1,21 @@
 /**
  * 
  *  Resolvers for Apollo GraphQL Server
- *  @module resolvers
+ *  @module graphql/resolvers
  * 
  */
 
 
-export default
+import UserResolvers from './user/user.resolvers'
+
+
+export default [
     /**
-     * 
-     *  Resolvers
+     *
+     *  Your Schemas goes here!!
      * 
      */
-    {
-        Query: {
-            hello: () => {
-                return 'hello world!'
-            }
-        }
-    }
-;
+
+    UserResolvers
+
+]

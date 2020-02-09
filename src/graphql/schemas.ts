@@ -1,23 +1,22 @@
 /**
  * 
  *  Schemas for Apollo GraphQL Server
- *  @module schema
+ *  @module graphql/schema
  * 
  */
 
 
-import { gql } from 'apollo-server'
+import UserSchema from './user/user.schema'
 
 
-export default
+export default [
+
     /**
-     * 
-     *  Schema
+     *
+     *  Your Schemas goes here!!
      * 
      */
-    gql`
-        type Query {
-            hello: String
-        }
-    `
-;
+
+    UserSchema,
+
+]
