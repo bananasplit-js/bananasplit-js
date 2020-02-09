@@ -13,6 +13,10 @@ export default
      * 
      */
     {
-        // resolvers functions
+        Query: {
+            hello: () => {
+                return 'hello world!'
+            }
+        }
     }
 ;

@@ -8,8 +8,8 @@
  */
 
 
-import express from 'express'
-import morgan from 'morgan'
+import Express from 'express'
+import Morgan from 'morgan'
 
 import MainRouter from './routes/main.routes'
 
@@ -17,6 +17,7 @@ import MainRouter from './routes/main.routes'
 /**
  * 
  *  Definitions for Server new Instances parameters
+ *  @typedef
  * 
  */
 type ServerProps = {
@@ -38,7 +39,7 @@ export
          *  @property { express.Application } server
          * 
          */
-        private server: express.Application
+        private server: Express.Application
 
         /**
          * 
@@ -56,7 +57,7 @@ export
          */
         constructor( { port }: ServerProps ) {
 
-            this.server = express()
+            this.server = Express()
             this.port = port
 
             this.settings()
@@ -68,11 +69,11 @@ export
 
         /**
          * 
-         *  Get Instance of Server Express
-         *  @returns { express.Application }
+         *  Gets Express Server Instance
+         *  @returns { Express.Application }
          *  
          */
-        public getInstance(): express.Application {
+        public getService(): Express.Application {
             return this.server
         }
 
@@ -99,7 +100,7 @@ export
          * 
          */
         private middlewares(): void {
-            this.server.use( morgan('dev') )
+            this.server.use( Morgan('dev') )
         }
 
 
@@ -147,6 +148,7 @@ import Resolvers from './resolvers'
 /**
  * 
  *  Definitions for Apollo new Instances parameters
+ *  @typedef
  * 
  */
 type ApolloProps = {
@@ -201,7 +203,7 @@ export
                 this.server = new ApolloServerExpress( options )
 
                 this.server.applyMiddleware({
-                    app: middleware.getInstance()
+                    app: middleware.getService()
                 })
 
                 console.log( 'Server: Apollo running on', this.server.graphqlPath )
