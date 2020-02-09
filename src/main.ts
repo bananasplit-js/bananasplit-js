@@ -6,8 +6,8 @@
  */
 
 
-import Server from './server'
-import ApolloServer from './apollo-server'
+import Server from './services/http-server'
+import ApolloServer from './services/apollo-server'
 
 
 /**

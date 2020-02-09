@@ -17,9 +17,10 @@ const router: Router = Router()
 
 /**
  *
- *  Main Routes and Controllers:
+ *  Your routes goes here!!
  *
  */
+
 router.route('/')
     .get( MainController.mainResponse )
 ;

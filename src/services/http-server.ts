@@ -9,9 +9,10 @@
 
 
 import Express, { Application as ExpressApp } from 'express'
-import Morgan from 'morgan'
 
-import MainRouter from './routes/main.routes'
+import Settings from '../settings/settings'
+import Middlewares from '../middlewares/middleware'
+import MainRouter from '../routes/routes'
 
 
 /**
@@ -104,6 +105,17 @@ export default
 
         /**
          * 
+         *  Returns the Server class Instance
+         *  @method
+         * 
+         */
+        public static getInstance(): Server {
+            return Server.instance
+        }
+
+
+        /**
+         * 
          *  Gets Express Server Instance
          *  @returns { ExpressApp }
          *  
@@ -126,14 +138,9 @@ export default
                 server: <ExpressApp> this.server
             }
 
-
-            /**
-             * 
-             *  Your settings goes here!!
-             *  Use $this instead this
-             * 
-             */
             $this.server.set( 'port', this.port || process.env.PORT || 4000 )
+
+            Settings( <ExpressApp> this.server )
 
         }
 
@@ -147,19 +154,7 @@ export default
          * 
          */
         private middlewares(): void {
-            const $this = {
-                server: <ExpressApp> this.server
-            }
-
-
-            /**
-             * 
-             *  Your middlewares goes here!!
-             *  Use $this instead this
-             * 
-             */
-            $this.server.use( Morgan('dev') )
-
+            Middlewares( <ExpressApp> this.server )
         }
 
 
@@ -172,20 +167,7 @@ export default
          * 
          */
         private routes(): void {
-
-            const $this = {
-                server: <ExpressApp> this.server
-            }
-
-
-            /**
-             * 
-             *  Your routes goes here!!
-             *  Use $this instead this
-             * 
-             */
-            $this.server.use( MainRouter )
-
+            ( <ExpressApp> this.server ).use( MainRouter )
         }
 
 

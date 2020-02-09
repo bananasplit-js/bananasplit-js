@@ -11,10 +11,10 @@
 import { ApolloServer } from 'apollo-server'
 import { ApolloServer as ApolloServerExpress } from 'apollo-server-express'
 
-import Server from './server'
+import Server from './http-server'
 
-import Schemas from './graphql/schemas'
-import Resolvers from './graphql/resolvers'
+import Schemas from '../graphql/main.schemas'
+import Resolvers from '../graphql/main.resolvers'
 
 
 /**
@@ -121,6 +121,17 @@ export default
 
             return Apollo.instance
 
+        }
+
+
+        /**
+         * 
+         *  Returns the Apollo Server class Instance
+         *  @method
+         * 
+         */
+        public static getInstance(): Apollo {
+            return Apollo.instance
         }
 
 

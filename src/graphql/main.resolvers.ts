@@ -1,7 +1,7 @@
 /**
  * 
  *  Resolvers for Apollo GraphQL Server
- *  @module graphql/resolvers
+ *  @module graphql/main.resolvers
  * 
  */
 
@@ -10,9 +10,10 @@ import UserResolvers from './user/user.resolvers'
 
 
 export default [
+    
     /**
      *
-     *  Your Schemas goes here!!
+     *  Your Resolvers goes here!!
      * 
      */
 
