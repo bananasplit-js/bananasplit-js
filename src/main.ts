@@ -6,7 +6,7 @@
  */
 
 
-import { Server, Apollo as ApolloServer } from './server'
+import { Server, Apollo as ApolloServer } from './services'
 
 
 /**

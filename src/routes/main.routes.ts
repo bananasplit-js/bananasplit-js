@@ -11,15 +11,15 @@ import { Router } from 'express'
 import MainController from '../controllers/main.controller'
 
 
-/**
- * 
- *  Router object
- * 
- */
+// Main Router:
 const router: Router = Router()
 
 
-// Routes and Controllers:
+/**
+ *
+ *  Main Routes and Controllers:
+ *
+ */
 router.route('/')
     .get( MainController.mainResponse )
 ;

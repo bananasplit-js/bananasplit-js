@@ -1,8 +1,8 @@
 /**
  *
- *  Server
+ *  Services
  * 
- *  @module server
+ *  @module services
  *  @description Provides Backend Services
  * 
  */
@@ -141,8 +141,8 @@ export
 import { ApolloServer } from 'apollo-server'
 import { ApolloServer as ApolloServerExpress } from 'apollo-server-express'
 
-import Schema from './schema'
-import Resolvers from './resolvers'
+import Schemas from './graphql/schemas'
+import Resolvers from './graphql/resolvers'
 
 
 /**
@@ -193,14 +193,14 @@ export
 
             this.port = ( port || process.env.PORT || 5000 ) as number
 
-            const options: object = {
-                typeDefs: Schema,
-                resolvers: Resolvers
+            const config: object = {
+                typeDefs: [ Schemas ],
+                resolvers: [ Resolvers ]
             }
 
             if ( middleware ) {
 
-                this.server = new ApolloServerExpress( options )
+                this.server = new ApolloServerExpress( config )
 
                 this.server.applyMiddleware({
                     app: middleware.getService()
@@ -210,9 +210,20 @@ export
 
             } else
 
-                this.server = new ApolloServer( options )
+                this.server = new ApolloServer( config )
             ;
 
+        }
+
+
+        /**
+         * 
+         *  Gets Apollo Server Instance
+         *  @returns { ApolloServerExpress | ApolloServer }
+         *  
+         */
+        public getService(): ApolloServerExpress | ApolloServer {
+            return this.server
         }
 
 
