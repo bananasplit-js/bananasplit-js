@@ -30,7 +30,7 @@ export default
          * 
          */
         public static mainResponse( request: Request, response: Response ): Response {
-            return response.send( 'You requested: /' )
+            return response.send( '<strong> GET / </strong> 200 Response' )
         }
     }
 ;
