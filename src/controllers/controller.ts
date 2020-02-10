@@ -1,8 +1,8 @@
 /**
  * 
- *  Default Controller
+ *  Controller
  * 
- *  @module controllers/default.controller
+ *  @module controllers/controller
  *  @description Provides default actions
  * 
  */
@@ -21,7 +21,7 @@ export default
     class Controller {
         /**
          * 
-         *  Hello root path response
+         *  Hello response
          * 
          *  @param { Request } request 
          *  @param { Response } response
@@ -30,7 +30,13 @@ export default
          * 
          */
         public static hello( request: Request, response: Response ): Response {
-            return response.send( '<h2> Hello from Express! </h2> <strong> GET / </strong> 200 Response' )
+
+            return (
+                response
+                .status( 200 )
+                .send( '<h2> Hello from Express! </h2> <strong> GET / </strong> 200 Response' )
+            )
+            
         }
     }
 ;

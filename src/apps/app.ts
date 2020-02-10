@@ -1,9 +1,9 @@
 /**
  *
- *  Express Server
+ *  App
  * 
- *  @module express-server
- *  @description Provides a Nodejs Express Server
+ *  @module app
+ *  @description the Express Nodejs App
  * 
  */
 
@@ -17,7 +17,7 @@ import MainRouter from '../routes/main.routes'
 
 /**
  * 
- *  Definitions for Server new Instances parameters
+ *  Definitions for App new Instances parameters
  *  @typedef
  * 
  */
@@ -29,18 +29,18 @@ type ServerProps = {
 export default
     /**
      * 
-     *  @class Server
-     *  @classdesc Initializes the Server
+     *  @class App
+     *  @classdesc Initializes the App
      * 
      */
-    class Server {
+    class App {
         
         /**
          * 
-         *  @property { ExpressApp } server
+         *  @property { ExpressApp } app
          * 
          */
-        private server: ( ExpressApp | null ) = null
+        private app: ( ExpressApp | null ) = null
 
         /**
          * 
@@ -52,10 +52,10 @@ export default
         /**
          *
          *  Singleton Instance
-         *  @private @property { Server } instance
+         *  @private @property { App } instance
          * 
          */
-        private static instance: Server
+        private static instance: App
         
 
         /**
@@ -74,60 +74,62 @@ export default
         /**
          *  
          *  Singleton
-         *  @description Creates or returns a Singleton Instance for Server
+         *  @description Build or returns a Singleton Instance for App
          * 
-         *  @method create
+         *  @method build
          *  @param { number | string } port? - Port number
          * 
          */
-        public static create( { port }: ServerProps ): Server {
+        public static build( { port }: ServerProps ): App {
 
-            if ( ! Server.instance ) {
+            if ( ! App.instance ) {
 
                 // Creates a new Instance:
-                Server.instance = new Server()
-                Server.instance.server = Express()
+                App.instance = new App()
+                App.instance.app = Express()
 
                 // Sets properties:
-                Server.instance.port = port
+                App.instance.port = port
 
                 // Executes methods:
-                Server.instance.settings()
-                Server.instance.middlewares()
-                Server.instance.routes()
+                App.instance.settings()
+                App.instance.middlewares()
+                App.instance.routes()
 
             }
 
-            return Server.instance
+            return App.instance
 
         }
 
 
         /**
          * 
-         *  Returns the Server class Instance
+         *  Returns the App class Instance
          *  @method
          * 
          */
-        public static getInstance(): Server {
-            return Server.instance
+        public static getInstance(): App {
+            return App.instance
         }
 
 
         /**
          * 
-         *  Gets Express Server Instance
+         *  Gets Express App Instance
+         * 
+         *  @method get
          *  @returns { ExpressApp }
          *  
          */
-        public getService(): ExpressApp {
-            return <ExpressApp> this.server
+        public get(): ExpressApp {
+            return <ExpressApp> this.app
         }
 
 
         /**
          * 
-         *  Settings for Server
+         *  Settings for App
          * 
          *  @private @method settings
          *  @returns void
@@ -136,12 +138,12 @@ export default
         private settings(): void {
             
             const $this = {
-                server: <ExpressApp> this.server
+                app: <ExpressApp> this.app
             }
 
-            $this.server.set( 'port', this.port || process.env.PORT || 4000 )
+            $this.app.set( 'port', this.port || process.env.PORT || 4000 )
 
-            Settings( $this.server )
+            Settings( $this.app )
 
         }
 
@@ -155,39 +157,39 @@ export default
          * 
          */
         private middlewares(): void {
-            Middlewares( <ExpressApp> this.server )
+            Middlewares( <ExpressApp> this.app )
         }
 
 
         /**
          * 
-         *  Makes Routes for Server
+         *  Makes Routes for App
          * 
          *  @private @method routes
          *  @returns void
          * 
          */
         private routes(): void {
-            MainRouter( <ExpressApp> this.server )
+            MainRouter( <ExpressApp> this.app )
         }
 
 
         /**
          * 
-         *  Runs the Server on specified/system/default port
+         *  Start the App on specified/system/default port
          * 
-         *  @method listen
+         *  @method start
          *  @returns { Promise }
          * 
          */
-        public async listen(): Promise <any> {
+        public async start(): Promise <any> {
             
             const $this = {
-                server: <ExpressApp> this.server
+                app: <ExpressApp> this.app
             }
 
-            await $this.server.listen( $this.server.get('port') )
-            console.log( 'Server: Nodejs Express running on port', $this.server.get('port') )
+            await $this.app.listen( $this.app.get('port') )
+            console.log( 'App: running on port', $this.app.get('port') )
 
         }
 

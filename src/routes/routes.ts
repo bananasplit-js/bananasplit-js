@@ -1,9 +1,9 @@
 /**
  * 
- *  Default Router
+ *  Router
  *  @routes
 
- *  @module routes/default.routes
+ *  @module routes/routes
  *  @description * you can remove it or modify it *
  * 
  */
@@ -12,7 +12,7 @@ import { Router } from 'express'
 
 
 // Controller:
-import Controller from '../controllers/default.controller'
+import Controller from '../controllers/controller'
 
 
 // Creates default Router:
@@ -23,7 +23,7 @@ const $: Router = Router()
 
     /**
      * 
-     *  Your default routes goes here!
+     *  Your routes goes here!
      *  @routes @set
      * 
      */

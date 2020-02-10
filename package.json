@@ -2,11 +2,12 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
     "test": "jest",
+    "test -c": "jest --coverage",
     "build": "tsc",
-    "server": "nodemon src/main.ts --exec ts-node"
+    "server": "nodemon src/main.ts --exec ts-node --ignore src/tests"
   },
   "repository": {
     "type": "git",
@@ -29,8 +30,12 @@
   },
   "devDependencies": {
     "@types/express": "^4.17.2",
+    "@types/jest": "^25.1.2",
+    "@types/supertest": "^2.0.8",
     "jest": "^25.1.0",
     "nodemon": "^2.0.2",
+    "supertest": "^4.0.2",
+    "ts-jest": "^25.2.0",
     "ts-node": "^8.6.2",
     "typescript": "^3.7.5"
   }

@@ -1,9 +1,9 @@
 /**
  *
- *  Apollo Server
+ *  Apollo App
  * 
- *  @module apollo-server
- *  @description Provides an Apollo Server
+ *  @module apollo.app
+ *  @description Provides an Apollo App to serve data throw GraphQL
  * 
  */
 
@@ -11,7 +11,7 @@
 import { ApolloServer } from 'apollo-server'
 import { ApolloServer as ApolloServerExpress } from 'apollo-server-express'
 
-import Server from './express-server'
+import App from './app'
 
 import Schemas from '../graphql/main.schemas'
 import Resolvers from '../graphql/main.resolvers'
@@ -25,7 +25,7 @@ import Resolvers from '../graphql/main.resolvers'
  */
 type ApolloProps = {
     port?: number
-    middleware?: Server
+    middleware?: App
 }
 
 
@@ -55,7 +55,7 @@ export default
         /**
          *
          *  Singleton instance
-         *  @private @property { Server } instance
+         *  @private @property { App } instance
          * 
          */
         private static instance: Apollo
@@ -78,13 +78,13 @@ export default
         /**
          *  
          *  Singleton
-         *  @description Creates or returns a Singleton Instance for Apollo Server
+         *  @description Build or returns a Singleton Instance for Apollo App
          * 
-         *  @method create
+         *  @method build
          *  @param { number | string } port? - Port number
          * 
          */
-        public static create( { port, middleware }: ApolloProps ) {
+        public static build( { port, middleware }: ApolloProps ) {
 
             if ( ! Apollo.instance ) {
 
@@ -100,16 +100,16 @@ export default
                     resolvers: Resolvers
                 }
 
-                // Create Apollo Server as Middleware or Independent:
+                // Create Apollo App as Middleware or Independent:
                 if ( middleware ) {
 
                     Apollo.instance.server = new ApolloServerExpress( config )
 
                     Apollo.instance.server.applyMiddleware({
-                        app: middleware.getService()
+                        app: middleware.get()
                     })
 
-                    console.log( 'Server: Apollo running on', Apollo.instance.server.graphqlPath )
+                    console.log( 'Apollo: running on', Apollo.instance.server.graphqlPath )
 
                 } else
 
@@ -126,18 +126,18 @@ export default
 
         /**
          * 
-         *  Returns the Apollo Server class Instance
-         *  @method
+         *  Returns the Apollo App class Instance
+         *  @method get
          * 
          */
-        public static getInstance(): Apollo {
+        public static get(): Apollo {
             return Apollo.instance
         }
 
 
         /**
          * 
-         *  Gets Apollo Server Instance
+         *  Gets Apollo App Instance
          *  @returns { ApolloServerExpress | ApolloServer }
          *  
          */
@@ -148,16 +148,16 @@ export default
 
         /**
          *
-         *  Runs the Apollo Server on specified/system/default port
+         *  Runs the Apollo App on specified/system/default port
          * 
          *  @method listen
          *  @returns { Promise }
          * 
          */
-        public async listen(): Promise <void> {
+        public async start(): Promise <void> {
 
             await ( <ApolloServer> this.server ).listen( this.port )
-            console.log( 'Server: Apollo running on port', this.port )
+            console.log( 'App: Apollo running on port', this.port )
 
         }
 

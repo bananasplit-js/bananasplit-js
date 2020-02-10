@@ -15,7 +15,7 @@ import { Application as ExpressApp } from 'express'
  *  Your custom Routers import goes here!!
  * 
  */
-import DefaultRouter from './default.routes'
+import Router from './routes'
 
 
 export default
@@ -30,7 +30,7 @@ export default
          */
 
         // Register Default Router:
-        server.use( DefaultRouter )
+        server.use( Router )
 
     }
 
