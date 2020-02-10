@@ -6,17 +6,24 @@
  */
 
 
-import UserResolvers from './user/user.resolvers'
+ /**
+ *
+ *  Your Resolvers import goes here!!
+ *  @resolvers @import
+ * 
+ */
+import HelloResolvers from './hello/hello.resolvers'
 
 
 export default [
     
     /**
      *
-     *  Your Resolvers goes here!!
+     *  Your Resolvers register goes here!!
+     *  @resolvers @register
      * 
      */
 
-    UserResolvers
+    HelloResolvers
 
 ]

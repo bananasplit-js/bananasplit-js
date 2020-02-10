@@ -8,13 +8,13 @@
  */
 
 
-import Express, { Application as ExpressApp } from 'express'
+import Express from 'express'
 import Morgan from 'morgan'
 
 
 export default
 
-    ( server: ExpressApp ): void => {
+    ( app: Express.Application ): void => {
         
         /**
          * 
@@ -22,8 +22,8 @@ export default
          * 
          */
         
-        server.use( Morgan('dev') )
-        server.use( Express.json() )
+        app.use( Morgan('dev') )
+        app.use( Express.json() )
 
     }
 ;

@@ -6,12 +6,12 @@
  */
 
 
-import Express, { Application as ExpressApp } from 'express'
+import Express from 'express'
 
 
 export default
 
-    ( server: ExpressApp ): void => {
+    ( app: Express.Application ): void => {
 
         /**
          * 
@@ -20,10 +20,10 @@ export default
          * 
          */
 
-        // server.set( 'key', value )
+        // app.set( 'key', value )
 
         // Public directory:
-        server.use( Express.static( './../public' ) )
+        app.use( Express.static( './../public' ) )
         
     }
 

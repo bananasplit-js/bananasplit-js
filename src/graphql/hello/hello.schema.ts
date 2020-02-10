@@ -1,7 +1,7 @@
 /**
  * 
- *  User Schema
- *  @module graphql/user/user.schema
+ *  Hello Schema
+ *  @module graphql/hello/hello.schema
  * 
  */
 

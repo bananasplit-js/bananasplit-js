@@ -9,7 +9,7 @@
 
 
 import App from './apps/app'
-import ApolloApp from './apps/apollo.app'
+import Apollo from './apps/apollo.app'
 
 
 /**
@@ -34,7 +34,7 @@ import ApolloApp from './apps/apollo.app'
     })
 
     // Apollo App:
-    const apollo: ApolloApp = ApolloApp.build({
+    const apollo: Apollo = Apollo.build({
         middleware: app
     })
 
