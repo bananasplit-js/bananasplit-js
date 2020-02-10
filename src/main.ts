@@ -8,7 +8,7 @@
  */
 
 
-import Server from './services/http-server'
+import Server from './services/express-server'
 import ApolloServer from './services/apollo-server'
 
 

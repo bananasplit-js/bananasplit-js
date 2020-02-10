@@ -11,7 +11,7 @@
 import { ApolloServer } from 'apollo-server'
 import { ApolloServer as ApolloServerExpress } from 'apollo-server-express'
 
-import Server from './http-server'
+import Server from './express-server'
 
 import Schemas from '../graphql/main.schemas'
 import Resolvers from '../graphql/main.resolvers'

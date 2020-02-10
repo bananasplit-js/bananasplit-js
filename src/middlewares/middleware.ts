@@ -1,12 +1,14 @@
 /**
  * 
  *  Middlewares
+ *  @middleware
+ * 
  *  @module middlewares/middleware
  * 
  */
 
 
-import { Application as ExpressApp } from 'express'
+import Express, { Application as ExpressApp } from 'express'
 import Morgan from 'morgan'
 
 
@@ -16,11 +18,12 @@ export default
         
         /**
          * 
-         *  Your middlewares goes here!!
+         *  Your Middlewares goes here!!
          * 
          */
         
         server.use( Morgan('dev') )
+        server.use( Express.json() )
 
     }
 ;

@@ -6,7 +6,7 @@
  */
 
 
-import { Application as ExpressApp } from 'express'
+import Express, { Application as ExpressApp } from 'express'
 
 
 export default
@@ -15,11 +15,15 @@ export default
 
         /**
          * 
-         *  Your settings goes here!!
+         *  Your Settings goes here!!
+         *  @settings
          * 
          */
 
         // server.set( 'key', value )
+
+        // Public directory:
+        server.use( Express.static( './../public' ) )
         
     }
 

@@ -1,9 +1,9 @@
 /**
  *
- *  Server
+ *  Express Server
  * 
- *  @module server
- *  @description Provides a Nodejs Server
+ *  @module express-server
+ *  @description Provides a Nodejs Express Server
  * 
  */
 
@@ -12,7 +12,7 @@ import Express, { Application as ExpressApp } from 'express'
 
 import Settings from '../settings/settings'
 import Middlewares from '../middlewares/middleware'
-import MainRouter from '../routes/routes'
+import MainRouter from '../routes/main.routes'
 
 
 /**
@@ -134,13 +134,14 @@ export default
          * 
          */
         private settings(): void {
+            
             const $this = {
                 server: <ExpressApp> this.server
             }
 
             $this.server.set( 'port', this.port || process.env.PORT || 4000 )
 
-            Settings( <ExpressApp> this.server )
+            Settings( $this.server )
 
         }
 
@@ -167,7 +168,7 @@ export default
          * 
          */
         private routes(): void {
-            ( <ExpressApp> this.server ).use( MainRouter )
+            MainRouter( <ExpressApp> this.server )
         }
 
 
@@ -186,7 +187,7 @@ export default
             }
 
             await $this.server.listen( $this.server.get('port') )
-            console.log( 'Server: Nodejs running on port', $this.server.get('port') )
+            console.log( 'Server: Nodejs Express running on port', $this.server.get('port') )
 
         }
 
