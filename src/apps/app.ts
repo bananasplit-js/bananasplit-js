@@ -21,7 +21,7 @@ import MainRouter from '../routes/main.routes'
  *  @typedef
  * 
  */
-type ServerProps = {
+type AppProps = {
     port?: number | string
 }
 
@@ -47,7 +47,7 @@ export default
          *  @private @property { number | string } port
          * 
          */
-        private port? : number | string
+        private port? : number | string | undefined
 
         /**
          *
@@ -77,10 +77,10 @@ export default
          *  @description Build or returns a Singleton Instance for App
          * 
          *  @method build
-         *  @param { number | string } port? - Port number
+         *  @param { AppProps } config? - Config object
          * 
          */
-        public static build( { port }: ServerProps ): App {
+        public static build( config?: AppProps ): App {
 
             if ( ! App.instance ) {
 
@@ -89,7 +89,7 @@ export default
                 App.instance.app = Express()
 
                 // Sets properties:
-                App.instance.port = port
+                App.instance.port = config?.port
 
                 // Executes methods:
                 App.instance.settings()

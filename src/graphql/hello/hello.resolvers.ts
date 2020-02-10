@@ -10,7 +10,7 @@ export default {
 
     Query: {
         hello: () => {
-            return 'hello from Apollo GraphQL!'
+            return 'hello from Apollo!'
         }
     }
     
