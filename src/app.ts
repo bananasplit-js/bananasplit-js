@@ -1,15 +1,15 @@
 /**
  * 
- *  Main
+ *  App
  * 
- *  @module main
+ *  @module app
  *  @description All begins here!
  * 
  */
 
 
-import App from './apps/app'
-import Apollo from './apps/apollo.app'
+import App from './providers/app'
+import Apollo from './providers/apollo'
 
 
 /**

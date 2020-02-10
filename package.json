@@ -2,11 +2,11 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "app.js",
   "scripts": {
     "test": "jest",
     "build": "tsc",
-    "server": "nodemon src/main.ts --exec ts-node --ignore src/tests"
+    "server": "nodemon src/app.ts --exec ts-node --ignore src/tests"
   },
   "repository": {
     "type": "git",
