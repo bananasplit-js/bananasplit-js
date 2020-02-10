@@ -82,6 +82,7 @@ export default
          * 
          *  @method build
          *  @param { number | string } port? - Port number
+         *  @param { App } middleware? - Middleware throw App
          * 
          */
         public static build( { port, middleware }: ApolloProps ) {

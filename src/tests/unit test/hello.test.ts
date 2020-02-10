@@ -7,13 +7,14 @@
 
 
 import Express from 'express'
-import request from 'supertest'
+import request, { Response } from 'supertest'
 
 import App from '../../apps/app'
 
 
 // Express App as parallel instance:
 const app: Express.Application = App.build().get()
+
 
 
 /**
@@ -24,7 +25,7 @@ const app: Express.Application = App.build().get()
  */
 test( 'Hello response is received', async () => {
 
-    const response: any = await request( app ).get( '/' )
+    const response: Response = await request( app ).get( '/' )
 
     expect( response.status ).toBe( 200 )
     expect( response.text ).toMatch( 'Hello from Express!' )

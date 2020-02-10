@@ -136,14 +136,9 @@ export default
          * 
          */
         private settings(): void {
-            
-            const $this = {
-                app: <ExpressApp> this.app
-            }
 
-            $this.app.set( 'port', this.port || process.env.PORT || 4000 )
-
-            Settings( $this.app )
+            this.app?.set( 'port', this.port || process.env.PORT || 4000 )
+            Settings( <ExpressApp> this.app )
 
         }
 
@@ -183,13 +178,9 @@ export default
          * 
          */
         public async start(): Promise <any> {
-            
-            const $this = {
-                app: <ExpressApp> this.app
-            }
 
-            await $this.app.listen( $this.app.get('port') )
-            console.log( 'App: running on port', $this.app.get('port') )
+            await this.app?.listen( this.app.get('port') )
+            console.log( 'App: running on port', this.app?.get('port') )
 
         }
 
