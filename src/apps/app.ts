@@ -10,7 +10,7 @@
 
 import Express, { Application as ExpressApp } from 'express'
 
-import Settings from '../settings/settings'
+import Settings from '../settings/app.settings'
 import Middlewares from '../middlewares/middleware'
 import MainRouter from '../routes/main.routes'
 
@@ -177,9 +177,9 @@ export default
          *  @returns { Promise }
          * 
          */
-        public async start(): Promise <any> {
+        public async start( port?: number ): Promise <any> {
 
-            await this.app?.listen( this.app.get('port') )
+            await this.app?.listen( port || this.app.get('port') )
             console.log( 'App: running on port', this.app?.get('port') )
 
         }

@@ -16,6 +16,8 @@ import App from './app'
 import Schemas from '../graphql/main.schemas'
 import Resolvers from '../graphql/main.resolvers'
 
+import settings from '../settings/apollo.settings'
+
 
 /**
  * 
@@ -44,6 +46,13 @@ export default
          * 
          */
         private port?: number
+
+        /**
+         *
+         *  @private @property { object } options
+         * 
+         */
+        private options?: object
 
         /**
          *
@@ -82,7 +91,8 @@ export default
          * 
          *  @method build
          *  @param { number | string } port? - Port number
-         *  @param { App } middleware? - Middleware throw App
+         *  @param { App } middleware? - Middleware throw App specified
+         *  @param { object } options? - Options object passed to Apollo Server new instance
          * 
          */
         public static build( { port, middleware }: ApolloProps ) {
@@ -95,16 +105,13 @@ export default
                 // Sets Properties:
                 Apollo.instance.port = ( port || process.env.PORT || 5000 ) as number
 
-                // Defines Resolvers, Schemas, etc as config object:
-                const config: object = {
-                    typeDefs: Schemas,
-                    resolvers: Resolvers
-                }
+                // Get options from apollo.settings file in settings:
+                const options: object = Apollo.instance.settings()
 
                 // Create Apollo App as Middleware or Independent:
                 if ( middleware ) {
 
-                    Apollo.instance.server = new ApolloServerExpress( config )
+                    Apollo.instance.server = new ApolloServerExpress( options )
 
                     Apollo.instance.server.applyMiddleware({
                         app: middleware.get()
@@ -114,7 +121,7 @@ export default
 
                 } else
 
-                    Apollo.instance.server = new ApolloServer( config )
+                    Apollo.instance.server = new ApolloServer( options )
 
                 ;
 
@@ -127,11 +134,35 @@ export default
 
         /**
          * 
-         *  Returns the Apollo App class Instance
-         *  @method get
+         *  Gets settings from apollo settings file
+         * 
+         *  @method settings
+         *  @returns { object }
          * 
          */
-        public static get(): Apollo {
+        private settings(): object {
+
+            // Defines Resolvers, Schemas, etc as config object:
+            const config: object = {
+                typeDefs: Schemas,
+                resolvers: Resolvers
+            }
+
+            const options = settings
+
+            // Return merged options obtained in settings file with config obj to force modularized typeDefs and resolvers:
+            return { ...options, ...config }
+
+        }
+
+
+        /**
+         * 
+         *  Returns the Apollo App class Instance
+         *  @static @method getInstance
+         * 
+         */
+        public static getInstance(): Apollo {
             return Apollo.instance
         }
 
@@ -139,10 +170,12 @@ export default
         /**
          * 
          *  Gets Apollo App Instance
+         *  
+         *  @method get
          *  @returns { ApolloServerExpress | ApolloServer }
          *  
          */
-        public getService(): ApolloServerExpress | ApolloServer {
+        public get(): ApolloServerExpress | ApolloServer {
             return <ApolloServer> this.server
         }
 
@@ -155,9 +188,9 @@ export default
          *  @returns { Promise }
          * 
          */
-        public async start(): Promise <void> {
+        public async start( port?: number ): Promise <void> {
 
-            await ( <ApolloServer> this.server ).listen( this.port )
+            await ( <ApolloServer> this.server ).listen( port || this.port )
             console.log( 'App: Apollo running on port', this.port )
 
         }

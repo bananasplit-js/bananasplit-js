@@ -23,6 +23,8 @@ import Apollo from './apps/apollo.app'
  *  Key parameters 'port' and 'middleware' are always OPTIONALS. If there is not port specified, then services uses the system
  *  defined port or the default value.
  * 
+ *  You can pass the listen port as parameter in 'start' function too or pass it in settings file throw 'use' function.
+ * 
  */
 
 

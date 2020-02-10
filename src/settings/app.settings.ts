@@ -1,7 +1,7 @@
 /**
  * 
- *  Settings
- *  @module settings/settings
+ *  App Settings
+ *  @module settings/app.settings
  * 
  */
 
@@ -15,7 +15,7 @@ export default
 
         /**
          * 
-         *  Your Settings goes here!!
+         *  Your App settings goes here!!
          *  @settings
          * 
          */
