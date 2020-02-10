@@ -1,9 +1,7 @@
 /**
  * 
  *  Hello example Test
- *  @test
- * 
- *  @module tests/unit test/hello.test
+ *  @test @module tests/unit test/hello.test
  * 
  */
 
