@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "build": "tsc",
     "server": "nodemon src/main.ts --exec ts-node"
   },
@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "@types/express": "^4.17.2",
+    "jest": "^25.1.0",
     "nodemon": "^2.0.2",
     "ts-node": "^8.6.2",
     "typescript": "^3.7.5"
