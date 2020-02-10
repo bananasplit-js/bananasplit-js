@@ -37,7 +37,7 @@ export default
         
         /**
          * 
-         *  @property { ExpressApp } app
+         *  @private @property { ExpressApp } app
          * 
          */
         private app: ( ExpressApp | null ) = null
@@ -52,7 +52,7 @@ export default
         /**
          *
          *  Singleton Instance
-         *  @private @property { App } instance
+         *  @private @static @property { App } instance
          * 
          */
         private static instance: App
@@ -76,8 +76,10 @@ export default
          *  Singleton
          *  @description Build or returns a Singleton Instance for App
          * 
-         *  @method build
+         *  @static @method build
          *  @param { AppProps } config? - Config object
+         * 
+         *  @returns { App }
          * 
          */
         public static build( config?: AppProps ): App {
@@ -106,7 +108,9 @@ export default
         /**
          * 
          *  Returns the App class Instance
-         *  @method
+         * 
+         *  @static @method
+         *  @returns { App }
          * 
          */
         public static getInstance(): App {
@@ -133,7 +137,6 @@ export default
          * 
          *  @private @method settings
          *  @returns void
-         * 
          */
         private settings(): void {
 
@@ -173,7 +176,7 @@ export default
          * 
          *  Start the App on specified/system/default port
          * 
-         *  @method start
+         *  @async @method start
          *  @returns { Promise }
          * 
          */

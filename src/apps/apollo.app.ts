@@ -64,7 +64,7 @@ export default
         /**
          *
          *  Singleton instance
-         *  @private @property { App } instance
+         *  @private @static @property { App } instance
          * 
          */
         private static instance: Apollo
@@ -89,10 +89,11 @@ export default
          *  Singleton
          *  @description Build or returns a Singleton Instance for Apollo App
          * 
-         *  @method build
+         *  @static @method build
          *  @param { number | string } port? - Port number
          *  @param { App } middleware? - Middleware throw App specified
-         *  @param { object } options? - Options object passed to Apollo Server new instance
+         * 
+         *  @retuns { ApolloServer | ApolloServerExpress }
          * 
          */
         public static build( { port, middleware }: ApolloProps ) {
@@ -136,7 +137,7 @@ export default
          * 
          *  Gets settings from apollo settings file
          * 
-         *  @method settings
+         *  @private @method settings
          *  @returns { object }
          * 
          */
@@ -159,7 +160,9 @@ export default
         /**
          * 
          *  Returns the Apollo App class Instance
+         * 
          *  @static @method getInstance
+         *  @returns { Apollo }
          * 
          */
         public static getInstance(): Apollo {
@@ -182,9 +185,9 @@ export default
 
         /**
          *
-         *  Runs the Apollo App on specified/system/default port
+         *  Start the Apollo App on specified/system/default port
          * 
-         *  @method listen
+         *  @async @method start
          *  @returns { Promise }
          * 
          */
