@@ -25,5 +25,8 @@ export default
         app.use( Morgan('dev') )
         app.use( Express.json() )
 
+        // Public directory:
+        app.use( Express.static( './../public' ) )
+
     }
 ;

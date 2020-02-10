@@ -21,9 +21,6 @@ export default
          */
 
         // app.set( 'key', value )
-
-        // Public directory:
-        app.use( Express.static( './../public' ) )
         
     }
 
