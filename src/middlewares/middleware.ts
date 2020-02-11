@@ -43,11 +43,5 @@ export default
         // Public directory:
         app.use( Express.static( app.get('public') ) )
 
-        // Bootstrap:
-        app.use(
-            '/bootstrap',
-            Express.static( path.join(__dirname, '../../node_modules/bootstrap/dist') )
-        )
-
     }
 ;
