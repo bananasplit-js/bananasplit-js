@@ -1,10 +1,12 @@
 /**
  * 
- *  Router
+ *  Router example
  *  @routes
 
  *  @module routes/routes
  *  @description * you can remove it or modify it *
+ * 
+ *  @use this file as your Routers template! ***
  * 
  */
 
@@ -16,15 +18,15 @@ import Controller from '../controllers/controller'
 
 
 // Creates default Router:
-const $: Router = Router()
+const router: Router = Router()
 
 
-; ( (): void => {
+;( ($): void => {
 
     /**
      * 
-     *  Your routes goes here!
-     *  @routes @set
+     *  Your routes goes here!!
+     *  @routes
      * 
      */
 
@@ -33,7 +35,7 @@ const $: Router = Router()
         .get( Controller.hello )
     ;
 
-} )()
+} )( router )
 
 
-export default $
+export default router

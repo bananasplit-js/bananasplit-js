@@ -1,23 +1,24 @@
 /**
  *
- *  App
+ *  Express Provider
  * 
- *  @module app
- *  @description the Express Nodejs App
+ *  @module providers/express
+ *  @description the Express Nodejs Provider
  * 
  */
 
 
 import Express, { Application as ExpressApp } from 'express'
+import path from 'path'
 
-import Settings from '../settings/app.settings'
+import Settings from '../settings/settings'
 import Middlewares from '../middlewares/middleware'
 import MainRouter from '../routes/main.routes'
 
 
 /**
  * 
- *  Definitions for App new Instances parameters
+ *  Definitions for ExpressProvider singleton parameters
  *  @typedef
  * 
  */
@@ -29,11 +30,11 @@ type AppProps = {
 export default
     /**
      * 
-     *  @class App
-     *  @classdesc Initializes the App
+     *  @class ExpressProvider
+     *  @classdesc Provides an Express Server
      * 
      */
-    class App {
+    class ExpressProvider {
         
         /**
          * 
@@ -52,10 +53,10 @@ export default
         /**
          *
          *  Singleton Instance
-         *  @private @static @property { App } instance
+         *  @private @static @property { ExpressProvider } instance
          * 
          */
-        private static instance: App
+        private static instance: ExpressProvider
         
 
         /**
@@ -74,53 +75,53 @@ export default
         /**
          *  
          *  Singleton
-         *  @description Build or returns a Singleton Instance for App
+         *  @description Build or returns a Singleton Instance for ExpressProvider
          * 
          *  @static @method build
          *  @param { AppProps } config? - Config object
          * 
-         *  @returns { App }
+         *  @returns { ExpressProvider }
          * 
          */
-        public static build( config?: AppProps ): App {
+        public static build( config?: AppProps ): ExpressProvider {
 
-            if ( ! App.instance ) {
+            if ( ! ExpressProvider.instance ) {
 
                 // Creates a new Instance:
-                App.instance = new App()
-                App.instance.app = Express()
+                ExpressProvider.instance = new ExpressProvider()
+                ExpressProvider.instance.app = Express()
 
                 // Sets properties:
-                App.instance.port = config?.port
+                ExpressProvider.instance.port = config?.port
 
                 // Executes methods:
-                App.instance.settings()
-                App.instance.middlewares()
-                App.instance.routes()
+                ExpressProvider.instance.settings()
+                ExpressProvider.instance.middlewares()
+                ExpressProvider.instance.routes()
 
             }
 
-            return App.instance
+            return ExpressProvider.instance
 
         }
 
 
         /**
          * 
-         *  Returns the App class Instance
+         *  Returns the ExpressProvider singleton Instance
          * 
          *  @static @method
-         *  @returns { App }
+         *  @returns { ExpressProvider }
          * 
          */
-        public static getInstance(): App {
-            return App.instance
+        public static getInstance(): ExpressProvider {
+            return ExpressProvider.instance
         }
 
 
         /**
          * 
-         *  Gets Express App Instance
+         *  Gets Express Server Instance
          * 
          *  @method get
          *  @returns { ExpressApp }
@@ -133,14 +134,23 @@ export default
 
         /**
          * 
-         *  Settings for App
+         *  Settings for ExpressProvider
          * 
          *  @private @method settings
          *  @returns void
+         * 
          */
         private settings(): void {
 
             this.app?.set( 'port', this.port || process.env.PORT || 4000 )
+            this.app?.set( 'public', path.join( __dirname, '/../public' ) )
+            this.app?.set( 'sass', path.join( __dirname, '/../views/sass' ) )
+            this.app?.set( 'sass:output', this.app?.get( 'public' ) )
+
+            /**
+             *  Then do custom settings:
+             *  @overwrite
+             */
             Settings( <ExpressApp> this.app )
 
         }
@@ -161,7 +171,7 @@ export default
 
         /**
          * 
-         *  Makes Routes for App
+         *  Adds Routes for ExpressProvider
          * 
          *  @private @method routes
          *  @returns void
@@ -174,7 +184,7 @@ export default
 
         /**
          * 
-         *  Start the App on specified/system/default port
+         *  Start Express Server on specified / system / default port
          * 
          *  @async @method start
          *  @returns { Promise }
@@ -183,7 +193,7 @@ export default
         public async start( port?: number ): Promise <any> {
 
             await this.app?.listen( port || this.app.get('port') )
-            console.log( 'App: running on port', this.app?.get('port') )
+            console.log( 'Express: running on port', this.app?.get('port') )
 
         }
 

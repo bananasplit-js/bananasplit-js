@@ -1,9 +1,9 @@
 /**
  *
- *  Apollo App
+ *  Apollo Provider
  * 
- *  @module apollo.app
- *  @description Provides an Apollo App to serve data throw GraphQL
+ *  @module providers/apollo
+ *  @description Provides GraphQL data throw Apollo Server 
  * 
  */
 
@@ -11,7 +11,7 @@
 import { ApolloServer } from 'apollo-server'
 import { ApolloServer as ApolloServerExpress } from 'apollo-server-express'
 
-import App from './app'
+import App from './express'
 
 import Schemas from '../graphql/main.schemas'
 import Resolvers from '../graphql/main.resolvers'
@@ -21,7 +21,7 @@ import settings from '../settings/apollo.settings'
 
 /**
  * 
- *  Definitions for Apollo new Instances parameters
+ *  Definitions for ApolloProvider singleton parameters
  *  @typedef
  * 
  */
@@ -34,11 +34,11 @@ type ApolloProps = {
 export default
     /**
      * 
-     *  @class Apollo
-     *  @classdesc Provides GraphQL throws Apollo Service
+     *  @class ApolloProvider
+     *  @classdesc Provides GraphQL throws Apollo Server
      * 
      */
-    class Apollo {
+    class ApolloProvider {
 
         /**
          *
@@ -67,7 +67,7 @@ export default
          *  @private @static @property { App } instance
          * 
          */
-        private static instance: Apollo
+        private static instance: ApolloProvider
 
 
         /**
@@ -87,7 +87,7 @@ export default
         /**
          *  
          *  Singleton
-         *  @description Build or returns a Singleton Instance for Apollo App
+         *  @description Build or returns a Singleton Instance of ApolloProvider
          * 
          *  @static @method build
          *  @param { number | string } port? - Port number
@@ -98,44 +98,44 @@ export default
          */
         public static build( { port, middleware }: ApolloProps ) {
 
-            if ( ! Apollo.instance ) {
+            if ( ! ApolloProvider.instance ) {
 
                 // Creates new Instance:
-                Apollo.instance =  new Apollo()
+                ApolloProvider.instance =  new ApolloProvider()
 
                 // Sets Properties:
-                Apollo.instance.port = ( port || process.env.PORT || 5000 ) as number
+                ApolloProvider.instance.port = ( port || process.env.PORT || 5000 ) as number
 
                 // Get options from apollo.settings file in settings:
-                const options: object = Apollo.instance.settings()
+                const options: object = ApolloProvider.instance.settings()
 
-                // Create Apollo App as Middleware or Independent:
+                // Create ApolloProvider App as Middleware or Independent:
                 if ( middleware ) {
 
-                    Apollo.instance.server = new ApolloServerExpress( options )
+                    ApolloProvider.instance.server = new ApolloServerExpress( options )
 
-                    Apollo.instance.server.applyMiddleware({
+                    ApolloProvider.instance.server.applyMiddleware({
                         app: middleware.get()
                     })
 
-                    console.log( 'Apollo: running on', Apollo.instance.server.graphqlPath )
+                    console.log( 'ApolloProvider: running on', ApolloProvider.instance.server.graphqlPath )
 
                 } else
 
-                    Apollo.instance.server = new ApolloServer( options )
+                    ApolloProvider.instance.server = new ApolloServer( options )
 
                 ;
 
             }
 
-            return Apollo.instance
+            return ApolloProvider.instance
 
         }
 
 
         /**
          * 
-         *  Gets settings from apollo settings file
+         *  Gets settings from Apollo Settings file
          * 
          *  @private @method settings
          *  @returns { object }
@@ -159,20 +159,20 @@ export default
 
         /**
          * 
-         *  Returns the Apollo App class Instance
+         *  Returns the ApolloProvider singleton instance
          * 
          *  @static @method getInstance
-         *  @returns { Apollo }
+         *  @returns { ApolloProvider }
          * 
          */
-        public static getInstance(): Apollo {
-            return Apollo.instance
+        public static getInstance(): ApolloProvider {
+            return ApolloProvider.instance
         }
 
 
         /**
          * 
-         *  Gets Apollo App Instance
+         *  Gets Apollo Server Instance
          *  
          *  @method get
          *  @returns { ApolloServerExpress | ApolloServer }
@@ -185,7 +185,7 @@ export default
 
         /**
          *
-         *  Start the Apollo App on specified/system/default port
+         *  Start the Apollo Server on specified/system/default port
          * 
          *  @async @method start
          *  @returns { Promise }
@@ -194,7 +194,7 @@ export default
         public async start( port?: number ): Promise <void> {
 
             await ( <ApolloServer> this.server ).listen( port || this.port )
-            console.log( 'App: Apollo running on port', this.port )
+            console.log( 'App: ApolloProvider running on port', this.port )
 
         }
 

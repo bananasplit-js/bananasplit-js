@@ -9,6 +9,7 @@
 
 
 import { Request, Response } from 'express'
+import path from 'path'
 
 
 export default
@@ -31,11 +32,10 @@ export default
          */
         public static hello( request: Request, response: Response ): Response {
 
-            return (
-                response
-                .status( 200 )
-                .send( '<h2> Hello from Express! </h2> <strong> GET / </strong> 200 Response' )
-            )
+            response.status(200)
+            response.sendFile( path.join( __dirname + '/../views/index.html' ) )
+
+            return response
             
         }
     }

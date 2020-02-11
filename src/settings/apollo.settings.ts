@@ -1,7 +1,10 @@
 /**
  * 
  *  Apollo Settings
+ *  @settings
+ * 
  *  @module settings/apollo.settings
+ *  @description Apollo Server settings
  * 
  */
 

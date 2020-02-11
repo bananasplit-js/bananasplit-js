@@ -1,7 +1,10 @@
 /**
  * 
- *  App Settings
- *  @module settings/app.settings
+ *  Settings
+ *  @settings
+ * 
+ *  @module settings/settings
+ *  @description Settings for Application
  * 
  */
 
@@ -16,11 +19,11 @@ export default
         /**
          * 
          *  Your App settings goes here!!
-         *  @settings
+         *  @settings @overwrite
          * 
          */
 
-        // app.set( 'key', value )
+        // app.set( key, value )
         
     }
 

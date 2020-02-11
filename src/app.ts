@@ -8,7 +8,7 @@
  */
 
 
-import App from './providers/app'
+import Express from './providers/express'
 import Apollo from './providers/apollo'
 
 
@@ -30,12 +30,12 @@ import Apollo from './providers/apollo'
 
 ( async () => {
 
-    // Express App:
-    const app = App.build({
+    // Express Express:
+    const app = Express.build({
         port: 4000
     })
 
-    // Apollo App:
+    // Apollo Express:
     const apollo: Apollo = Apollo.build({
         middleware: app
     })

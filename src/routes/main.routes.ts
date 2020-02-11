@@ -1,17 +1,20 @@
 /**
  * 
  *  Main Routes
+ *  @routes
+ * 
  *  @module routes/main.routes
+ *  @description registers all application routers
  * 
  */
 
 
-import { Application as ExpressApp } from 'express'
+import Express from 'express'
 
 
 /**
  *  
- *  @routers @import
+ *  @import @routers
  *  Your custom Routers import goes here!!
  * 
  */
@@ -20,17 +23,17 @@ import Router from './routes'
 
 export default
 
-    ( server: ExpressApp ): void => {
+    ( app: Express.Application ): void => {
 
         /**
          * 
-         *  @routes @register
+         *  @register @routes
          *  Your custom Routes register goes here!!
          *  
          */
 
         // Register Default Router:
-        server.use( Router )
+        app.use( Router )
 
     }
 

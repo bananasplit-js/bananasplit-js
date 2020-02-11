@@ -1,12 +1,15 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
+  "description": "Express app",
   "main": "app.js",
   "scripts": {
     "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
     "build": "tsc",
-    "server": "nodemon src/app.ts --exec ts-node --ignore src/tests"
+    "server": "nodemon src/app.ts --exec ts-node --ignore src/tests",
+    "sass:compile": "node-sass src/views/sass -o src/public"
   },
   "repository": {
     "type": "git",
@@ -30,8 +33,12 @@
   "devDependencies": {
     "@types/express": "^4.17.2",
     "@types/jest": "^25.1.2",
+    "@types/node-sass": "^4.11.0",
+    "@types/node-sass-middleware": "0.0.31",
     "@types/supertest": "^2.0.8",
     "jest": "^25.1.0",
+    "node-sass": "^4.13.1",
+    "node-sass-middleware": "^0.11.0",
     "nodemon": "^2.0.2",
     "supertest": "^4.0.2",
     "ts-jest": "^25.2.0",

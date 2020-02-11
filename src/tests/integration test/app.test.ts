@@ -1,9 +1,9 @@
 /**
  * 
- *  Hello Unit test file example
+ *  App Integration test file example
  *  @test
  * 
- *  @module "tests/unit test/hello.test"
+ *  @module "tests/integration test/app.test"
  *  @description * you can remove it or modify it *
  * 
  *  @use this file as your Tests template! ***
@@ -24,14 +24,11 @@ const app: Express.Application = App.build().get()
 
 /**
  * 
- *  @test   Hello response is received
+ *  @test   Test a entire module
  * 
  */
-test( 'Hello response is received', async () => {
+test( 'Test a entire module', (): void => {
 
-    const response: Response = await request( app ).get( '/' )
+    expect( 1 + 1 ).toBe( 2 )   // or not?
 
-    expect( response.status ).toBe( 200 )
-    expect( response.text ).toMatch( 'Hello from Express!' )
-
-} )
+})
