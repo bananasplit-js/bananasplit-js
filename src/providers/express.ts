@@ -144,6 +144,7 @@ export default
 
             this.app?.set( 'port', this.port || process.env.PORT || 4000 )
             this.app?.set( 'public', path.join( __dirname, '/../public' ) )
+            this.app?.set( 'views', path.join( __dirname, '/../views' ) )
             this.app?.set( 'sass', path.join( __dirname, '/../views/sass' ) )
             this.app?.set( 'sass:output', this.app?.get( 'public' ) )
 
@@ -178,7 +179,7 @@ export default
          * 
          */
         private routes(): void {
-            MainRouter( <ExpressApp> this.app )
+            this.app?.use( MainRouter )
         }
 
 

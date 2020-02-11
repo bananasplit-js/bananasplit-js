@@ -1,1 +1,1 @@
-body{padding:10px}body,h2{font-family:'Roboto', serif;font-weight:300;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+body{padding:30px}body *:not(strong){font-weight:300}body *{background:#FEE9C0;font-family:'Roboto';-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}h3,p{display:inline-block}

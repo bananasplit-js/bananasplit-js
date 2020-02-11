@@ -2,7 +2,7 @@
  * 
  *  Router example
  *  @routes
-
+ * 
  *  @module routes/routes
  *  @description * you can remove it or modify it *
  * 
@@ -10,18 +10,24 @@
  * 
  */
 
+
 import { Router } from 'express'
 
-
-// Controller:
-import Controller from '../controllers/controller'
-
-
-// Creates default Router:
+// Creates new Router:
 const router: Router = Router()
 
 
-;( ($): void => {
+/**
+ * 
+ *  Your controller import goes here!!
+ *  @import @controller
+ * 
+ */
+import Controller from '../controllers/controller'
+
+
+( $ => {
+
 
     /**
      * 
@@ -29,11 +35,13 @@ const router: Router = Router()
      *  @routes
      * 
      */
+    
 
     // hello:
-    $.route('/')
+    $.route( '/' )
         .get( Controller.hello )
     ;
+
 
 } )( router )
 

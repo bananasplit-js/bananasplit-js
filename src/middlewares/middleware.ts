@@ -12,6 +12,7 @@
 import Express from 'express'
 import Morgan from 'morgan'
 import SassMiddleware from 'node-sass-middleware'
+import path from 'path'
 
 
 export default
@@ -41,6 +42,12 @@ export default
 
         // Public directory:
         app.use( Express.static( app.get('public') ) )
+
+        // Bootstrap:
+        app.use(
+            '/bootstrap',
+            Express.static( path.join(__dirname, '../../node_modules/bootstrap/dist') )
+        )
 
     }
 ;

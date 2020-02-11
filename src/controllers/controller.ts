@@ -1,9 +1,12 @@
 /**
  * 
  *  Controller
+ *  @controller
  * 
  *  @module controllers/controller
- *  @description Provides default actions
+ *  @description * you can remove it or modify it *
+ * 
+ *  @use this file as your Controllers template! ***
  * 
  */
 
@@ -16,10 +19,11 @@ export default
     /**
      * 
      *  @class Controller
-     *  @classdesc Provides default handlers
+     *  @classdesc An example Controller
      * 
      */
     class Controller {
+
         /**
          * 
          *  Hello response
@@ -32,11 +36,12 @@ export default
          */
         public static hello( request: Request, response: Response ): Response {
 
-            response.status(200)
+            response.status( 200 )
             response.sendFile( path.join( __dirname + '/../views/index.html' ) )
 
             return response
             
         }
+
     }
 ;

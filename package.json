@@ -23,12 +23,17 @@
   },
   "homepage": "https://github.com/diegoulloao/express-auth-template#readme",
   "dependencies": {
+    "@popperjs/core": "^2.0.5",
     "@types/morgan": "^1.7.37",
     "apollo-server": "^2.10.0",
     "apollo-server-express": "^2.10.0",
+    "bootstrap": "^4.4.1",
     "express": "^4.17.1",
     "graphql": "^14.6.0",
-    "morgan": "^1.9.1"
+    "i": "^0.3.6",
+    "jquery": "^3.4.1",
+    "morgan": "^1.9.1",
+    "npm": "^6.13.7"
   },
   "devDependencies": {
     "@types/express": "^4.17.2",
