@@ -10,11 +10,12 @@
 
 
 import Express from 'express'
+import path from 'path'
 
 
 export default
 
-    ( app: Express.Application ): void => {
+    ( app: Express.Application ) => {
 
         /**
          * 
@@ -23,7 +24,10 @@ export default
          * 
          */
 
-        // app.set( key, value )
+        app.set( 'public', path.join( __dirname, '/../public' ) )
+        app.set( 'views', path.join( __dirname, '/../app/views' ) )
+        app.set( 'sass', path.join( __dirname, '/../app/views/sass' ) )
+        app.set( 'sass:output', app.get( 'public' ) )
         
     }
 

@@ -18,9 +18,9 @@ import DBAuth from '../providers/interfaces/database.auth'
  */
 const DBAuth: DBAuth | string =  {
  
-    database: 'test',
-    username: 'root',
-    password: 'Bastard'
+    database: <string> process.env.DATABASE,
+    username: <string> process.env.USERNAME,
+    password: <string> process.env.PASSWORD
 
 }
 

@@ -3,7 +3,7 @@
  *  Controller
  *  @controller
  * 
- *  @module controllers/controller
+ *  @module app/controllers/controller
  *  @description * you can remove it or modify it *
  * 
  *  @use this file as your Controllers template! ***
@@ -11,7 +11,7 @@
  */
 
 
-import { Request, Response, response } from 'express'
+import { Request, Response } from 'express'
 import { sequelize } from '../../providers/sequelize'
 
 import path from 'path'
@@ -59,7 +59,7 @@ export default
         public static async databaseConnectionTest( request: Request, response: Response ): Promise <Response> {
 
             try {
-                sequelize.authenticate()
+                await sequelize.authenticate()
                 response.send( 'Connection has been established successfully.' )
                 // sequelize.close()
 

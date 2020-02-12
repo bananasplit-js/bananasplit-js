@@ -3,7 +3,7 @@
  *  Router example
  *  @routes
  * 
- *  @module routes/routes
+ *  @module app/routes/routes
  *  @description * you can remove it or modify it *
  * 
  *  @use this file as your Routers template! ***
@@ -26,7 +26,7 @@ const router: Router = Router()
 import Controller from '../controllers/controller'
 
 
-( $ => {
+( ($) => {
 
     /**
      * 

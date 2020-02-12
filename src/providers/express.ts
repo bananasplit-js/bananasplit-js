@@ -9,7 +9,6 @@
 
 
 import Express, { Application as ExpressApp } from 'express'
-import path from 'path'
 
 import Settings from '../settings/settings'
 import Middlewares from '../middlewares/middleware'
@@ -139,10 +138,6 @@ export default
         private settings(): void {
 
             this.express?.set( 'port', this.port || process.env.PORT || 4000 )
-            this.express?.set( 'public', path.join( __dirname, '/../public' ) )
-            this.express?.set( 'views', path.join( __dirname, '/../views' ) )
-            this.express?.set( 'sass', path.join( __dirname, '/../views/sass' ) )
-            this.express?.set( 'sass:output', this.express?.get( 'public' ) )
 
             /**
              *  Then do custom settings:

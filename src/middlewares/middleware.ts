@@ -17,7 +17,7 @@ import path from 'path'
 
 export default
 
-    ( app: Express.Application ): void => {
+    ( app: Express.Application ) => {
         
         /**
          * 

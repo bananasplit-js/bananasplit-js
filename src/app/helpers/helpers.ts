@@ -3,7 +3,7 @@
  *  Helpers
  * 	@helpers
  * 
- *  @module helpers/helpers
+ *  @module app/helpers/helpers
  * 	@description Contains helpful functions	
  * 
  */

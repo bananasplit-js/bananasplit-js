@@ -3,7 +3,7 @@
  *  Model
  *  @model
  * 
- *  @module models/model
+ *  @module app/models/model
  *  @description Defines a model example
  * 
  */
