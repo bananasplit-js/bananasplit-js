@@ -23,9 +23,7 @@ const app: Express.Application = App.build().get()
 
 
 /**
- * 
  *  @test   Hello response is received
- * 
  */
 test( 'Hello response is received', async () => {
 
@@ -33,5 +31,19 @@ test( 'Hello response is received', async () => {
 
     expect( response.status ).toBe( 200 )
     expect( response.text ).toMatch( 'Hello from Express!' )
+
+} )
+
+
+/**
+ *  @test   Hello from database is received
+ */
+test( 'Hello from database is received', async () => {
+
+    const response: Response = await request( app ).get( '/database-query' )
+    const JSONResponse: { result: string }[] =  JSON.parse( response.text )
+
+    expect( response.status ).toBe( 200 )
+    expect( JSONResponse[0].result ).toMatch( 'Hello from database!' )
 
 } )

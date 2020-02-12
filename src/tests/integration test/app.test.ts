@@ -28,7 +28,5 @@ const app: Express.Application = App.build().get()
  * 
  */
 test( 'Test a entire module', (): void => {
-
     expect( 1 + 1 ).toBe( 2 )   // or not?
-
 })
