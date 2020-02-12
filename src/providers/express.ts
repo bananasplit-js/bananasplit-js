@@ -13,7 +13,7 @@ import path from 'path'
 
 import Settings from '../settings/settings'
 import Middlewares from '../middlewares/middleware'
-import MainRouter from '../routes/main.routes'
+import MainRouter from '../app/routes/main.routes'
 
 
 /**

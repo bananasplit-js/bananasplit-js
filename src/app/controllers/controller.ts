@@ -12,7 +12,7 @@
 
 
 import { Request, Response, response } from 'express'
-import { sequelize } from '../providers/sequelize'
+import { sequelize } from '../../providers/sequelize'
 
 import path from 'path'
 
@@ -61,7 +61,7 @@ export default
             try {
                 sequelize.authenticate()
                 response.send( 'Connection has been established successfully.' )
-                sequelize.close()
+                // sequelize.close()
 
             } catch( e ) {
                 response.send( `Unable to connect to the database: ${e}` )
@@ -87,7 +87,7 @@ export default
 
             try {
                 const [ result ] = await sequelize.query( "SELECT 'Hello from database!' as result" )
-                sequelize.close()
+                // sequelize.close()
                 response.send( result )
 
             } catch( e ) {
