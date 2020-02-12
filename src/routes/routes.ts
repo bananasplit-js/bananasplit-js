@@ -28,7 +28,6 @@ import Controller from '../controllers/controller'
 
 ( $ => {
 
-
     /**
      * 
      *  Your routes goes here!!
@@ -40,8 +39,17 @@ import Controller from '../controllers/controller'
     // hello:
     $.route( '/' )
         .get( Controller.hello )
-    ;
+    
 
+    // database connection test:
+    $.route( '/database-auth' )
+        .get( Controller.databaseConnectionTest )
+    
+
+    // database query test:
+    $.route( '/database-query' )
+        .get( Controller.databaseQueryTest )
+    
 
 } )( router )
 

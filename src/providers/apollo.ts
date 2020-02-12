@@ -165,9 +165,7 @@ export default
          *  @returns { ApolloProvider }
          * 
          */
-        public static getInstance(): ApolloProvider {
-            return ApolloProvider.instance
-        }
+        public static getInstance = (): ApolloProvider => ApolloProvider.instance
 
 
         /**
@@ -178,9 +176,7 @@ export default
          *  @returns { ApolloServerExpress | ApolloServer }
          *  
          */
-        public get(): ApolloServerExpress | ApolloServer {
-            return <ApolloServer> this.server
-        }
+        public get = (): ( ApolloServerExpress | ApolloServer ) => <ApolloServer> this.server
 
 
         /**

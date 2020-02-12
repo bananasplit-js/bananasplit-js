@@ -38,10 +38,10 @@ export default
         
         /**
          * 
-         *  @private @property { ExpressApp } app
+         *  @private @property { ExpressApp } express
          * 
          */
-        private app: ( ExpressApp | null ) = null
+        private express: ( ExpressApp | null ) = null
 
         /**
          * 
@@ -89,7 +89,7 @@ export default
 
                 // Creates a new Instance:
                 ExpressProvider.instance = new ExpressProvider()
-                ExpressProvider.instance.app = Express()
+                ExpressProvider.instance.express = Express()
 
                 // Sets properties:
                 ExpressProvider.instance.port = config?.port
@@ -114,9 +114,7 @@ export default
          *  @returns { ExpressProvider }
          * 
          */
-        public static getInstance(): ExpressProvider {
-            return ExpressProvider.instance
-        }
+        public static getInstance = (): ExpressProvider => ExpressProvider.instance
 
 
         /**
@@ -127,9 +125,7 @@ export default
          *  @returns { ExpressApp }
          *  
          */
-        public get(): ExpressApp {
-            return <ExpressApp> this.app
-        }
+        public get = (): ExpressApp => <ExpressApp> this.express
 
 
         /**
@@ -142,17 +138,17 @@ export default
          */
         private settings(): void {
 
-            this.app?.set( 'port', this.port || process.env.PORT || 4000 )
-            this.app?.set( 'public', path.join( __dirname, '/../public' ) )
-            this.app?.set( 'views', path.join( __dirname, '/../views' ) )
-            this.app?.set( 'sass', path.join( __dirname, '/../views/sass' ) )
-            this.app?.set( 'sass:output', this.app?.get( 'public' ) )
+            this.express?.set( 'port', this.port || process.env.PORT || 4000 )
+            this.express?.set( 'public', path.join( __dirname, '/../public' ) )
+            this.express?.set( 'views', path.join( __dirname, '/../views' ) )
+            this.express?.set( 'sass', path.join( __dirname, '/../views/sass' ) )
+            this.express?.set( 'sass:output', this.express?.get( 'public' ) )
 
             /**
              *  Then do custom settings:
              *  @overwrite
              */
-            Settings( <ExpressApp> this.app )
+            Settings( <ExpressApp> this.express )
 
         }
 
@@ -166,7 +162,7 @@ export default
          * 
          */
         private middlewares(): void {
-            Middlewares( <ExpressApp> this.app )
+            Middlewares( <ExpressApp> this.express )
         }
 
 
@@ -179,7 +175,7 @@ export default
          * 
          */
         private routes(): void {
-            this.app?.use( MainRouter )
+            this.express?.use( MainRouter )
         }
 
 
@@ -193,8 +189,8 @@ export default
          */
         public async start( port?: number ): Promise <any> {
 
-            await this.app?.listen( port || this.app.get('port') )
-            console.log( 'Express: running on port', this.app?.get('port') )
+            await this.express?.listen( port || this.express.get('port') )
+            console.log( 'Express: running on port', this.express?.get('port') )
 
         }
 
