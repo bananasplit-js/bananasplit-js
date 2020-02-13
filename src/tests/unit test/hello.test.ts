@@ -15,6 +15,7 @@ import Express from 'express'
 import request, { Response } from 'supertest'
 
 import App from '../../providers/express'
+import { sequelize } from '../../providers/sequelize'
 
 
 // Express App as parallel instance:
@@ -47,3 +48,12 @@ test( 'Hello from database is received', async () => {
     expect( JSONResponse[0].result ).toMatch( 'Hello from database!' )
 
 } )
+
+
+// Closing the DB connection allows Jest to exit successfully:
+afterAll( async done => {
+
+    sequelize.close()
+    done()
+    
+})
