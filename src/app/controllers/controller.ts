@@ -27,16 +27,9 @@ export default
     class Controller {
 
         /**
-         * 
-         *  Hello response
-         * 
-         *  @param { Request } request 
-         *  @param { Response } response
-         * 
-         *  @returns { Response }
-         * 
+         *      Hello response
          */
-        public static hello( request: Request, response: Response ): Response {
+        public static hello( request: Request, response: Response ) {
 
             response.status( 200 )
             response.sendFile( path.join( __dirname + '/../views/index.html' ) )
@@ -47,21 +40,13 @@ export default
 
 
         /**
-         * 
-         *  Database Connection Test
-         * 
-         *  @param { Request } request 
-         *  @param { Response } response
-         * 
-         *  @returns { Response }
-         * 
+         *      Database Connection Test
          */
-        public static async databaseConnectionTest( request: Request, response: Response ): Promise <Response> {
+        public static async databaseConnectionTest( request: Request, response: Response ) {
 
             try {
                 await sequelize.authenticate()
                 response.send( 'Connection has been established successfully.' )
-                // sequelize.close()
 
             } catch( e ) {
                 response.send( `Unable to connect to the database: ${e}` )
@@ -74,20 +59,12 @@ export default
 
 
         /**
-         * 
-         *  Database Query Test
-         * 
-         *  @param { Request } request 
-         *  @param { Response } response
-         * 
-         *  @returns { Response }
-         * 
+         *      Database Query Test
          */
-        public static async databaseQueryTest( request: Request, response: Response ): Promise <Response> {
+        public static async databaseQueryTest( request: Request, response: Response ) {
 
             try {
                 const [ result ] = await sequelize.query( "SELECT 'Hello from database!' as result" )
-                // sequelize.close()
                 response.send( result )
 
             } catch( e ) {

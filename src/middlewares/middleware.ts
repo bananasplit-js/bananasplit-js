@@ -35,8 +35,7 @@ export default
             src: app.get( 'sass' ),
             dest: app.get( 'sass:output' ),
             outputStyle: 'compressed',
-            debug: true,
-            prefix: ''
+            debug: true
 
         }) )
 
