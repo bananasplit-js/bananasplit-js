@@ -49,6 +49,11 @@ import Controller from '../controllers/controller'
     // database query test:
     $.route( '/database-query' )
         .get( Controller.databaseQueryTest )
+
+
+    // get users:
+    $.route( '/users' )
+        .get( Controller.getUsers )
     
 
 } )( router )

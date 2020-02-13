@@ -8,6 +8,10 @@
 
 import Sequelize from 'sequelize'
 import DBAuth from '../providers/interfaces/database.auth'
+import dotenv from 'dotenv'
+
+
+dotenv.config()
 
 
 /**
@@ -35,6 +39,12 @@ const SequelizeOptions: Sequelize.Options = {
 
     host: 'localhost',
     dialect: 'mysql',   // Engines: 'mysql' | 'mariadb' | 'postgres' | 'mssql'
+    pool: {
+        max: 5,
+        min: 0,
+        acquire: 30000,
+        idle: 10000
+    }
 
 }
 

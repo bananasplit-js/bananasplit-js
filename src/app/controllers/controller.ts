@@ -16,6 +16,8 @@ import { sequelize } from '../../providers/sequelize'
 
 import path from 'path'
 
+import Users from '../models/model'
+
 
 export default
     /**
@@ -73,6 +75,22 @@ export default
 
 
             return response
+
+        }
+
+
+        /**
+         *      Databse Query for Users
+         */
+        public static async getUsers( request: Request, response: Response ) {
+
+            try {
+                const result = await Users.findAll()
+                response.send( result )
+
+            } catch(e) {
+                response.send( e )
+            }
 
         }
 
