@@ -12,7 +12,7 @@ import DBAuth from '../providers/interfaces/database.auth'
 
 /**
  * 
- *  Authentication:
+ *  DB Authentication:
  *  @auth
  * 
  */
