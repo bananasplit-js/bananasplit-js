@@ -27,7 +27,7 @@
 
 
     // Fields Definitions (defines Model):
-    private static fields = {
+    public static fields = {
 
         id: {
             type: DataTypes.INTEGER.UNSIGNED,
@@ -58,39 +58,19 @@
     }
 
     // Options:
-    private static _options = {
+    public static options = {
         sequelize,  // sequelize connection
         timestamps: true
-    }
-
-
-    // Loads field definitions into the ORM:
-    public static init() {
-
-        super.init.call( this, this.fields, this._options )
-
-        return this
-
-    }
-
-
-    // Synchronizes database with Model:
-    public static async _sync() {
-
-        await this.sync({
-            force: true     // force to drop the table if exists *
-        })
-
-
-        // Then do something, like create a new user or seed the database:
-
     }
 
  }
 
 
- User.init()
- User._sync()
+ User.init( User.fields, User.options )
+
+; ( async () => {
+    await User.sync({ force: true })
+} )()
 
  
  export default User
