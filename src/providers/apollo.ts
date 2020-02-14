@@ -8,6 +8,8 @@
  */
 
 
+import chalk from 'chalk'
+
 import { ApolloServer } from 'apollo-server'
 import { ApolloServer as ApolloServerExpress } from 'apollo-server-express'
 
@@ -118,7 +120,7 @@ export default
                         app: middleware.get()
                     })
 
-                    console.log( 'ApolloProvider: running on', ApolloProvider.instance.server.graphqlPath )
+                    console.log( chalk.bgGreen.black.bold( 'ApolloProvider: running on', ApolloProvider.instance.server.graphqlPath ) )
 
                 } else
 
@@ -190,7 +192,7 @@ export default
         public async start( port?: number ): Promise <void> {
 
             await ( <ApolloServer> this.server ).listen( port || this.port )
-            console.log( 'App: ApolloProvider running on port', this.port )
+            console.log( chalk.bgGreen.black.bold( 'App: ApolloProvider running on port', this.port ) )
 
         }
 

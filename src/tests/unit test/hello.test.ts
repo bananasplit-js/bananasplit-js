@@ -41,7 +41,7 @@ test( 'Hello response is received', async () => {
  */
 test( 'Hello from database is received', async () => {
 
-    const response: Response = await request( app ).get( '/database-query' )
+    const response: Response = await request( app ).get( '/db-query-test' )
     const JSONResponse: { result: string }[] =  JSON.parse( response.text )
 
     expect( response.status ).toBe( 200 )
@@ -51,7 +51,7 @@ test( 'Hello from database is received', async () => {
 
 
 // Closing the DB connection allows Jest to exit successfully:
-afterAll( async done => {
+afterAll( done => {
 
     sequelize.close()
     done()

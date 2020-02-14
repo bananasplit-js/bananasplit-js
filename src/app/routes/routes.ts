@@ -42,17 +42,17 @@ import Controller from '../controllers/controller'
     
 
     // database connection test:
-    $.route( '/database-auth' )
+    $.route( '/db-auth-test' )
         .get( Controller.databaseConnectionTest )
     
 
     // database query test:
-    $.route( '/database-query' )
+    $.route( '/db-query-test' )
         .get( Controller.databaseQueryTest )
 
 
-    // get users:
-    $.route( '/users' )
+    // sequelize ORM test, get users:
+    $.route( '/orm-query-test' )
         .get( Controller.getUsers )
     
 

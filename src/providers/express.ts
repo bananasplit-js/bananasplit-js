@@ -9,6 +9,7 @@
 
 
 import Express, { Application as ExpressApp } from 'express'
+import chalk from 'chalk'
 
 import Settings from '../settings/settings'
 import Middlewares from '../middlewares/middleware'
@@ -185,7 +186,7 @@ export default
         public async start( port?: number ): Promise <any> {
 
             await this.express?.listen( port || this.express.get('port') )
-            console.log( 'Express: running on port', this.express?.get('port') )
+            console.log( chalk.bgGreen.black.bold( 'Express: running on port', this.express?.get('port') ) )
 
         }
 

@@ -1,10 +1,10 @@
 /**
  *
- *  Model
+ *  User Model
  *  @model
  * 
- *  @module app/models/model
- *  @description Defines a model example
+ *  @module app/models/user
+ *  @description Defines a user model example
  * 
  */
 
@@ -15,16 +15,18 @@
 
  class User extends Model {
 
-    public id!: number
-    public name!: string
-    public lastname!: string
-    public email!: string
+    // Fields:
+    private id!: number
+    private name!: string
+    private lastname!: string
+    private email!: string
     private password!: string
 
-    public readonly createdAt!: Date
-    public readonly updatedAt!: Date
+    private readonly createdAt!: Date
+    private readonly updatedAt!: Date
 
-    
+
+    // Fields Definitions (defines Model):
     private static fields = {
 
         id: {
@@ -55,15 +57,33 @@
         
     }
 
+    // Options:
+    private static _options = {
+        sequelize,  // sequelize connection
+        timestamps: true
+    }
 
+
+    // Loads field definitions into the ORM:
     public static init() {
 
-        super.init.call( this, this.fields, {
-            sequelize,
-            tableName: 'users'
-        } )
+        super.init.call( this, this.fields, this._options )
+        this._sync()
 
         return this
+
+    }
+
+
+    // Synchronizes database with Model:
+    public static _sync() {
+
+        User.sync({
+            force: true     // force to drop the table if exists *
+        })
+
+
+        // Then do something, like create a new user or seed the database:
 
     }
 

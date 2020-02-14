@@ -13,10 +13,11 @@
 
 import { Request, Response } from 'express'
 import { sequelize } from '../../providers/sequelize'
-
 import path from 'path'
 
-import Users from '../models/model'
+
+// Model:
+import User from '../models/user'
 
 
 export default
@@ -80,17 +81,20 @@ export default
 
 
         /**
-         *      Databse Query for Users
+         *      Sequelize ORM Query Test
          */
         public static async getUsers( request: Request, response: Response ) {
 
             try {
-                const result = await Users.findAll()
+                const result = await User.findAll()
                 response.send( result )
 
             } catch(e) {
                 response.send( e )
             }
+
+
+            return response
 
         }
 

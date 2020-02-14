@@ -1,4 +1,11 @@
-CREATE TABLE users (
+/**
+*
+*   Database Schemas and most used Querys
+*
+*/
+
+
+CREATE TABLE Users (
 
     id INT UNSIGNED AUTO_INCREMENT,
     name VARCHAR(30) NOT NULL,
@@ -6,13 +13,18 @@ CREATE TABLE users (
     email VARCHAR(50) NOT NULL,
     password VARCHAR(50) NOT NULL,
 
-    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    createdAt TIMESTAMP,
+    updatedAt TIMESTAMP,
 
     PRIMARY KEY ( id )
 
 );
 
 
+INSERT INTO Users ( name, lastname, email, password, createdAt, updatedAt )
+VALUES ( 'Todd', 'Davis', 'todd.davis@gmail.com', 'abc123', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP );
+
+
 SHOW TABLES;
-DROP TABLE users;
+DROP TABLE Users;
+SELECT * FROM Users;
