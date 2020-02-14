@@ -76,9 +76,9 @@
 
 
     // Synchronizes database with Model:
-    public static _sync() {
+    public static async _sync() {
 
-        User.sync({
+        await this.sync({
             force: true     // force to drop the table if exists *
         })
 
@@ -89,5 +89,5 @@
 
  }
 
-
+ 
  export default User.init()
