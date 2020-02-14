@@ -22,6 +22,12 @@ import { sequelize } from '../../providers/sequelize'
 const app: Express.Application = App.build().get()
 
 
+// Prevents error: getConnection was called after the connection manager was closed
+beforeAll( async () => {
+    await sequelize.sync()
+} )
+
+
 
 /**
  *  @test   Hello response is received
@@ -48,6 +54,7 @@ test( 'Hello from database is received', async () => {
     expect( JSONResponse[0].result ).toMatch( 'Hello from database!' )
 
 } )
+
 
 
 // Closing the DB connection allows Jest to exit successfully:
