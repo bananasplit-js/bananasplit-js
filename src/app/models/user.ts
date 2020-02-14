@@ -68,7 +68,6 @@
     public static init() {
 
         super.init.call( this, this.fields, this._options )
-        this._sync()
 
         return this
 
@@ -89,5 +88,9 @@
 
  }
 
+
+ User.init()
+ User._sync()
+
  
- export default User.init()
+ export default User
