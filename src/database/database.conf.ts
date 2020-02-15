@@ -3,6 +3,8 @@
  *  Database Config file
  *  @config
  * 
+ *  @description Contains all App database configurations
+ * 
  */
 
 
@@ -10,20 +12,22 @@ import Sequelize from 'sequelize'
 import DBAuth from '../providers/interfaces/database.auth'
 import dotenv from 'dotenv'
 
+
 dotenv.config()
 
 
 /**
  * 
- *  Sequelize Options:
+ *  Sequelize App Options:
  *  @options
  * 
  */
 const SequelizeOptions: Sequelize.Options = {
 
-    host: <string> process.env.HOST,    // host MUST be modified at the .env file !! ***
+    dialect: 'mysql',
 
-    dialect: 'mysql',   // engines: 'mysql' | 'mariadb' | 'postgres' | 'mssql'
+    // host MUST be modified at the .env file !! ***
+    host: <string> process.env.HOST,
     pool: {
         max: 5,
         min: 0,
@@ -36,13 +40,13 @@ const SequelizeOptions: Sequelize.Options = {
 
 /**
  * 
- *  DB Authentication:
+ *  DB App Authentication:
  *  @auth
  * 
  */
 const DBAuth: DBAuth | string =  {
 
-    // Database credentials MUST be modified at the .env file !! ***
+    // all database credentials MUST be modified at the .env file !! ***
     
     database: <string> process.env.DATABASE,
     username: <string> process.env.USERNAME,

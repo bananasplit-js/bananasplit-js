@@ -53,7 +53,6 @@
     "node-sass-middleware": "^0.11.0",
     "nodemon": "^2.0.2",
     "npm-check-updates": "^4.0.1",
-    "sequelize-cli": "^5.5.1",
     "supertest": "^4.0.2",
     "ts-jest": "^25.2.0",
     "ts-node": "^8.6.2",
