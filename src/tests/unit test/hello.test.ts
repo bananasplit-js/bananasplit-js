@@ -22,9 +22,12 @@ import { sequelize } from '../../providers/sequelize'
 const app: Express.Application = App.build().get()
 
 
-// Prevents error: getConnection was called after the connection manager was closed
+
 beforeAll( async () => {
+
+    // Prevents error: getConnection was called after the connection manager was closed
     await sequelize.sync()
+
 } )
 
 
@@ -57,9 +60,9 @@ test( 'Hello from database is received', async () => {
 
 
 
-// Closing the DB connection allows Jest to exit successfully:
 afterAll( done => {
 
+    // Closing the DB connection allows Jest to exit successfully:
     sequelize.close()
     done()
     

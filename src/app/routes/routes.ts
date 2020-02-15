@@ -52,7 +52,7 @@ import Controller from '../controllers/controller'
 
 
     // sequelize ORM test, get users:
-    $.route( '/orm-query-test' )
+    $.route( '/model-query-test' )
         .get( Controller.getUsers )
     
 

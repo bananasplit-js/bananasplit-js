@@ -21,8 +21,9 @@ dotenv.config()
  */
 const SequelizeOptions: Sequelize.Options = {
 
-    host: <string> process.env.HOST,    // MUST be modified at the .env file !! ***
-    dialect: 'mysql',   // Engines: 'mysql' | 'mariadb' | 'postgres' | 'mssql'
+    host: <string> process.env.HOST,    // host MUST be modified at the .env file !! ***
+
+    dialect: 'mysql',   // engines: 'mysql' | 'mariadb' | 'postgres' | 'mssql'
     pool: {
         max: 5,
         min: 0,
