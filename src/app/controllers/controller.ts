@@ -35,7 +35,7 @@ export default
         public static hello( request: Request, response: Response ) {
 
             response.status( 200 )
-            response.sendFile( path.join( __dirname + '/../views/index.html' ) )
+            response.render( 'index' )
 
             return response
             
