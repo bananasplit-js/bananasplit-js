@@ -69,7 +69,7 @@
  User.init( User.fields, User.options )
 
 ; ( async () => {
-    // await User.sync({ force: true })
+    // something async before export model
 } )()
 
  

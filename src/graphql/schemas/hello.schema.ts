@@ -16,12 +16,12 @@ import { gql } from 'apollo-server'
 
 export default gql`
 
-    #*/
+    #*
     #
     #   Your schemas goes here!!
     #   @schemas
     #
-    #*/
+    #*
 
     type Query {
         hello: String

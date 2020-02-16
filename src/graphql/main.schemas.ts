@@ -15,7 +15,7 @@
  *  @import @schemas
  * 
  */
-import HelloSchema from './hello/hello.schema'
+import HelloSchema from './schemas/hello.schema'
 
 
 export default [

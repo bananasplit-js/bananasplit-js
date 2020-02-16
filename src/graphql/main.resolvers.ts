@@ -15,7 +15,7 @@
  *  @import @resolvers
  * 
  */
-import HelloResolvers from './hello/hello.resolvers'
+import HelloResolvers from './resolvers/hello.resolvers'
 
 
 export default [

@@ -25,8 +25,7 @@ const app: Express.Application = App.build().get()
 
 beforeAll( async () => {
 
-    // Prevents error: getConnection was called after the connection manager was closed
-    // await sequelize.sync()
+    // Do something before run the tests
 
 } )
 
