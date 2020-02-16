@@ -26,7 +26,7 @@ const app: Express.Application = App.build().get()
 beforeAll( async () => {
 
     // Prevents error: getConnection was called after the connection manager was closed
-    await sequelize.sync()
+    // await sequelize.sync()
 
 } )
 
