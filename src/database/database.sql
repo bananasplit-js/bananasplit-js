@@ -13,8 +13,8 @@ CREATE TABLE Users (
     email VARCHAR(50) NOT NULL,
     password VARCHAR(50) NOT NULL,
 
-    createdAt TIMESTAMP,
-    updatedAt TIMESTAMP,
+    createdAt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updatedAt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     PRIMARY KEY ( id )
 
