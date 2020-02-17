@@ -1,0 +1,26 @@
+/**
+*
+*   Main styles ---
+*   Express Application
+*
+*/
+
+
+body { padding: 30px; }
+body *:not(strong) { font-weight: 300; }
+
+body * {
+    background: #FEE9C0;
+    font-family: 'Roboto';
+    -webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+h3, p { display: inline-block; }
+
+
+/**
+*
+*   This file will be compiled into css automatically when the page is loaded !
+*
+*/

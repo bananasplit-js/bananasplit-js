@@ -1,0 +1,21 @@
+/**
+ * 
+ *  Sequelize Configuration file
+ *  @conf
+ * 
+ */
+
+
+const path = require( 'path' )
+
+
+module.exports = {
+
+	// Configuration Options at: src/database/sequelize.conf.js:
+	'config': path.resolve( 'src/database', 'sequelize.conf.js' ),
+
+	'models-path': path.resolve( 'src/app', 'models' ),
+	'seeders-path': path.resolve( 'src/database', 'seeders' ),
+	'migrations-path': path.resolve( 'src/database', 'migrations' ),
+
+}
