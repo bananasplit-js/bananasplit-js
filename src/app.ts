@@ -34,7 +34,7 @@ import Apollo from './providers/apollo'
 ( async () => {
 
     // Express Server:
-    const app = Express.build({
+    const app: Express = Express.build({
         port: 4000
     })
 
