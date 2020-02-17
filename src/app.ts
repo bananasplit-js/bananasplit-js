@@ -25,9 +25,6 @@ import Apollo from './providers/apollo'
  * 
  *  You can pass the listen port as parameter in 'start' function too or pass it in settings file throw 'use' function.
  * 
- *  1. To get Express instance use: app.get() ** That is equivalent to instance: const app = Express()
- *  2. To get Apollo instance use: apollo.get() ** That is equivalent to instance: const apollo = ApolloServer()
- * 
  */
 
 
@@ -47,3 +44,12 @@ import Apollo from './providers/apollo'
     // await apollo.start()
 
 } )()
+
+
+
+// Export:
+const app = Express.getInstance().get()     // this is your Express service
+const apollo = Apollo.getInstance().get()   // this is your Apollo service
+
+
+export { app, apollo }
