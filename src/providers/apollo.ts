@@ -8,17 +8,17 @@
  */
 
 
-import chalk from 'chalk'
-
 import { ApolloServer } from 'apollo-server'
-import { ApolloServer as ApolloServerExpress } from 'apollo-server-express'
+import { ApolloServer as ApolloServerExpress, makeExecutableSchema } from 'apollo-server-express'
+import { GraphQLSchema } from 'graphql'
 
 import App from './express'
 
 import Schemas from '../graphql/main.schemas'
 import Resolvers from '../graphql/main.resolvers'
+import customizeGraphQL from '../graphql/customize/customize.graphql'
 
-import settings from '../settings/apollo.settings'
+import chalk from 'chalk'
 
 
 /**
@@ -49,12 +49,22 @@ export default
          */
         private port?: number
 
+
         /**
          *
          *  @private @property { object } options
          * 
          */
-        private options?: object
+        private options: object = {}
+
+
+        /**
+         *
+         *  @private @property { GraphQLSchema } schema
+         * 
+         */
+        private schema!: GraphQLSchema
+
 
         /**
          *
@@ -63,6 +73,7 @@ export default
          */
         private server: ( ApolloServerExpress | ApolloServer | null ) = null
         
+
         /**
          *
          *  Singleton instance
@@ -103,18 +114,21 @@ export default
             if ( ! ApolloProvider.instance ) {
 
                 // Creates new Instance:
-                ApolloProvider.instance =  new ApolloProvider()
+                ApolloProvider.instance = new ApolloProvider()
 
                 // Sets Properties:
                 ApolloProvider.instance.port = ( port || process.env.PORT || 5000 ) as number
 
-                // Get options from apollo.settings file in settings:
-                const options: object = ApolloProvider.instance.settings()
+                // Build the Schema:
+                ApolloProvider.instance.makeSchema()
+
+                // Returns a new manipulated Schema within an options object for pass to new ApolloServer construct:
+                ApolloProvider.instance.customizeGraphQL()
 
                 // Create ApolloProvider App as Middleware or Independent:
                 if ( middleware ) {
 
-                    ApolloProvider.instance.server = new ApolloServerExpress( options )
+                    ApolloProvider.instance.server = new ApolloServerExpress( ApolloProvider.instance.options )
 
                     ApolloProvider.instance.server.applyMiddleware({
                         app: middleware.get()
@@ -124,7 +138,7 @@ export default
 
                 } else
 
-                    ApolloProvider.instance.server = new ApolloServer( options )
+                    ApolloProvider.instance.server = new ApolloServer( ApolloProvider.instance.options )
 
                 ;
 
@@ -137,25 +151,29 @@ export default
 
         /**
          * 
-         *  Gets settings from Apollo Settings file
-         * 
-         *  @private @method settings
-         *  @returns { object }
+         *  Collect typeDefs and resolvers for build the Schema
+         *  @private @method makeSchema
          * 
          */
-        private settings(): object {
+        private makeSchema(): void {
 
-            // Defines Resolvers, Schemas, etc as config object:
-            const config: object = {
+            // Builds the Schema:
+            ApolloProvider.instance.schema = makeExecutableSchema({
                 typeDefs: Schemas,
                 resolvers: Resolvers
-            }
+            })
 
-            const options = settings
+        }
 
-            // Return merged options obtained in settings file with config obj to force modularized typeDefs and resolvers:
-            return { ...options, ...config }
 
+        /**
+         * 
+         *  Let the chance to dev for manipulate the Schema and set the options
+         *  @private @method customizeGraphQL
+         * 
+         */
+        private customizeGraphQL(): void {
+            ApolloProvider.instance.options = customizeGraphQL( ApolloProvider.instance.schema )
         }
 
 

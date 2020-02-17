@@ -43,6 +43,7 @@ export default
          */
         private express: ( ExpressApp | null ) = null
 
+
         /**
          * 
          *  @private @property { number | string } port
@@ -50,6 +51,7 @@ export default
          */
         private port? : number | string | undefined
 
+        
         /**
          *
          *  Singleton Instance
