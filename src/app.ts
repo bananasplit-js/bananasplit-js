@@ -40,6 +40,7 @@ import Apollo from './providers/apollo'
         middleware: app
     })
 
+    
     await app.start()
     // await apollo.start()
 

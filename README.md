@@ -92,9 +92,9 @@ Read for more information: https://sequelize.org/v5/manual/getting-started.html
     PORT=3306
 
     # Auth
-    DATABASE=test
-    USERNAME=root
-    PASSWORD=1234
+    DB_DATABASE=test
+    DB_USERNAME=root
+    DB_PASSWORD=1234
 ```
 
 This variables will be used by **sequelize** and **sequelize-cli** for manage your database through command line.
