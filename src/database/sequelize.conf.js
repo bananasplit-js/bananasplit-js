@@ -16,18 +16,20 @@ const dotenv = require( 'dotenv' )
 dotenv.config()
 
 
+
 module.exports = {
+
     // For development:
     development: {
 
-        dialect: 'mysql',
+        dialect: '',    // 'mysql' | 'mariadb' | 'postgres' | 'mssql'
 
         host: process.env.HOST,
         port: process.env.PORT,
 
-        username: process.env.USERNAME,
-        password: process.env.PASSWORD,
-        database: process.env.DATABASE,
+        username: process.env.DB_USERNAME,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_DATABASE,
 
         dialectOptions: {
             bigNumberStrings: true
@@ -38,14 +40,14 @@ module.exports = {
     // * You can set your own variables for test in .env:
     test: {
 
-        dialect: 'mysql',
+        dialect: '',    // 'mysql' | 'mariadb' | 'postgres' | 'mssql'
 
         host: process.env.HOST,
         port: process.env.PORT,
 
-        username: process.env.USERNAME,
-        password: process.env.PASSWORD,
-        database: process.env.DATABASE,
+        username: process.env.DB_USERNAME,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_DATABASE,
 
         dialectOptions: {
             bigNumberStrings: true
@@ -56,20 +58,18 @@ module.exports = {
     // * You can set your own variables for production in .env:
     production: {
 
-        dialect: 'mysql',
+        dialect: '',    // 'mysql' | 'mariadb' | 'postgres' | 'mssql'
 
         host: process.env.HOST,
         port: process.env.PORT,
 
-        username: process.env.USERNAME,
-        password: process.env.PASSWORD,
-        database: process.env.DATABASE,
+        username: process.env.DB_USERNAME,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_DATABASE,
 
         dialectOptions: {
             bigNumberStrings: true,
-            ssl: {
-                // ca: fs.readFileSync( __dirname + '/mysql-ca-master.crt' )
-            }
+            ssl: {}
         }
 
     }

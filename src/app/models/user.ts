@@ -68,8 +68,11 @@
 
  User.init( User.fields, User.options )
 
+ 
 ; ( async () => {
+
     // something async before export model
+
 } )()
 
  

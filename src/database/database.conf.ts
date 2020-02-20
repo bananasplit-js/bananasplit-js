@@ -24,7 +24,7 @@ dotenv.config()
  */
 const SequelizeOptions: Sequelize.Options = {
 
-    dialect: 'mysql',
+    dialect: '',    // 'mysql' | 'mariadb' | 'postgres' | 'mssql'
 
     // host MUST be modified at the .env file !! ***
     host: <string> process.env.HOST,
@@ -48,9 +48,9 @@ const DBAuth: DBAuth | string =  {
 
     // all database credentials MUST be modified at the .env file !! ***
     
-    database: <string> process.env.DATABASE,
-    username: <string> process.env.USERNAME,
-    password: <string> process.env.PASSWORD
+    database: <string> process.env.DB_DATABASE,
+    username: <string> process.env.DB_USERNAME,
+    password: <string> process.env.DB_PASSWORD
 
 }
 

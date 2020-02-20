@@ -26,7 +26,7 @@ const router: Router = Router()
 import Controller from '../controllers/controller'
 
 
-( ($) => {
+( $ => {
 
     /**
      * 

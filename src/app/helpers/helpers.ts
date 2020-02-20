@@ -21,4 +21,9 @@ export function helper(): void {
 
 }
 
-// ... export function anotherHelper(): void {}
+
+/* ... export function anotherHelper(): void {
+
+	// do something else
+	
+} */
