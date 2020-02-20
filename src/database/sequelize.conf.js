@@ -20,7 +20,7 @@ module.exports = {
     // For development:
     development: {
 
-        dialect: 'mysql',
+        dialect: '',
 
         host: process.env.HOST,
         port: process.env.PORT,
@@ -38,7 +38,7 @@ module.exports = {
     // * You can set your own variables for test in .env:
     test: {
 
-        dialect: 'mysql',
+        dialect: '',
 
         host: process.env.HOST,
         port: process.env.PORT,
@@ -56,7 +56,7 @@ module.exports = {
     // * You can set your own variables for production in .env:
     production: {
 
-        dialect: 'mysql',
+        dialect: '',
 
         host: process.env.HOST,
         port: process.env.PORT,
@@ -68,7 +68,7 @@ module.exports = {
         dialectOptions: {
             bigNumberStrings: true,
             ssl: {
-                // ca: fs.readFileSync( __dirname + '/mysql-ca-master.crt' )
+                // ca: fs.readFileSync( __dirname + '/[engine]-ca-master.crt' )
             }
         }
 
