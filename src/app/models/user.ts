@@ -9,9 +9,11 @@
  */
 
 
+
  import { Model, DataTypes } from 'sequelize'
  import { sequelize } from '../../providers/sequelize'
 
+ 
 
  class User extends Model {
 

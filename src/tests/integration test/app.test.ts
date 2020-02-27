@@ -11,6 +11,7 @@
  */
 
 
+
 import Express from 'express'
 import request, { Response } from 'supertest'
 
@@ -18,8 +19,10 @@ import App from '../../providers/express'
 import { sequelize } from '../../providers/sequelize'
 
 
+
 // Express App as parallel instance:
 const app: Express.Application = App.build().get()
+
 
 
 /**

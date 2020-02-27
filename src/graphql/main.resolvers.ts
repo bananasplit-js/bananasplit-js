@@ -9,6 +9,7 @@
  */
 
 
+
  /**
  *
  *  Your Resolvers import goes here!!
@@ -16,6 +17,7 @@
  * 
  */
 import HelloResolvers from './resolvers/hello.resolvers'
+
 
 
 export default [

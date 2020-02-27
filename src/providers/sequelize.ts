@@ -8,8 +8,10 @@
  */
 
 
+
 import { Sequelize } from 'sequelize'
 import { DBAuth, SequelizeOptions } from '../database/database.conf'
+
 
 
 /**
