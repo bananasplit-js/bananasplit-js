@@ -1,6 +1,6 @@
 # Banana-split for Express
 
-**Banana-split** like his name not saids, is something completily diffent to a banana meal. **Banana-split** is a **Node.js** superset **_Template_** that bring to you a background to _quickly develop your project_.
+**Banana-split** is a **Node.js** superset **_Template_** that bring to you a background to _quickly develop your project_.
 
 ### Banana includes integrated support to:
  * **Express Framework** for Node.js
