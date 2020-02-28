@@ -49,12 +49,22 @@ A set of sample files including routes, controllers, models, tests, graphQL sche
 Fully documented code based on the _most professional practices_ for programming in Javascript.
 
 # How to start
-### Clone the repository:
-Replace _project-name_ by your project folder name:
+### 1. Install banana-cli:
 
 ```
-    git clone git@github.com:diegoulloao/bananasplit-express-template.git project-name
+    npm i @diegoulloao/banana-cli -g
 ```
+
+### 2. Create a new project:
+**Replace _project-name_ with the name of your new project:**
+
+```
+    banana new project-name
+```
+
+**You can also automatically init a new git repository:**
+
+`banana new project-name --git` or `banana new project-name -g`
 
 **Ready!**
 
