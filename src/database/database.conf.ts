@@ -8,12 +8,15 @@
  */
 
 
+ 
 import Sequelize from 'sequelize'
 import DBAuth from '../providers/interfaces/database.auth'
 import dotenv from 'dotenv'
 
 
+
 dotenv.config()
+
 
 
 /**

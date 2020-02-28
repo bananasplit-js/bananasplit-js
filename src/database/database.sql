@@ -5,6 +5,7 @@
 */
 
 
+
 CREATE TABLE Users (
 
     id INT UNSIGNED AUTO_INCREMENT,
