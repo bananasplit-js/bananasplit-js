@@ -1,4 +1,15 @@
-# Banana-split for Express
+![label](https://img.shields.io/badge/js-banana--split-yellow?style=for-the-badge)
+
+![label](https://img.shields.io/badge/js-express-lightgray) ![label](https://img.shields.io/badge/written-typescript-blue?logo=typescript) ![label](https://img.shields.io/badge/precompiler-+sass-ff69b4?logo=sass) ![label](https://img.shields.io/badge/template-+handlebars-orange) ![label](https://img.shields.io/badge/graphql-apollo-blue?logo=graphql) ![label](https://img.shields.io/badge/orm-sequelize-blue) ![label](https://img.shields.io/badge/test-jest-green?logo=jest)
+
+![label](https://img.shields.io/badge/version-v1.0.0-orange) ![label](https://img.shields.io/badge/release%20date-february%202020-red) ![label](https://img.shields.io/badge/license-GPL-blue)
+![label](https://img.shields.io/badge/coverage-100%25-brightgreen) ![label](https://img.shields.io/badge/code%20quality-A-brightgreen)
+
+![label](https://img.shields.io/github/stars/diegoulloao/bananasplit-express-template?style=social)
+
+![banana-split](https://i.imgur.com/Khs8Vrf.png)
+
+# Banana-split js for Express
 
 **Banana-split** is a **Node.js** superset **_Template_** that bring to you a background to _quickly develop your project_.
 
