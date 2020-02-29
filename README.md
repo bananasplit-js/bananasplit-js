@@ -22,7 +22,9 @@
  * **SASS** Pre-compiler
  * **Handlebars** Template engine
 
-### Also includes userful npm-packages like:
+ ![Imgur](https://i.imgur.com/2yWpz0a.png)
+
+## Also includes useful npm-packages like:
 * **nodemon** for auto-restart your server every time your code changes
 * **ts-node** for autocompile your Typescript files
 * **ts-jest** for provides Typescript support to Jest
@@ -40,7 +42,7 @@
 ### You don't need waste time building your project from clean.
 **Banana comes ready and is still clean!**
 
-![Imgur](https://i.imgur.com/HRfzak8.png)
+---
 
 # Features
 

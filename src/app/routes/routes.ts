@@ -59,7 +59,7 @@ import Controller from '../controllers/controller'
         .get( Controller.getUsers )
     
 
-} )( router )
+})( router )
 
 
 export default router
