@@ -11,9 +11,9 @@
 
 # Banana-split js for Express
 
-**Banana-split** is a **Node.js** superset **_Template_** that bring to you a background to _quickly develop your project_.
+**Banana-split** is a **Node.js** superset **_Template_** that brings to you a background to _quickly develop your project_.
 
-### Banana includes integrated support to:
+### Banana includes integrated support for:
  * **Express Framework** for Node.js
  * **Apollo** for GraphQL
  * **Jest** for Test
@@ -24,36 +24,36 @@
 
  ![Imgur](https://i.imgur.com/2yWpz0a.png)
 
-## Also includes useful npm-packages like:
-* **nodemon** for auto-restart your server every time your code changes
-* **ts-node** for autocompile your Typescript files
-* **ts-jest** for provides Typescript support to Jest
-* **morgan** for print in console detailed information about your server requests
-* **node-sass-middleware** for autocompile your .scss or .sass files on every page load
-* **sequelize-cli** for manage your database migrations and seeders
-* **dotenv** for protect your project privacity with _out-side protected_ enviroment variables and database credentials
-* **supertest** for build your http-based tests with Jest
-* **faker** for generate random data and seed your database
-* **npm-check-updates** for auto-update all your project dependencies
-* **chalk** for put colorful messages in your console output
+## Banana also includes useful npm-packages like:
+* **nodemon** to auto-restart your server every time your code changes
+* **ts-node** to autocompile your Typescript files
+* **ts-jest** to provides Typescript support to Jest
+* **morgan** to print in console detailed information about your server requests
+* **node-sass-middleware** to autocompile your .scss or .sass files on every page load
+* **sequelize-cli** to manage your database migrations and seeders
+* **dotenv** to protect your project privacy with _out-side protected_ enviroment variables and database credentials
+* **supertest** to build your http-based tests with Jest
+* **faker** to generate random data and seed your database
+* **npm-check-updates** to auto-update all your project dependencies
+* **chalk** to put colorful messages in your console output
 
 ---
-#### ¿Do you like start lightly?
-### You don't need waste time building your project from clean.
-**Banana comes ready and is still clean!**
+#### Do you like start lightly?
+### You don't need to waste time building your project from scratch.
+**Banana comes ready and it is still clean!**
 
 ---
 
 # Features
 
-#### In addition to that Banana provides a _ready-to-code_ project tree
+#### In addition of all above, Banana provides a _ready-to-code_ project tree
 A predefined structure project with an intelligent modularization.
 
 #### _Lightweight-close_ code implementation
-An extremely _high-simply_ Express code syntax, very close to the code that you always know.
+An extremely _high-simply_ Express code syntax, very close to the code that you always knew.
 
 #### Service Providers to get it working simply
-Amazing simple. You only need two instructions to get Express Server and/or Apollo Server working. Nothing else!
+Amazingly simple. You only need two instructions to get Express Server and/or Apollo Server working. Nothing more!
 
 #### File templates
 A set of sample files including routes, controllers, models, tests, graphQL schemas-resolvers, and database migrations-seeders that you can easily use as your template or code start-point.
@@ -97,7 +97,7 @@ Fully documented code based on the _most professional practices_ for programming
 * **MSSQL:** `npm i tedious`
 * **SQLite:** `npm i sqlite3`
 
-**After install set your engine dialect in the configuration files:**
+**After installation set your engine dialect in the configuration files:**
 _sequelize.conf.js_ and _database.conf.ts_ both located at src/database path:
 `'mysql' | 'mariadb' | 'postgres' | 'mssql'`
 
@@ -123,7 +123,7 @@ Read for more information: https://sequelize.org/v5/manual/getting-started.html
 This variables will be used by **sequelize** and **sequelize-cli** for manage your database through command line.
 
 ### 4. Create database and test table:
-**For create the database you can do it manually or just run:**
+**in order to create the database you can do it manually or just run:**
 
 ```
     npx sequelize db:create
@@ -142,8 +142,8 @@ This variables will be used by **sequelize** and **sequelize-cli** for manage yo
 ---
 
 #### (Optional) Changing ports:
-If you wanna change default ports:
-- Open _app.ts_ file and change the application ports as you want.
+If you want to change default ports:
+- Open _app.ts_ file and change the application ports as you wish.
 
 ---
 
@@ -172,9 +172,9 @@ If you wanna change default ports:
 
 ## 1. GraphQL as independent service
 
-By default **GraphQL** service is provided throw the **Express Server middleware**, this means that **GraphQL** will only works if **Express** is running.
+By default **GraphQL** service is provided through the **Express Server middleware**, this means that **GraphQL** will only works if **Express** is running.
 
-To change this behavior you can specify that you want **GraphQL** running as independent port:
+To change this behavior you can specify that you want **GraphQL** running an independent port:
 
 **app.ts**
 ```
@@ -190,11 +190,11 @@ Now **GraphQL** will be accesible via http://localhost:5000
 
 ## 2. About SQLite configuration
 
-**SQLite** databases requieres two parameters in the **Sequelize** configuration object.
+**SQLite** databases requiere two parameters in the **Sequelize** configuration object.
 * Dialect
 * Storage path
 
-If you are using **SQLite** may you want to modify this configuration in _database.conf.ts_ file located at src/database:
+If you are using **SQLite** you may want to modify this configuration in _database.conf.ts_ file located at src/database:
 
 **database.conf.ts**
 ```
@@ -219,7 +219,7 @@ If you are using **SQLite** may you want to modify this configuration in _databa
 ## 3. Customizing GraphQL
 To pre-process your **GraphQL** schema before **Banana** creates the service you can use the _customize.graphql.ts_ file located at src/graphql/apollo.
 
-This file let you **manipulate** the schema with **Apollo** functions or **graphql-tools**, for example.
+This file allows you to **manipulate** the schema with **Apollo** functions or **graphql-tools**, for example.
 
 This function is called by the **Provider** before instanciates **Apollo Server** and receives as _parameter_ the **schema object** (returned by _makeExecutableSchema_ function from **Apollo**).
 
@@ -263,14 +263,14 @@ This function is called by the **Provider** before instanciates **Apollo Server*
     }
 ```
 
-**Finally** the function <ins>must returns</ins> an **options object** that will be passed **directly** to the **Apollo Server** construct for build the service.
+**Finally** the function <ins>must returns</ins> an **options object** that will be passed **directly** to the **Apollo Server** construct to build the service.
 
 ## 4. Database vars for development, test and production
 
 By default **Banana** uses the same variables for development, test and production.
-Plus, **Banana** uses **dotenv** that allow you to create or delete your own variables easily.
+Plus, **Banana** uses **dotenv** that allows you to create or delete your own variables easily.
 
-For set differents variables you need to **put focus on two files:**
+To set different variables you need to **put focus on two files:**
 * **_sequelize.conf.ts_** located at src/database • _where we specify the variables to use_
 * **_.env_** located at the root of your project • _where we declarate those variables_
 
@@ -322,7 +322,7 @@ For set differents variables you need to **put focus on two files:**
 * `DB_DEV_*` for development variables
 * `DB_TEST_*` for testing variables
 
-**In that way now you can declare those variables at your _.env_ file:**
+**That way, now you can declare those variables at your _.env_ file:**
 
 **.env**
 ```
@@ -350,7 +350,7 @@ For set differents variables you need to **put focus on two files:**
 
 ## 1. Creating new Routes modules
 Routes in **Banana** works the same as in **Express**. 
-For create a **new route** module you can use the _sample_ file _(routes.ts)_ as template.
+To create a **new route** module you can use the _sample_ file _(routes.ts)_ as template.
 
 **So you will have something like:**
 
@@ -400,9 +400,9 @@ For create a **new route** module you can use the _sample_ file _(routes.ts)_ as
 
 ```
 
-__* Banana__ _recommend keeps the comments to give others more information about what are you doing._
+__* Banana__ _recommends to keep the comments to give others more information about what you are doing._
 
-**After that final step is register that module in the main routes file:**
+**After that the final step is to register that module in the main routes file:**
 
 **main.routes.ts**
 ```
@@ -436,7 +436,7 @@ __* Banana__ _recommend keeps the comments to give others more information about
 ## 2. Creating new Controllers
 **Banana** is a _MVC template_ so all the functions that will be handled by your routes should be contained in a class controller as static methods.
 
-For create a **new controller** you can use the _sample_ file _(controller.ts)_ as template.
+To create a **new controller** you can use the _sample_ file _(controller.ts)_ as template.
 
 **So you will have something like:**
 
@@ -485,7 +485,7 @@ For create a **new controller** you can use the _sample_ file _(controller.ts)_ 
     ;
 ```
 
-__* Banana__ _recommend keeps comments to give others more information about what are you doing._
+__* Banana__ _recommends to keep comments to give others more information about what you are doing._
 
 **Now you can import your brand new Controller anywhere and access the methods by his class-name:**
 `CustomController.doSomething()`
@@ -496,7 +496,7 @@ __* Banana__ _recommend keeps comments to give others more information about wha
 
 Read more: https://en.wikipedia.org/wiki/Object-relational_mapping
 
-**For create a new model you have two choices:**
+**To create a new model you have two choices:**
 * Use **sequelize-cli** for command line
 * Use the **model file** _template_ _(models.ts)_ included
 
@@ -505,7 +505,7 @@ Read more: https://en.wikipedia.org/wiki/Object-relational_mapping
 2. **Sequelize-cli** provides a _"less"_ orderly model / **Banana** is cool
 3. **Sequelize-cli** works with _functions-based_ models / **Banana** with _class-based_ models
 
-In this case, **Banana** recommend you to _use the template_ included becase works directly with **Typescript** and is **clean**.
+In this case, **Banana** recommends you to _use the template_ included because it works directly with **Typescript** and it is **clean**.
 
 ### 3.1 Using sequelize-cli:
 **Replace model-name and attribute:type and run:**
@@ -518,9 +518,9 @@ You can **add multiple attributes** separated by comas: `--attributes id:number,
 For more information about **sequelize-cli** usage please _visit_: https://sequelize.org/master/manual/migrations.html
 
 ### 3.2 Using the template:
-**As said, this is the best option.**
+**As mentioned before, this is the best option.**
 
-In this case, class attributes <ins>only will works as a "guide"</ins> for list the table fields, real magic happens at **fields** object attribute. This object contains all the table representation.
+In this case, class attributes <ins>will only work as a "guide"</ins> for listing the table fields, real magic happens at **fields** object attribute. This object contains all the table representation.
 
 **Important:** <ins>The class-name must be the same as your database table.</ins>
 
@@ -607,7 +607,7 @@ In this case, class attributes <ins>only will works as a "guide"</ins> for list 
 For more information using **sequelize** with **typescript** please _visit_: https://sequelize.org/v5/manual/typescript.html
 
 ## 4. Creating new Migrations and Seeders
-In this cases the **best option** is to use **sequelize-cli**.
+In this case the **best option** is to use **sequelize-cli**.
 
 **Sequelize-cli don't provides native Typescript support**, therefore they must be written in **Javascript**.
 
@@ -615,7 +615,7 @@ In this cases the **best option** is to use **sequelize-cli**.
 **Migrations are like a "version control" history of your database.**
 In a migration file you can create your tables, modifiy it or just delete it in a kind of "timeline".
 
-**For create a new one replace the migration-name and run:**
+**To create a new one replace the migration-name and run:**
 ```
     npx sequelize-cli migration:generate --name migration-name
 ```
@@ -626,7 +626,7 @@ In a migration file you can create your tables, modifiy it or just delete it in 
 **Seeders are a mechanism to populate your database tables with data for develop and test your application.**
 You can generate one file per table.
 
-**For create a new one replace the seeder-name and run:**
+**To create a new one replace the seeder-name and run:**
 ```
     npx sequelize-cli seeder:generate --name seeder-name
 ```
@@ -636,7 +636,7 @@ You can generate one file per table.
 For more information about _creating migrations and seeders_ with **sequelize-cli** please _visit_: https://sequelize.org/master/manual/migrations.html
 
 ## 5. Creating new Helper functions
-**Helper functions** are _portions of code_ that helps your _application_ to do **background specific task.**
+**Helper functions** are _portions of code_ that help your _application_ to do **background specific task.**
 
 **To add a new helper function** open the _helpers.ts_ file located at src/app/helpers **and type:**
 
@@ -671,7 +671,7 @@ Notice that we have two helpers function that can be imported independently.
 *_be sure to add the correct relative path to your helper file._
 
 ## 6. GraphQL: Registering new Schemas and Resolvers
-**Create Schemas and Resolvers is quite simple. No words necessary.**
+**Creating Schemas and Resolvers is quite simple. No words are necessary.**
 
 **After that** (just like routes) your new schemas and resolvers **need to be registered** in _main.schemas.ts_ and _main.resolvers.ts_ files located at src/graphql/schemas and src/graphql/resolvers folders.
 
@@ -729,27 +729,27 @@ Notice that we have two helpers function that can be imported independently.
     ]
 ```
 
-**This is the way to tell Apollo that adds your new schemes and resolvers.**
+**This is the way to tell Apollo to add your new schemes and resolvers.**
 
 # Advanced
 
 ## Extend Providers functionalities:
-**Banana** is based on their own **Providers** classes that provides to the template all the basics services.
+**Banana** is based on their own **Providers** classes that provides all the basics services to the template.
 
 By default **Banana** includes three **Providers**.
 
-**If you wanna extend or modify the functionalities of each one you dispose of three classes for do it:**
+**If you want to extend or modify the functionalities of each one you dispose of three classes for doing so:**
 * **Express Provider:** This is the _class_ that provides all the **Express Server service** and the **middlewaring**
 * **Apollo Provider:** This is the _class_ that provides all the **GraphQL and Apollo Server services**
 * **Sequelize Provider:** This is the _class_ that provides all the **Sequelize ORM integration** and **Database configuration** for your application
 
-**This classes are all located at the src/providers folder.**
+**These classes are all located at the src/providers folder.**
 
-### You are free for extend or modify what you want.
+### You are free to extend or modify whatever you want.
 
 ---
 
-# More information
+# Further Information
 
 **For more information you can visit the official documentations:**
 
