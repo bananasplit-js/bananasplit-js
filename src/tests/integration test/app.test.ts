@@ -13,6 +13,7 @@
 
 import Express from 'express'
 import request, { Response } from 'supertest'
+import chalk from 'chalk'
 
 import App from '../../providers/express'
 import { sequelize } from '../../providers/sequelize'

@@ -13,6 +13,7 @@
 
 import Express from 'express'
 import request, { Response } from 'supertest'
+import chalk from 'chalk'
 
 import App from '../../providers/express'
 import { sequelize } from '../../providers/sequelize'
@@ -50,10 +51,17 @@ test( 'Hello response is received', async () => {
 test( 'Hello from database is received', async () => {
 
     const response: Response = await request( app ).get( '/db-query-test' )
-    const JSONResponse: { result: string }[] =  JSON.parse( response.text )
+    
+    try {
+        const JSONResponse: { result: string }[] = JSON.parse( response.text )
 
-    expect( response.status ).toBe( 200 )
-    expect( JSONResponse[0].result ).toMatch( 'Hello from database!' )
+        expect( response.status ).toBe( 200 )
+        expect( JSONResponse[0].result ).toMatch( 'Hello from database!' )
+        
+    } catch(e) {
+        console.log( chalk.bgRed(response.text) )
+
+    }
 
 } )
 
@@ -61,7 +69,7 @@ test( 'Hello from database is received', async () => {
 
 afterAll( done => {
 
-    // Closing the DB connection allows Jest to exit successfully:
+    // Closing the db connection allows to Jest exit successfully:
     sequelize.close()
     done()
     
