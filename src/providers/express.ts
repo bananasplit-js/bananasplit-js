@@ -8,14 +8,12 @@
  */
 
 
-
 import Express, { Application as ExpressApp } from 'express'
 import chalk from 'chalk'
 
 import Settings from '../settings/settings'
 import Middlewares from '../middlewares/middleware'
 import MainRouter from '../app/routes/main.routes'
-
 
 
 /**
@@ -68,7 +66,7 @@ export default
          *  @constructor
          *  @private
          * 
-         *  Not Accesible.
+         *  Not Accesible
          *  Implements: Singleton Pattern
          * 
          */
@@ -129,7 +127,7 @@ export default
          *  @returns { ExpressApp }
          *  
          */
-        public get = (): ExpressApp => <ExpressApp> this.express
+        public get = (): ExpressApp => <ExpressApp> ExpressProvider.getInstance().express
 
 
         /**
@@ -142,10 +140,10 @@ export default
          */
         private settings(): void {
 
-            this.express?.set( 'port', this.port || process.env.PORT || 4000 )
+            this.express?.set( 'port', this.port || 3000 )
 
             /**
-             *  Then do custom settings:
+             *  Then do custom settings
              *  @overwrite
              */
             Settings( <ExpressApp> this.express )
@@ -188,9 +186,11 @@ export default
          * 
          */
         public async start( port?: number ): Promise <any> {
+            
+            const serverPort: number = ( port || this.express?.get('port') )
 
-            await this.express?.listen( port || this.express.get('port') )
-            console.log( chalk.bgGreen.black.bold( 'Express: running on port', this.express?.get('port') ) )
+            await this.express?.listen( serverPort )
+            console.log( chalk.bgGreen.black.bold( 'Express: listening on', `http://localhost:${serverPort}` ) )
 
         }
 

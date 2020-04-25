@@ -9,26 +9,23 @@
  */
 
 
-
  /**
  *
- *  Your Schemas import goes here!!
  *  @import @schemas
+ *  Your Schemas import goes here.
  * 
  */
 import HelloSchema from './schemas/hello.schema'
-
 
 
 export default [
     
     /**
      *
-     *  Your Schemas register goes here!!
      *  @register @schemas
+     *  Your Schemas register goes here.
      * 
      */
-
     HelloSchema,
 
 ]

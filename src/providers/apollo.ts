@@ -8,18 +8,16 @@
  */
 
 
-
 import { ApolloServer } from 'apollo-server'
 import { ApolloServer as ApolloServerExpress, makeExecutableSchema } from 'apollo-server-express'
 import { GraphQLSchema } from 'graphql'
+import chalk from 'chalk'
 
 import App from './express'
 
 import Schemas from '../graphql/main.schemas'
 import Resolvers from '../graphql/main.resolvers'
 import customizeGraphQL from '../graphql/apollo/customize.graphql'
-
-import chalk from 'chalk'
 
 
 
@@ -90,7 +88,7 @@ export default
          *  @constructor
          *  @private
          * 
-         *  Not Accesible.
+         *  Not Accesible
          *  Implements: Singleton Pattern
          * 
          */
@@ -115,19 +113,19 @@ export default
 
             if ( ! ApolloProvider.instance ) {
 
-                // Creates new Instance:
+                // Creates new Instance
                 ApolloProvider.instance = new ApolloProvider()
 
-                // Sets Properties:
-                ApolloProvider.instance.port = ( port || process.env.PORT || 5000 ) as number
+                // Sets Properties
+                ApolloProvider.instance.port = ( port || 4000 )
 
-                // Build the Schema:
+                // Build the Schema
                 ApolloProvider.instance.makeSchema()
 
-                // Returns a new manipulated Schema within an options object for pass to new ApolloServer construct:
+                // Returns a new manipulated Schema within an options object for pass to new ApolloServer construct
                 ApolloProvider.instance.customizeGraphQL()
 
-                // Create ApolloProvider App as Middleware or Independent:
+                // Create ApolloProvider App as Middleware or Independent
                 if ( middleware ) {
 
                     ApolloProvider.instance.server = new ApolloServerExpress( ApolloProvider.instance.options )
@@ -136,7 +134,7 @@ export default
                         app: middleware.get()
                     })
 
-                    console.log( chalk.bgGreen.black.bold( 'ApolloProvider: running on', ApolloProvider.instance.server.graphqlPath ) )
+                    console.log( chalk.bgGreen.black.bold( 'GraphQL: listening on', ApolloProvider.instance.server.graphqlPath ) )
 
                 } else
 
@@ -159,7 +157,7 @@ export default
          */
         private makeSchema(): void {
 
-            // Builds the Schema:
+            // Builds the Schema
             ApolloProvider.instance.schema = makeExecutableSchema({
                 typeDefs: Schemas,
                 resolvers: Resolvers
@@ -198,7 +196,7 @@ export default
          *  @returns { ApolloServerExpress | ApolloServer }
          *  
          */
-        public get = (): ( ApolloServerExpress | ApolloServer ) => <ApolloServer> this.server
+        public get = (): ( ApolloServerExpress | ApolloServer ) => <ApolloServer> ApolloProvider.getInstance().server
 
 
         /**
@@ -211,8 +209,10 @@ export default
          */
         public async start( port?: number ): Promise <void> {
 
-            await ( <ApolloServer> this.server ).listen( port || this.port )
-            console.log( chalk.bgGreen.black.bold( 'App: ApolloProvider running on port', this.port ) )
+            const serverPort: number | undefined = ( port || this.port )
+
+            await ( <ApolloServer> this.server ).listen( serverPort )
+            console.log( chalk.bgGreen.black.bold( `GraphQL: listening on http://localhost${serverPort}` ) )
 
         }
 

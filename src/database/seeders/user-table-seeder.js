@@ -10,12 +10,13 @@
  */
 
 
-
+ 
 'use strict';
+
+
 const faker = require( 'faker' )
 
-// You can set your locate with: faker.setLocale( 'en' )
-
+// You can set your locate with -> faker.setLocale('en')
 
 
 module.exports = {

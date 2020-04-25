@@ -9,26 +9,23 @@
  */
 
 
-
  /**
  *
- *  Your Resolvers import goes here!!
  *  @import @resolvers
+ *  Your Resolvers import goes here.
  * 
  */
 import HelloResolvers from './resolvers/hello.resolvers'
-
 
 
 export default [
     
     /**
      *
-     *  Your Resolvers register goes here!!
      *  @register @resolvers
+     *  Your Resolvers register goes here.
      * 
      */
-
     HelloResolvers
 
 ]
