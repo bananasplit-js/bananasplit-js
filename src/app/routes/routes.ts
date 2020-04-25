@@ -11,7 +11,10 @@
  */
 
 
+
 import { Router } from 'express'
+
+
 
 // Creates new Router:
 const router: Router = Router()
@@ -56,7 +59,7 @@ import Controller from '../controllers/controller'
         .get( Controller.getUsers )
     
 
-} )( router )
+})( router )
 
 
 export default router

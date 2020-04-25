@@ -8,12 +8,15 @@
  */
 
 
+ 
 import Sequelize from 'sequelize'
 import DBAuth from '../providers/interfaces/database.auth'
 import dotenv from 'dotenv'
 
 
+
 dotenv.config()
+
 
 
 /**
@@ -24,7 +27,7 @@ dotenv.config()
  */
 const SequelizeOptions: Sequelize.Options = {
 
-    dialect: '',    // 'mysql' | 'mariadb' | 'postgres' | 'mssql'
+    dialect: 'mysql',    // 'mysql' | 'mariadb' | 'postgres' | 'mssql'
 
     // host MUST be modified at the .env file !! ***
     host: <string> process.env.HOST,

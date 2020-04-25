@@ -22,7 +22,7 @@ module.exports = {
     // For development:
     development: {
 
-        dialect: '',    // 'mysql' | 'mariadb' | 'postgres' | 'mssql'
+        dialect: 'mysql',    // 'mysql' | 'mariadb' | 'postgres' | 'mssql'
 
         host: process.env.HOST,
         port: process.env.PORT,
