@@ -17,7 +17,7 @@
 
  class User extends Model {
 
-    // Fields:
+    // Fields
     private id!: number
     private name!: string
     private lastname!: string
@@ -28,7 +28,7 @@
     private readonly updatedAt!: Date
 
 
-    // Fields Definitions (defines Model):
+    // Fields Definitions
     public static fields = {
 
         id: {
@@ -59,9 +59,9 @@
         
     }
 
-    // Options:
+    // Options
     public static options = {
-        sequelize,  // sequelize connection
+        sequelize,
         timestamps: true
     }
 
@@ -73,7 +73,7 @@
  
 ; ( async () => {
 
-    // something async before export model
+    // do something async before export the model
 
 } )()
 

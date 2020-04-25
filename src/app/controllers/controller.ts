@@ -6,7 +6,7 @@
  *  @module app/controllers/controller
  *  @description * you can remove it or modify it *
  * 
- *  @use this file as your Controllers template! ***
+ *  @use this file as your Controllers template **
  * 
  */
 
@@ -16,7 +16,7 @@ import { sequelize } from '../../providers/sequelize'
 import path from 'path'
 
 
-// Model:
+// Model
 import User from '../models/user'
 
 
@@ -30,7 +30,7 @@ export default
     class Controller {
 
         /**
-         *      Hello response
+         *      Hello response      @handler
          */
         public static hello( request: Request, response: Response ) {
 
@@ -43,7 +43,7 @@ export default
 
 
         /**
-         *      Database Connection Test
+         *      Database Connection Test    @handler
          */
         public static async databaseConnectionTest( request: Request, response: Response ) {
 
@@ -62,7 +62,7 @@ export default
 
 
         /**
-         *      Database Query Test
+         *      Database Query Test     @handler
          */
         public static async databaseQueryTest( request: Request, response: Response ) {
 
@@ -81,7 +81,7 @@ export default
 
 
         /**
-         *      Sequelize ORM Query Test
+         *      Sequelize ORM Query Test    @handler
          */
         public static async getUsers( request: Request, response: Response ) {
 

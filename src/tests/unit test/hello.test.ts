@@ -19,7 +19,7 @@ import App from '../../providers/express'
 import { sequelize } from '../../providers/sequelize'
 
 
-// Express App as parallel instance:
+// Express App as parallel instance
 const app: Express.Application = App.build().get()
 
 
@@ -69,7 +69,7 @@ test( 'Hello from database is received', async () => {
 
 afterAll( done => {
 
-    // Closing the db connection allows to Jest exit successfully:
+    // Closing the db connection allows to Jest exit successfully
     sequelize.close()
     done()
     

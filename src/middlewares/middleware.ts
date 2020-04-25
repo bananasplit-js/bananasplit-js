@@ -21,16 +21,16 @@ export default
     ( app: Express.Application ) => {
         
         /**
-         * 
-         *  Your Middlewares goes here!!
-         *  @middlewares
+         *
+         *  @middlewares 
+         *  Your Middlewares goes here.
          * 
          */
         
         app.use( Morgan('dev') )
         app.use( Express.json() )
 
-        // Compile .scss files into .css
+        // Compile scss files into css
         app.use( SassMiddleware({
 
             src: app.get( 'sass' ),
@@ -38,10 +38,10 @@ export default
             outputStyle: 'compressed',
             debug: true
 
-        }) )
+        }))
 
-        // Public directory:
-        app.use( Express.static( app.get('public') ) )
+        // Public directory
+        app.use( Express.static(app.get('public')) )
 
     }
 ;

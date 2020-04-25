@@ -6,7 +6,7 @@
  *  @module graphql/hello/hello.schema
  *  @description * you can remove it or modify it *
  * 
- *  @use this file as your Schemas template! ***
+ *  @use this file as your Schemas template! **
  * 
  */
 

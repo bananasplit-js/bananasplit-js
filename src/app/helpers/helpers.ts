@@ -12,8 +12,8 @@
 
 /**
  * 
- *	Your helpers goes here!!
  *	@helpers
+ *	Your helpers goes here.
  * 
  */
 export function helper(): void {
@@ -21,10 +21,3 @@ export function helper(): void {
 	// do something helpful
 
 }
-
-
-/* ... export function anotherHelper(): void {
-
-	// do something else
-	
-} */

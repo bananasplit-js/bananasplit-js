@@ -6,7 +6,7 @@
  *  @module app/routes/routes
  *  @description * you can remove it or modify it *
  * 
- *  @use this file as your Routers template! ***
+ *  @use this file as your Routers template **
  * 
  */
 
@@ -22,8 +22,8 @@ const router: Router = Router()
 
 /**
  * 
- *  Your controller import goes here!!
  *  @import @controller
+ *  Your controller import goes here.
  * 
  */
 import Controller from '../controllers/controller'
@@ -33,28 +33,28 @@ import Controller from '../controllers/controller'
 
     /**
      * 
-     *  Your routes goes here!!
      *  @routes
+     *  Your routes goes here.
      * 
      */
     
 
-    // hello:
+    // Hello
     $.route( '/' )
         .get( Controller.hello )
     
 
-    // database connection test:
+    // Database connection test
     $.route( '/db-auth-test' )
         .get( Controller.databaseConnectionTest )
     
 
-    // database query test:
+    // Database query test
     $.route( '/db-query-test' )
         .get( Controller.databaseQueryTest )
 
 
-    // sequelize ORM test, get users:
+    // Sequelize ORM test, get users
     $.route( '/model-query-test' )
         .get( Controller.getUsers )
     

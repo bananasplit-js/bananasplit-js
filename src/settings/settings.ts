@@ -20,13 +20,13 @@ export default
 
         /**
          * 
-         *  Your App settings goes here!!
          *  @settings @overwrite
+         *  Your App settings goes here.
          * 
          */
         app.engine( 'hbs', handlebars({
             extname: '.hbs'
-        }) )
+        }))
 
         app.set( 'public', path.join( __dirname, '/../public' ) )
         app.set( 'sass', path.join( __dirname, '/../app/views/sass' ) )

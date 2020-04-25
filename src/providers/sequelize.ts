@@ -61,12 +61,11 @@ class SequelizeProvider {
 
 
 
-// Sequelize instance for usage:
+// Sequelize instance for usage
 const sequelizeProvider: SequelizeProvider = new SequelizeProvider( DBAuth, SequelizeOptions )
 const sequelize: Sequelize = sequelizeProvider.get()
 
 
-// ** You can add more instances to export:
 
-
+// You can add more instances to export ** 
 export { sequelize }
