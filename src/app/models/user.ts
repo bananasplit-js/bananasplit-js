@@ -4,7 +4,7 @@
  *  @model
  * 
  *  @module app/models/user
- *  @description Defines a user model example
+ *  @description Defines an user model example
  * 
  */
 
@@ -66,16 +66,18 @@
     }
 
  }
-
-
- User.init( User.fields, User.options )
+ 
+ 
+ // Load the model
+ const $ = User
+ User.init( $.fields, $.options )
 
  
-; ( async () => {
-
-    // do something async before export the model
-
-} )()
+ ; ( async () => {
+ 
+     // do something async before export the model
+ 
+ } )()
 
  
  export default User

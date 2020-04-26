@@ -20,6 +20,7 @@ dotenv.config()
 module.exports = {
 
     // For development
+
     development: {
 
         dialect: 'mysql',       // 'mysql' | 'mariadb' | 'postgres' | 'mssql'
@@ -38,7 +39,8 @@ module.exports = {
     },
 
 
-    // You can set your own variables for test in .env *
+    // For testing
+
     test: {
 
         dialect: '',        // 'mysql' | 'mariadb' | 'postgres' | 'mssql'
@@ -57,7 +59,8 @@ module.exports = {
     },
 
     
-    // You can set your own variables for production in .env *
+    // For production
+    
     production: {
 
         dialect: '',        // 'mysql' | 'mariadb' | 'postgres' | 'mssql'

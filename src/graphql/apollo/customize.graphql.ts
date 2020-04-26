@@ -22,7 +22,7 @@ export default
 
     ( schema: GraphQLSchema ): object => {
 
-        // You can manipulate your schema here
+        // You can manipulate the schema here
 
 
         /**

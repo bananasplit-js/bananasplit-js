@@ -44,10 +44,10 @@ export default
 
         /**
          *
-         *  @private @property { number } port
+         *  @private @property { number| string } port
          * 
          */
-        private port?: number
+        private port?: number | string
 
 
         /**
@@ -109,7 +109,7 @@ export default
          *  @retuns { ApolloServer | ApolloServerExpress }
          * 
          */
-        public static build( { port, middleware }: ApolloProps ) {
+        public static build( { port, middleware }: ApolloProps = {} ) {
 
             if ( ! ApolloProvider.instance ) {
 
@@ -134,7 +134,10 @@ export default
                         app: middleware.get()
                     })
 
-                    console.log( chalk.bgGreen.black.bold( 'GraphQL: listening on', ApolloProvider.instance.server.graphqlPath ) )
+                    console.log(
+                        chalk.bgCyan.black( 'GraphQL' ), '->',
+                        chalk.bgWhite.black( `http://localhost:${middleware.get().get('port')}${ApolloProvider.instance.server.graphqlPath}` )
+                    )
 
                 } else
 
@@ -209,10 +212,12 @@ export default
          */
         public async start( port?: number ): Promise <void> {
 
-            const serverPort: number | undefined = ( port || this.port )
+            if ( port )
+                this.port = port
+            ;
 
-            await ( <ApolloServer> this.server ).listen( serverPort )
-            console.log( chalk.bgGreen.black.bold( `GraphQL: listening on http://localhost${serverPort}` ) )
+            await ( <ApolloServer> this.server ).listen( this.port )
+            console.log( chalk.bgGreen.black.bold( `GraphQL: listening on http://localhost:${this.port}` ) )
 
         }
 

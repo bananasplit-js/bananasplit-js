@@ -1,6 +1,6 @@
 /**
  * 
- *  Interface: Database Auth
+ *  Interface Database Auth
  *  @interface @type
  * 
  */
