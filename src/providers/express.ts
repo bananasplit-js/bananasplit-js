@@ -49,7 +49,7 @@ export default
          *  @private @property { number | string } port
          * 
          */
-        private port? : number | string | undefined
+        private port? : number | string
 
         
         /**
@@ -89,14 +89,14 @@ export default
 
             if ( ! ExpressProvider.instance ) {
 
-                // Creates a new Instance:
+                // Creates a new Instance
                 ExpressProvider.instance = new ExpressProvider()
                 ExpressProvider.instance.express = Express()
 
-                // Sets properties:
-                ExpressProvider.instance.port = config?.port
+                // Sets properties
+                ExpressProvider.instance.port = ( config?.port || 3000 )
 
-                // Executes methods:
+                // Executes methods
                 ExpressProvider.instance.settings()
                 ExpressProvider.instance.middlewares()
                 ExpressProvider.instance.routes()
@@ -140,7 +140,7 @@ export default
          */
         private settings(): void {
 
-            this.express?.set( 'port', this.port || 3000 )
+            this.express?.set( 'port', this.port )
 
             /**
              *  Then do custom settings
@@ -179,7 +179,7 @@ export default
 
         /**
          * 
-         *  Start Express Server on specified / system / default port
+         *  Start Express Server on specified or default port
          * 
          *  @async @method start
          *  @returns { Promise }
@@ -187,10 +187,18 @@ export default
          */
         public async start( port?: number ): Promise <any> {
             
-            const serverPort: number = ( port || this.express?.get('port') )
+            if ( port )
+                this.express?.set( 'port', port )
+            ;
 
-            await this.express?.listen( serverPort )
-            console.log( chalk.bgGreen.black.bold( 'Express: listening on', `http://localhost:${serverPort}` ) )
+            await this.express?.listen( this.express?.get('port') )
+
+            console.log(
+                chalk.bgYellow.black( 'App' ), '->',
+                chalk.bgWhite.black( `http://localhost:${this.express?.get('port')} `)
+            )
+
+            console.log( '\nYour app is running!\n' )
 
         }
 

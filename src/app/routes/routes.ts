@@ -37,7 +37,6 @@ import Controller from '../controllers/controller'
      *  Your routes goes here.
      * 
      */
-    
 
     // Hello
     $.route( '/' )

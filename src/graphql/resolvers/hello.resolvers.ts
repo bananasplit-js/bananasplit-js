@@ -6,7 +6,7 @@
  *  @module graphql/hello/hello.resolvers
  *  @description * you can remove it or modify it *
  * 
- *  @use this file as your Resolvers template! **
+ *  @use this file as your Resolvers template **
  * 
  */
 
@@ -22,7 +22,7 @@ export default {
      */
     Query: {
         hello: () => {
-            return 'hello from GraphQL!'
+            return 'Hello from GraphQL!'
         }
     }
     

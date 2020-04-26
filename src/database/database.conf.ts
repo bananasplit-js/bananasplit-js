@@ -29,7 +29,6 @@ const SequelizeOptions: Sequelize.Options = {
 
     dialect: '',       // 'mysql' | 'mariadb' | 'postgres' | 'mssql'
 
-    // Host MUST be modified at the .env file **
     host: <string> process.env.HOST,
     pool: {
         max: 5,
@@ -48,8 +47,6 @@ const SequelizeOptions: Sequelize.Options = {
  * 
  */
 const DBAuth: DBAuth | string =  {
-
-    // All db credentials MUST be modified at the .env file **
     
     database: <string> process.env.DB_DATABASE,
     username: <string> process.env.DB_USERNAME,

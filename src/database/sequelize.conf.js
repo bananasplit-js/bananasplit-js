@@ -3,7 +3,7 @@
  *  Sequelize Configuration Options for Database
  *  @description Contains all Sequelize configurations for command-line (Sequelize-CLI). 
  * 
- *	!IMPORTANT: All values (except dialect that must has an expicity value) MUST be
+ *	IMPORTANT: All values (except dialect that must has an expicity value) MUST be
  *	modified at the .env file in the root project directory.
  *
  */
@@ -20,6 +20,7 @@ dotenv.config()
 module.exports = {
 
     // For development
+    
     development: {
 
         dialect: '',       // 'mysql' | 'mariadb' | 'postgres' | 'mssql'
@@ -38,7 +39,8 @@ module.exports = {
     },
 
 
-    // You can set your own variables for test in .env *
+    // For testing
+
     test: {
 
         dialect: '',        // 'mysql' | 'mariadb' | 'postgres' | 'mssql'
@@ -57,7 +59,8 @@ module.exports = {
     },
 
     
-    // You can set your own variables for production in .env *
+    // For production
+    
     production: {
 
         dialect: '',        // 'mysql' | 'mariadb' | 'postgres' | 'mssql'
