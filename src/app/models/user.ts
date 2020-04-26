@@ -67,10 +67,12 @@
 
  }
  
+
  
  // Load the model
  const $ = User
  User.init( $.fields, $.options )
+
 
  
  ; ( async () => {
@@ -79,5 +81,6 @@
  
  } )()
 
+ 
  
  export default User

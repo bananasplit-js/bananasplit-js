@@ -3,7 +3,7 @@
  *  Sequelize Configuration Options for Database
  *  @description Contains all Sequelize configurations for command-line (Sequelize-CLI). 
  * 
- *	!IMPORTANT: All values (except dialect that must has an expicity value) MUST be
+ *	IMPORTANT: All values (except dialect that must has an expicity value) MUST be
  *	modified at the .env file in the root project directory.
  *
  */

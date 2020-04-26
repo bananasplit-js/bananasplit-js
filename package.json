@@ -1,7 +1,7 @@
 {
-  "name": "banana-split",
+  "name": "",
   "version": "1.0.0",
-  "description": "An Express, Sequelize, Jest, Apollo and Handlebars + Sass superset template that uses Typescript for quickly develop apps.",
+  "description": "",
   "main": "app.js",
   "scripts": {
     "test": "jest",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/diegoulloao/bananasplit-express-template.git"
+    "url": ""
   },
   "keywords": [
     "express",
@@ -27,12 +27,12 @@
     "handlebars",
     "template"
   ],
-  "author": "@diegoulloao",
+  "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/diegoulloao/bananasplit-express-template/issues"
+    "url": ""
   },
-  "homepage": "https://github.com/diegoulloao/bananasplit-express-template#readme",
+  "homepage": "",
   "dependencies": {
     "@types/bluebird": "^3.5.29",
     "@types/express-handlebars": "^3.1.0",
