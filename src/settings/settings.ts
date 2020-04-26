@@ -24,15 +24,29 @@ export default
          *  Your App settings goes here.
          * 
          */
+
+        // Template engine
         app.engine( 'hbs', handlebars({
             extname: '.hbs'
         }))
 
-        app.set( 'public', path.join( __dirname, '/../public' ) )
-        app.set( 'sass', path.join( __dirname, '/../app/views/sass' ) )
+        // Public source
+        app.set( 'public', path.join( __dirname, '../public' ) )
+
+        // Sass source
+        app.set( 'sass', path.join( __dirname, '../app/views/sass' ) )
         app.set( 'sass:output', app.get( 'public' ) )
-        app.set( 'views', path.join( __dirname, '/../app/views' ) )
+
+        // Handlebars source
+        app.set( 'views', path.join( __dirname, '../app/views' ) )
         app.set( 'view engine', 'hbs' )
+
+        // jQuery source
+        app.set( 'jquery', path.join( __dirname, '../../node_modules/jquery/dist' ) )
+
+        // Bootstrap source
+        app.set( 'bootstrap@css', path.join( __dirname, '../../node_modules/bootstrap/dist/css' ) )
+        app.set( 'bootstrap@js', path.join( __dirname, '../../node_modules/bootstrap/dist/js' ) )
         
     }
 

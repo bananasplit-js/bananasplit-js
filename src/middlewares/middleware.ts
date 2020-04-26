@@ -40,8 +40,15 @@ export default
 
         }))
 
-        // Public directory
-        app.use( Express.static(app.get('public')) )
+        // Public
+        app.use( Express.static(app.get( 'public' )) )
+
+        // jQuery
+        app.use( '/js', Express.static(app.get( 'jquery' )) )
+
+        // Bootstrap
+        app.use( '/css', Express.static(app.get( 'bootstrap@css' )) )
+        app.use( '/js', Express.static(app.get( 'bootstrap@js' )) )
 
     }
 ;
