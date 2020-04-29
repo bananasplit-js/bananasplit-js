@@ -16,7 +16,7 @@ import { Router } from 'express'
 
 
 
-// Creates new Router:
+// Creates new Router
 const router: Router = Router()
 
 

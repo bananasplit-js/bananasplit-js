@@ -6,7 +6,7 @@
  *  @module app/controllers/controller
  *  @description * you can remove it or modify it *
  * 
- *  @use this file as your Controllers template **
+ *  @use this file as your controllers template **
  * 
  */
 
@@ -16,7 +16,12 @@ import { sequelize } from '../../providers/sequelize'
 import path from 'path'
 
 
-// Model
+/**
+ * 
+ *  @models @import
+ *  Your model import goes here.
+ * 
+ */
 import User from '../models/user'
 
 

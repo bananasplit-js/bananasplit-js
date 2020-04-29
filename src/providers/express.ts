@@ -18,7 +18,7 @@ import MainRouter from '../app/routes/main.routes'
 
 /**
  * 
- *  Definitions for ExpressProvider singleton parameters
+ *  Definitions for ExpressProvider Singleton parameters
  *  @typedef
  * 
  */
@@ -54,7 +54,7 @@ export default
         
         /**
          *
-         *  Singleton Instance
+         *  Singleton instance
          *  @private @static @property { ExpressProvider } instance
          * 
          */
@@ -66,8 +66,8 @@ export default
          *  @constructor
          *  @private
          * 
-         *  Not Accesible
-         *  Implements: Singleton Pattern
+         *  Not accesible
+         *  Implements: Singleton pattern
          * 
          */
         private constructor() {
@@ -77,10 +77,10 @@ export default
         /**
          *  
          *  Singleton
-         *  @description Build or returns a Singleton Instance for ExpressProvider
+         *  @description Build or returns a Singleton instance for ExpressProvider
          * 
          *  @static @method build
-         *  @param { AppProps } config? - Config object
+         *  @param { AppProps } config? - Configuration object
          * 
          *  @returns { ExpressProvider }
          * 
@@ -89,14 +89,14 @@ export default
 
             if ( ! ExpressProvider.instance ) {
 
-                // Creates a new Instance
+                // Creates a new instance
                 ExpressProvider.instance = new ExpressProvider()
                 ExpressProvider.instance.express = Express()
 
                 // Sets properties
                 ExpressProvider.instance.port = ( config?.port || 3000 )
 
-                // Executes methods
+                // Executes build parts
                 ExpressProvider.instance.settings()
                 ExpressProvider.instance.middlewares()
                 ExpressProvider.instance.routes()
@@ -110,7 +110,7 @@ export default
 
         /**
          * 
-         *  Returns the ExpressProvider singleton Instance
+         *  Returns the ExpressProvider singleton instance
          * 
          *  @static @method
          *  @returns { ExpressProvider }
@@ -121,7 +121,7 @@ export default
 
         /**
          * 
-         *  Gets Express Server Instance
+         *  Gets Express Server instance (app)
          * 
          *  @method get
          *  @returns { ExpressApp }
@@ -179,7 +179,7 @@ export default
 
         /**
          * 
-         *  Start Express Server on specified or default port
+         *  Start Express Server on the specified or default port
          * 
          *  @async @method start
          *  @returns { Promise }

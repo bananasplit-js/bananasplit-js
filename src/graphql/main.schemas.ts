@@ -22,8 +22,8 @@ export default [
     
     /**
      *
-     *  @register @schemas
-     *  Your Schemas register goes here.
+     *  @registry @schemas
+     *  Your Schemas registry goes here.
      * 
      */
     HelloSchema,
