@@ -27,15 +27,9 @@ dotenv.config()
  */
 const SequelizeOptions: Sequelize.Options = {
 
-    /**
-     * 
-     *  Dialect possibilities:
-     *  'mysql' | 'mariadb' | 'postgres' | 'mssql' | 'sqlite'
-     * 
-     */
-    dialect: 'mysql',
+    dialect: eval(`"${process.env.DB_ENGINE}"`),
 
-    host: <string> process.env.HOST,
+    host: <string> process.env.DB_HOST,
     pool: {
         max: 5,
         min: 0,
