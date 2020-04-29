@@ -101,17 +101,13 @@ Install the project dependencies:
 ```
 
 ## 2. Database engine
-- **Choose** to install your database driver:
+**Choose** to install your database driver:
 
-    * **MySQL:** `npm i mysql2`
-    * **MariaDB:** `npm i mariadb`
-    * **Postgres:** `npm i pg pg-hstore`
-    * **MSSQL:** `npm i tedious`
-    * **SQLite:** `npm i sqlite3`
-
-* Then at *sequelize.conf.js* and *database.conf.ts* files, **set your dialect**:
-
-    `dialect: 'mysql' | 'mariadb' | 'postgres' | 'mssql' | 'sqlite'`
+* **MySQL:** `npm i mysql2`
+* **MariaDB:** `npm i mariadb`
+* **Postgres:** `npm i pg pg-hstore`
+* **MSSQL:** `npm i tedious`
+* **SQLite:** `npm i sqlite3`
 
 ---
 
@@ -124,16 +120,27 @@ Read for more information: https://sequelize.org/v5/manual/getting-started.html
 ## 3. Enviroment variables
 **Rename** the _.env.example_ file to _.env_, then **set your vars.**
 
+Example:
 ```
-    # Database
-    HOST=localhost
-    PORT=3306
+    # [development] Database
+
+    DB_ENGINE=mysql
+
+    DB_HOST=localhost
+    DB_PORT=3306
 
     # Auth
     DB_DATABASE=test
     DB_USERNAME=root
     DB_PASSWORD=1234
 ```
+
+---
+
+**For DB_ENGINE your choices are:**
+
+`mysql | mariadb | postgres | mssql | sqlite`
+
 
 ## 4. Database and tables
 **Create the database:**

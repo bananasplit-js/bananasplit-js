@@ -30,7 +30,7 @@ module.exports = {
 
     development: {
 
-        dialect: '',
+        dialect: eval(`"${process.env.DB_ENGINE}"`),
 
         host: process.env.HOST,
         port: process.env.PORT,
@@ -50,10 +50,10 @@ module.exports = {
 
     test: {
 
-        dialect: '',
+        dialect: eval(`"${process.env.TEST_DB_ENGINE}" || "${process.env.DB_ENGINE}"`),
 
-        host: process.env.TEST_HOST || process.env.HOST,
-        port: process.env.TEST_PORT || process.env.PORT,
+        host: process.env.TEST_DB_HOST || process.env.DB_HOST,
+        port: process.env.TEST_DB_PORT || process.env.DB_PORT,
 
         username: process.env.DB_TEST_USERNAME || process.env.DB_USERNAME,
         password: process.env.DB_TEST_PASSWORD || process.env.DB_PASSWORD,
@@ -70,10 +70,10 @@ module.exports = {
     
     production: {
 
-        dialect: '',
+        dialect: eval(`"${process.env.PROD_DB_ENGINE}" || "${process.env.DB_ENGINE}"`),
 
-        host: process.env.PROD_HOST || process.env.HOST,
-        port: process.env.PROD_PORT || process.env.PORT,
+        host: process.env.PROD_DB_HOST || process.env.HOST,
+        port: process.env.PROD_DB_PORT || process.env.PORT,
 
         username: process.env.DB_PROD_USERNAME || process.env.DB_USERNAME,
         password: process.env.DB_PROD_PASSWORD || process.env.DB_PASSWORD,
