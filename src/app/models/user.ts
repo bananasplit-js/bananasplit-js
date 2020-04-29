@@ -13,7 +13,7 @@
  import { Model, DataTypes } from 'sequelize'
  import { sequelize } from '../../providers/sequelize'
 
- class BananaModel { hola = () => console.log('hola') }
+
 
  class User extends Model {
 
