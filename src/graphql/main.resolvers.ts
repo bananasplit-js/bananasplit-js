@@ -22,8 +22,8 @@ export default [
     
     /**
      *
-     *  @register @resolvers
-     *  Your Resolvers register goes here.
+     *  @registry @resolvers
+     *  Your Resolvers registry goes here.
      * 
      */
     HelloResolvers

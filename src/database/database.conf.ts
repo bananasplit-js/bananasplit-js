@@ -3,7 +3,7 @@
  *  Database Config file
  *  @config
  * 
- *  @description Contains all App database configurations
+ *  @description Contains all database configurations
  * 
  */
 
@@ -22,12 +22,18 @@ dotenv.config()
 /**
  * 
  *  @options
- *  Sequelize App Options
+ *  Sequelize app options
  * 
  */
 const SequelizeOptions: Sequelize.Options = {
 
-    dialect: '',       // 'mysql' | 'mariadb' | 'postgres' | 'mssql'
+    /**
+     * 
+     *  Dialect possibilities:
+     *  'mysql' | 'mariadb' | 'postgres' | 'mssql' | 'sqlite'
+     * 
+     */
+    dialect: '',
 
     host: <string> process.env.HOST,
     pool: {
@@ -43,7 +49,7 @@ const SequelizeOptions: Sequelize.Options = {
 /**
  * 
  *  @auth
- *  DB App Authentication
+ *  DB app authentication
  * 
  */
 const DBAuth: DBAuth | string =  {

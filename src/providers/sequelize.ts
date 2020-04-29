@@ -3,7 +3,7 @@
  *  Sequelize Provider
  * 
  *  @module providers/sequelize
- *  @description Provides an ORM for interact with Database data
+ *  @description Provides an ORM for interact with Database
  * 
  */
 
@@ -15,7 +15,7 @@ import { DBAuth, SequelizeOptions } from '../database/database.conf'
 /**
  * 
  *  @class SequelizeProvider
- *  @classdesc Provides an ORM for interact with Database data
+ *  @classdesc Provides an ORM for interact with Database
  * 
  */
 class SequelizeProvider {
@@ -49,7 +49,7 @@ class SequelizeProvider {
 
     /**
      * 
-     *  Returns sequelize Instance
+     *  Returns sequelize instance
      *  
      *  @method
      *  @returns { Sequelize }
@@ -67,5 +67,5 @@ const sequelize: Sequelize = sequelizeProvider.get()
 
 
 
-// You can add more instances to export ** 
+// You can add more sequelize instances to export ** 
 export { sequelize }

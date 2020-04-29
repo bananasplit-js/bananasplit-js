@@ -3,7 +3,7 @@
  *  Apollo Provider
  * 
  *  @module providers/apollo
- *  @description Provides GraphQL data throw Apollo Server 
+ *  @description Provides GraphQL service throw Apollo Server 
  * 
  */
 
@@ -37,7 +37,7 @@ export default
     /**
      * 
      *  @class ApolloProvider
-     *  @classdesc Provides GraphQL throws Apollo Server
+     *  @classdesc Provides GraphQL service throws Apollo Server
      * 
      */
     class ApolloProvider {
@@ -88,8 +88,8 @@ export default
          *  @constructor
          *  @private
          * 
-         *  Not Accesible
-         *  Implements: Singleton Pattern
+         *  Not accesible
+         *  Implements: Singleton pattern
          * 
          */
         private constructor() {
@@ -100,11 +100,11 @@ export default
         /**
          *  
          *  Singleton
-         *  @description Build or returns a Singleton Instance of ApolloProvider
+         *  @description Build or returns a Singleton instance of ApolloProvider
          * 
          *  @static @method build
          *  @param { number | string } port? - Port number
-         *  @param { App } middleware? - Middleware throw App specified
+         *  @param { App } middleware? - Middleware throw specified app
          * 
          *  @retuns { ApolloServer | ApolloServerExpress }
          * 
@@ -113,10 +113,10 @@ export default
 
             if ( ! ApolloProvider.instance ) {
 
-                // Creates new Instance
+                // Creates new instance
                 ApolloProvider.instance = new ApolloProvider()
 
-                // Sets Properties
+                // Sets properties
                 ApolloProvider.instance.port = ( port || 4000 )
 
                 // Build the Schema
@@ -125,7 +125,7 @@ export default
                 // Returns a new manipulated Schema within an options object for pass to new ApolloServer construct
                 ApolloProvider.instance.customizeGraphQL()
 
-                // Create ApolloProvider App as Middleware or Independent
+                // Creates ApolloProvider app as Middleware or independent service
                 if ( middleware ) {
 
                     ApolloProvider.instance.server = new ApolloServerExpress( ApolloProvider.instance.options )
@@ -171,7 +171,7 @@ export default
 
         /**
          * 
-         *  Let the chance to dev for manipulate the Schema and set the options
+         *  Instance for manipulate the Schema before call Apollo construct (dev customization)
          *  @private @method customizeGraphQL
          * 
          */
@@ -182,7 +182,7 @@ export default
 
         /**
          * 
-         *  Returns the ApolloProvider singleton instance
+         *  Returns the ApolloProvider Singleton instance
          * 
          *  @static @method getInstance
          *  @returns { ApolloProvider }
@@ -193,7 +193,7 @@ export default
 
         /**
          * 
-         *  Gets Apollo Server Instance
+         *  Gets Apollo Server instance
          *  
          *  @method get
          *  @returns { ApolloServerExpress | ApolloServer }
@@ -204,7 +204,7 @@ export default
 
         /**
          *
-         *  Start the Apollo Server on specified/system/default port
+         *  Start the Apollo Server on the specified or default port
          * 
          *  @async @method start
          *  @returns { Promise }
@@ -217,7 +217,11 @@ export default
             ;
 
             await ( <ApolloServer> this.server ).listen( this.port )
-            console.log( chalk.bgGreen.black.bold( `GraphQL: listening on http://localhost:${this.port}` ) )
+            
+            console.log(
+                chalk.bgCyan.black( 'GraphQL' ), '->',
+                chalk.bgWhite.black( `http://localhost:${this.port}` )
+            )
 
         }
 

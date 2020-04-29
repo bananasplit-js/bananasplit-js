@@ -2,7 +2,6 @@
  * 
  *  Migration for Users Table
  *  (generated with Sequelize-CLI)
- * 
  *  @seeder @db
  * 
  *  @description a migration example for User
@@ -46,7 +45,8 @@ module.exports = {
                 allowNull: false
             },
 
-            // Timestamps:
+            
+            // Timestamps
             createdAt: {
                 type: 'TIMESTAMP',
                 defaultValue: DataTypes.literal( 'CURRENT_TIMESTAMP' ),
@@ -60,10 +60,12 @@ module.exports = {
                 allowNull: false
 
             }
+            // End Timestamps
             
         } )
 
     },
+
 
     down: ( queryInterface, Sequelize ) => {
         return queryInterface.dropTable( 'Users' )

@@ -6,7 +6,7 @@
  *  @module app/controllers/controller
  *  @description * you can remove it or modify it *
  * 
- *  @use this file as your Controllers template **
+ *  @use this file as your controllers template **
  * 
  */
 
@@ -16,7 +16,12 @@ import { sequelize } from '../../providers/sequelize'
 import path from 'path'
 
 
-// Model
+/**
+ * 
+ *  @models @import
+ *  Your model import goes here.
+ * 
+ */
 import User from '../models/user'
 
 
@@ -51,7 +56,7 @@ export default
                 await sequelize.authenticate()
                 response.send( 'Connection has been established successfully.' )
 
-            } catch( e ) {
+            } catch(e) {
                 response.send( `Unable to connect to the database: ${e}` )
             }
 
@@ -70,7 +75,7 @@ export default
                 const [ result ] = await sequelize.query( "SELECT 'Hello from database!' as result" )
                 response.send( result )
 
-            } catch( e ) {
+            } catch(e) {
                 response.send( `Unable to connect to the database: ${e}` )
             }
 

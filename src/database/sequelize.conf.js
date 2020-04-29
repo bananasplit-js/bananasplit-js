@@ -1,10 +1,11 @@
 /**
  * 
  *  Sequelize Configuration Options for Database
- *  @description Contains all Sequelize configurations for command-line (Sequelize-CLI). 
+ *  @description Contains all Sequelize configurations for command-line (Sequelize-cli). 
  * 
- *	IMPORTANT: All values (except dialect that must has an expicity value) MUST be
- *	modified at the .env file in the root project directory.
+ *	IMPORTANT:
+ *  All values (except dialect that must has an expicity value) MUST be
+ *	modified at the .env file at the root project directory.
  *
  */
 
@@ -17,13 +18,19 @@ dotenv.config()
 
 
 
+/**
+ * 
+ *  Dialect possibilities:
+ *  'mysql' | 'mariadb' | 'postgres' | 'mssql' | 'sqlite'
+ * 
+ */
 module.exports = {
 
     // For development
     
     development: {
 
-        dialect: '',       // 'mysql' | 'mariadb' | 'postgres' | 'mssql'
+        dialect: '',
 
         host: process.env.HOST,
         port: process.env.PORT,
@@ -43,14 +50,14 @@ module.exports = {
 
     test: {
 
-        dialect: '',        // 'mysql' | 'mariadb' | 'postgres' | 'mssql'
+        dialect: '',
 
-        host: process.env.HOST,
-        port: process.env.PORT,
+        host: process.env.TEST_HOST || process.env.HOST,
+        port: process.env.TEST_PORT || process.env.PORT,
 
-        username: process.env.DB_USERNAME,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_DATABASE,
+        username: process.env.DB_TEST_USERNAME || process.env.DB_USERNAME,
+        password: process.env.DB_TEST_PASSWORD || process.env.DB_PASSWORD,
+        database: process.env.DB_TEST_DATABASE || process.env.DB_DATABASE,
 
         dialectOptions: {
             bigNumberStrings: true
@@ -63,14 +70,14 @@ module.exports = {
     
     production: {
 
-        dialect: '',        // 'mysql' | 'mariadb' | 'postgres' | 'mssql'
+        dialect: '',
 
-        host: process.env.HOST,
-        port: process.env.PORT,
+        host: process.env.PROD_HOST || process.env.HOST,
+        port: process.env.PROD_PORT || process.env.PORT,
 
-        username: process.env.DB_USERNAME,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_DATABASE,
+        username: process.env.DB_PROD_USERNAME || process.env.DB_USERNAME,
+        password: process.env.DB_PROD_PASSWORD || process.env.DB_PASSWORD,
+        database: process.env.DB_PROD_DATABASE || process.env.DB_DATABASE,
 
         dialectOptions: {
             bigNumberStrings: true,
