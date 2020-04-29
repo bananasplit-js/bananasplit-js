@@ -65,13 +65,18 @@
         timestamps: true
     }
 
+
+    // Init
+    public static init() {
+        super.init.call( this, this.fields, this.options )
+    }
+
  }
  
 
  
  // Load the model
- const $ = User
- User.init( $.fields, $.options )
+ User.init()
 
 
  

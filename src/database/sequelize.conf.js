@@ -27,7 +27,7 @@ dotenv.config()
 module.exports = {
 
     // For development
-    
+
     development: {
 
         dialect: '',
