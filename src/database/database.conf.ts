@@ -1,35 +1,33 @@
 /**
  * 
- *  Database Config file
+ *  Database Configuration file for Sequelize
  *  @config
  * 
- *  @description Contains all database configurations
+ *  @description This file let you overwrite default Sequelize options object.
  * 
  */
 
 
- 
-import Sequelize from 'sequelize'
-import DBAuth from '../providers/interfaces/database.auth'
+import { Options as SequelizeOptions } from 'sequelize'
 import dotenv from 'dotenv'
-
 
 
 dotenv.config()
 
 
 
-/**
- * 
- *  @options
- *  Sequelize app options
- * 
- */
-const SequelizeOptions: Sequelize.Options = {
+const SequelizeOptions: SequelizeOptions = {
 
-    dialect: eval(`"${process.env.DB_ENGINE}"`),
+    /**
+     * 
+     *  @options @overwrite
+     *  Sequelize Options
+     * 
+     *  You can overwrite default options by yours **
+     *  This option object is directly passed to Sequelize constructor in the Provider.
+     * 
+     */
 
-    host: <string> process.env.DB_HOST,
     pool: {
         max: 5,
         min: 0,
@@ -40,19 +38,4 @@ const SequelizeOptions: Sequelize.Options = {
 }
 
 
-/**
- * 
- *  @auth
- *  DB app authentication
- * 
- */
-const DBAuth: DBAuth | string =  {
-    
-    database: <string> process.env.DB_DATABASE,
-    username: <string> process.env.DB_USERNAME,
-    password: <string> process.env.DB_PASSWORD
-
-}
-
-
-export { DBAuth, SequelizeOptions }
+export default SequelizeOptions

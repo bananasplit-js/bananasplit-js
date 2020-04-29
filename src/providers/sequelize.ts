@@ -8,8 +8,19 @@
  */
 
 
-import { Sequelize } from 'sequelize'
-import { DBAuth, SequelizeOptions } from '../database/database.conf'
+// import { app } from '../app'
+
+import { Sequelize, Options as SequelizeOptions } from 'sequelize'
+import DBAuth from '../providers/interfaces/database.auth'
+import SequelizeCustomOptions from '../database/database.conf'
+
+import chalk from 'chalk'
+import dotenv from 'dotenv'
+
+
+// console.log(app)
+dotenv.config()
+
 
 
 /**
@@ -19,6 +30,7 @@ import { DBAuth, SequelizeOptions } from '../database/database.conf'
  * 
  */
 class SequelizeProvider {
+    private enviroment = 'dev'
     
     /**
      * 
@@ -32,17 +44,194 @@ class SequelizeProvider {
      * 
      * @constructor
      * 
-     * @param { object | string } DBAuth 
      * @param { object } SequelizeOptions
      * 
      */
-    constructor( DBAuth: object | string, SequelizeOptions: object ) {
+    constructor() {
+
+        const DBAuth: DBAuth | string = this.makeAuth()
+        const SequelizeOptions: SequelizeOptions = this.makeOptions()
+
 
         if ( typeof DBAuth === 'object' )
             this.sequelize = new Sequelize( ... Object.values( DBAuth ), SequelizeOptions )
         
         else
+            // String connection
             this.sequelize = new Sequelize( DBAuth, SequelizeOptions )
+
+    }
+
+
+    /**
+     * 
+     *  Makes the DB Auth
+     *  @private @method makeAuth
+     * 
+     *  @returns { DBAuth | string }
+     * 
+     */
+    private makeAuth = (): DBAuth | string => {
+
+        let DBAuth: DBAuth | string
+
+
+        switch ( this.enviroment ) {
+
+            case 'dev':
+
+                if ( process.env.DB_STRING )
+                    DBAuth = <string> process.env.DB_STRING
+
+                else
+                    DBAuth = {
+        
+                        database: <string> process.env.DB_DATABASE,
+                        username: <string> process.env.DB_USERNAME,
+                        password: <string> process.env.DB_PASSWORD
+                    
+                    }
+
+                ;
+
+                break
+
+            ;
+            
+
+            case 'test':
+
+                if ( process.env.DB_TEST_STRING )
+                    DBAuth = <string> process.env.DB_TEST_STRING
+
+                else
+                    DBAuth = {
+                
+                        database: <string> process.env.DB_TEST_DATABASE,
+                        username: <string> process.env.DB_TEST_USERNAME,
+                        password: <string> process.env.DB_TEST_PASSWORD
+                    
+                    }
+
+                ;
+
+                break
+            
+            ;
+
+
+            case 'prod':
+
+                if ( process.env.DB_PROD_STRING )
+                    DBAuth = <string> process.env.DB_PROD_STRING
+
+                else
+                    DBAuth = {
+        
+                        database: <string> process.env.DB_PROD_DATABASE,
+                        username: <string> process.env.DB_PROD_USERNAME,
+                        password: <string> process.env.DB_PROD_PASSWORD
+                    
+                    }
+
+                ;
+
+                break
+                
+            ;
+
+
+            default:
+                
+                DBAuth = '' // Forced string
+                console.log( chalk.bgRed.white( 'Enviroment not valid. Options are: "dev", "test", "prod".' ) )
+
+        }
+
+
+        return DBAuth
+
+    }
+
+
+    /**
+     * 
+     *  Makes the Configuration Options
+     * 
+     *  @private method makeOptions
+     *  @returns { SequelizeOptions }
+     * 
+     */
+    private makeOptions = (): SequelizeOptions => {
+
+        let SequelizeOptions: SequelizeOptions = {
+            
+            pool: {
+                max: 5,
+                min: 0,
+                acquire: 30000,
+                idle: 10000
+            }
+
+        }
+
+
+        switch ( this.enviroment ) {
+
+            case 'dev':
+
+                SequelizeOptions = {
+
+                    ... SequelizeOptions,
+
+                    dialect: eval(`"${process.env.DB_DIALECT}"`),
+                    host: <string> process.env.DB_HOST,
+                
+                }
+
+                break
+
+            ;
+
+
+            case 'test':
+
+                SequelizeOptions = {
+
+                    ... SequelizeOptions,
+                    
+                    dialect: eval(`"${process.env.DB_TEST_DIALECT}"`),
+                    host: <string> process.env.DB_TEST_HOST,
+                
+                }
+
+                break
+
+            ;
+
+            case 'prod':
+
+                SequelizeOptions = {
+
+                    ... SequelizeOptions,
+                    
+                    dialect: eval(`"${process.env.DB_DIALECT}"`),
+                    host: <string> process.env.DB_PROD_HOST,
+                
+                }
+
+                break
+
+            ;
+
+        }
+
+
+        // Overwrite default options by dev options
+        SequelizeOptions = { ... SequelizeOptions, ... SequelizeCustomOptions }
+
+
+        return SequelizeOptions
 
     }
 
@@ -62,7 +251,7 @@ class SequelizeProvider {
 
 
 // Sequelize instance for usage
-const sequelizeProvider: SequelizeProvider = new SequelizeProvider( DBAuth, SequelizeOptions )
+const sequelizeProvider: SequelizeProvider = new SequelizeProvider()
 const sequelize: Sequelize = sequelizeProvider.get()
 
 

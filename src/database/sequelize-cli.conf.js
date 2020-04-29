@@ -1,11 +1,10 @@
 /**
  * 
- *  Sequelize Configuration Options for Database
- *  @description Contains all Sequelize configurations for command-line (Sequelize-cli). 
+ *  Sequelize Client Configuration
+ *  @description Contains all Sequelize client configurations for the command-line (sequelize-cli). 
  * 
  *	IMPORTANT:
- *  All values (except dialect that must has an expicity value) MUST be
- *	modified at the .env file at the root project directory.
+ *  All database string values MUST be modified at the .env file at the root project directory.
  *
  */
 
@@ -17,20 +16,13 @@ const dotenv = require( 'dotenv' )
 dotenv.config()
 
 
-
-/**
- * 
- *  Dialect possibilities:
- *  'mysql' | 'mariadb' | 'postgres' | 'mssql' | 'sqlite'
- * 
- */
 module.exports = {
 
     // For development
 
     development: {
 
-        dialect: eval(`"${process.env.DB_ENGINE}"`),
+        dialect: eval(`"${process.env.DB_DIALECT}"`),
 
         host: process.env.HOST,
         port: process.env.PORT,
@@ -50,7 +42,7 @@ module.exports = {
 
     test: {
 
-        dialect: eval(`"${process.env.TEST_DB_ENGINE}" || "${process.env.DB_ENGINE}"`),
+        dialect: eval(`"${process.env.TEST_DB_DIALECT}" || "${process.env.DB_DIALECT}"`),
 
         host: process.env.TEST_DB_HOST || process.env.DB_HOST,
         port: process.env.TEST_DB_PORT || process.env.DB_PORT,
@@ -70,7 +62,7 @@ module.exports = {
     
     production: {
 
-        dialect: eval(`"${process.env.PROD_DB_ENGINE}" || "${process.env.DB_ENGINE}"`),
+        dialect: eval(`"${process.env.PROD_DB_DIALECT}" || "${process.env.DB_DIALECT}"`),
 
         host: process.env.PROD_DB_HOST || process.env.HOST,
         port: process.env.PROD_DB_PORT || process.env.PORT,

@@ -112,7 +112,7 @@ export default
          * 
          *  Returns the ExpressProvider singleton instance
          * 
-         *  @static @method
+         *  @static @method getInstance
          *  @returns { ExpressProvider }
          * 
          */
