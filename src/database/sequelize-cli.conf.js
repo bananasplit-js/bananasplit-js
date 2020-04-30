@@ -3,7 +3,7 @@
  *  Sequelize Client Configuration
  *  @description Contains all Sequelize client configurations for the command-line (sequelize-cli). 
  * 
- *	IMPORTANT:
+ *	IMPORTANT
  *  All database string values MUST be modified at the .env file at the root project directory.
  *
  */

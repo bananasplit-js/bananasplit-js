@@ -1,10 +1,10 @@
 /**
  * 
- *  Settings
+ *  Settings for Express
  *  @settings
  * 
- *  @module settings/settings
- *  @description Settings for Application
+ *  @module settings/express.settings
+ *  @description Settings for the Express Application
  * 
  */
 

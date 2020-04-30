@@ -8,17 +8,17 @@
  */
 
 
-// import { app } from '../app'
 
 import { Sequelize, Options as SequelizeOptions } from 'sequelize'
 import DBAuth from '../providers/interfaces/database.auth'
-import SequelizeCustomOptions from '../database/database.conf'
+import SequelizeCustomOptions from '../database/sequelize.conf'
+import AppSettings from '../settings/app.settings'
 
 import chalk from 'chalk'
 import dotenv from 'dotenv'
 
 
-// console.log(app)
+
 dotenv.config()
 
 
@@ -30,8 +30,7 @@ dotenv.config()
  * 
  */
 class SequelizeProvider {
-    private enviroment = 'dev'
-    
+
     /**
      * 
      *  @private @property { Sequelize } sequelize
@@ -76,7 +75,7 @@ class SequelizeProvider {
         let DBAuth: DBAuth | string
 
 
-        switch ( this.enviroment ) {
+        switch ( AppSettings.enviroment ) {
 
             case 'dev':
 
@@ -176,7 +175,7 @@ class SequelizeProvider {
         }
 
 
-        switch ( this.enviroment ) {
+        switch ( AppSettings.enviroment ) {
 
             case 'dev':
 

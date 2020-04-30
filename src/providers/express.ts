@@ -11,7 +11,7 @@
 import Express, { Application as ExpressApp } from 'express'
 import chalk from 'chalk'
 
-import Settings from '../settings/settings'
+import Settings from '../settings/express.settings'
 import Middlewares from '../middlewares/middleware'
 import MainRouter from '../app/routes/main.routes'
 
@@ -121,13 +121,13 @@ export default
 
         /**
          * 
-         *  Gets Express Server instance (app)
+         *  Gets Express Server App
          * 
-         *  @method get
+         *  @method app
          *  @returns { ExpressApp }
          *  
          */
-        public get = (): ExpressApp => <ExpressApp> ExpressProvider.getInstance().express
+        public app = (): ExpressApp => <ExpressApp> ExpressProvider.getInstance().express
 
 
         /**

@@ -131,12 +131,12 @@ export default
                     ApolloProvider.instance.server = new ApolloServerExpress( ApolloProvider.instance.options )
 
                     ApolloProvider.instance.server.applyMiddleware({
-                        app: middleware.get()
+                        app: middleware.app()
                     })
 
                     console.log(
                         chalk.bgCyan.black( 'GraphQL' ), '->',
-                        chalk.bgWhite.black( `http://localhost:${middleware.get().get('port')}${ApolloProvider.instance.server.graphqlPath}` )
+                        chalk.bgWhite.black( `http://localhost:${middleware.app().get('port')}${ApolloProvider.instance.server.graphqlPath}` )
                     )
 
                 } else
@@ -193,13 +193,13 @@ export default
 
         /**
          * 
-         *  Gets Apollo Server instance
+         *  Gets Apollo Server App
          *  
-         *  @method get
+         *  @method app
          *  @returns { ApolloServerExpress | ApolloServer }
          *  
          */
-        public get = (): ( ApolloServerExpress | ApolloServer ) => <ApolloServer> ApolloProvider.getInstance().server
+        public app = (): ( ApolloServerExpress | ApolloServer ) => <ApolloServer> ApolloProvider.getInstance().server
 
 
         /**
