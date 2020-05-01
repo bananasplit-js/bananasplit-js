@@ -13,7 +13,12 @@
 import Express from 'express'
 import Morgan from 'morgan'
 import SassMiddleware from 'node-sass-middleware'
+import dontenv from 'dotenv'
 import path from 'path'
+
+
+dontenv.config()
+
 
 
 export default
@@ -27,7 +32,10 @@ export default
          * 
          */
         
-        app.use( Morgan('dev') )
+        if ( process.env.NODE_ENV === 'development' )
+            app.use( Morgan('dev') )
+        ;
+
         app.use( Express.json() )
 
         // Compile scss files into css
@@ -36,7 +44,7 @@ export default
             src: app.get( 'sass' ),
             dest: app.get( 'sass:output' ),
             outputStyle: 'compressed',
-            debug: true
+            debug: process.env.NODE_ENV === 'development'
 
         }))
 

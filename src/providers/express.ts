@@ -194,12 +194,17 @@ export default
 
             await this.express?.listen( this.express?.get('port') )
 
-            console.log(
-                chalk.bgYellow.black( 'App' ), '->',
-                chalk.bgWhite.black( `http://localhost:${this.express?.get('port')} `)
-            )
+            
+            if ( process.env.NODE_ENV === 'development' ) {
 
-            console.log( 'Your app is running!\n' )
+                console.log(
+                    chalk.bgYellow.black( 'App' ), '->',
+                    chalk.bgWhite.black( `http://localhost:${this.express?.get('port')} `)
+                )
+
+                console.log( 'Your app is running!\n' )
+
+            }
 
         }
 

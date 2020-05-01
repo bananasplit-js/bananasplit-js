@@ -1,12 +1,12 @@
 /**
  * 
- *  App Integration test file example
+ *  Unit test file example
  *  @test
  * 
- *  @module "tests/integration test/app.test"
+ *  @module "tests/unit test/unit.test"
  *  @description * you can remove it or modify it *
  * 
- *  @use this file as your Tests template **
+ *  @use this file as your test template **
  * 
  */
 
@@ -33,9 +33,11 @@ beforeAll( async () => {
 
 
 /**
- *  @test   Test a entire module
+ *  @test   Here the action I describe
  */
-test( 'Test a entire module', (): void => {
+test( 'Here the action I describe', async () => {
+
+    const response: Response = await request( app ).get( '/route' )
 
     expect( 1 + 1 ).toBe( 2 )   // or not?
 
@@ -45,7 +47,8 @@ test( 'Test a entire module', (): void => {
 
 afterAll( done => {
 
-    // Do something after run the tests
+    // Closing the db connection allows to Jest exit successfully
+    // sequelize.close()
     done()
     
 })
