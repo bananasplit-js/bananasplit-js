@@ -56,7 +56,7 @@ export default
                 await sequelize.authenticate()
                 response.send( 'Connection has been established successfully.' )
 
-            } catch( e ) {
+            } catch(e) {
                 response.send( `Unable to connect to the database: ${e}` )
             }
 
@@ -75,7 +75,7 @@ export default
                 const [ result ] = await sequelize.query( "SELECT 'Hello from database!' as result" )
                 response.send( result )
 
-            } catch( e ) {
+            } catch(e) {
                 response.send( `Unable to connect to the database: ${e}` )
             }
 
