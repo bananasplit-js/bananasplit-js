@@ -35,28 +35,66 @@ class SequelizeProvider {
      *  @private @property { Sequelize } sequelize
      * 
      */
-    private sequelize: Sequelize
+    private sequelize: ( Sequelize | undefined )
+
+
+    /**
+     *
+     *  Singleton instance
+     *  @private @static @property { SequelizeProvider } instance
+     * 
+     */
+    private static instance: SequelizeProvider
 
 
     /**
      * 
-     * @constructor
+     *  @constructor
+     *  @private
      * 
-     * @param { object } SequelizeOptions
+     *  Not accesible
+     *  Implements: Singleton pattern
      * 
      */
-    constructor() {
+    private constructor() {
+        // Singleton      
+    }
 
-        const DBAuth: DBAuth | string = this.makeAuth()
-        const SequelizeOptions: SequelizeOptions = this.makeOptions()
+
+    /**
+     *  
+     *  Singleton
+     *  @description Build or returns a Singleton instance for SequelizeProvider
+     * 
+     *  @static @method build
+     *  @returns { SequelizeProvider }
+     * 
+     */
+    public static build(): SequelizeProvider {
+
+        if ( ! this.instance ) {
+
+            // Creates a new instance
+            this.instance = new SequelizeProvider()
+
+            // Makes Auth credentials
+            const DBAuth: DBAuth | string = this.instance.makeAuth()
+            // Makes config options
+            const SequelizeOptions: SequelizeOptions = this.instance.makeOptions()
 
 
-        if ( typeof DBAuth === 'object' )
-            this.sequelize = new Sequelize( ... Object.values( DBAuth ), SequelizeOptions )
-        
-        else
-            // String connection
-            this.sequelize = new Sequelize( DBAuth, SequelizeOptions )
+            // Creates Sequelize instance
+            if ( typeof DBAuth === 'object' )
+                this.instance.sequelize = new Sequelize( ... Object.values( DBAuth ), SequelizeOptions )
+            
+            else
+                // String connection
+                this.instance.sequelize = new Sequelize( DBAuth, SequelizeOptions )
+
+        }
+
+
+        return this.instance
 
     }
 
@@ -73,24 +111,23 @@ class SequelizeProvider {
 
         let DBAuth: DBAuth | string
 
+        // ENV enviroment types
+        let DB_STRING: string = ''
+
+        let DB_DATABASE: string = ''
+        let DB_USERNAME: string = ''
+        let DB_PASSWORD: string = ''
+
 
         switch ( process.env.NODE_ENV ) {
 
             case 'development':
 
-                if ( process.env.DB_STRING )
-                    DBAuth = <string> process.env.DB_STRING
+                DB_STRING = 'DB_STRING'
 
-                else
-                    DBAuth = {
-        
-                        database: <string> process.env.DB_DATABASE,
-                        username: <string> process.env.DB_USERNAME,
-                        password: <string> process.env.DB_PASSWORD
-                    
-                    }
-
-                ;
+                DB_DATABASE = 'DB_DATABASE'
+                DB_USERNAME = 'DB_USERNAME'
+                DB_PASSWORD = 'DB_PASSWORD'
 
                 break
 
@@ -99,19 +136,11 @@ class SequelizeProvider {
 
             case 'test':
 
-                if ( process.env.TEST_DB_STRING )
-                    DBAuth = <string> process.env.TEST_DB_STRING
+                DB_STRING = 'TEST_DB_STRING'
 
-                else
-                    DBAuth = {
-                
-                        database: <string> process.env.DB_TEST_DATABASE,
-                        username: <string> process.env.DB_TEST_USERNAME,
-                        password: <string> process.env.DB_TEST_PASSWORD
-                    
-                    }
-
-                ;
+                DB_DATABASE = 'TEST_DB_DATABASE'
+                DB_USERNAME = 'TEST_DB_USERNAME'
+                DB_PASSWORD = 'TEST_DB_PASSWORD'
 
                 break
             
@@ -120,19 +149,11 @@ class SequelizeProvider {
 
             case 'production':
 
-                if ( process.env.PROD_DB_STRING )
-                    DBAuth = <string> process.env.PROD_DB_STRING
+                DB_STRING = 'PROD_DB_STRING'
 
-                else
-                    DBAuth = {
-        
-                        database: <string> process.env.PROD_DB_DATABASE,
-                        username: <string> process.env.PROD_DB_USERNAME,
-                        password: <string> process.env.PROD_DB_PASSWORD
-                    
-                    }
-
-                ;
+                DB_DATABASE = 'PROD_DB_DATABASE'
+                DB_USERNAME = 'PROD_DB_USERNAME'
+                DB_PASSWORD = 'PROD_DB_PASSWORD'
 
                 break
                 
@@ -140,11 +161,24 @@ class SequelizeProvider {
 
 
             default:
-                
-                DBAuth = '' // Forced string
-                console.log( chalk.bgRed.white( 'Enviroment not valid. Options are: "dev", "test", "prod".' ) )
+                console.log( chalk.bgRed.white( 'Enviroment not valid. Options are: "development", "test", "production".' ) )
 
         }
+
+
+        if ( process.env[ DB_STRING ] )
+            DBAuth = <string> process.env[ DB_STRING ]
+
+        else
+            DBAuth = {
+
+                database: <string> process.env[ DB_DATABASE ],
+                username: <string> process.env[ DB_USERNAME ],
+                password: <string> process.env[ DB_PASSWORD ]
+            
+            }
+
+        ;
 
 
         return DBAuth
@@ -174,18 +208,16 @@ class SequelizeProvider {
         }
 
 
+        let DB_DIALECT: string = ''
+        let DB_HOST: string = ''
+
+
         switch ( process.env.NODE_ENV ) {
 
             case 'development':
 
-                SequelizeOptions = {
-
-                    ... SequelizeOptions,
-
-                    dialect: eval(`"${process.env.DB_DIALECT}"`),
-                    host: <string> process.env.DB_HOST,
-                
-                }
+                DB_DIALECT = 'DB_DIALECT'
+                DB_HOST = 'DB_HOST'
 
                 break
 
@@ -194,14 +226,8 @@ class SequelizeProvider {
 
             case 'test':
 
-                SequelizeOptions = {
-
-                    ... SequelizeOptions,
-                    
-                    dialect: eval(`"${process.env.TEST_DB_DIALECT}"`),
-                    host: <string> process.env.TEST_DB_HOST,
-                
-                }
+                DB_DIALECT = 'TEST_DB_DIALECT'
+                DB_HOST = 'TEST_DB_HOST'
 
                 break
 
@@ -209,19 +235,23 @@ class SequelizeProvider {
 
             case 'production':
 
-                SequelizeOptions = {
-
-                    ... SequelizeOptions,
-                    
-                    dialect: eval(`"${process.env.PROD_DB_DIALECT}"`),
-                    host: <string> process.env.PROD_DB_HOST,
-                
-                }
+                DB_DIALECT = 'PROD_DB_DIALECT'
+                DB_HOST = 'PROD_DB_HOST'
 
                 break
 
             ;
 
+        }
+
+
+        SequelizeOptions = {
+
+            ... SequelizeOptions,
+
+            dialect: eval( `"${process.env[ DB_DIALECT ]}"` ),
+            host: <string> process.env[ DB_HOST ],
+        
         }
 
 
@@ -242,17 +272,16 @@ class SequelizeProvider {
      *  @returns { Sequelize }
      * 
      */
-    public get = (): Sequelize => this.sequelize
+    public ORM = (): Sequelize => <Sequelize> this.sequelize
 
 }
 
 
 
-// Sequelize instance for usage
-const sequelizeProvider: SequelizeProvider = new SequelizeProvider()
-const sequelize: Sequelize = sequelizeProvider.get()
+// Sequelize singleton instance for usage
+const sequelizeProvider: SequelizeProvider = SequelizeProvider.build()
+const sequelize: Sequelize = sequelizeProvider.ORM()
 
 
 
-// You can add more sequelize instances to export ** 
-export { sequelize }
+export default sequelize

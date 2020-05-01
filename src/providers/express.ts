@@ -41,7 +41,7 @@ export default
          *  @private @property { ExpressApp } express
          * 
          */
-        private express: ( ExpressApp | null ) = null
+        private express: ( ExpressApp | undefined )
 
 
         /**
@@ -74,6 +74,7 @@ export default
             // Singleton      
         }
 
+        
         /**
          *  
          *  Singleton
@@ -87,23 +88,23 @@ export default
          */
         public static build( config?: AppProps ): ExpressProvider {
 
-            if ( ! ExpressProvider.instance ) {
+            if ( ! this.instance ) {
 
                 // Creates a new instance
-                ExpressProvider.instance = new ExpressProvider()
-                ExpressProvider.instance.express = Express()
+                this.instance = new ExpressProvider()
+                this.instance.express = Express()
 
                 // Sets properties
-                ExpressProvider.instance.port = ( config?.port || 3000 )
+                this.instance.port = ( config?.port || 3000 )
 
                 // Executes build parts
-                ExpressProvider.instance.settings()
-                ExpressProvider.instance.middlewares()
-                ExpressProvider.instance.routes()
+                this.instance.settings()
+                this.instance.middlewares()
+                this.instance.routes()
 
             }
 
-            return ExpressProvider.instance
+            return this.instance
 
         }
 

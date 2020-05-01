@@ -71,7 +71,7 @@ export default
          *  @private @property { ApolloServer } server
          * 
          */
-        private server: ( ApolloServerExpress | ApolloServer | null ) = null
+        private server: ( ApolloServerExpress | ApolloServer | undefined )
         
 
         /**
@@ -111,43 +111,43 @@ export default
          */
         public static build( { port, middleware }: ApolloProps = {} ) {
 
-            if ( ! ApolloProvider.instance ) {
+            if ( ! this.instance ) {
 
                 // Creates new instance
-                ApolloProvider.instance = new ApolloProvider()
+                this.instance = new ApolloProvider()
 
                 // Sets properties
-                ApolloProvider.instance.port = ( port || 4000 )
+                this.instance.port = ( port || 4000 )
 
                 // Build the Schema
-                ApolloProvider.instance.makeSchema()
+                this.instance.makeSchema()
 
                 // Returns a new manipulated Schema within an options object for pass to new ApolloServer construct
-                ApolloProvider.instance.customizeGraphQL()
+                this.instance.customizeGraphQL()
 
                 // Creates ApolloProvider app as Middleware or independent service
                 if ( middleware ) {
 
-                    ApolloProvider.instance.server = new ApolloServerExpress( ApolloProvider.instance.options )
+                    this.instance.server = new ApolloServerExpress( this.instance.options )
 
-                    ApolloProvider.instance.server.applyMiddleware({
+                    this.instance.server.applyMiddleware({
                         app: middleware.app()
                     })
 
                     console.log(
                         chalk.bgCyan.black( 'GraphQL' ), '->',
-                        chalk.bgWhite.black( `http://localhost:${middleware.app().get('port')}${ApolloProvider.instance.server.graphqlPath}` )
+                        chalk.bgWhite.black( `http://localhost:${middleware.app().get('port')}${this.instance.server.graphqlPath}` )
                     )
 
                 } else
 
-                    ApolloProvider.instance.server = new ApolloServer( ApolloProvider.instance.options )
+                    this.instance.server = new ApolloServer( this.instance.options )
 
                 ;
 
             }
 
-            return ApolloProvider.instance
+            return this.instance
 
         }
 
