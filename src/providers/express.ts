@@ -11,7 +11,7 @@
 import Express, { Application as ExpressApp } from 'express'
 import chalk from 'chalk'
 
-import Settings from '../settings/settings'
+import Settings from '../settings/express.settings'
 import Middlewares from '../middlewares/middleware'
 import MainRouter from '../app/routes/main.routes'
 
@@ -41,7 +41,7 @@ export default
          *  @private @property { ExpressApp } express
          * 
          */
-        private express: ( ExpressApp | null ) = null
+        private express: ( ExpressApp | undefined )
 
 
         /**
@@ -74,6 +74,7 @@ export default
             // Singleton      
         }
 
+        
         /**
          *  
          *  Singleton
@@ -87,23 +88,23 @@ export default
          */
         public static build( config?: AppProps ): ExpressProvider {
 
-            if ( ! ExpressProvider.instance ) {
+            if ( ! this.instance ) {
 
                 // Creates a new instance
-                ExpressProvider.instance = new ExpressProvider()
-                ExpressProvider.instance.express = Express()
+                this.instance = new ExpressProvider()
+                this.instance.express = Express()
 
                 // Sets properties
-                ExpressProvider.instance.port = ( config?.port || 3000 )
+                this.instance.port = ( config?.port || 3000 )
 
                 // Executes build parts
-                ExpressProvider.instance.settings()
-                ExpressProvider.instance.middlewares()
-                ExpressProvider.instance.routes()
+                this.instance.settings()
+                this.instance.middlewares()
+                this.instance.routes()
 
             }
 
-            return ExpressProvider.instance
+            return this.instance
 
         }
 
@@ -112,7 +113,7 @@ export default
          * 
          *  Returns the ExpressProvider singleton instance
          * 
-         *  @static @method
+         *  @static @method getInstance
          *  @returns { ExpressProvider }
          * 
          */
@@ -121,13 +122,13 @@ export default
 
         /**
          * 
-         *  Gets Express Server instance (app)
+         *  Gets Express Server App
          * 
-         *  @method get
+         *  @method app
          *  @returns { ExpressApp }
          *  
          */
-        public get = (): ExpressApp => <ExpressApp> ExpressProvider.getInstance().express
+        public app = (): ExpressApp => <ExpressApp> ExpressProvider.getInstance().express
 
 
         /**
@@ -198,7 +199,7 @@ export default
                 chalk.bgWhite.black( `http://localhost:${this.express?.get('port')} `)
             )
 
-            console.log( '\nYour app is running!\n' )
+            console.log( 'Your app is running!\n' )
 
         }
 

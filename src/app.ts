@@ -24,27 +24,13 @@ import Apollo from './providers/apollo'
  -----------------------------------------------------------------*/
 
 
-// Express Server
+// Express Server Provider
 const express: Express = Express.build()
 
-// Apollo Server
+// Apollo Server Provider
 const apollo: Apollo = Apollo.build({
     middleware: express
 })
 
 
-; ( async () => {
-
-    // Start the services
-    await express.start()
-
-})()
-
-
-// Export ----------------------------
-
-const app = express.get()
-const graphql = apollo.get()
-
-
-export { app, graphql }
+export { express, apollo }

@@ -11,8 +11,7 @@ const path = require( 'path' )
 
 module.exports = {
 
-	// Configuration Options at: src/database/sequelize.conf.js:
-	'config': path.resolve( 'src/database', 'sequelize.conf.js' ),
+	'config': path.resolve( 'src/providers/config', 'sequelize-cli.conf.js' ),
 
 	'models-path': path.resolve( 'src/app', 'models' ),
 	'seeders-path': path.resolve( 'src/database', 'seeders' ),

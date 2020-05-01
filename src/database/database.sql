@@ -1,7 +1,7 @@
 /**
 *
     SQL file
-*   Database Schemas and most used Querys
+*   Schemas and most used querys for test database
 *
 */
 
@@ -27,5 +27,6 @@ VALUES ( 'Todd', 'Davis', 'todd.davis@gmail.com', 'abc123', CURRENT_TIMESTAMP, C
 
 
 SHOW TABLES;
-DROP TABLE Users;
 SELECT * FROM Users;
+
+DROP TABLE Users;

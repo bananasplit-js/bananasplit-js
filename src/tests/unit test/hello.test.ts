@@ -6,7 +6,7 @@
  *  @module "tests/unit test/hello.test"
  *  @description * you can remove it or modify it *
  * 
- *  @use this file as your Tests template! ***
+ *  @use this file as your Tests template! **
  * 
  */
 
@@ -15,13 +15,13 @@ import Express from 'express'
 import request, { Response } from 'supertest'
 import chalk from 'chalk'
 
-import App from '../../providers/express'
-import { sequelize } from '../../providers/sequelize'
+import { express } from '../../app'
+import sequelize from '../../providers/sequelize'
 
 
 
 // Express App as parallel instance
-const app: Express.Application = App.build().get()
+const app: Express.Application = express.app()
 
 
 

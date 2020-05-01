@@ -11,7 +11,7 @@
 
 
  import { Model, DataTypes } from 'sequelize'
- import { sequelize } from '../../providers/sequelize'
+ import sequelize from '../../providers/sequelize'
 
  
 

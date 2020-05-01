@@ -12,7 +12,7 @@
 
 
 import { Request, Response } from 'express'
-import { sequelize } from '../../providers/sequelize'
+import sequelize from '../../providers/sequelize'
 import path from 'path'
 
 
