@@ -35,7 +35,7 @@ let SequelizeCLIOptions = {
 
         dialectOptions: {
             bigNumberStrings: true
-        }
+        },
 
     },
 
@@ -55,7 +55,7 @@ let SequelizeCLIOptions = {
 
         dialectOptions: {
             bigNumberStrings: true
-        }
+        },
 
     },
 
@@ -76,7 +76,7 @@ let SequelizeCLIOptions = {
         dialectOptions: {
             bigNumberStrings: true,
             ssl: {}
-        }
+        },
 
     }
 

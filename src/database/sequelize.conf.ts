@@ -29,7 +29,7 @@ const SequelizeOptions: SequelizeOptions = {
         min: 0,
         acquire: 30000,
         idle: 10000
-    }
+    },
 
 }
 

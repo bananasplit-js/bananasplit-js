@@ -134,10 +134,15 @@ export default
                         app: middleware.app()
                     })
 
-                    console.log(
-                        chalk.bgCyan.black( 'GraphQL' ), '->',
-                        chalk.bgWhite.black( `http://localhost:${middleware.app().get('port')}${this.instance.server.graphqlPath}` )
-                    )
+                    
+                    if ( process.env.NODE_ENV === 'development' )
+
+                        console.log(
+                            chalk.bgCyan.black( 'GraphQL' ), '->',
+                            chalk.bgWhite.black( `http://localhost:${middleware.app().get('port')}${this.instance.server.graphqlPath}` )
+                        )
+
+                    ;
 
                 } else
 
@@ -218,12 +223,17 @@ export default
 
             await ( <ApolloServer> this.server ).listen( this.port )
             
-            console.log(
-                chalk.bgCyan.black( 'GraphQL' ), '->',
-                chalk.bgWhite.black( `http://localhost:${this.port}` )
-            )
 
-            console.log( 'GraphQL is running!\n' )
+            if ( process.env.NODE_ENV === 'development' ) {
+
+                console.log(
+                    chalk.bgCyan.black( 'GraphQL' ), '->',
+                    chalk.bgWhite.black( `http://localhost:${this.port}` )
+                )
+
+                console.log( 'GraphQL is running!\n' )
+
+            }
 
         }
 
