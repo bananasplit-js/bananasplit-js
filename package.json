@@ -4,12 +4,12 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "start": "nodemon src/index.ts --exec ts-node --ignore src/tests",
+    "build": "tsc",
+    "sass:compile": "node-sass src/views/sass -o src/public",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
-    "build": "tsc",
-    "server": "nodemon src/index.ts --exec ts-node --ignore src/tests",
-    "sass:compile": "node-sass src/views/sass -o src/public"
+    "test:coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",
