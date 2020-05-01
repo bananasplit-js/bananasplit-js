@@ -223,6 +223,8 @@ export default
                 chalk.bgWhite.black( `http://localhost:${this.port}` )
             )
 
+            console.log( 'GraphQL is running!\n' )
+
         }
 
     }

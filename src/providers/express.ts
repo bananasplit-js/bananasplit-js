@@ -199,7 +199,7 @@ export default
                 chalk.bgWhite.black( `http://localhost:${this.express?.get('port')} `)
             )
 
-            console.log( '\nYour app is running!\n' )
+            console.log( 'Your app is running!\n' )
 
         }
 
