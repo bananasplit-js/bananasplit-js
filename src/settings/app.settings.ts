@@ -3,18 +3,19 @@
  *  App Settings
  *  @settings
  *  
- *  @description Contains all your App settings
+ *  @description Contains all your App settings.
  *  @module settings/app.settings
  * 
  */
+
 
  export default {
 
     /**
      * 
-     *  Options: dev | test | prod
+     *  @settings
+     *  Your app settingss goes here.
      * 
      */
-    'enviroment': 'dev',
 
  }

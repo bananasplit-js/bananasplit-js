@@ -21,7 +21,7 @@ export default
         /**
          * 
          *  @settings @overwrite
-         *  Your App settings goes here.
+         *  Your Express settings goes here.
          * 
          */
 

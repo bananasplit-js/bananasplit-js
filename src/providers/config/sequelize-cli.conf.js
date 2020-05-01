@@ -44,14 +44,14 @@ let SequelizeCLIOptions = {
 
     test: {
 
-        dialect: eval(`"${process.env.TEST_DB_DIALECT}" || "${process.env.DB_DIALECT}"`),
+        dialect: eval(`"${process.env.TEST_DB_DIALECT}"`),
 
-        host: process.env.TEST_DB_HOST || process.env.DB_HOST,
-        port: process.env.TEST_DB_PORT || process.env.DB_PORT,
+        host: process.env.TEST_DB_HOST,
+        port: process.env.TEST_DB_PORT,
 
-        username: process.env.DB_TEST_USERNAME || process.env.DB_USERNAME,
-        password: process.env.DB_TEST_PASSWORD || process.env.DB_PASSWORD,
-        database: process.env.DB_TEST_DATABASE || process.env.DB_DATABASE,
+        username: process.env.DB_TEST_USERNAME,
+        password: process.env.DB_TEST_PASSWORD,
+        database: process.env.DB_TEST_DATABASE,
 
         dialectOptions: {
             bigNumberStrings: true
@@ -64,14 +64,14 @@ let SequelizeCLIOptions = {
     
     production: {
 
-        dialect: eval(`"${process.env.PROD_DB_DIALECT}" || "${process.env.DB_DIALECT}"`),
+        dialect: eval(`"${process.env.PROD_DB_DIALECT}"`),
 
-        host: process.env.PROD_DB_HOST || process.env.HOST,
-        port: process.env.PROD_DB_PORT || process.env.PORT,
+        host: process.env.PROD_DB_HOST,
+        port: process.env.PROD_DB_PORT,
 
-        username: process.env.DB_PROD_USERNAME || process.env.DB_USERNAME,
-        password: process.env.DB_PROD_PASSWORD || process.env.DB_PASSWORD,
-        database: process.env.DB_PROD_DATABASE || process.env.DB_DATABASE,
+        username: process.env.DB_PROD_USERNAME,
+        password: process.env.DB_PROD_PASSWORD,
+        database: process.env.DB_PROD_DATABASE,
 
         dialectOptions: {
             bigNumberStrings: true,

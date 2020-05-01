@@ -12,7 +12,6 @@
 import { Sequelize, Options as SequelizeOptions } from 'sequelize'
 import DBAuth from '../providers/interfaces/database.auth'
 import SequelizeCustomOptions from '../database/sequelize.conf'
-import AppSettings from '../settings/app.settings'
 
 import chalk from 'chalk'
 import dotenv from 'dotenv'
@@ -75,9 +74,9 @@ class SequelizeProvider {
         let DBAuth: DBAuth | string
 
 
-        switch ( AppSettings.enviroment ) {
+        switch ( process.env.NODE_ENV ) {
 
-            case 'dev':
+            case 'development':
 
                 if ( process.env.DB_STRING )
                     DBAuth = <string> process.env.DB_STRING
@@ -100,8 +99,8 @@ class SequelizeProvider {
 
             case 'test':
 
-                if ( process.env.DB_TEST_STRING )
-                    DBAuth = <string> process.env.DB_TEST_STRING
+                if ( process.env.TEST_DB_STRING )
+                    DBAuth = <string> process.env.TEST_DB_STRING
 
                 else
                     DBAuth = {
@@ -119,17 +118,17 @@ class SequelizeProvider {
             ;
 
 
-            case 'prod':
+            case 'production':
 
-                if ( process.env.DB_PROD_STRING )
-                    DBAuth = <string> process.env.DB_PROD_STRING
+                if ( process.env.PROD_DB_STRING )
+                    DBAuth = <string> process.env.PROD_DB_STRING
 
                 else
                     DBAuth = {
         
-                        database: <string> process.env.DB_PROD_DATABASE,
-                        username: <string> process.env.DB_PROD_USERNAME,
-                        password: <string> process.env.DB_PROD_PASSWORD
+                        database: <string> process.env.PROD_DB_DATABASE,
+                        username: <string> process.env.PROD_DB_USERNAME,
+                        password: <string> process.env.PROD_DB_PASSWORD
                     
                     }
 
@@ -175,9 +174,9 @@ class SequelizeProvider {
         }
 
 
-        switch ( AppSettings.enviroment ) {
+        switch ( process.env.NODE_ENV ) {
 
-            case 'dev':
+            case 'development':
 
                 SequelizeOptions = {
 
@@ -199,8 +198,8 @@ class SequelizeProvider {
 
                     ... SequelizeOptions,
                     
-                    dialect: eval(`"${process.env.DB_TEST_DIALECT}"`),
-                    host: <string> process.env.DB_TEST_HOST,
+                    dialect: eval(`"${process.env.TEST_DB_DIALECT}"`),
+                    host: <string> process.env.TEST_DB_HOST,
                 
                 }
 
@@ -208,14 +207,14 @@ class SequelizeProvider {
 
             ;
 
-            case 'prod':
+            case 'production':
 
                 SequelizeOptions = {
 
                     ... SequelizeOptions,
                     
-                    dialect: eval(`"${process.env.DB_DIALECT}"`),
-                    host: <string> process.env.DB_PROD_HOST,
+                    dialect: eval(`"${process.env.PROD_DB_DIALECT}"`),
+                    host: <string> process.env.PROD_DB_HOST,
                 
                 }
 
