@@ -1,7 +1,7 @@
 /**
  * 
  *  Database Configuration file for Sequelize
- *  @config
+ *  @config @overwrite
  * 
  *  @description This file let you overwrite default Sequelize options object.
  * 
@@ -9,10 +9,6 @@
 
 
 import { Options as SequelizeOptions } from 'sequelize'
-import dotenv from 'dotenv'
-
-
-dotenv.config()
 
 
 
