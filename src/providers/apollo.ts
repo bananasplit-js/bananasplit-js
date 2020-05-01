@@ -235,8 +235,6 @@ export default
 
             }
 
-            console.log( 'GraphQL is running!\n' )
-
         }
 
     }
