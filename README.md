@@ -122,9 +122,9 @@ Read for more information: https://sequelize.org/v5/manual/getting-started.html
 
 Example:
 ```
-    # [development] Database
+    # [development]
 
-    DB_ENGINE=mysql
+    DB_DIALECT=mysql
 
     DB_HOST=localhost
     DB_PORT=3306
@@ -137,7 +137,7 @@ Example:
 
 ---
 
-**For DB_ENGINE your choices are:**
+**For DB_DIALECT your choices are:**
 
 `mysql | mariadb | postgres | mssql | sqlite`
 
@@ -148,9 +148,14 @@ Example:
     npx sequelize db:create
 ```
 
-(optional) **Create the test tables:**
+**Create the test table:** (optional) 
 ```
-    npx sequelize-cli db:migrate
+    npx sequelize db:migrate
+```
+
+**Seed the test table:** (optional)
+```
+    npx sequelize db:seed --seed user-table-seeder
 ```
 
 ---
@@ -158,21 +163,29 @@ Example:
 ## Run the server!
 
 ```
-    npm run server
+    npm start
 ```
 
 #### Check http://localhost:3000
 
 ---
 
-**Also you can check this routes:**
+## Testing your app setup (optional)
+You can test your app services integration by running jest:
 
-* **Database Auth test:** http://localhost:3000/db-auth-test
-* **Database Query test:** http://localhost:3000/db-query-test
+`npx jest setup.test`
 
-**Or run the tests:**
+Test should be pass:
 
-`npm test` or `npx jest`
+* **"Hello response is received"** http://localhost:3000/
+* **"Database Authetication is correct"** http://localhost:3000/auth-test
+* **"Hello from Database response is received"** http://localhost:3000/query-test
+* **"User model returns all users"** http://localhost:3000/model-test
+
+---
+
+**Note:**
+Jest run your test in a testing enviroment. So you should have your vars already set in your .env file.
 
 ---
 
