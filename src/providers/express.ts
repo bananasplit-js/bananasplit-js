@@ -42,7 +42,7 @@ export default
          *  @private @property { ExpressApp } service
          * 
          */
-        private service: ( ExpressApp | undefined )
+        private service!: ExpressApp
 
 
         /**
@@ -97,7 +97,7 @@ export default
                 this.instance.service = Express()
 
                 // Sets properties
-                this.instance.port = ( config?.port || 3000 )
+                this.instance.port = ( config? config.port : 3000 )
 
                 // Executes build parts
                 this.instance.settings()
@@ -143,7 +143,7 @@ export default
          */
         private settings(): void {
 
-            this.service?.set( 'port', this.port )
+            this.service.set( 'port', this.port )
 
             /**
              *  Then do custom settings
@@ -176,7 +176,7 @@ export default
          * 
          */
         private routes(): void {
-            this.service?.use( MainRouter )
+            this.service.use( MainRouter )
         }
 
 
@@ -191,17 +191,17 @@ export default
         public async start( port?: number ): Promise <http.Server> {
             
             if ( port )
-                this.service?.set( 'port', port )
+                this.service.set( 'port', port )
             ;
 
-            const httpServer: http.Server = await this.service?.listen( this.service?.get('port') )!
+            const httpServer: http.Server = await this.service.listen( this.service.get('port') )
 
             
             if ( process.env.NODE_ENV === 'development' ) {
 
                 console.log(
                     chalk.bgYellow.black( 'App' ), '->',
-                    chalk.bgWhite.black( `http://localhost:${this.service?.get('port')} `)
+                    chalk.bgWhite.black( `http://localhost:${this.service.get('port')} `)
                 )
 
                 console.log( 'Your app is running!\n' )
