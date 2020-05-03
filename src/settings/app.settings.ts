@@ -14,7 +14,7 @@
     /**
      * 
      *  @settings
-     *  Your app settingss goes here.
+     *  Your app settings goes here.
      * 
      */
 

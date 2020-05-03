@@ -8,6 +8,8 @@
  */
 
 
+
+import http from 'http'
 import { ApolloServer } from 'apollo-server'
 import { ApolloServer as ApolloServerExpress, makeExecutableSchema } from 'apollo-server-express'
 import { GraphQLSchema } from 'graphql'
@@ -27,10 +29,23 @@ import customizeGraphQL from '../graphql/apollo/customize.graphql'
  *  @typedef
  * 
  */
-type ApolloProps = {
+type IApollo = {
     port?: number
     middleware?: App
 }
+
+/**
+ * 
+ *  Definitions for ApolloServer
+ *  @typedef
+ * 
+ */
+type IApolloServer = {
+    url: String,
+    subscriptionsPath: String,
+    httpServer?: http.Server
+}
+
 
 
 export default
@@ -44,7 +59,7 @@ export default
 
         /**
          *
-         *  @private @property { number| string } port
+         *  @private @property { number | string } port
          * 
          */
         private port?: number | string
@@ -68,10 +83,10 @@ export default
 
         /**
          *
-         *  @private @property { ApolloServer } server
+         *  @private @property { ApolloServer } service
          * 
          */
-        private server: ( ApolloServerExpress | ApolloServer | undefined )
+        private service: ( ApolloServerExpress | ApolloServer | undefined )
         
 
         /**
@@ -83,6 +98,7 @@ export default
         private static instance: ApolloProvider
 
 
+        
         /**
          * 
          *  @constructor
@@ -106,10 +122,10 @@ export default
          *  @param { number | string } port? - Port number
          *  @param { App } middleware? - Middleware throw specified app
          * 
-         *  @retuns { ApolloServer | ApolloServerExpress }
+         *  @retuns { ApolloServer | ApolloServerExpress } instance - Apollo as Independent or throw Express Middleware
          * 
          */
-        public static build( { port, middleware }: ApolloProps = {} ) {
+        public static build( { port, middleware }: IApollo = {} ) {
 
             if ( ! this.instance ) {
 
@@ -128,9 +144,9 @@ export default
                 // Creates ApolloProvider app as Middleware or independent service
                 if ( middleware ) {
 
-                    this.instance.server = new ApolloServerExpress( this.instance.options )
+                    this.instance.service = new ApolloServerExpress( this.instance.options )
 
-                    this.instance.server.applyMiddleware({
+                    this.instance.service.applyMiddleware({
                         app: middleware.app()
                     })
 
@@ -139,14 +155,14 @@ export default
 
                         console.log(
                             chalk.bgCyan.black( 'GraphQL' ), '->',
-                            chalk.bgWhite.black( `http://localhost:${middleware.app().get('port')}${this.instance.server.graphqlPath}` )
+                            chalk.bgWhite.black( `http://localhost:${middleware.app().get('port')}${this.instance.service.graphqlPath}` )
                         )
 
                     ;
 
                 } else
 
-                    this.instance.server = new ApolloServer( this.instance.options )
+                    this.instance.service = new ApolloServer( this.instance.options )
 
                 ;
 
@@ -190,7 +206,7 @@ export default
          *  Returns the ApolloProvider Singleton instance
          * 
          *  @static @method getInstance
-         *  @returns { ApolloProvider }
+         *  @returns { ApolloProvider } instance
          * 
          */
         public static getInstance = (): ApolloProvider => ApolloProvider.instance
@@ -201,10 +217,10 @@ export default
          *  Gets Apollo Server App
          *  
          *  @method app
-         *  @returns { ApolloServerExpress | ApolloServer }
+         *  @returns { ApolloServerExpress | ApolloServer } server - Apollo as independent or throw Express Middleware
          *  
          */
-        public app = (): ( ApolloServerExpress | ApolloServer ) => <ApolloServer> ApolloProvider.getInstance().server
+        public app = (): ( ApolloServerExpress | ApolloServer ) => <ApolloServer> ApolloProvider.getInstance().service
 
 
         /**
@@ -212,16 +228,16 @@ export default
          *  Start the Apollo Server on the specified or default port
          * 
          *  @async @method start
-         *  @returns { Promise }
+         *  @returns { Promise <IApolloServer> } apolloServer - Object containing url, subscriptionsPath and the httpServer
          * 
          */
-        public async start( port?: number ): Promise <void> {
+        public async start( port?: number ): Promise <IApolloServer> {
 
             if ( port )
                 this.port = port
             ;
 
-            await ( <ApolloServer> this.server ).listen( this.port )
+            const apolloServer: IApolloServer = await ( <ApolloServer> this.service ).listen( this.port )
             
 
             if ( process.env.NODE_ENV === 'development' ) {
@@ -234,6 +250,9 @@ export default
                 console.log( 'GraphQL is running!\n' )
 
             }
+
+
+            return apolloServer
 
         }
 

@@ -10,7 +10,6 @@
 
 
 import { Sequelize, Options as SequelizeOptions } from 'sequelize'
-import DBAuth from '../providers/interfaces/database.auth'
 import SequelizeCustomOptions from '../database/sequelize.conf'
 
 import chalk from 'chalk'
@@ -24,6 +23,22 @@ dotenv.config()
 
 /**
  * 
+ *  Definitions for Database Auth
+ *  @typedef
+ * 
+ */
+type DBAuth = {
+
+    database: string,
+    username: string,
+    password?: string
+
+}
+
+
+
+/**
+ * 
  *  @class SequelizeProvider
  *  @classdesc Provides an ORM for interact with Database
  * 
@@ -32,10 +47,10 @@ class SequelizeProvider {
 
     /**
      * 
-     *  @private @property { Sequelize } sequelize
+     *  @private @property { Sequelize } service
      * 
      */
-    private sequelize: ( Sequelize | undefined )
+    private service: ( Sequelize | undefined )
 
 
     /**
@@ -45,6 +60,7 @@ class SequelizeProvider {
      * 
      */
     private static instance: SequelizeProvider
+
 
 
     /**
@@ -85,11 +101,11 @@ class SequelizeProvider {
 
             // Creates Sequelize instance
             if ( typeof DBAuth === 'object' )
-                this.instance.sequelize = new Sequelize( ... Object.values( DBAuth ), SequelizeOptions )
+                this.instance.service = new Sequelize( ... Object.values( <Object> DBAuth ), SequelizeOptions )
             
             else
                 // String connection
-                this.instance.sequelize = new Sequelize( DBAuth, SequelizeOptions )
+                this.instance.service = new Sequelize( DBAuth, SequelizeOptions )
 
         }
 
@@ -171,6 +187,7 @@ class SequelizeProvider {
             DBAuth = <string> process.env[ DB_STRING ]
 
         else
+
             DBAuth = {
 
                 database: <string> process.env[ DB_DATABASE ],
@@ -191,7 +208,7 @@ class SequelizeProvider {
      * 
      *  Makes the Configuration Options
      * 
-     *  @private method makeOptions
+     *  @private @method makeOptions
      *  @returns { SequelizeOptions }
      * 
      */
@@ -215,6 +232,7 @@ class SequelizeProvider {
 
         let DB_DIALECT: string = ''
         let DB_HOST: string = ''
+        let DB_PORT: string = ''
 
 
         switch ( process.env.NODE_ENV ) {
@@ -223,6 +241,7 @@ class SequelizeProvider {
 
                 DB_DIALECT = 'DB_DIALECT'
                 DB_HOST = 'DB_HOST'
+                DB_PORT = 'DB_PORT'
 
                 break
 
@@ -233,15 +252,18 @@ class SequelizeProvider {
 
                 DB_DIALECT = 'TEST_DB_DIALECT'
                 DB_HOST = 'TEST_DB_HOST'
+                DB_PORT = 'TEST_DB_PORT'
 
                 break
 
             ;
 
+            
             case 'production':
 
                 DB_DIALECT = 'PROD_DB_DIALECT'
                 DB_HOST = 'PROD_DB_HOST'
+                DB_PORT = 'PROD_DB_PORT'
 
                 break
 
@@ -256,6 +278,7 @@ class SequelizeProvider {
 
             dialect: eval( `"${process.env[ DB_DIALECT ]}"` ),
             host: <string> process.env[ DB_HOST ],
+            port: parseInt( process.env[ DB_PORT ]! )
         
         }
 
@@ -273,11 +296,11 @@ class SequelizeProvider {
      * 
      *  Returns sequelize instance
      *  
-     *  @method
+     *  @method app
      *  @returns { Sequelize }
      * 
      */
-    public ORM = (): Sequelize => <Sequelize> this.sequelize
+    public app = (): Sequelize => <Sequelize> this.service
 
 }
 
@@ -285,7 +308,7 @@ class SequelizeProvider {
 
 // Sequelize singleton instance for usage
 const sequelizeProvider: SequelizeProvider = SequelizeProvider.build()
-const sequelize: Sequelize = sequelizeProvider.ORM()
+const sequelize: Sequelize = sequelizeProvider.app()
 
 
 
