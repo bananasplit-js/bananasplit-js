@@ -8,6 +8,7 @@
  */
 
 
+import http from 'http'
 import Express, { Application as ExpressApp } from 'express'
 import chalk from 'chalk'
 
@@ -38,10 +39,10 @@ export default
         
         /**
          * 
-         *  @private @property { ExpressApp } express
+         *  @private @property { ExpressApp } service
          * 
          */
-        private express: ( ExpressApp | undefined )
+        private service: ( ExpressApp | undefined )
 
 
         /**
@@ -60,6 +61,7 @@ export default
          */
         private static instance: ExpressProvider
         
+
 
         /**
          * 
@@ -83,7 +85,7 @@ export default
          *  @static @method build
          *  @param { AppProps } config? - Configuration object
          * 
-         *  @returns { ExpressProvider }
+         *  @returns { ExpressProvider } instance
          * 
          */
         public static build( config?: AppProps ): ExpressProvider {
@@ -92,7 +94,7 @@ export default
 
                 // Creates a new instance
                 this.instance = new ExpressProvider()
-                this.instance.express = Express()
+                this.instance.service = Express()
 
                 // Sets properties
                 this.instance.port = ( config?.port || 3000 )
@@ -114,7 +116,7 @@ export default
          *  Returns the ExpressProvider singleton instance
          * 
          *  @static @method getInstance
-         *  @returns { ExpressProvider }
+         *  @returns { ExpressProvider } instance
          * 
          */
         public static getInstance = (): ExpressProvider => ExpressProvider.instance
@@ -125,10 +127,10 @@ export default
          *  Gets Express Server App
          * 
          *  @method app
-         *  @returns { ExpressApp }
+         *  @returns { ExpressApp } express
          *  
          */
-        public app = (): ExpressApp => <ExpressApp> ExpressProvider.getInstance().express
+        public app = (): ExpressApp => <ExpressApp> ExpressProvider.getInstance().service
 
 
         /**
@@ -141,13 +143,13 @@ export default
          */
         private settings(): void {
 
-            this.express?.set( 'port', this.port )
+            this.service?.set( 'port', this.port )
 
             /**
              *  Then do custom settings
              *  @overwrite
              */
-            Settings( <ExpressApp> this.express )
+            Settings( <ExpressApp> this.service )
 
         }
 
@@ -161,7 +163,7 @@ export default
          * 
          */
         private middlewares(): void {
-            Middlewares( <ExpressApp> this.express )
+            Middlewares( <ExpressApp> this.service )
         }
 
 
@@ -174,7 +176,7 @@ export default
          * 
          */
         private routes(): void {
-            this.express?.use( MainRouter )
+            this.service?.use( MainRouter )
         }
 
 
@@ -183,28 +185,31 @@ export default
          *  Start Express Server on the specified or default port
          * 
          *  @async @method start
-         *  @returns { Promise }
+         *  @returns { Promise } httpServer
          * 
          */
-        public async start( port?: number ): Promise <any> {
+        public async start( port?: number ): Promise <http.Server> {
             
             if ( port )
-                this.express?.set( 'port', port )
+                this.service?.set( 'port', port )
             ;
 
-            await this.express?.listen( this.express?.get('port') )
+            const httpServer: http.Server = await this.service?.listen( this.service?.get('port') )!
 
             
             if ( process.env.NODE_ENV === 'development' ) {
 
                 console.log(
                     chalk.bgYellow.black( 'App' ), '->',
-                    chalk.bgWhite.black( `http://localhost:${this.express?.get('port')} `)
+                    chalk.bgWhite.black( `http://localhost:${this.service?.get('port')} `)
                 )
 
                 console.log( 'Your app is running!\n' )
 
             }
+
+
+            return httpServer
 
         }
 
