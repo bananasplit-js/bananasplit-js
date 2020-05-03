@@ -47,6 +47,7 @@ export default
         // Bootstrap source
         app.set( 'bootstrap@css', path.join( __dirname, '../../node_modules/bootstrap/dist/css' ) )
         app.set( 'bootstrap@js', path.join( __dirname, '../../node_modules/bootstrap/dist/js' ) )
+        app.set( 'popper', path.join( __dirname, '../../node_modules/@popperjs/core/dist/umd' ) )
         
     }
 

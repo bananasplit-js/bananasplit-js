@@ -34,6 +34,7 @@
   },
   "homepage": "",
   "dependencies": {
+    "@popperjs/core": "^2.4.0",
     "@types/bluebird": "^3.5.30",
     "@types/express-handlebars": "^3.1.0",
     "@types/node": "^13.13.4",
