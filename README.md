@@ -181,6 +181,8 @@ Test should be pass:
 * **"Database Authetication is correct"** http://localhost:3000/auth-test
 * **"Hello from Database response is received"** http://localhost:3000/query-test
 * **"User model returns all users"** http://localhost:3000/model-test
+* **"GraphQL Playground loads"** http://localhost:3000/graphql
+* **"Hello from GraphQL is received"** http://localhost:3000/graphql?query=%7Bhello%7D
 
 ---
 
