@@ -12,7 +12,7 @@
 import Express from 'express'
 import request, { Response } from 'supertest'
 
-import { express } from '../../app'
+import { express, apollo } from '../../app'
 import sequelize from '../../providers/sequelize'
 
 
@@ -51,7 +51,7 @@ test( 'Database Authetication is correct', async () => {
     const response: Response = await request( app ).get( '/auth-test' )
 
     expect( response.status ).toBe( 200 )
-    expect( response.text ).toMatch( 'Connection has been established successfully.' )
+    expect( response.text ).toBe( 'Connection has been established successfully.' )
 
 })
 
@@ -65,7 +65,7 @@ test( 'Hello from database is received', async () => {
     const JSONResponse: { result: string }[] = JSON.parse( response.text )
 
     expect( response.status ).toBe( 200 )
-    expect( JSONResponse[0].result ).toMatch( 'Hello from database!' )
+    expect( JSONResponse[0].result ).toBe( 'Hello from database!' )
 
 
 })
@@ -81,6 +81,41 @@ test( 'User model returns all users', async () => {
 
     expect( response.status ).toBe( 200 )
     expect( JSONResponse.length ).toBeGreaterThan( 0 )
+
+})
+
+
+/**
+ *  @test   'GraphQL Playground loads'
+ */
+test( 'GraphQL Playground loads', async() => {
+
+    const response: Response = await request( app )
+        .get( '/graphql' )
+        .accept( 'text/html' )
+    ;
+
+
+    expect( response.status ).toBe( 200 )
+    expect( response.text ).toMatch( 'GraphQL Playground' )
+
+})
+
+
+/**
+ *  @test   Hello from GraphQL is received
+ */
+test( 'Hello from GraphQL is received', async() => {
+
+    const response: Response = await request( app )
+        .post( '/graphql' )
+        .send( { query: `query { hello }` } )
+    ;
+
+    const JSONResponse: { data: { hello: string } } = await JSON.parse( response.text )
+
+
+    expect( JSONResponse.data.hello ).toBe( 'Hello from GraphQL!' )
 
 })
 
