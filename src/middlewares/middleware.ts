@@ -57,6 +57,7 @@ export default
         // Bootstrap
         app.use( '/css', Express.static(app.get( 'bootstrap@css' )) )
         app.use( '/js', Express.static(app.get( 'bootstrap@js' )) )
+        app.use( '/js', Express.static(app.get( 'popper' )) )
 
     }
 ;
