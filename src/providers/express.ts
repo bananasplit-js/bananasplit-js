@@ -24,7 +24,7 @@ import MainRouter from '../app/routes/main.routes'
  * 
  */
 type AppProps = {
-    port?: number | string
+    port?: number
 }
 
 
@@ -47,10 +47,10 @@ export default
 
         /**
          * 
-         *  @private @property { number | string } port
+         *  @property { number } port
          * 
          */
-        private port? : number | string
+        public port: number = 3000
 
         
         /**
@@ -90,17 +90,14 @@ export default
          */
         public static build( config?: AppProps ): ExpressProvider {
 
-            if ( ! this.instance ) {
+            if ( !this.instance ) {
 
                 // Creates a new instance
                 this.instance = new ExpressProvider()
                 this.instance.service = Express()
-
-                // Sets properties
-                this.instance.port = ( config? config.port : 3000 )
-
+                
                 // Executes build parts
-                this.instance.settings()
+                this.instance.settings( config )
                 this.instance.middlewares()
                 this.instance.routes()
 
@@ -138,12 +135,15 @@ export default
          *  Settings for ExpressProvider
          * 
          *  @private @method settings
+         * 
+         *  @params { AppProps } config?
          *  @returns void
          * 
          */
-        private settings(): void {
+        private settings( config?: AppProps ): void {
 
-            this.service.set( 'port', this.port )
+            this.service.set( 'port', config ? (config.port || this.port) : this.port )
+            this.port = this.service.get( 'port' )
 
             /**
              *  Then do custom settings
@@ -191,7 +191,7 @@ export default
         public async start( port?: number ): Promise <http.Server> {
             
             if ( port )
-                this.service.set( 'port', port )
+                this.service.set( 'port', this.port = port )
             ;
 
             const httpServer: http.Server = await this.service.listen( this.service.get('port') )
