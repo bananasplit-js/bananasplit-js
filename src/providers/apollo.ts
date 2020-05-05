@@ -59,10 +59,18 @@ export default
 
         /**
          *
-         *  @private @property { number | string } port
+         *  @property { boolean } middleware
          * 
          */
-        private port?: number | string
+        public middleware: boolean = false
+
+
+        /**
+         *
+         *  @property { number } port
+         * 
+         */
+        public port: number = 4000
 
 
         /**
@@ -83,7 +91,7 @@ export default
 
         /**
          *
-         *  @private @property { ApolloServer } service
+         *  @private @property { ApolloServer | ApolloServer | undefined } service
          * 
          */
         private service: ( ApolloServerExpress | ApolloServer | undefined )
@@ -92,7 +100,7 @@ export default
         /**
          *
          *  Singleton instance
-         *  @private @static @property { App } instance
+         *  @private @static @property { ApolloProvider } instance
          * 
          */
         private static instance: ApolloProvider
@@ -119,7 +127,7 @@ export default
          *  @description Build or returns a Singleton instance of ApolloProvider
          * 
          *  @static @method build
-         *  @param { number | string } port? - Port number
+         *  @param { number } port? - Port number
          *  @param { App } middleware? - Middleware throw specified app
          * 
          *  @retuns { ApolloServer | ApolloServerExpress } instance - Apollo as Independent or throw Express Middleware
@@ -131,9 +139,6 @@ export default
 
                 // Creates new instance
                 this.instance = new ApolloProvider()
-
-                // Sets properties
-                this.instance.port = ( port || 4000 )
 
                 // Build the Schema
                 this.instance.makeSchema()
@@ -150,21 +155,29 @@ export default
                         app: middleware.app()
                     })
 
+                    this.instance.middleware = true
+                    this.instance.port = 0
+
                     
                     if ( process.env.NODE_ENV === 'development' )
 
                         console.log(
                             chalk.bgCyan.black( 'GraphQL' ), '->',
-                            chalk.bgWhite.black( `http://localhost:${middleware.app().get('port')}${this.instance.service.graphqlPath}` )
+                            chalk.bgWhite.black( this.instance.service.graphqlPath )
                         )
 
                     ;
 
-                } else
+                } else {
 
                     this.instance.service = new ApolloServer( this.instance.options )
 
-                ;
+                    // Sets properties
+                    if ( port )
+                        this.instance.port = port
+                    ;
+
+                }
 
             }
 
