@@ -5,13 +5,13 @@ name: Bananasplit CI Testing
 
 on:
   push:
-    branches: [ master, dev, dev-update ]
+    branches: [ master ]
     
   pull_request:
-    branches: [ master, dev, dev-update ]
+    branches: [ master ]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     strategy:
