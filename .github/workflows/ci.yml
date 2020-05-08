@@ -1,0 +1,65 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Bananasplit CI Testing
+
+on:
+  push:
+    branches: [ master, dev, dev-update ]
+    
+  pull_request:
+    branches: [ master, dev, dev-update ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [ 12.x ]
+
+    env:
+      NODE_ENV: test
+      
+      TEST_DB_DIALECT: mysql
+      TEST_DB_HOST: localhost
+      TEST_DB_PORT: 3306
+
+      TEST_DB_DATABASE: test
+      TEST_DB_USERNAME: root
+      TEST_DB_PASSWORD: pass
+
+    steps:
+      - uses: actions/checkout@v2
+        
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+        
+      - run: npm ci
+
+      - name: Install mysql2 driver
+        run: npm i mysql2
+
+      - name: Building the app
+        run: npm run build --if-present
+
+      - name: Do migrations
+        run: npx sequelize db:migrate
+
+      - name: Seed the database
+        run: npx sequelize db:seed --seed user-table-seeder
+
+      - name: Testing app with Jest
+        run: npm test setup.test
+    
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+            MYSQL_ROOT_PASSWORD: pass
+            MYSQL_DATABASE: test
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
