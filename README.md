@@ -62,7 +62,7 @@ Documented code based on the most professional practices.
 
 # Documentation
 #### You can visit the official documentation here (recommended)
-https://bananasplit-js.com/docs
+https://bananasplit.js.org/docs
 
 ---
 
@@ -208,6 +208,6 @@ Jest run your test in a testing enviroment. So you should have your vars already
 ---
 **Bananasplit • 2020**
 
-**Official site:** https://bananasplit-js.com
+**Official site:** https://bananasplit.js.org
 
 **Licensed** [MIT](https://github.com/diegoulloao/bananasplit-express-template/blob/master/LICENSE)
