@@ -45,7 +45,7 @@ test( 'Hello response is received', async () => {
     const response: Response = await request( express.app() ).get( '/' )
 
     expect( response.status ).toBe( 200 )
-    expect( response.text ).toMatch( 'Bananasplit-js!' )
+    expect( response.text ).toMatch( 'Hello from Bananasplit-js!' )
 
 })
 
