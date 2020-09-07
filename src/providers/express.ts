@@ -50,7 +50,7 @@ export default
          *  @property { number } port
          * 
          */
-        public port: number = 3000
+        public port: number = 3627
 
         
         /**
