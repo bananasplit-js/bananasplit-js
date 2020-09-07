@@ -25,10 +25,10 @@ import Apollo from './providers/apollo'
 
 
 // Express Server Provider
-const express: Express = Express.build()
+const express: Express = Express.provide()
 
 // Apollo Server Provider
-const apollo: Apollo = Apollo.build({
+const apollo: Apollo = Apollo.provide({
     middleware: express
 })
 

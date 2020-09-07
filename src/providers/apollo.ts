@@ -124,16 +124,16 @@ export default
         /**
          *  
          *  Singleton
-         *  @description Build or returns a Singleton instance of ApolloProvider
+         *  @description Provide or returns a Singleton instance of ApolloProvider
          * 
-         *  @static @method build
+         *  @static @method provide
          *  @param { number } port? - Port number
          *  @param { App } middleware? - Middleware throw specified app
          * 
          *  @retuns { ApolloServer | ApolloServerExpress } instance - Apollo as Independent or throw Express Middleware
          * 
          */
-        public static build( { port, middleware }: IApollo = {} ) {
+        public static provide( { port, middleware }: IApollo = {} ) {
 
             if ( ! this.instance ) {
 
@@ -188,7 +188,7 @@ export default
 
         /**
          * 
-         *  Collect typeDefs and resolvers for build the Schema
+         *  Collect typeDefs and resolvers for provide the Schema
          *  @private @method makeSchema
          * 
          */

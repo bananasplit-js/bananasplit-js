@@ -80,15 +80,15 @@ export default
         /**
          *  
          *  Singleton
-         *  @description Build or returns a Singleton instance for ExpressProvider
+         *  @description Provides or returns a Singleton instance for ExpressProvider
          * 
-         *  @static @method build
+         *  @static @method provide
          *  @param { AppProps } config? - Configuration object
          * 
          *  @returns { ExpressProvider } instance
          * 
          */
-        public static build( config?: AppProps ): ExpressProvider {
+        public static provide( config?: AppProps ): ExpressProvider {
 
             if ( !this.instance ) {
 
@@ -96,7 +96,7 @@ export default
                 this.instance = new ExpressProvider()
                 this.instance.service = Express()
                 
-                // Executes build parts
+                // Executes provide parts
                 this.instance.settings( config )
                 this.instance.middlewares()
                 this.instance.routes()
