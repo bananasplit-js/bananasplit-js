@@ -11,7 +11,7 @@
 const fs = require( 'fs' )
 const dotenv = require( 'dotenv' )
 
-const SequelizeCLICustomOptions = require( './../../database/sequelize-cli.conf' )
+const SequelizeCLICustomOptions = require( './../../database/config/sequelize-cli.conf' )
 
 
 dotenv.config()

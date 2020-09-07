@@ -10,7 +10,7 @@
 
 
 import { Sequelize, Options as SequelizeOptions } from 'sequelize'
-import SequelizeCustomOptions from '../database/sequelize.conf'
+import SequelizeCustomOptions from '../database/config/sequelize.conf'
 
 import chalk from 'chalk'
 import dotenv from 'dotenv'
@@ -86,7 +86,7 @@ class SequelizeProvider {
      *  @returns { SequelizeProvider }
      * 
      */
-    public static build(): SequelizeProvider {
+    public static provide(): SequelizeProvider {
 
         if ( ! this.instance ) {
 
@@ -307,7 +307,7 @@ class SequelizeProvider {
 
 
 // Sequelize singleton instance for usage
-const sequelizeProvider: SequelizeProvider = SequelizeProvider.build()
+const sequelizeProvider: SequelizeProvider = SequelizeProvider.provide()
 const sequelize: Sequelize = sequelizeProvider.app()
 
 
