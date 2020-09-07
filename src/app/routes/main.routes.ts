@@ -15,7 +15,7 @@
  *  Your custom Routers import goes here.
  * 
  */
-import Router from './routes'
+import ExampleRouter from './example.routes'
 
 
 export default [
@@ -27,7 +27,7 @@ export default [
      *  
      */
 
-    // Default Router
-    Router,
+    // Example Router
+    ExampleRouter,
 
 ]

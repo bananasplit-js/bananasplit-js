@@ -17,8 +17,8 @@ import chalk from 'chalk'
 
 import App from './express'
 
-import Schemas from '../graphql/main.schemas'
-import Resolvers from '../graphql/main.resolvers'
+import Schemas from '../graphql/schemas/main.schemas'
+import Resolvers from '../graphql/resolvers/main.resolvers'
 import customizeGraphQL from '../graphql/apollo/customize.graphql'
 
 

@@ -15,7 +15,7 @@
  *  Your Schemas import goes here.
  * 
  */
-import HelloSchema from './schemas/hello.schema'
+import HelloSchema from './example.schema'
 
 
 export default [

@@ -3,10 +3,10 @@
  *  Controller
  *  @controller
  * 
- *  @module app/controllers/controller
+ *  @module app/controllers/example.controller
  *  @description * you can remove it or modify it *
  * 
- *  @use this file as your controllers template **
+ *  use this file as your controllers template **
  * 
  */
 
@@ -22,7 +22,7 @@ import path from 'path'
  *  Your model import goes here.
  * 
  */
-import User from '../models/user'
+import User from '../models/example.model'
 
 
 export default
