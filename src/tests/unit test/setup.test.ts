@@ -1,36 +1,33 @@
 /**
  * 
- *  Setup Unit test file example
+ *  Setup Unit test
  *  @test
  * 
  *  @module "tests/unit test/setup.test"
- *  @description * you can remove it after test *
+ *  @description * you can remove it after testing *
  * 
  */
 
 
-import Express from 'express'
-import { ApolloServer } from 'apollo-server'
-import request, { Response } from 'supertest'
-
 import { express, apollo } from '../../app'
 import sequelize from '../../providers/sequelize'
 
+import request, { Response } from 'supertest'
 
 
-// Apollo Server
-let apolloserver: any = apollo.app()
+// Apollo server instance
+let apollo_server: any = apollo.app()
+
+// Express server instance
+let express_server: any = express.app()
 
 
 
 beforeAll( async () => {
 
-    /*
-     *  1. If Apollo Server is not a middleware then we start the service
-     *  2. (apollo.port + 1) prevents: "address already in use"
-     */
-    if ( apollo.middleware === false )
-        apolloserver = await (apolloserver as ApolloServer).listen( apollo.port + 1 )
+    // If apollo server is not a middleware, then we start the service
+    if ( !apollo.middleware )
+        apollo_server = await apollo.start( apollo.port + 1 /* avoid port in use*/ )
     ;
 
 })
@@ -42,7 +39,7 @@ beforeAll( async () => {
  */
 test( 'Hello response is received', async () => {
 
-    const response: Response = await request( express.app() ).get( '/' )
+    const response: Response = await request( express_server ).get( '/' )
 
     expect( response.status ).toBe( 200 )
     expect( response.text ).toMatch( 'GET 200 / Hello from Bananasplit-js!' )
@@ -55,7 +52,7 @@ test( 'Hello response is received', async () => {
  */
 test( 'Database Authetication is correct', async () => {
 
-    const response: Response = await request( express.app() ).get( '/auth-test' )
+    const response: Response = await request( express_server ).get( '/auth-test' )
 
     expect( response.status ).toBe( 200 )
     expect( response.text ).toBe( 'Connection has been established successfully.' )
@@ -68,7 +65,7 @@ test( 'Database Authetication is correct', async () => {
  */
 test( 'Hello from database is received', async () => {
 
-    const response: Response = await request( express.app() ).get( '/query-test' )
+    const response: Response = await request( express_server ).get( '/query-test' )
     const JSONResponse: { result: string }[] = JSON.parse( response.text )
 
     expect( response.status ).toBe( 200 )
@@ -83,7 +80,7 @@ test( 'Hello from database is received', async () => {
  */
 test( 'User model returns all users', async () => {
 
-    const response: Response = await request( express.app() ).get( '/model-test' )
+    const response: Response = await request( express_server ).get( '/model-test' )
     const JSONResponse: {}[] = await JSON.parse( response.text )
 
     expect( response.status ).toBe( 200 )
@@ -93,16 +90,16 @@ test( 'User model returns all users', async () => {
 
 
 /**
- *  @test   'GraphQL Playground loads'
+ *  @test   GraphQL Playground loads
  */
 test( 'GraphQL Playground loads', async() => {
 
-    const apolloapp: Express.Application | string = apollo.middleware ?
-        express.app() : apolloserver.url
+    const apollo_endpoint: any = apollo.middleware ?
+        express_server : apollo_server.url
     ;
 
-    const response: Response = await request( apolloapp )
-        .get( apolloserver.subscriptionsPath )
+    const response: Response = await request( apollo_endpoint )
+        .get( apollo_server.subscriptionsPath )
         .accept( 'text/html' )
     ;
 
@@ -118,13 +115,13 @@ test( 'GraphQL Playground loads', async() => {
  */
 test( 'Hello from GraphQL is received', async() => {
 
-    const apolloapp: Express.Application | string = apollo.middleware ?
-        express.app() : apolloserver.url
+    const apollo_endpoint: any = apollo.middleware ?
+        express_server : apollo_server.url
     ;
 
-    const response: Response = await request( apolloapp )
-        .post( apolloserver.subscriptionsPath )
-        .send( { query: `query { hello }` } )
+    const response: Response = await request( apollo_endpoint )
+        .post( apollo_server.subscriptionsPath )
+        .send({ query: `query { hello }` })
     ;
 
     const JSONResponse: { data: { hello: string } } = await JSON.parse( response.text )
@@ -138,12 +135,12 @@ test( 'Hello from GraphQL is received', async() => {
 
 afterAll( done => {
 
-    // If Apollo Server is not a middleware then we stop the service
-    if ( apollo.middleware === false )
-        apollo.app().stop()
+    // If apollo server is not a middleware, then we stop the service
+    if ( !apollo.middleware )
+        apollo_server.stop()
     ;
 
-    // Closing the db connection allows to Jest exit successfully
+    // Closing the database connection allows jest to exit successfully
     sequelize.close()
     done()
     

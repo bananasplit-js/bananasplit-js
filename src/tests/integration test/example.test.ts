@@ -4,23 +4,21 @@
  *  @test
  * 
  *  @module "tests/integration test/app.test"
- *  @description * you can remove it or modify it *
+ *  @description * you can remove or modify it *
  * 
  *  @use this file as your Tests template **
  * 
  */
 
 
-import Express from 'express'
-import request, { Response } from 'supertest'
-
 import { express } from '../../app'
 import sequelize from '../../providers/sequelize'
 
+import request, { Response } from 'supertest'
 
 
 // Express App as parallel instance
-const app: Express.Application = express.app()
+const app: any = express.app()
 
 
 

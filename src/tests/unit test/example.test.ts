@@ -4,23 +4,21 @@
  *  @test
  * 
  *  @module "tests/unit test/unit.test"
- *  @description * you can remove it or modify it *
+ *  @description * you can remove or modify it *
  * 
  *  @use this file as your test template **
  * 
  */
 
 
-import Express from 'express'
-import request, { Response } from 'supertest'
-
 import { express } from '../../app'
 import sequelize from '../../providers/sequelize'
 
+import request, { Response } from 'supertest'
 
 
 // Express App as parallel instance
-const app: Express.Application = express.app()
+const app: any = express.app()
 
 
 
@@ -47,7 +45,7 @@ test( 'Here the action I describe', async () => {
 
 afterAll( done => {
 
-    // Closing the db connection allows to Jest exit successfully
+    // Closing the database connection allows jest to exit successfully
     // sequelize.close()
     done()
     

@@ -15,13 +15,13 @@ import Apollo from './providers/apollo'
 
 
 /* ----------------------------------------------------------------
- * 
+ *  
  *  This is your Bananasplit App!
  *  
  *  You can specify ports
- *      Express.build({ port: 7000 }) or express.start( 7000 )
- * 
- -----------------------------------------------------------------*/
+ *      Express.provide({ port: 7000 }) or express.start( 7000 )
+ *  
+ * -----------------------------------------------------------------*/
 
 
 // Express Server Provider
