@@ -42,7 +42,7 @@ test( 'Hello response is received', async () => {
     const response: Response = await request( express_server ).get( '/' )
 
     expect( response.status ).toBe( 200 )
-    expect( response.text ).toMatch( 'GET 200 / Hello from Bananasplit-js!' )
+    expect( response.text ).toMatch( 'GET 200 / Hello' )
 
 })
 
@@ -74,13 +74,13 @@ test( 'Hello from database is received', async () => {
 
 })
 
-
 /**
  *  @test   User model returns all users
  */
 test( 'User model returns all users', async () => {
 
     const response: Response = await request( express_server ).get( '/model-test' )
+
     const JSONResponse: {}[] = await JSON.parse( response.text )
 
     expect( response.status ).toBe( 200 )

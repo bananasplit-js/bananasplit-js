@@ -40,7 +40,7 @@ export default
         public static hello( request: Request, response: Response ) {
 
             response.status( 200 )
-            response.send( 'GET 200 / Hello from Bananasplit-js!' )
+            response.send( 'GET 200 / Hello' )
 
             return response
             
