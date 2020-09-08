@@ -6,7 +6,7 @@
  *  @module "tests/integration test/app.test"
  *  @description * you can remove or modify it *
  * 
- *  @use this file as your Tests template **
+ *  use this file as your Tests template **
  * 
  */
 

@@ -6,7 +6,7 @@
  *  @module "tests/unit test/unit.test"
  *  @description * you can remove or modify it *
  * 
- *  @use this file as your test template **
+ *  use this file as your test template **
  * 
  */
 

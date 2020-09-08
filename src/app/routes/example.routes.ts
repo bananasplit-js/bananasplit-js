@@ -6,7 +6,7 @@
  *  @module app/routes/example.routes
  *  @description * you can remove it or modify it *
  * 
- *  @use this file as your Routers template **
+ *  use this file as your Routers template **
  * 
  */
 
