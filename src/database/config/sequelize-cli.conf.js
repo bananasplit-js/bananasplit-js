@@ -3,8 +3,7 @@
  *  Sequelize-CLI configuration file
  *  @config @overwrite
  * 
- *  @description This file let you overwrite default Sequelize-CLI config for
- *  development, testing and production.
+ *  @description This file let you overwrite default Sequelize-CLI config for development, testing and production
  * 
  */
 

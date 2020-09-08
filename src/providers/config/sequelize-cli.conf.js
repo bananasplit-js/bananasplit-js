@@ -1,9 +1,9 @@
 /**
  * 
- *  Sequelize-CLI Configuration
+ *  Sequelize-cli configuration file
  *  @config
  * 
- *  @description Contains all Sequelize-CLI configurations for the command-line. 
+ *  @description Contains all sequelize-cli configurations
  *
  */
 
@@ -84,7 +84,7 @@ let SequelizeCLIOptions = {
 
 
 
-// Merge defaults with dev config
+// Merge defaults with the developer config
 SequelizeCLIOptions.development = { ... SequelizeCLIOptions.development, ... SequelizeCLICustomOptions.development }
 SequelizeCLIOptions.test = { ... SequelizeCLIOptions.test, ... SequelizeCLICustomOptions.test }
 SequelizeCLIOptions.production = { ... SequelizeCLIOptions.production, ... SequelizeCLICustomOptions.production }

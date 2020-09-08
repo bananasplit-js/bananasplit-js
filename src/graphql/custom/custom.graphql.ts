@@ -1,6 +1,6 @@
 /**
  * 
- *  Apollo Customize
+ *  Apollo: Customize
  * 
  *  @customize
  *  @module graphql/apollo/customize.graphql
@@ -21,11 +21,11 @@ export default
 
     ( schema: GraphQLSchema ): object => {
 
-        // You can customize your schema here:
+        // You can customize your schema here ---------------
 
             // Do customizations
 
-        // End
+        // End ----------------------------------------------
 
 
 
@@ -34,7 +34,7 @@ export default
             /**
              * 
              *  @options
-             *  Your Apollo options goes here.
+             *  Your Apollo options goes here
              * 
              */
 

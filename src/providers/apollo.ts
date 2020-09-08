@@ -19,7 +19,7 @@ import App from './express'
 
 import Schemas from '../graphql/schemas/main.schemas'
 import Resolvers from '../graphql/resolvers/main.resolvers'
-import customizeGraphQL from '../graphql/apollo/customize.graphql'
+import customizeGraphQL from '../graphql/custom/custom.graphql'
 
 
 

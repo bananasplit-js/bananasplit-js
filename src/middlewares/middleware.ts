@@ -11,6 +11,7 @@
 
 
 import Express from 'express'
+
 import Morgan from 'morgan'
 import dontenv from 'dotenv'
 import path from 'path'
@@ -27,7 +28,7 @@ export default
         /**
          *
          *  @middlewares 
-         *  Your Middlewares goes here.
+         *  Your Middlewares goes here
          * 
          */
         
@@ -38,7 +39,7 @@ export default
         app.use( Express.json() )
 
         // Public
-        app.use( Express.static(app.get( 'public' )) )
+        app.use( Express.static(app.get('public')) )
 
     }
 ;

@@ -4,7 +4,7 @@
  * 	@helpers
  * 
  *  @module app/helpers/helpers
- * 	@description Contains helpful functions	
+ * 	@description Contains helpful functions
  * 
  */
 
@@ -13,7 +13,7 @@
 /**
  * 
  *	@helpers
- *	Your helpers goes here.
+ *	Your helpers goes here
  * 
  */
 export function helper(): void {

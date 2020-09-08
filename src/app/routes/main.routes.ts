@@ -12,7 +12,7 @@
 /**
  *  
  *  @import @routers
- *  Your custom Routers import goes here.
+ *  Your custom Routers import goes here
  * 
  */
 import ExampleRouter from './example.routes'
@@ -23,11 +23,9 @@ export default [
     /**
      * 
      *  @register @routes
-     *  Your custom Routes register goes here.
+     *  Your custom Routes register goes here
      *  
      */
-
-    // Example Router
     ExampleRouter,
 
 ]

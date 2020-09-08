@@ -20,12 +20,12 @@ export default
         /**
          * 
          *  @settings @overwrite
-         *  Your Express settings goes here.
+         *  Your Express settings goes here
          * 
          */
 
-        // Public source
-        app.set( 'public', path.join( __dirname, '../public' ) )
+        // Public folder
+        app.set( 'public', path.join(__dirname, '../public') )
         
     }
 

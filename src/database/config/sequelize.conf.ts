@@ -3,7 +3,7 @@
  *  Database Configuration file for Sequelize
  *  @config @overwrite
  * 
- *  @description This file let you overwrite default Sequelize options object.
+ *  @description This file let you overwrite default Sequelize options object
  * 
  */
 
@@ -20,7 +20,7 @@ const SequelizeOptions: SequelizeOptions = {
      *  Sequelize Options
      * 
      *  You can overwrite default options by yours **
-     *  This option object is directly passed to Sequelize constructor in the Provider.
+     *  This option object is directly passed to Sequelize constructor in the Provider
      * 
      */
 

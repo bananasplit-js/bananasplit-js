@@ -16,25 +16,25 @@ import { Router } from 'express'
 
 
 
-// Creates new Router
+// Creates a new Router
 const router: Router = Router()
 
 
 /**
  * 
  *  @import @controller
- *  Your controller import goes here.
+ *  Your controller import goes here
  * 
  */
 import Controller from '../controllers/example.controller'
 
 
-( $ => {
+($ => {
 
     /**
      * 
      *  @routes
-     *  Your routes goes here.
+     *  Your routes goes here
      * 
      */
 

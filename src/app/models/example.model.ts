@@ -10,12 +10,12 @@
 
 
 
- import { Model, DataTypes } from 'sequelize'
- import sequelize from '../../providers/sequelize'
+import sequelize from '../../providers/sequelize'
+import { Model, DataTypes } from 'sequelize'
 
- 
 
- class User extends Model {
+
+class User extends Model {
 
     // Fields
     private id!: number
@@ -71,21 +71,21 @@
         super.init.call( this, this.fields, this.options )
     }
 
- }
- 
+}
 
- 
+
+
  // Load the model
- User.init()
+User.init()
 
 
- 
- ; ( async () => {
- 
+
+; ( async () => {
+
      // do something async before export the model
- 
- } )()
 
- 
- 
- export default User
+})()
+
+
+
+export default User
