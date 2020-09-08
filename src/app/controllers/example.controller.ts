@@ -13,6 +13,7 @@
 
 import { Request, Response } from 'express'
 import sequelize from '../../providers/sequelize'
+
 import path from 'path'
 
 
@@ -35,29 +36,26 @@ export default
     class Controller {
 
         /**
-         *      Hello response      @handler
+         *      Hello response @handler
          */
         public static hello( request: Request, response: Response ) {
 
-            response.status( 200 )
-            response.send( 'GET 200 / Hello' )
-
-            return response
+            return response.status( 200 ).send( 'GET 200 / Hello' )
             
         }
 
 
         /**
-         *      Database Connection Test    @handler
+         *      Database Connection Test @handler
          */
         public static async databaseConnectionTest( request: Request, response: Response ) {
 
             try {
                 await sequelize.authenticate()
-                response.send( 'Connection has been established successfully.' )
+                response.status( 200 ).send( 'Connection has been established successfully.' )
 
             } catch(e) {
-                response.send( `Unable to connect to the database: ${e}` )
+                response.status( 500 ).send( `Unable to connect to the database: ${e}` )
             }
 
 
@@ -67,16 +65,16 @@ export default
 
 
         /**
-         *      Database Query Test     @handler
+         *      Database Query Test @handler
          */
         public static async databaseQueryTest( request: Request, response: Response ) {
 
             try {
                 const [ result ] = await sequelize.query( "SELECT 'Hello from database!' as result" )
-                response.send( result )
+                response.status( 200 ).send( result )
 
             } catch(e) {
-                response.send( `Unable to connect to the database: ${e}` )
+                response.status( 500 ).send( `Unable to connect to the database: ${e}` )
             }
 
 
@@ -86,16 +84,16 @@ export default
 
 
         /**
-         *      Sequelize ORM Query Test    @handler
+         *      Sequelize ORM Query Test @handler
          */
         public static async getUsers( request: Request, response: Response ) {
 
             try {
                 const result = await User.findAll()
-                response.send( result )
+                response.status( 200 ).send( result )
 
             } catch(e) {
-                response.send( e )
+                response.status( 500 ).send( e )
             }
 
 
