@@ -27,9 +27,9 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/diegoulloao/bananasplit-express-template/issues"
+    "url": ""
   },
-  "homepage": "https://bananasplit.js.org/",
+  "homepage": "",
   "dependencies": {
     "@popperjs/core": "^2.4.0",
     "@types/bluebird": "^3.5.30",
