@@ -4,7 +4,15 @@
 
 <!-- ![label](https://img.shields.io/badge/js-banana--split-yellow?style=for-the-badge) -->
 
-![label](https://img.shields.io/badge/written-typescript-blue?logo=typescript) ![label](https://img.shields.io/badge/js-express-lightgray) ![label](https://img.shields.io/badge/graphql-apollo-blue?logo=graphql) ![label](https://img.shields.io/badge/orm-sequelize-blue) ![label](https://img.shields.io/badge/test-jest-green?logo=jest) ![label](https://img.shields.io/badge/version-v1.2-orange) ![label](https://img.shields.io/badge/license-MIT-blue)
+<p align="center">
+    <img src="https://img.shields.io/badge/written-typescript-blue?logo=typescript">
+    <img src="https://img.shields.io/badge/js-express-lightgray">
+    <img src="https://img.shields.io/badge/graphql-apollo-blue?logo=graphql">
+    <img src="https://img.shields.io/badge/orm-sequelize-blue">
+    <img src="https://img.shields.io/badge/test-jest-green?logo=jest">
+    <img src="https://img.shields.io/badge/version-v1.2-orange">
+    <img src="https://img.shields.io/badge/license-MIT-blue">
+</p>
 
 <!-- ![label](https://img.shields.io/badge/coverage-100%25-brightgreen) ![label](https://img.shields.io/badge/code%20quality-A-brightgreen) -->
 
