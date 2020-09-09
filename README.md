@@ -31,7 +31,7 @@ An express.js **superset template** that brings to you a background to quickly d
 
 # Read the docs
 
-### Check the documentation: https://bananasplit-js.com/docs
+### Check the documentation: https://bananasplit.js.org/docs
 
 # Get started
 
