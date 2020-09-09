@@ -1,7 +1,7 @@
 {
   "name": "bananasplit-js",
-  "version": "1.1.0",
-  "description": "This is your bananasplit app!",
+  "version": "1.2",
+  "description": "A bananasplit app",
   "main": "app.js",
   "scripts": {
     "start": "nodemon src/index.ts --exec ts-node --ignore src/tests",
@@ -27,13 +27,12 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": ""
+    "url": "https://github.com/diegoulloao/bananasplit-express-template/issues"
   },
-  "homepage": "",
+  "homepage": "https://bananasplit.js.org/",
   "dependencies": {
     "@popperjs/core": "^2.4.0",
     "@types/bluebird": "^3.5.30",
-    "@types/express-handlebars": "^3.1.0",
     "@types/node": "^13.13.4",
     "@types/validator": "^13.0.0",
     "apollo-server": "^2.12.0",
