@@ -1,10 +1,10 @@
 {
   "name": "bananasplit-js",
-  "version": "1.2",
+  "version": "1.2.0",
   "description": "A bananasplit app",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon src/index.ts --exec ts-node --ignore src/tests",
+    "start": "nodemon src/app.ts --exec ts-node --ignore src/tests",
     "build": "tsc",
     "test": "jest",
     "test:watch": "jest --watch",
