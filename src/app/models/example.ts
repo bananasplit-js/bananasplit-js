@@ -3,7 +3,7 @@
  *  User Model
  *  @model
  * 
- *  @module app/models/example.model
+ *  @module app/models/example
  *  @description Defines an user model example
  * 
  */

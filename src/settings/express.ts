@@ -1,10 +1,10 @@
 /**
  * 
- *  Settings for Express
+ *  Settings: Express
  *  @settings
  * 
- *  @module settings/express.settings
- *  @description Settings for the Express Application
+ *  @module settings/express
+ *  @description Settings for express server
  * 
  */
 
@@ -20,7 +20,7 @@ export default
         /**
          * 
          *  @settings @overwrite
-         *  Your Express settings goes here
+         *  Your express settings goes here
          * 
          */
 

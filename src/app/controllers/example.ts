@@ -3,7 +3,7 @@
  *  Controller
  *  @controller
  * 
- *  @module app/controllers/example.controller
+ *  @module app/controllers/example
  *  @description * you can remove it or modify it *
  * 
  *  use this file as your controllers template **

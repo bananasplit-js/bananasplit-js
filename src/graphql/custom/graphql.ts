@@ -3,11 +3,11 @@
  *  Apollo: Customize
  * 
  *  @customize
- *  @module graphql/apollo/customize.graphql
+ *  @module graphql/custom/graphql
  * 
  *  @description This file gives to you the opportunity to manipulate the Schema as you want,
  *  function then returns the options object that goes directly to new ApolloServer()
- *  constructor for pull-up your service.
+ *  constructor for pull-up your service
  * 
  */
 
@@ -34,7 +34,7 @@ export default
             /**
              * 
              *  @options
-             *  Your Apollo options goes here
+             *  Your apollo options goes here
              * 
              */
 

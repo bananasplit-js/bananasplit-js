@@ -1,10 +1,10 @@
 /**
  * 
- *  Schemas for Apollo GraphQL Server
+ *  Schemas for apollo server
  *  @schemas
  * 
- *  @module graphql/main.schema
- *  @description Register all GraphQL Schemas
+ *  @module graphql/schemas/main
+ *  @description Register all graphql schemas
  * 
  */
 
@@ -12,7 +12,7 @@
 /**
  *
  *  @import @schemas
- *  Your Schemas import goes here.
+ *  Your schemas import goes here
  * 
  */
 import HelloSchema from './example'
@@ -23,7 +23,7 @@ export default [
     /**
      *
      *  @registry @schemas
-     *  Your Schemas registry goes here.
+     *  Your schemas registry goes here
      * 
      */
     HelloSchema,

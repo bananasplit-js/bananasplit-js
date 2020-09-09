@@ -1,9 +1,9 @@
 /**
  * 
- *  Hello Resolvers example
+ *  Hello resolvers example
  *  @resolvers
  *  
- *  @module graphql/hello/hello.resolvers
+ *  @module graphql/resolvers/example
  *  @description * you can remove it or modify it *
  * 
  *  use this file as your Resolvers template **
@@ -17,7 +17,7 @@ export default {
     /**
      * 
      *  @resolvers
-     *  Your resolvers goes here.
+     *  Your resolvers goes here
      * 
      */
     Query: {

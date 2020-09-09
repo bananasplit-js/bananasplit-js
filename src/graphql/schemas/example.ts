@@ -1,12 +1,12 @@
 /**
  * 
- *  Hello Schema example
+ *  Hello schema example
  *  @schemas
  * 
- *  @module graphql/hello/hello.schema
+ *  @module graphql/schemas/example
  *  @description * you can remove it or modify it *
  * 
- *  use this file as your Schemas template **
+ *  use this file as your schemas template **
  * 
  */
 
@@ -20,7 +20,7 @@ export default gql`
     #*
     #
     #   @schemas
-    #   Your schemas goes here.
+    #   Your schemas goes here
     #
     #*
 

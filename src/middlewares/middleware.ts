@@ -28,7 +28,7 @@ export default
         /**
          *
          *  @middlewares 
-         *  Your Middlewares goes here
+         *  Your middlewares goes here
          * 
          */
         
