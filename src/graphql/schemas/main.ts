@@ -9,13 +9,13 @@
  */
 
 
- /**
+/**
  *
  *  @import @schemas
  *  Your Schemas import goes here.
  * 
  */
-import HelloSchema from './example.schema'
+import HelloSchema from './example'
 
 
 export default [

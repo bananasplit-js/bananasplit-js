@@ -26,7 +26,7 @@ const router: Router = Router()
  *  Your controller import goes here
  * 
  */
-import Controller from '../controllers/example.controller'
+import Controller from '../controllers/example'
 
 
 ($ => {

@@ -9,13 +9,13 @@
  */
 
 
- /**
+/**
  *
  *  @import @resolvers
  *  Your Resolvers import goes here.
  * 
  */
-import HelloResolvers from './example.resolvers'
+import HelloResolvers from './example'
 
 
 export default [
