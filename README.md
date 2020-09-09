@@ -9,11 +9,11 @@
 <!-- ![label](https://img.shields.io/badge/coverage-100%25-brightgreen) ![label](https://img.shields.io/badge/code%20quality-A-brightgreen) -->
 
 ### Integrated support for:
- * **Express** framework
- * **Apollo** graphql
- * **Jest** testing
- * **Sequelize** ORM
- * **Typescript** language
+ * **[Express](https://expressjs.com/)** framework
+ * **[Apollo](https://www.apollographql.com/)** graphql
+ * **[Jest](https://jestjs.io/)** testing
+ * **[Sequelize](https://sequelize.org/)** ORM
+ * **[Typescript](https://www.typescriptlang.org/)** language
 
 ### Packages:
 | name |  description |
