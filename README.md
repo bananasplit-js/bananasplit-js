@@ -31,20 +31,16 @@ An express.js **superset template** that brings to you a background to quickly d
 
 # Read the docs
 
-#### Check the documentation: https://bananasplit-js.com/docs
+### Check the documentation: https://bananasplit-js.com/docs
 
 # Get started
-### Step 1: install the client
+
+### Create a new project:
 ```
-npm i @diegoulloao/banana-cli -g
+npx @diegoulloao/banana-cli new my-app
 ```
 
-### Step 2: create a new project
-```
-banana new my-app
-```
+**Read more about configuration:** https://bananasplit.js.org/docs/#config
 
 ---
-**Bananasplit • 2020 · Official site: https://bananasplit-js.com**
-
-**Licensed** [MIT](https://github.com/diegoulloao/bananasplit-express-template/blob/master/LICENSE)
+**Bananasplit • 2020 | Licensed [MIT](https://github.com/diegoulloao/bananasplit-express-template/blob/master/LICENSE)**
