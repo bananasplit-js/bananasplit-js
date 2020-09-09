@@ -42,5 +42,8 @@ npx @diegoulloao/banana-cli new my-app
 
 ### Check the documentation: https://bananasplit.js.org/docs
 
+# License
+**Bananasplit** is licensed under **[MIT](https://github.com/diegoulloao/bananasplit-express-template/blob/master/LICENSE)** and is supported by the community. Any improvement can be merged to `master` branch and permissions to build a brand new product based on this is totally granted.
+
 ---
-**Bananasplit • 2020 | Licensed [MIT](https://github.com/diegoulloao/bananasplit-express-template/blob/master/LICENSE)**
+**Bananasplit • 2020**
