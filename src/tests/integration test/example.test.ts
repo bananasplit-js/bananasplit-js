@@ -11,7 +11,7 @@
  */
 
 
-import { express } from '../../app'
+import { express } from '../../services'
 import sequelize from '../../providers/sequelize'
 
 import request, { Response } from 'supertest'

@@ -9,7 +9,7 @@
  */
 
 
-import { express, apollo } from '../../app'
+import { express, apollo } from '../../services'
 import sequelize from '../../providers/sequelize'
 
 import request, { Response } from 'supertest'
