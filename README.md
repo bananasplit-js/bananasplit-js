@@ -18,16 +18,16 @@
 ### Packages:
 | name |  description |
 | ---- | ------------ |
-| **nodemon** | auto restart your server every time change is detected |
-| **ts-node** | autocompiles typescript on run |
-| **ts-jest** | provides jest typescript support |
-| **morgan** | print requests on console |
-| **sequelize-cli** | provides jest typescript support |
-| **dotenv** | enviroment variables |
-| **supertest** | http-based tests support |
-| **faker** | generate seeders random data |
-| **npm-check-updates** | auto update dependencies |
-| **chalk** | colorful console outputs |
+| **[nodemon](https://www.npmjs.com/package/nodemon)** | auto restart your server every time change is detected |
+| **[ts-node](https://www.npmjs.com/package/ts-node)** | autocompiles typescript on run |
+| **[ts-jest](https://www.npmjs.com/package/ts-jest)** | provides jest typescript support |
+| **[morgan](https://www.npmjs.com/package/morgan)** | print requests on console |
+| **[sequelize-cli](https://www.npmjs.com/package/sequelize-cli)** | provides jest typescript support |
+| **[dotenv](https://www.npmjs.com/package/dotenv)** | enviroment variables |
+| **[supertest](https://www.npmjs.com/package/supertest)** | http-based tests support |
+| **[faker](https://www.npmjs.com/package/faker)** | generate seeders random data |
+| **[npm-check-updates](https://www.npmjs.com/package/npm-check-updates)** | auto update dependencies |
+| **[chalk](https://www.npmjs.com/package/chalk)** | colorful console outputs |
 
 # Get started!
 
