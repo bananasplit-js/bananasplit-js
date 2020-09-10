@@ -3,7 +3,7 @@
  *  User Model
  *  @model
  * 
- *  @module app/models/example
+ *  @module app/models/user
  *  @description Defines an user model example
  * 
  */
@@ -66,7 +66,7 @@ class User extends Model {
     }
 
 
-    // Init
+    // Init (do not modify)
     public static init() {
         super.init.call( this, this.fields, this.options )
     }

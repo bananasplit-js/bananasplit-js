@@ -23,7 +23,7 @@ import path from 'path'
  *  Your model import goes here.
  * 
  */
-import User from '../models/example'
+import User from '../models/user'
 
 
 export default
