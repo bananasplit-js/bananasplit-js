@@ -1,7 +1,7 @@
 /**
  * 
  *  Sequelize-cli configuration file
- *  @config
+ *  @configig
  * 
  *  @description Contains all sequelize-cli configurations
  *

@@ -1,7 +1,7 @@
 /**
  * 
  *  Sequelize: Database configuration file
- *  @config @overwrite
+ *  @configig @overwrite
  * 
  *  @description Allow to you to overwrite default sequelize options
  * 

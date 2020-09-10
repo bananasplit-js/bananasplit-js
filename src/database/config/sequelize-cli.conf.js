@@ -1,7 +1,7 @@
 /**
  * 
  *  Sequelize-cli configuration file
- *  @config @overwrite
+ *  @configig @overwrite
  * 
  *  @description Allow to you overwrite the default configuration
  * 
