@@ -1,16 +1,14 @@
 /**
  * 
- *  Hello resolvers example
+ *  Resolvers example
  *  @resolvers
  *  
  *  @module graphql/resolvers/example
- *  @description * you can remove it or modify it *
- * 
- *  use this file as your Resolvers template **
+ *  @description * you can remove or modify this file *
  * 
  */
 
- 
+
 
 export default {
 

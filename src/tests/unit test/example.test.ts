@@ -1,24 +1,20 @@
 /**
  * 
- *  Unit test file example
+ *  Test: Unit test example
  *  @test
  * 
- *  @module "tests/unit test/unit.test"
- *  @description * you can remove or modify it *
- * 
- *  use this file as your test template **
+ *  @module "tests/unit test/example"
+ *  @description * you can remove or modify this file *
  * 
  */
 
 
 import { express } from '../../services'
-import sequelize from '../../providers/sequelize'
-
 import request, { Response } from 'supertest'
 
 
-// Express App as parallel instance
-const app: any = express.app()
+// Express service as parallel instance
+const express_server: any = express.app()
 
 
 
@@ -35,9 +31,9 @@ beforeAll( async () => {
  */
 test( 'Here the action I describe', async () => {
 
-    const response: Response = await request( app ).get( '/route' )
+    const response: Response = await request( express_server ).get( '/route' )
 
-    expect( 1 + 1 ).toBe( 2 )   // or not?
+    expect( 1 + 1 ).toBe( 2 )   // or is not?
 
 })
 
@@ -45,8 +41,7 @@ test( 'Here the action I describe', async () => {
 
 afterAll( done => {
 
-    // Closing the database connection allows jest to exit successfully
-    // sequelize.close()
+    // Do something after run the tests
     done()
     
 })

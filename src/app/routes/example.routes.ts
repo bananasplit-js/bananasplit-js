@@ -4,9 +4,7 @@
  *  @routes
  * 
  *  @module app/routes/example.routes
- *  @description * you can remove it or modify it *
- * 
- *  use this file as your Routers template **
+ *  @description * you can remove or modify this file *
  * 
  */
 

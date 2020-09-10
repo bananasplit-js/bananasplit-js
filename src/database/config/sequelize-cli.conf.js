@@ -1,9 +1,9 @@
 /**
  * 
- *  Sequelize-CLI configuration file
+ *  Sequelize-cli configuration file
  *  @config @overwrite
  * 
- *  @description This file let you overwrite default Sequelize-CLI config for development, testing and production
+ *  @description Allow to you overwrite the default configuration
  * 
  */
 
@@ -13,12 +13,10 @@ const SequelizeCLIOptions = {
 
     /**
      * 
-     *  Development
+     *  DEVELOPMENT
      * 
      *  @options @overwrite
-     *  Sequelize-CLI config for Development
-     * 
-     *  You can overwrite default config by yours **
+     *  Configuration for development
      * 
      */
     development: {
@@ -33,12 +31,10 @@ const SequelizeCLIOptions = {
 
     /**
      * 
-     *  Testing
+     *  TESTING
      * 
      *  @options @overwrite
-     *  Sequelize-CLI config for Testing
-     * 
-     *  You can overwrite default config by yours **
+     *  Configuration for testing
      * 
      */
     test: {
@@ -53,12 +49,10 @@ const SequelizeCLIOptions = {
 
     /**
      * 
-     *  Production
+     *  PRODUCTION
      * 
      *  @options @overwrite
-     *  Sequelize-CLI config for Production
-     * 
-     *  You can overwrite default config by yours **
+     *  Configuration for production
      * 
      */
     production: {

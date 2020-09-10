@@ -1,6 +1,6 @@
 /**
  * 
- *  Resolvers: graphql
+ *  Graphql: Resolvers
  *  @resolvers
  * 
  *  @module graphql/resolvers/main

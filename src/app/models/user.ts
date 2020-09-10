@@ -1,10 +1,10 @@
 /**
  *
- *  User Model
+ *  User model
  *  @model
  * 
  *  @module app/models/user
- *  @description Defines an user model example
+ *  @description User basic model
  * 
  */
 
@@ -28,7 +28,7 @@ class User extends Model {
     private readonly updatedAt!: Date
 
 
-    // Fields Definitions
+    // Fields definitions
     public static fields = {
 
         id: {
@@ -75,7 +75,7 @@ class User extends Model {
 
 
 
- // Load the model
+ // Loads the model
 User.init()
 
 

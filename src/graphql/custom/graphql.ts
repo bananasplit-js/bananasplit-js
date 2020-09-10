@@ -5,9 +5,7 @@
  *  @customize
  *  @module graphql/custom/graphql
  * 
- *  @description This file gives to you the opportunity to manipulate the Schema as you want,
- *  function then returns the options object that goes directly to new ApolloServer()
- *  constructor for pull-up your service
+ *  @description Allow to manipulate the graphql schema as you want. Returns an options object that is passed directly to the ApolloServer constructor
  * 
  */
 
@@ -21,11 +19,11 @@ export default
 
     ( schema: GraphQLSchema ): object => {
 
-        // You can customize your schema here ---------------
+        // You can customize the schema object here ---------------
 
-            // Do customizations
 
-        // End ----------------------------------------------
+
+        // End ----------------------------------------------------
 
 
 

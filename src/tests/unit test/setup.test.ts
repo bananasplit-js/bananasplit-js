@@ -1,10 +1,10 @@
 /**
  * 
- *  Setup Unit test
+ *  Test: Setup test
  *  @test
  * 
- *  @module "tests/unit test/setup.test"
- *  @description * you can remove it after testing *
+ *  @module "tests/unit test/setup"
+ *  @description * you can remove or modify this file *
  * 
  */
 
@@ -25,7 +25,7 @@ let express_server: any = express.app()
 
 beforeAll( async () => {
 
-    // If apollo server is not a middleware, then we start the service
+    // If apollo server is not an express middleware then we start the service
     if ( !apollo.middleware )
         apollo_server = await apollo.start( apollo.port + 1 /* avoid port in use*/ )
     ;
@@ -48,9 +48,9 @@ test( 'Hello response is received', async () => {
 
 
 /**
- *  @test   Database Authetication is correct
+ *  @test   Database authetication is correct
  */
-test( 'Database Authetication is correct', async () => {
+test( 'Database authetication is correct', async () => {
 
     const response: Response = await request( express_server ).get( '/auth-test' )
 
@@ -90,9 +90,9 @@ test( 'User model returns all users', async () => {
 
 
 /**
- *  @test   GraphQL Playground loads
+ *  @test   Graphql playground loads
  */
-test( 'GraphQL Playground loads', async() => {
+test( 'Graphql playground loads', async() => {
 
     const apollo_endpoint: any = apollo.middleware ?
         express_server : apollo_server.url
@@ -111,9 +111,9 @@ test( 'GraphQL Playground loads', async() => {
 
 
 /**
- *  @test   Hello from GraphQL is received
+ *  @test   Hello from graphql is received
  */
-test( 'Hello from GraphQL is received', async() => {
+test( 'Hello from graphql is received', async() => {
 
     const apollo_endpoint: any = apollo.middleware ?
         express_server : apollo_server.url
@@ -135,12 +135,12 @@ test( 'Hello from GraphQL is received', async() => {
 
 afterAll( done => {
 
-    // If apollo server is not a middleware, then we stop the service
+    // If apollo server is not an express middleware then we stop the service
     if ( !apollo.middleware )
         apollo_server.stop()
     ;
 
-    // Closing the database connection allows jest to exit successfully
+    // Closing database connection allow jest to exit successfully
     sequelize.close()
     done()
     

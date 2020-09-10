@@ -1,24 +1,20 @@
 /**
  * 
- *  App Integration test file example
+ *  Test: Integration test example
  *  @test
  * 
- *  @module "tests/integration test/app.test"
- *  @description * you can remove or modify it *
- * 
- *  use this file as your Tests template **
+ *  @module "tests/integration test/example"
+ *  @description * you can remove or modify this file *
  * 
  */
 
 
 import { express } from '../../services'
-import sequelize from '../../providers/sequelize'
-
 import request, { Response } from 'supertest'
 
 
-// Express App as parallel instance
-const app: any = express.app()
+// Express service as parallel instance
+const express_server: any = express.app()
 
 
 
@@ -35,7 +31,7 @@ beforeAll( async () => {
  */
 test( 'Test a entire module', (): void => {
 
-    expect( 1 + 1 ).toBe( 2 )   // or not?
+    expect( 1 + 1 ).toBe( 2 )   // or is not?
 
 })
 

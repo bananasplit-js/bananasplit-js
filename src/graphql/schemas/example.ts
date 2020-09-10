@@ -1,16 +1,14 @@
 /**
  * 
- *  Hello schema example
+ *  Schema example
  *  @schemas
  * 
  *  @module graphql/schemas/example
- *  @description * you can remove it or modify it *
- * 
- *  use this file as your schemas template **
+ *  @description * you can remove or modify this file *
  * 
  */
 
- 
+
 
 import { gql } from 'apollo-server'
 
@@ -23,7 +21,6 @@ export default gql`
     #   Your schemas goes here
     #
     #*
-
     type Query {
         hello: String
     }

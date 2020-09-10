@@ -1,6 +1,6 @@
 /**
  * 
- *  Schemas for apollo server
+ *  Graphql: Schemas
  *  @schemas
  * 
  *  @module graphql/schemas/main

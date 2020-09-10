@@ -4,7 +4,7 @@
  *  @middleware
  * 
  *  @module middlewares/middleware
- *  @description Contains all middlewares
+ *  @description Contains all express server middlewares
  * 
  */
 

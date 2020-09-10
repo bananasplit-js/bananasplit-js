@@ -4,9 +4,7 @@
  *  @controller
  * 
  *  @module app/controllers/example
- *  @description * you can remove it or modify it *
- * 
- *  use this file as your controllers template **
+ *  @description * you can remove or modify this *
  * 
  */
 
