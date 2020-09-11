@@ -4,7 +4,7 @@
  *  @middleware
  *  @module middlewares/middleware
  * 
- *  @description Contains all express server middlewares
+ *  @description contains all express server middlewares
  * 
  */
 import Express from 'express'

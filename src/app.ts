@@ -3,7 +3,7 @@
  *  Bananasplit-js for Express
  *  @module .
  * 
- *  @description All begins here
+ *  @description all begins here
  * 
  */
 import { Stack } from './providers/bootstrap'

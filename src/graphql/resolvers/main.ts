@@ -4,7 +4,7 @@
  *  @resolvers
  *  @module graphql/resolvers/main
  * 
- *  @description Registers all graphql resolvers
+ *  @description registers all graphql resolvers
  * 
  */
 

@@ -3,7 +3,7 @@
  *  Services
  * 
  *  @module services
- *  @description Services provided by Bananasplit
+ *  @description services provided by Bananasplit
  * 
  */
 import Express from './providers/express'
@@ -19,10 +19,10 @@ import Apollo from './providers/apollo'
  * -----------------------------------------------*/
 
 
-// Express Server Provider
+// Express server provider
 const express: Express = Express.provide()
 
-// Apollo Server Provider
+// Apollo server provider
 const apollo: Apollo = Apollo.provide({
     middleware: express
 })

@@ -3,7 +3,7 @@
  *  Users seeder
  *  @seeder
  * 
- *  @description Seeds user table with fake data
+ *  @description seeds user table with fake data
  * 
  */
 'use strict';

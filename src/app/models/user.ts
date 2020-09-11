@@ -4,7 +4,7 @@
  *  @model
  *  @module app/models/user
  * 
- *  @description User basic model
+ *  @description user basic model
  * 
  */
 import sequelize from '../../providers/sequelize'

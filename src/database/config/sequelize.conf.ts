@@ -3,7 +3,7 @@
  *  Sequelize: Database configuration file
  *  @config @overwrite
  * 
- *  @description Allow to you to overwrite default sequelize options
+ *  @description allow to you to overwrite default sequelize options
  * 
  */
 import { Options as SequelizeOptions } from 'sequelize'

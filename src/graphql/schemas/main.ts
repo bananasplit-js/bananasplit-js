@@ -4,7 +4,7 @@
  *  @schemas
  *  @module graphql/schemas/main
  * 
- *  @description Register all graphql schemas
+ *  @description register all graphql schemas
  * 
  */
 

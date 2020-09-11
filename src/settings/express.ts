@@ -4,7 +4,7 @@
  *  @settings
  *  @module settings/express
  * 
- *  @description Contains all express server settings
+ *  @description contains all express server settings
  * 
  */
 import Express from 'express'
