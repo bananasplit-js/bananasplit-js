@@ -15,13 +15,11 @@ import request, { Response } from 'supertest'
 const express_server: any = express.app()
 
 
-
 beforeAll( async () => {
 
     // Do something before run the tests
 
 })
-
 
 
 /**
@@ -32,7 +30,6 @@ test( 'Test a entire module', (): void => {
     expect( 1 + 1 ).toBe( 2 )   // or is not?
 
 })
-
 
 
 afterAll( done => {

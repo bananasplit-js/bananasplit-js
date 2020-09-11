@@ -9,7 +9,6 @@
 import { Options as SequelizeOptions } from 'sequelize'
 
 
-
 const SequelizeOptions: SequelizeOptions = {
 
     /**

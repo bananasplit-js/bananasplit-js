@@ -1,9 +1,9 @@
 /**
  *
- *  Apollo Provider
- * 
+ *  Provider: Apollo
  *  @module providers/apollo
- *  @description Provides GraphQL service throw Apollo Server 
+ * 
+ *  @description provides graphql service throw apollo server 
  * 
  */
 import http from 'http'
@@ -18,7 +18,6 @@ import App from './express'
 import Schemas from '../graphql/schemas/main'
 import Resolvers from '../graphql/resolvers/main'
 import customizeGraphQL from '../graphql/custom/graphql'
-
 
 
 /**
@@ -45,12 +44,11 @@ type IApolloServer = {
 }
 
 
-
 export default
     /**
      * 
      *  @class ApolloProvider
-     *  @classdesc Provides GraphQL service throws Apollo Server
+     *  @classdesc provides graphql service throws apollo server
      * 
      */
     class ApolloProvider {
@@ -127,7 +125,7 @@ export default
          *  @private
          * 
          *  Not accesible
-         *  Implements: Singleton pattern
+         *  Implements: singleton pattern
          * 
          */
         private constructor() {
@@ -138,13 +136,13 @@ export default
         /**
          *  
          *  Singleton
-         *  @description Provide or returns a Singleton instance of ApolloProvider
+         *  @description provide or returns a singleton instance of ApolloProvider
          * 
          *  @static @method provide
          *  @param { number } port? - Port number
          *  @param { App } middleware? - Middleware throw specified app
          * 
-         *  @retuns { ApolloServer | ApolloServerExpress } instance - Apollo as Independent or throw Express Middleware
+         *  @returns { ApolloServer | ApolloServerExpress }
          * 
          */
         public static provide( { port, middleware }: IApollo = {} ) {
@@ -157,10 +155,10 @@ export default
                 // Build the Schema
                 this.instance.makeSchema()
 
-                // Returns a new manipulated Schema within an options object for pass to new ApolloServer construct
+                // Returns a new manipulated schema within an options object for pass to new ApolloServer construct
                 this.instance.customizeGraphQL()
 
-                // Creates ApolloProvider app as Middleware or independent service
+                // Creates ApolloProvider app as middleware or independent service
                 if ( middleware ) {
 
                     this.instance.service = new ApolloServerExpress( this.instance.options )
@@ -193,7 +191,7 @@ export default
 
         /**
          * 
-         *  Collect typeDefs and resolvers for provide the Schema
+         *  Collect typeDefs and resolvers for provide the schema
          *  @private @method makeSchema
          * 
          */
@@ -210,7 +208,7 @@ export default
 
         /**
          * 
-         *  Instance for manipulate the Schema before call Apollo construct (dev customization)
+         *  Instance for manipulate the schema before call apollo construct (dev customization)
          *  @private @method customizeGraphQL
          * 
          */
@@ -221,10 +219,10 @@ export default
 
         /**
          * 
-         *  Returns the ApolloProvider Singleton instance
+         *  Returns the ApolloProvider singleton instance
          * 
          *  @static @method getInstance
-         *  @returns { ApolloProvider } instance
+         *  @returns { ApolloProvider }
          * 
          */
         public static getInstance = (): ApolloProvider => ApolloProvider.instance
@@ -232,10 +230,10 @@ export default
 
         /**
          * 
-         *  Gets Apollo Server App
+         *  Gets apollo server app
          *  
          *  @method app
-         *  @returns { ApolloServerExpress | ApolloServer } server - Apollo as independent or throw Express Middleware
+         *  @returns { ApolloServerExpress | ApolloServer }
          *  
          */
         public app = (): ( ApolloServerExpress | ApolloServer ) => <ApolloServer> ApolloProvider.getInstance().service
@@ -243,10 +241,10 @@ export default
 
         /**
          *
-         *  Start the Apollo Server on the specified or default port
+         *  Start the apollo server on the specified or default port
          * 
          *  @async @method start
-         *  @returns { Promise <IApolloServer> } apolloServer - Object containing url, subscriptionsPath and the httpServer
+         *  @returns { Promise<IApolloServer> }
          * 
          */
         public async start( port?: number ): Promise <IApolloServer> {
@@ -255,7 +253,7 @@ export default
                 this.port = port
             ;
 
-            const apolloServer: IApolloServer = await ( <ApolloServer> this.service ).listen( this.port )
+            const apolloServer: IApolloServer = await ( <ApolloServer>this.service ).listen( this.port )
 
 
             return apolloServer

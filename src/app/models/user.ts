@@ -11,7 +11,6 @@ import sequelize from '../../providers/sequelize'
 import { Model, DataTypes } from 'sequelize'
 
 
-
 class User extends Model {
 
     // Fields
@@ -63,7 +62,7 @@ class User extends Model {
     }
 
 
-    // Init (do not modify)
+    // Init
     public static init() {
         super.init.call( this, this.fields, this.options )
     }
@@ -71,10 +70,8 @@ class User extends Model {
 }
 
 
-
  // Loads the model
 User.init()
-
 
 
 ; ( async () => {
@@ -82,7 +79,6 @@ User.init()
      // do something async before export the model
 
 })()
-
 
 
 export default User

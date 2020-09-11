@@ -16,7 +16,7 @@ import path from 'path'
 /**
  * 
  *  @models @import
- *  Your model import goes here.
+ *  Your model import goes here
  * 
  */
 import User from '../models/user'
@@ -26,7 +26,7 @@ export default
     /**
      * 
      *  @class Controller
-     *  @classdesc An example Controller
+     *  @classdesc an controller example
      * 
      */
     class Controller {
@@ -42,7 +42,7 @@ export default
 
 
         /**
-         *      Database Connection Test @handler
+         *      Database connection test @handler
          */
         public static async databaseConnectionTest( request: Request, response: Response ) {
 
@@ -61,7 +61,7 @@ export default
 
 
         /**
-         *      Database Query Test @handler
+         *      Database query test @handler
          */
         public static async databaseQueryTest( request: Request, response: Response ) {
 
@@ -80,7 +80,7 @@ export default
 
 
         /**
-         *      Sequelize ORM Query Test @handler
+         *      Sequelize ORM query test @handler
          */
         public static async getUsers( request: Request, response: Response ) {
 

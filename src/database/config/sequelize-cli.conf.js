@@ -8,7 +8,6 @@
  */
 
 
-
 const SequelizeCLIOptions = {
 
     /**
@@ -28,7 +27,6 @@ const SequelizeCLIOptions = {
     },
 
 
-
     /**
      * 
      *  TESTING
@@ -44,7 +42,6 @@ const SequelizeCLIOptions = {
         },
 
     },
-
 
 
     /**

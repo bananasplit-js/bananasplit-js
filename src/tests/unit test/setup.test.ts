@@ -20,7 +20,6 @@ let apollo_server: any = apollo.app()
 let express_server: any = express.app()
 
 
-
 beforeAll( async () => {
 
     // If apollo server is not an express middleware then we start the service
@@ -29,7 +28,6 @@ beforeAll( async () => {
     ;
 
 })
-
 
 
 /**
@@ -128,7 +126,6 @@ test( 'Hello from graphql is received', async() => {
     expect( JSONResponse.data.hello ).toBe( 'Hello from GraphQL!' )
 
 })
-
 
 
 afterAll( done => {

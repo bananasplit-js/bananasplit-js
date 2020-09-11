@@ -15,13 +15,11 @@ import request, { Response } from 'supertest'
 const express_server: any = express.app()
 
 
-
 beforeAll( async () => {
 
     // Do something before run the tests
 
 })
-
 
 
 /**
@@ -34,7 +32,6 @@ test( 'Here the action I describe', async () => {
     expect( 1 + 1 ).toBe( 2 )   // or is not?
 
 })
-
 
 
 afterAll( done => {

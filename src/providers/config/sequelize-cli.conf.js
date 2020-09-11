@@ -1,9 +1,9 @@
 /**
  * 
- *  Sequelize-cli configuration file
+ *  Sequelize-cli configuration
  *  @config
  * 
- *  @description Contains all sequelize-cli configurations
+ *  @description contains all sequelize-cli configurations
  *
  */
 const fs = require( 'fs' )
@@ -13,7 +13,6 @@ const SequelizeCLICustomOptions = require( './../../database/config/sequelize-cl
 
 
 dotenv.config()
-
 
 
 let SequelizeCLIOptions = {
@@ -81,12 +80,10 @@ let SequelizeCLIOptions = {
 }
 
 
-
 // Merge defaults with the developer config
 SequelizeCLIOptions.development = { ... SequelizeCLIOptions.development, ... SequelizeCLICustomOptions.development }
 SequelizeCLIOptions.test = { ... SequelizeCLIOptions.test, ... SequelizeCLICustomOptions.test }
 SequelizeCLIOptions.production = { ... SequelizeCLIOptions.production, ... SequelizeCLICustomOptions.production }
-
 
 
 module.exports = SequelizeCLIOptions

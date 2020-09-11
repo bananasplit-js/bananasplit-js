@@ -1,9 +1,9 @@
 /**
  *
- *  Express Provider
- * 
+ *  Provider: Express
  *  @module providers/express
- *  @description the Express Nodejs Provider
+ * 
+ *  @description the express nodejs provider
  * 
  */
 import http from 'http'
@@ -19,7 +19,7 @@ import MainRouter from '../app/routes/main.routes'
 
 /**
  * 
- *  Definitions for ExpressProvider Singleton parameters
+ *  Definitions for ExpressProvider singleton parameters
  *  @typedef
  * 
  */
@@ -32,7 +32,7 @@ export default
     /**
      * 
      *  @class ExpressProvider
-     *  @classdesc Provides an Express Server
+     *  @classdesc provides an express server
      * 
      */
     class ExpressProvider {
@@ -70,14 +70,13 @@ export default
         private static instance: ExpressProvider
         
 
-
         /**
          * 
          *  @constructor
          *  @private
          * 
          *  Not accesible
-         *  Implements: Singleton pattern
+         *  Implements: singleton pattern
          * 
          */
         private constructor() {
@@ -88,12 +87,12 @@ export default
         /**
          *  
          *  Singleton
-         *  @description Provides or returns a Singleton instance for ExpressProvider
+         *  @description provides or returns a singleton instance for ExpressProvider
          * 
          *  @static @method provide
-         *  @param { AppProps } config? - Configuration object
+         *  @param { AppProps } config? - configuration object
          * 
-         *  @returns { ExpressProvider } instance
+         *  @returns { ExpressProvider }
          * 
          */
         public static provide( config?: AppProps ): ExpressProvider {
@@ -121,7 +120,7 @@ export default
          *  Returns the ExpressProvider singleton instance
          * 
          *  @static @method getInstance
-         *  @returns { ExpressProvider } instance
+         *  @returns { ExpressProvider }
          * 
          */
         public static getInstance = (): ExpressProvider => ExpressProvider.instance
@@ -129,13 +128,13 @@ export default
 
         /**
          * 
-         *  Gets Express Server App
+         *  Gets express server app
          * 
          *  @method app
-         *  @returns { ExpressApp } express
+         *  @returns { ExpressApp }
          *  
          */
-        public app = (): ExpressApp => <ExpressApp> ExpressProvider.getInstance().service
+        public app = (): ExpressApp => <ExpressApp>ExpressProvider.getInstance().service
 
 
         /**
@@ -145,7 +144,7 @@ export default
          *  @private @method settings
          * 
          *  @params { AppProps } config?
-         *  @returns void
+         *  @returns { void }
          * 
          */
         private settings( config?: AppProps ): void {
@@ -157,30 +156,30 @@ export default
              *  Then do custom settings
              *  @overwrite
              */
-            Settings( <ExpressApp> this.service )
+            Settings( <ExpressApp>this.service )
 
         }
 
 
         /**
          * 
-         *  Sets All Middlewares
+         *  Sets all middlewares
          * 
          *  @private @method middlewares
-         *  @returns void
+         *  @returns { void }
          * 
          */
         private middlewares(): void {
-            Middlewares( <ExpressApp> this.service )
+            Middlewares( <ExpressApp>this.service )
         }
 
 
         /**
          * 
-         *  Adds Routes for ExpressProvider
+         *  Adds routes for ExpressProvider
          * 
          *  @private @method routes
-         *  @returns void
+         *  @returns { void }
          * 
          */
         private routes(): void {
@@ -190,13 +189,13 @@ export default
 
         /**
          * 
-         *  Start Express Server on the specified or default port
+         *  Start express server on the specified or default port
          * 
          *  @async @method start
-         *  @returns { Promise } httpServer
+         *  @returns { Promise }
          * 
          */
-        public async start( port?: number ): Promise <http.Server> {
+        public async start( port?: number ): Promise<http.Server> {
             
             if ( port )
                 this.service.set( 'port', this.port = port )

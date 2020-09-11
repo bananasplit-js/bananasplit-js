@@ -10,7 +10,6 @@
 import { Router } from 'express'
 
 
-
 // Creates a new Router
 const router: Router = Router()
 

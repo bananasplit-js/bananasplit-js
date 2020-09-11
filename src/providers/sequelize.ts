@@ -1,9 +1,9 @@
 /**
  *
- *  Sequelize Provider
- * 
+ *  Provider: Sequelize
  *  @module providers/sequelize
- *  @description Provides an ORM for interact with Database
+ * 
+ *  @description provides an ORM for interact with database
  * 
  */
 import { Sequelize, Options as SequelizeOptions } from 'sequelize'
@@ -13,14 +13,12 @@ import chalk from 'chalk'
 import dotenv from 'dotenv'
 
 
-
 dotenv.config()
-
 
 
 /**
  * 
- *  Definitions for Database Auth
+ *  Definitions for database auth
  *  @typedef
  * 
  */
@@ -37,7 +35,7 @@ type DBAuth = {
 /**
  * 
  *  @class SequelizeProvider
- *  @classdesc Provides an ORM for interact with Database
+ *  @classdesc Provides an ORM for interact with database
  * 
  */
 class SequelizeProvider {
@@ -59,14 +57,13 @@ class SequelizeProvider {
     private static instance: SequelizeProvider
 
 
-
     /**
      * 
      *  @constructor
      *  @private
      * 
      *  Not accesible
-     *  Implements: Singleton pattern
+     *  Implements: singleton pattern
      * 
      */
     private constructor() {
@@ -77,7 +74,7 @@ class SequelizeProvider {
     /**
      *  
      *  Singleton
-     *  @description Build or returns a Singleton instance for SequelizeProvider
+     *  @description build or returns a singleton instance for SequelizeProvider
      * 
      *  @static @method build
      *  @returns { SequelizeProvider }
@@ -90,15 +87,16 @@ class SequelizeProvider {
             // Creates a new instance
             this.instance = new SequelizeProvider()
 
-            // Makes Auth credentials
+            // Makes auth credentials
             const DBAuth: DBAuth | string = this.instance.makeAuth()
+
             // Makes config options
             const SequelizeOptions: SequelizeOptions = this.instance.makeOptions()
 
 
-            // Creates Sequelize instance
+            // Creates sequelize instance
             if ( typeof DBAuth === 'object' )
-                this.instance.service = new Sequelize( ... Object.values( <Object> DBAuth ), SequelizeOptions )
+                this.instance.service = new Sequelize( ... Object.values( <Object>DBAuth ), SequelizeOptions )
             
             else
                 // String connection
@@ -114,7 +112,7 @@ class SequelizeProvider {
 
     /**
      * 
-     *  Makes the DB Auth
+     *  Makes the DB auth
      *  @private @method makeAuth
      * 
      *  @returns { DBAuth | string }
@@ -175,21 +173,21 @@ class SequelizeProvider {
 
             default:
                 
-                console.log( chalk.bgRed.white( 'Enviroment not valid. Options are: "development", "test", "production".' ) )
+                console.log( chalk.bgRed.white('Enviroment not valid. Options are: "development", "test", "production".') )
 
         }
 
 
         if ( process.env[ DB_STRING ] )
-            DBAuth = <string> process.env[ DB_STRING ]
+            DBAuth = <string>process.env[ DB_STRING ]
 
         else
 
             DBAuth = {
 
-                database: <string> process.env[ DB_DATABASE ],
-                username: <string> process.env[ DB_USERNAME ],
-                password: <string> process.env[ DB_PASSWORD ]
+                database: <string>process.env[ DB_DATABASE ],
+                username: <string>process.env[ DB_USERNAME ],
+                password: <string>process.env[ DB_PASSWORD ]
             
             }
 
@@ -203,7 +201,7 @@ class SequelizeProvider {
 
     /**
      * 
-     *  Makes the Configuration Options
+     *  Makes the configuration options
      * 
      *  @private @method makeOptions
      *  @returns { SequelizeOptions }
@@ -274,7 +272,7 @@ class SequelizeProvider {
             ... SequelizeOptions,
 
             dialect: eval( `"${process.env[ DB_DIALECT ]}"` ),
-            host: <string> process.env[ DB_HOST ],
+            host: <string>process.env[ DB_HOST ],
             port: parseInt( process.env[ DB_PORT ]! )
         
         }
@@ -297,16 +295,14 @@ class SequelizeProvider {
      *  @returns { Sequelize }
      * 
      */
-    public app = (): Sequelize => <Sequelize> this.service
+    public app = (): Sequelize => <Sequelize>this.service
 
 }
-
 
 
 // Sequelize singleton instance for usage
 const sequelizeProvider: SequelizeProvider = SequelizeProvider.provide()
 const sequelize: Sequelize = sequelizeProvider.app()
-
 
 
 export default sequelize

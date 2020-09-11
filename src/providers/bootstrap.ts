@@ -3,7 +3,7 @@
  *  Providers: Bootstrap
  *  @module providers/bootstrap
  * 
- *  @description Runs bananasplit services!
+ *  @description runs bananasplit services!
  * 
  */
 import chalk from 'chalk'
@@ -18,7 +18,7 @@ interface IStack {
 /**
  * 
  *  Stack
- *  @description Builds a stack to serve the services
+ *  @description builds a stack to serve the services
  * 
  *  @param { any[] } services - an array of services
  *  @returns { IStack }

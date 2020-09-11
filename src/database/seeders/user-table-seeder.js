@@ -19,7 +19,6 @@ const faker = require( 'faker' )
  */
 
 
-
 module.exports = {
 
     up: ( queryInterface, Sequelize ) => {

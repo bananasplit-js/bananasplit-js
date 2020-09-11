@@ -10,7 +10,6 @@
 import { GraphQLSchema } from 'graphql'
 
 
-
 export default
 
     ( schema: GraphQLSchema ): object => {
@@ -20,7 +19,6 @@ export default
 
 
         // End ----------------------------------------------------
-
 
 
         const options: object = {

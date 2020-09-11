@@ -17,7 +17,6 @@ import path from 'path'
 dontenv.config()
 
 
-
 export default
 
     ( app: Express.Application ) => {
