@@ -11,6 +11,7 @@
 import http from 'http'
 import Express, { Application as ExpressApp } from 'express'
 import chalk from 'chalk'
+import boxen from 'boxen'
 
 import Settings from '../settings/express'
 import Middlewares from '../middlewares/middleware'
@@ -36,6 +37,14 @@ export default
      * 
      */
     class ExpressProvider {
+
+        /**
+         *
+         *  @property { string } name
+         * 
+         */
+        public name: string = 'Express'
+
         
         /**
          * 
@@ -195,18 +204,6 @@ export default
             ;
 
             const httpServer: http.Server = await this.service.listen( this.service.get('port') )
-
-            
-            if ( process.env.NODE_ENV === 'development' ) {
-
-                console.log(
-                    chalk.bgYellow.black( 'App' ), '->',
-                    chalk.bgWhite.black( `http://localhost:${this.service.get('port')} `)
-                )
-
-                console.log( 'Your app is running!\n' )
-
-            }
 
 
             return httpServer

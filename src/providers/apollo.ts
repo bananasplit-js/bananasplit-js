@@ -59,6 +59,14 @@ export default
 
         /**
          *
+         *  @property { string } name
+         * 
+         */
+        public name: string = 'GraphQL'
+
+
+        /**
+         *
          *  @property { boolean } middleware
          * 
          */
@@ -71,6 +79,14 @@ export default
          * 
          */
         public port: number = 4627
+
+
+        /**
+         *
+         *  @property { string } path
+         * 
+         */
+        public path: string = ""
 
 
         /**
@@ -157,16 +173,7 @@ export default
 
                     this.instance.middleware = true
                     this.instance.port = 0
-
-                    
-                    if ( process.env.NODE_ENV === 'development' )
-
-                        console.log(
-                            chalk.bgCyan.black( 'GraphQL' ), '->',
-                            chalk.bgWhite.black( this.instance.service.graphqlPath )
-                        )
-
-                    ;
+                    this.instance.path = this.instance.service.graphqlPath
 
                 } else {
 
@@ -245,24 +252,12 @@ export default
          * 
          */
         public async start( port?: number ): Promise <IApolloServer> {
-
+            
             if ( port )
                 this.port = port
             ;
 
             const apolloServer: IApolloServer = await ( <ApolloServer> this.service ).listen( this.port )
-            
-
-            if ( process.env.NODE_ENV === 'development' ) {
-
-                console.log(
-                    chalk.bgCyan.black( 'GraphQL' ), '->',
-                    chalk.bgWhite.black( `http://localhost:${this.port}` )
-                )
-
-                console.log( 'GraphQL is running!\n' )
-
-            }
 
 
             return apolloServer

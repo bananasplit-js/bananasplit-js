@@ -1,19 +1,20 @@
 /**
  * 
  *  Bananasplit-js for Express
+ *  @module .
  * 
- *  @module app
  *  @description All begins here
  * 
  */
 
 
+import { Stack } from './providers/bootstrap'
 import { express, apollo } from './services'
 
 
-; ( async () => {
+const services = Stack([
+    express,
+    apollo
+])
 
-    // Start the services
-    await express.start()
-
-})()
+services.serve()
