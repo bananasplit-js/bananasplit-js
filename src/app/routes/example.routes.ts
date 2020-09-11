@@ -2,8 +2,8 @@
  * 
  *  Router example
  *  @routes
- * 
  *  @module app/routes/example.routes
+ * 
  *  @description * you can remove or modify this file *
  * 
  */

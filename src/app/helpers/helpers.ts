@@ -2,8 +2,8 @@
  * 
  *  Helpers
  * 	@helpers
- * 
  *  @module app/helpers/helpers
+ * 
  * 	@description Contains nice helpful functions ready to help
  * 
  */

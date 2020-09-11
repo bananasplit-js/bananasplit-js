@@ -2,13 +2,11 @@
  * 
  *  Test: Setup test
  *  @test
- * 
  *  @module "tests/unit test/setup"
+ * 
  *  @description * you can remove or modify this file *
  * 
  */
-
-
 import { express, apollo } from '../../services'
 import sequelize from '../../providers/sequelize'
 

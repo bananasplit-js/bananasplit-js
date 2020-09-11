@@ -2,8 +2,8 @@
  * 
  *  Controller
  *  @controller
- * 
  *  @module app/controllers/example
+ * 
  *  @description * you can remove or modify this *
  * 
  */

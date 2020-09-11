@@ -1,7 +1,6 @@
 /**
  * 
  *  Apollo: Customize
- * 
  *  @customize
  *  @module graphql/custom/graphql
  * 

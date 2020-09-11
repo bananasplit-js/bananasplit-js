@@ -2,8 +2,8 @@
  * 
  *  Main Routes
  *  @routes
- * 
  *  @module app/routes/main.routes
+ * 
  *  @description registers all application routers
  * 
  */

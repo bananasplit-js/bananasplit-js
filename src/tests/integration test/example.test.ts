@@ -2,13 +2,11 @@
  * 
  *  Test: Integration test example
  *  @test
- * 
  *  @module "tests/integration test/example"
+ * 
  *  @description * you can remove or modify this file *
  * 
  */
-
-
 import { express } from '../../services'
 import request, { Response } from 'supertest'
 

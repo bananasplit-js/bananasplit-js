@@ -2,8 +2,8 @@
  * 
  *  Settings: Express
  *  @settings
- * 
  *  @module settings/express
+ * 
  *  @description Contains all express server settings
  * 
  */
