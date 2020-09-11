@@ -6,9 +6,6 @@
  *  @description Provides an ORM for interact with Database
  * 
  */
-
-
-
 import { Sequelize, Options as SequelizeOptions } from 'sequelize'
 import SequelizeCustomOptions from '../database/config/sequelize.conf'
 

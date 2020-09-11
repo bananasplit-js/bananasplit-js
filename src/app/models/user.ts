@@ -7,9 +7,6 @@
  *  @description User basic model
  * 
  */
-
-
-
 import sequelize from '../../providers/sequelize'
 import { Model, DataTypes } from 'sequelize'
 

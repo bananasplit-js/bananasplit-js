@@ -1,13 +1,11 @@
 /**
  * 
  *  Sequelize-cli configuration file
- *  @configig
+ *  @config
  * 
  *  @description Contains all sequelize-cli configurations
  *
  */
-
-
 const fs = require( 'fs' )
 const dotenv = require( 'dotenv' )
 

@@ -7,9 +7,6 @@
  *  @description * you can remove or modify this file *
  * 
  */
-
-
-
 import { gql } from 'apollo-server'
 
 

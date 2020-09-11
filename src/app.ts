@@ -6,8 +6,6 @@
  *  @description All begins here
  * 
  */
-
-
 import { Stack } from './providers/bootstrap'
 import { express, apollo } from './services'
 

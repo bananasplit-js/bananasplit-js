@@ -6,8 +6,6 @@
  *  @description Runs bananasplit services!
  * 
  */
-
-
 import chalk from 'chalk'
 import { servicesLog } from './helpers'
 
@@ -29,6 +27,7 @@ interface IStack {
 const Stack = ( services: any[] ): IStack => ({
 
     async serve(): Promise<void> {
+
         let output: string[] = []
 
         for( const service of services ) {
@@ -44,8 +43,10 @@ const Stack = ( services: any[] ): IStack => ({
             output.push( `${chalk.bold(`- ${service.name}:`)}  ${host}` )
         }
 
+        
         // SERVICES STATUS
         servicesLog( output.join('\n') )
+        
     }
 
 })

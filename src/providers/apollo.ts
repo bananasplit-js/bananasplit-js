@@ -6,10 +6,8 @@
  *  @description Provides GraphQL service throw Apollo Server 
  * 
  */
-
-
-
 import http from 'http'
+
 import { ApolloServer } from 'apollo-server'
 import { ApolloServer as ApolloServerExpress, makeExecutableSchema } from 'apollo-server-express'
 import { GraphQLSchema } from 'graphql'

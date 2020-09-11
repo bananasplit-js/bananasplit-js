@@ -6,18 +6,14 @@
  *  @description Seeds user table with fake data
  * 
  */
-
-
-
 'use strict';
-
 
 const faker = require( 'faker' )
 
 
 /**
  * 
- *  You can also set your locate with:
+ *  You can set your locate with:
  *  faker.setLocale('es')
  * 
  */
@@ -30,7 +26,7 @@ module.exports = {
 
         let data = []
         
-        const date = new Date()
+        const date = new Date
         let amount = 10
 
         while ( amount-- )

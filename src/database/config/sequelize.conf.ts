@@ -1,13 +1,11 @@
 /**
  * 
  *  Sequelize: Database configuration file
- *  @configig @overwrite
+ *  @config @overwrite
  * 
  *  @description Allow to you to overwrite default sequelize options
  * 
  */
-
-
 import { Options as SequelizeOptions } from 'sequelize'
 
 

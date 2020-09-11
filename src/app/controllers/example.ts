@@ -7,8 +7,6 @@
  *  @description * you can remove or modify this *
  * 
  */
-
-
 import { Request, Response } from 'express'
 import sequelize from '../../providers/sequelize'
 

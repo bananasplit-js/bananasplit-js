@@ -8,9 +8,6 @@
  *  @description Allow to manipulate the graphql schema as you want. Returns an options object that is passed directly to the ApolloServer constructor
  * 
  */
-
-
-
 import { GraphQLSchema } from 'graphql'
 
 
@@ -35,7 +32,6 @@ export default
              *  Your apollo options goes here
              * 
              */
-
             schema,
             context: {},
 

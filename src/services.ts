@@ -6,9 +6,6 @@
  *  @description Services provided by Bananasplit
  * 
  */
-
-
-
 import Express from './providers/express'
 import Apollo from './providers/apollo'
 
@@ -16,7 +13,7 @@ import Apollo from './providers/apollo'
 
 /* ------------------------------------------------
  *  
- *  You can specify ports
+ *  You can specify ports:
  *      Express.provide({ port: 7000 })
  *  
  * -----------------------------------------------*/

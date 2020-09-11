@@ -7,8 +7,6 @@
  *  @description Contains all express server settings
  * 
  */
-
-
 import Express from 'express'
 import path from 'path'
 

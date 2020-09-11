@@ -6,9 +6,6 @@
  *  @description Migration for users table
  * 
  */
-
-
-
 'use strict';
 
 

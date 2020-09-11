@@ -7,9 +7,6 @@
  *  @description Contains all express server middlewares
  * 
  */
-
-
-
 import Express from 'express'
 
 import Morgan from 'morgan'
@@ -31,7 +28,6 @@ export default
          *  Your middlewares goes here
          * 
          */
-        
         if ( process.env.NODE_ENV === 'development' )
             app.use( Morgan('dev') )
         ;
