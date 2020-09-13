@@ -8,7 +8,7 @@
  * 
  */
 import { Request, Response } from 'express'
-import sequelize from '../../providers/sequelize'
+// import { Sequelize } from '../../providers'
 
 import path from 'path'
 
@@ -46,13 +46,13 @@ export default
          */
         public static async databaseConnectionTest( request: Request, response: Response ) {
 
-            try {
-                await sequelize.authenticate()
-                response.status( 200 ).send( 'Connection has been established successfully.' )
+            // try {
+            //     await Sequelize.authenticate()
+            //     response.status( 200 ).send( 'Connection has been established successfully.' )
 
-            } catch(e) {
-                response.status( 500 ).send( `Unable to connect to the database: ${e}` )
-            }
+            // } catch(e) {
+            //     response.status( 500 ).send( `Unable to connect to the database: ${e}` )
+            // }
 
 
             return response
@@ -65,13 +65,13 @@ export default
          */
         public static async databaseQueryTest( request: Request, response: Response ) {
 
-            try {
-                const [ result ] = await sequelize.query( "SELECT 'Hello from database!' as result" )
-                response.status( 200 ).send( result )
+            // try {
+            //     const [ result ] = await Sequelize.query( "SELECT 'Hello from database!' as result" )
+            //     response.status( 200 ).send( result )
 
-            } catch(e) {
-                response.status( 500 ).send( `Unable to connect to the database: ${e}` )
-            }
+            // } catch(e) {
+            //     response.status( 500 ).send( `Unable to connect to the database: ${e}` )
+            // }
 
 
             return response

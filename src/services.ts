@@ -6,8 +6,7 @@
  *  @description services provided by Bananasplit
  * 
  */
-import Express from './providers/express'
-import Apollo from './providers/apollo'
+import { Express, Apollo } from './providers'
 
 
 /* ------------------------------------------------

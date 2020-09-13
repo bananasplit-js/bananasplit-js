@@ -1,7 +1,7 @@
 /**
  *
  *  Provider: Express
- *  @module providers/express
+ *  @module providers/modules/express
  * 
  *  @description the express nodejs provider
  * 
@@ -12,9 +12,9 @@ import Express, { Application as ExpressApp } from 'express'
 import chalk from 'chalk'
 import boxen from 'boxen'
 
-import Settings from '../settings/express'
-import Middlewares from '../middlewares/middleware'
-import MainRouter from '../app/routes/main.routes'
+import Settings from '../../settings/express'
+import Middlewares from '../../middlewares/middleware'
+import MainRouter from '../../app/routes/main.routes'
 
 
 /**

@@ -1,13 +1,13 @@
 /**
  *
  *  Provider: Sequelize
- *  @module providers/sequelize
+ *  @module providers/modules/sequelize
  * 
  *  @description provides an ORM for interact with database
  * 
  */
 import { Sequelize, Options as SequelizeOptions } from 'sequelize'
-import SequelizeCustomOptions from '../database/config/sequelize.conf'
+import SequelizeCustomOptions from '../../database/config/sequelize.conf'
 
 import chalk from 'chalk'
 import dotenv from 'dotenv'
@@ -82,7 +82,7 @@ class SequelizeProvider {
      */
     public static provide(): SequelizeProvider {
 
-        if ( ! this.instance ) {
+        if ( !this.instance ) {
 
             // Creates a new instance
             this.instance = new SequelizeProvider()
@@ -96,7 +96,7 @@ class SequelizeProvider {
 
             // Creates sequelize instance
             if ( typeof DBAuth === 'object' )
-                this.instance.service = new Sequelize( ... Object.values( <Object>DBAuth ), SequelizeOptions )
+                this.instance.service = new Sequelize( ...Object.values( <Object>DBAuth ), SequelizeOptions )
             
             else
                 // String connection
@@ -269,7 +269,7 @@ class SequelizeProvider {
 
         SequelizeOptions = {
 
-            ... SequelizeOptions,
+            ...SequelizeOptions,
 
             dialect: eval( `"${process.env[ DB_DIALECT ]}"` ),
             host: <string>process.env[ DB_HOST ],
@@ -279,7 +279,7 @@ class SequelizeProvider {
 
 
         // Overwrite default options by dev options
-        SequelizeOptions = { ... SequelizeOptions, ... SequelizeCustomOptions }
+        SequelizeOptions = { ...SequelizeOptions, ...SequelizeCustomOptions }
 
 
         return SequelizeOptions
@@ -304,5 +304,5 @@ class SequelizeProvider {
 const sequelizeProvider: SequelizeProvider = SequelizeProvider.provide()
 const sequelize: Sequelize = sequelizeProvider.app()
 
-
+console.log("pasando objeto desde raíz")
 export default sequelize

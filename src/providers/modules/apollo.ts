@@ -1,7 +1,7 @@
 /**
  *
  *  Provider: Apollo
- *  @module providers/apollo
+ *  @module providers/modules/apollo
  * 
  *  @description provides graphql service throw apollo server 
  * 
@@ -15,9 +15,9 @@ import chalk from 'chalk'
 
 import App from './express'
 
-import Schemas from '../graphql/schemas/main'
-import Resolvers from '../graphql/resolvers/main'
-import customizeGraphQL from '../graphql/custom/graphql'
+import Schemas from '../../graphql/schemas/main'
+import Resolvers from '../../graphql/resolvers/main'
+import customizeGraphQL from '../../graphql/custom/graphql'
 
 
 /**
