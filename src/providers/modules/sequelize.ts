@@ -304,5 +304,5 @@ class SequelizeProvider {
 const sequelizeProvider: SequelizeProvider = SequelizeProvider.provide()
 const sequelize: Sequelize = sequelizeProvider.app()
 
-console.log("pasando objeto desde raíz")
+
 export default sequelize

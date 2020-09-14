@@ -7,8 +7,8 @@
  *  @description * you can remove or modify this file *
  * 
  */
+import { Sequelize } from '../../providers'
 import { express, apollo } from '../../services'
-import sequelize from '../../providers/modules/sequelize'
 
 import request, { Response } from 'supertest'
 
@@ -136,7 +136,7 @@ afterAll( done => {
     ;
 
     // Closing database connection allow jest to exit successfully
-    sequelize.close()
+    Sequelize.close()
     done()
     
 })

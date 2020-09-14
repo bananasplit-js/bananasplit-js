@@ -7,11 +7,10 @@
  *  @description user basic model
  * 
  */
-// import Sequelize from '../../providers/modules/sequelize'
 import { Sequelize } from '../../providers'
 import { Model, DataTypes } from 'sequelize'
 
-console.log( "llega objeto", typeof Sequelize )
+
 class User extends Model {
 
     // Fields
@@ -72,7 +71,7 @@ class User extends Model {
 
 
  // Loads the model
-// User.init()
+User.init()
 
 
 ; ( async () => {
