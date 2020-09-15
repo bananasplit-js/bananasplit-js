@@ -1,22 +1,22 @@
 /**
  * 
- *  Sequelize: Database configuration file
- *  @config @overwrite
+ *  Sequelize: Database configuration
+ *  @config
  * 
  *  @description allow to you to overwrite default sequelize options
  * 
  */
-import { Options as SequelizeOptions } from 'sequelize'
+import { Options } from 'sequelize'
 
 
-const SequelizeOptions: SequelizeOptions = {
+const Options: Options = {
 
     /**
      * 
-     *  @options @overwrite
+     *  @options
      *  Sequelize options
      * 
-     *  This option object is directly passed to sequelize constructor (provider)
+     *  This object is passed directly to the sequelize constructor in providers
      * 
      */
 
@@ -30,4 +30,4 @@ const SequelizeOptions: SequelizeOptions = {
 }
 
 
-export default SequelizeOptions
+export default Options

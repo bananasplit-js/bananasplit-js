@@ -1,20 +1,20 @@
 /**
  * 
- *  Sequelize-cli configuration file
- *  @config @overwrite
+ *  Sequelize: Client configuration (sequelize-cli)
+ *  @config
  * 
- *  @description allow to you overwrite the default configuration
+ *  @description overwrites the default sequelize client configuration
  * 
  */
 
 
-const SequelizeCLIOptions = {
+const Options = {
 
     /**
      * 
      *  DEVELOPMENT
      * 
-     *  @options @overwrite
+     *  @options
      *  Configuration for development
      * 
      */
@@ -31,7 +31,7 @@ const SequelizeCLIOptions = {
      * 
      *  TESTING
      * 
-     *  @options @overwrite
+     *  @options
      *  Configuration for testing
      * 
      */
@@ -48,7 +48,7 @@ const SequelizeCLIOptions = {
      * 
      *  PRODUCTION
      * 
-     *  @options @overwrite
+     *  @options
      *  Configuration for production
      * 
      */
@@ -64,4 +64,4 @@ const SequelizeCLIOptions = {
 }
 
 
-module.exports = SequelizeCLIOptions
+module.exports = Options

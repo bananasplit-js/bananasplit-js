@@ -6,16 +6,14 @@
  *  @description contains all sequelize-cli configurations
  *
  */
-const fs = require( 'fs' )
 const dotenv = require( 'dotenv' )
-
-const SequelizeCLICustomOptions = require( './../../database/config/sequelize-cli.conf' )
+const CustomOptions = require( '../../database/config/sequelize-cli.conf' )
 
 
 dotenv.config()
 
 
-let SequelizeCLIOptions = {
+let Options = {
 
     // For development
 
@@ -80,10 +78,10 @@ let SequelizeCLIOptions = {
 }
 
 
-// Merge defaults with the developer config
-SequelizeCLIOptions.development = { ... SequelizeCLIOptions.development, ... SequelizeCLICustomOptions.development }
-SequelizeCLIOptions.test = { ... SequelizeCLIOptions.test, ... SequelizeCLICustomOptions.test }
-SequelizeCLIOptions.production = { ... SequelizeCLIOptions.production, ... SequelizeCLICustomOptions.production }
+// Merge defaults with customs
+Options.development = { ...Options.development, ...CustomOptions.development }
+Options.test = { ...Options.test, ...CustomOptions.test }
+Options.production = { ...Options.production, ...CustomOptions.production }
 
 
-module.exports = SequelizeCLIOptions
+module.exports = Options

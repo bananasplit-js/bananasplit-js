@@ -17,7 +17,7 @@ export default
 
         /**
          * 
-         *  @settings @overwrite
+         *  @settings
          *  Your express settings goes here
          * 
          */
