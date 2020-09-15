@@ -13,7 +13,7 @@ import chalk from 'chalk'
 import boxen from 'boxen'
 
 import Settings from '../../settings/express'
-import Middlewares from '../../middlewares/middleware'
+import Middlewares from '../../middlewares/express'
 import MainRouter from '../../app/routes/main.routes'
 
 

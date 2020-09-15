@@ -2,7 +2,7 @@
  * 
  *  Middlewares
  *  @middleware
- *  @module middlewares/middleware
+ *  @module middlewares/express
  * 
  *  @description contains all express server middlewares
  * 

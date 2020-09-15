@@ -2,9 +2,9 @@
  * 
  *  Helpers
  * 	@helpers
- *  @module app/helpers/helpers
+ *  @module app/helpers/example
  * 
- * 	@description contains nice helpful functions ready to help
+ * 	@description helper file example containing helpful functions to help
  * 
  */
 
