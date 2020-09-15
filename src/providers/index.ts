@@ -3,7 +3,7 @@
  *  Providers
  *  @module providers
  * 
- *  @description the providers point to import
+ *  @description the providers index point to import
  * 
  */
 import Sequelize from './modules/sequelize'

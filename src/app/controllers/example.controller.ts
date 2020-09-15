@@ -30,20 +30,17 @@ export default
     class Controller {
 
         /**
-         *      Hello response @handler
+         *  Hello response @handler
          */
         public static hello( request: Request, response: Response ) {
-
             return response.status( 200 ).send( 'GET 200 / Hello' )
-            
         }
 
 
         /**
-         *      Database connection test @handler
+         *  Database connection test @handler
          */
         public static async databaseConnectionTest( request: Request, response: Response ) {
-
             try {
                 await Sequelize.authenticate()
                 response.status( 200 ).send( 'Connection has been established successfully.' )
@@ -54,15 +51,13 @@ export default
 
 
             return response
-
         }
 
 
         /**
-         *      Database query test @handler
+         *  Database query test @handler
          */
         public static async databaseQueryTest( request: Request, response: Response ) {
-
             try {
                 const [ result ] = await Sequelize.query( "SELECT 'Hello from database!' as result" )
                 response.status( 200 ).send( result )
@@ -73,15 +68,13 @@ export default
 
 
             return response
-
         }
 
 
         /**
-         *      Sequelize ORM query test @handler
+         *  Sequelize ORM query test @handler
          */
         public static async getUsers( request: Request, response: Response ) {
-
             try {
                 const result = await User.findAll()
                 response.status( 200 ).send( result )
@@ -92,7 +85,6 @@ export default
 
 
             return response
-
         }
 
     }

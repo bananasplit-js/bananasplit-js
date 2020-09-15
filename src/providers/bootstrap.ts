@@ -25,15 +25,14 @@ interface IStack {
  * 
  */
 const Stack = ( services: any[] ): IStack => ({
-
+    
     async serve(): Promise<void> {
-
         let output: string[] = []
 
-        for( const service of services ) {
+        for ( const service of services ) {
             let host: string = `http://localhost:${service.port}`
 
-            if( !service.middleware )
+            if ( !service.middleware )
                 await service.start()
 
             else
