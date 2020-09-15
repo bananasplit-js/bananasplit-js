@@ -1,7 +1,6 @@
 /**
  * 
  *  Test: Setup test
- *  @test
  *  @module "tests/unit test/setup"
  * 
  *  @description * you can remove or modify this file *
@@ -31,7 +30,7 @@ beforeAll( async () => {
 
 
 /**
- *  @test   Hello response is received
+ *  @test Hello response is received
  */
 test( 'Hello response is received', async () => {
 
@@ -44,7 +43,7 @@ test( 'Hello response is received', async () => {
 
 
 /**
- *  @test   Database authetication is correct
+ *  @test Database authetication is correct
  */
 test( 'Database authetication is correct', async () => {
 
@@ -57,7 +56,7 @@ test( 'Database authetication is correct', async () => {
 
 
 /**
- *  @test   Hello from database is received
+ *  @test Hello from database is received
  */
 test( 'Hello from database is received', async () => {
 
@@ -71,7 +70,7 @@ test( 'Hello from database is received', async () => {
 })
 
 /**
- *  @test   User model returns all users
+ *  @test User model returns all users
  */
 test( 'User model returns all users', async () => {
 
@@ -86,7 +85,7 @@ test( 'User model returns all users', async () => {
 
 
 /**
- *  @test   Graphql playground loads
+ *  @test Graphql playground loads
  */
 test( 'Graphql playground loads', async() => {
 
@@ -107,7 +106,7 @@ test( 'Graphql playground loads', async() => {
 
 
 /**
- *  @test   Hello from graphql is received
+ *  @test Hello from graphql is received
  */
 test( 'Hello from graphql is received', async() => {
 

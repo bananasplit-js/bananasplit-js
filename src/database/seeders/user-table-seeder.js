@@ -1,8 +1,6 @@
 /**
  * 
  *  Users seeder
- *  @seeder
- * 
  *  @description seeds user table with fake data
  * 
  */

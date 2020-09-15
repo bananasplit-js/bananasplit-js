@@ -1,7 +1,6 @@
 /**
  * 
  *  Graphql: Resolvers
- *  @resolvers
  *  @module graphql/resolvers/main
  * 
  *  @description registers all graphql resolvers

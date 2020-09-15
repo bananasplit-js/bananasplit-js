@@ -1,7 +1,6 @@
 /**
  * 
  *  Test: Integration test example
- *  @test
  *  @module "tests/integration test/example"
  * 
  *  @description * you can remove or modify this file *
@@ -23,7 +22,7 @@ beforeAll( async () => {
 
 
 /**
- *  @test   Test a entire module
+ *  @test Test a entire module
  */
 test( 'Test a entire module', (): void => {
 

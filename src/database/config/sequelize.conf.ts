@@ -1,8 +1,6 @@
 /**
  * 
  *  Sequelize: Database configuration
- *  @config
- * 
  *  @description allow to you to overwrite default sequelize options
  * 
  */
@@ -14,8 +12,6 @@ const Options: Options = {
     /**
      * 
      *  @options
-     *  Sequelize options
-     * 
      *  This object is passed directly to the sequelize constructor in providers
      * 
      */

@@ -1,7 +1,6 @@
 /**
  * 
  *  Test: Unit test example
- *  @test
  *  @module "tests/unit test/example"
  * 
  *  @description * you can remove or modify this file *
@@ -23,7 +22,7 @@ beforeAll( async () => {
 
 
 /**
- *  @test   Here the action I describe
+ *  @test Here the action I describe
  */
 test( 'Here the action I describe', async () => {
 

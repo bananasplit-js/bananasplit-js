@@ -1,7 +1,6 @@
 /**
  * 
  *  Schema example
- *  @schemas
  *  @module graphql/schemas/example
  * 
  *  @description * you can remove or modify this file *

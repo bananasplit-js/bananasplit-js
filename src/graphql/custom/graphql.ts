@@ -1,7 +1,6 @@
 /**
  * 
  *  Apollo: Customize
- *  @customize
  *  @module graphql/custom/graphql
  * 
  *  @description allow to manipulate the graphql schema as you want. Returns an options object that is passed directly to the ApolloServer constructor

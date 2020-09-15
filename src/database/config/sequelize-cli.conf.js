@@ -1,8 +1,6 @@
 /**
  * 
- *  Sequelize: Client configuration (sequelize-cli)
- *  @config
- * 
+ *  Sequelize: Client configuration
  *  @description overwrites the default sequelize client configuration
  * 
  */
@@ -13,9 +11,7 @@ const Options = {
     /**
      * 
      *  DEVELOPMENT
-     * 
      *  @options
-     *  Configuration for development
      * 
      */
     development: {
@@ -30,9 +26,7 @@ const Options = {
     /**
      * 
      *  TESTING
-     * 
      *  @options
-     *  Configuration for testing
      * 
      */
     test: {
@@ -47,9 +41,7 @@ const Options = {
     /**
      * 
      *  PRODUCTION
-     * 
      *  @options
-     *  Configuration for production
      * 
      */
     production: {

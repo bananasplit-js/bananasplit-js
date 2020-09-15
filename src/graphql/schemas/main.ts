@@ -1,7 +1,6 @@
 /**
  * 
  *  Graphql: Schemas
- *  @schemas
  *  @module graphql/schemas/main
  * 
  *  @description register all graphql schemas
