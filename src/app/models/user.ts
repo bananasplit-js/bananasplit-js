@@ -1,7 +1,6 @@
 /**
  *
  *  User model
- *  @model
  *  @module app/models/user
  * 
  *  @description user basic model

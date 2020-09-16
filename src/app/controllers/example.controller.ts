@@ -1,7 +1,6 @@
 /**
  * 
  *  Controller
- *  @controller
  *  @module app/controllers/example
  * 
  *  @description * you can remove or modify this *
@@ -13,7 +12,7 @@ import { Sequelize } from '../../providers'
 
 /**
  * 
- *  @models @import
+ *  @model @import
  *  Your model import goes here
  * 
  */
@@ -38,7 +37,7 @@ export default
 
 
         /**
-         *  Database connection test @handler
+         *  @handler Database connection test
          */
         public static async databaseConnectionTest( request: Request, response: Response ) {
             try {
@@ -55,7 +54,7 @@ export default
 
 
         /**
-         *  Database query test @handler
+         *  @handler Database query test
          */
         public static async databaseQueryTest( request: Request, response: Response ) {
             try {
@@ -72,7 +71,7 @@ export default
 
 
         /**
-         *  Sequelize ORM query test @handler
+         *  @handler Sequelize ORM query test
          */
         public static async getUsers( request: Request, response: Response ) {
             try {
