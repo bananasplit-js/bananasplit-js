@@ -3,7 +3,7 @@
  *  Main Routes
  *  @module app/routes/main.routes
  * 
- *  @description registers all application routers
+ *  @description registers all the application routers
  * 
  */
 
@@ -11,20 +11,20 @@
 /**
  *  
  *  @import @routers
- *  Your custom routers import goes here
+ *  Your routers import goes here
  * 
  */
-import ExampleRouter from './example.routes'
+import SetupRouter from './setup.routes'
 
 
 export default [
 
     /**
      * 
-     *  @register @routes
-     *  Your custom routers register goes here
+     *  @registry @routers
+     *  Your routers register goes here
      *  
      */
-    ExampleRouter,
+    SetupRouter,
 
 ]

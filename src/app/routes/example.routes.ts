@@ -1,15 +1,14 @@
 /**
  * 
- *  Router example
- *  @module app/routes/example.routes
+ *  Router: { Name }
+ *  @module app/routes/{name}
  * 
- *  @description * you can remove or modify this file *
+ *  @description { description }
  * 
  */
 import { Router } from 'express'
 
 
-// Creates a new Router
 const router: Router = Router()
 
 
@@ -19,10 +18,10 @@ const router: Router = Router()
  *  Your controller import goes here
  * 
  */
-import Controller from '../controllers/example.controller'
 
 
-($ => {
+
+; ( $ => {
 
     /**
      * 
@@ -30,26 +29,9 @@ import Controller from '../controllers/example.controller'
      *  Your routes goes here
      * 
      */
-
-    // Hello
-    $.route( '/' )
-        .get( Controller.hello )
-    
-
-    // Database connection test
-    $.route( '/auth-test' )
-        .get( Controller.databaseConnectionTest )
-    
-
-    // Database query test
-    $.route( '/query-test' )
-        .get( Controller.databaseQueryTest )
-
-
-    // Sequelize ORM test, get users
-    $.route( '/model-test' )
-        .get( Controller.getUsers )
-    
+    $.route( '/{path}' )
+        .get( /* @handler */ )
+    ;
 
 })( router )
 

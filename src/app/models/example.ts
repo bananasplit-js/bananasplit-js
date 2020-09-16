@@ -1,25 +1,21 @@
 /**
  *
- *  Model: User
- *  @module app/models/user
+ *  Model: { Name }
+ *  @module app/models/{name}
  * 
- *  @description user basic model
+ *  @description { description }
  * 
  */
 import { Sequelize as sequelize } from '../../providers'
 import { Model, DataTypes } from 'sequelize'
 
 
-class User extends Model {
+class Name extends Model {
 
     /**
      *  @def
      */
     private id!: number
-    private name!: string
-    private lastname!: string
-    private email!: string
-    private password!: string
 
 
     /**
@@ -32,26 +28,6 @@ class User extends Model {
             autoIncrement: true,
             primaryKey: true
         },
-
-        name: {
-            type: new DataTypes.STRING(30),
-            allowNull: false
-        },
-
-        lastname: {
-            type: new DataTypes.STRING(30),
-            allowNull: false
-        },
-
-        email: {
-            type: new DataTypes.STRING(50),
-            allowNull: false
-        },
-
-        password: {
-            type: new DataTypes.STRING(50),
-            allowNull: false
-        }
         
     }
 
@@ -75,11 +51,11 @@ class User extends Model {
 
 ; ( async () => {
 
-    User.init()
+    Name.init()
 
     // do something async before export the model like synchronize
 
 })()
 
 
-export default User
+export default Name
