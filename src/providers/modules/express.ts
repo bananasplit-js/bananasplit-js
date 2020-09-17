@@ -7,10 +7,7 @@
  * 
  */
 import http from 'http'
-
 import Express, { Application as ExpressApp } from 'express'
-import chalk from 'chalk'
-import boxen from 'boxen'
 
 import Settings from '../../settings/express'
 import Middlewares from '../../middlewares/express'
