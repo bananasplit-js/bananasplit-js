@@ -183,7 +183,7 @@ export default
          * 
          */
         private routes(): void {
-            this.service.use( MainRouter )
+            this.service.use( MainRouter.length ? MainRouter : () => null )
         }
 
 
