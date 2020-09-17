@@ -11,7 +11,7 @@ import request, { Response } from 'supertest'
 
 
 // Express service as parallel instance
-const express_server: any = express.app()
+const express_server: any = express.application()
 
 
 beforeAll( async () => {

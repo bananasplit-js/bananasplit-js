@@ -3,11 +3,11 @@
  *  Provider: Sequelize
  *  @module providers/modules/sequelize
  * 
- *  @description provides an ORM for interact with database
+ *  @description provides an ORM for interact with the database
  * 
  */
-import { Sequelize, Options as SequelizeOptions } from 'sequelize'
-import SequelizeCustomOptions from '../../database/config/sequelize.conf'
+import { Sequelize, Options } from 'sequelize'
+import CustomOptions from '../../database/config/sequelize.conf'
 
 import chalk from 'chalk'
 import dotenv from 'dotenv'
@@ -23,11 +23,9 @@ dotenv.config()
  * 
  */
 type DBAuth = {
-
     database: string,
     username: string,
     password?: string
-
 }
 
 
@@ -74,33 +72,33 @@ class SequelizeProvider {
     /**
      *  
      *  Singleton
-     *  @description build or returns a singleton instance for SequelizeProvider
+     *  @description build or returns a singleton instance
      * 
      *  @static @method build
      *  @returns { SequelizeProvider }
      * 
      */
-    public static provide(): SequelizeProvider {
+    public static provide (): SequelizeProvider {
 
         if ( !this.instance ) {
 
             // Creates a new instance
             this.instance = new SequelizeProvider()
 
-            // Makes auth credentials
+            // Builds auth credentials
             const DBAuth: DBAuth | string = this.instance.makeAuth()
 
-            // Makes config options
-            const SequelizeOptions: SequelizeOptions = this.instance.makeOptions()
+            // Builds config options
+            const Options: Options = this.instance.makeOptions()
 
 
-            // Creates sequelize instance
+            // Creates a sequelize instance
             if ( typeof DBAuth === 'object' )
-                this.instance.service = new Sequelize( ...Object.values( <Object>DBAuth ), SequelizeOptions )
+                this.instance.service = new Sequelize( ...Object.values(<Object> DBAuth), Options )
             
             else
-                // String connection
-                this.instance.service = new Sequelize( DBAuth, SequelizeOptions )
+                // String connection way
+                this.instance.service = new Sequelize( DBAuth, Options )
 
         }
 
@@ -112,7 +110,7 @@ class SequelizeProvider {
 
     /**
      * 
-     *  Makes the DB auth
+     *  Builds the DB auth
      *  @private @method makeAuth
      * 
      *  @returns { DBAuth | string }
@@ -122,7 +120,7 @@ class SequelizeProvider {
 
         let DBAuth: DBAuth | string
 
-        // ENV enviroment types
+        // Enviroment
         let DB_STRING: string = ''
 
         let DB_DATABASE: string = ''
@@ -174,20 +172,22 @@ class SequelizeProvider {
             default:
                 
                 console.log( chalk.bgRed.white('Enviroment not valid. Options are: "development", "test", "production".') )
+            
+            ;
 
         }
 
 
         if ( process.env[ DB_STRING ] )
-            DBAuth = <string>process.env[ DB_STRING ]
+            DBAuth = <string> process.env[ DB_STRING ]
 
         else
 
             DBAuth = {
 
-                database: <string>process.env[ DB_DATABASE ],
-                username: <string>process.env[ DB_USERNAME ],
-                password: <string>process.env[ DB_PASSWORD ]
+                database: <string> process.env[ DB_DATABASE ],
+                username: <string> process.env[ DB_USERNAME ],
+                password: <string> process.env[ DB_PASSWORD ]
             
             }
 
@@ -201,15 +201,15 @@ class SequelizeProvider {
 
     /**
      * 
-     *  Makes the configuration options
+     *  Builds the configuration options
      * 
      *  @private @method makeOptions
-     *  @returns { SequelizeOptions }
+     *  @returns { Options }
      * 
      */
-    private makeOptions = (): SequelizeOptions => {
+    private makeOptions = (): Options => {
 
-        let SequelizeOptions: SequelizeOptions = {
+        let Options: Options = {
             
             pool: {
                 max: 5,
@@ -267,22 +267,22 @@ class SequelizeProvider {
         }
 
 
-        SequelizeOptions = {
+        Options = {
 
-            ...SequelizeOptions,
+            ...Options,
 
             dialect: eval( `"${process.env[ DB_DIALECT ]}"` ),
-            host: <string>process.env[ DB_HOST ],
+            host: <string> process.env[ DB_HOST ],
             port: parseInt( process.env[ DB_PORT ]! )
         
         }
 
 
-        // Overwrite default options by dev options
-        SequelizeOptions = { ...SequelizeOptions, ...SequelizeCustomOptions }
+        // Overwrite default options by customs
+        Options = { ...Options, ...CustomOptions }
 
 
-        return SequelizeOptions
+        return Options
 
     }
 
@@ -295,14 +295,14 @@ class SequelizeProvider {
      *  @returns { Sequelize }
      * 
      */
-    public app = (): Sequelize => <Sequelize>this.service
+    public application = (): Sequelize => <Sequelize> this.service
 
 }
 
 
-// Sequelize singleton instance for usage
+// Singleton sequelize instance for usage
 const sequelizeProvider: SequelizeProvider = SequelizeProvider.provide()
-const sequelize: Sequelize = sequelizeProvider.app()
+const sequelize: Sequelize = sequelizeProvider.application()
 
 
 export default sequelize

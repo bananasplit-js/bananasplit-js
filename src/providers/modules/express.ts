@@ -7,7 +7,7 @@
  * 
  */
 import http from 'http'
-import Express, { Application as ExpressApp } from 'express'
+import Express from 'express'
 
 import Settings from '../../settings/express'
 import Middlewares from '../../middlewares/express'
@@ -39,15 +39,15 @@ export default
          *  @property { string } name
          * 
          */
-        public name: string = 'Express'
+        public readonly name: string = 'Express'
 
         
         /**
          * 
-         *  @private @property { ExpressApp } service
+         *  @private @property { Express.Application } service
          * 
          */
-        private service!: ExpressApp
+        private service!: Express.Application
 
 
         /**
@@ -76,7 +76,7 @@ export default
          *  Implements: singleton pattern
          * 
          */
-        private constructor() {
+        private constructor () {
             // Singleton      
         }
 
@@ -92,7 +92,7 @@ export default
          *  @returns { ExpressProvider }
          * 
          */
-        public static provide( config?: AppProps ): ExpressProvider {
+        public static provide ( config?: AppProps ): ExpressProvider {
 
             if ( !this.instance ) {
 
@@ -100,7 +100,7 @@ export default
                 this.instance = new ExpressProvider()
                 this.instance.service = Express()
                 
-                // Executes provide parts
+                // Executes provide build parts
                 this.instance.settings( config )
                 this.instance.middlewares()
                 this.instance.routes()
@@ -125,13 +125,13 @@ export default
 
         /**
          * 
-         *  Gets express server app
+         *  Gets express application
          * 
-         *  @method app
-         *  @returns { ExpressApp }
+         *  @method application
+         *  @returns { Express.Application }
          *  
          */
-        public app = (): ExpressApp => <ExpressApp>ExpressProvider.getInstance().service
+        public application = (): Express.Application => <Express.Application> ExpressProvider.getInstance().service
 
 
         /**
@@ -144,7 +144,7 @@ export default
          *  @returns { void }
          * 
          */
-        private settings( config?: AppProps ): void {
+        private settings ( config?: AppProps ): void {
 
             this.service.set( 'port', config ? (config.port || this.port) : this.port )
             this.port = this.service.get( 'port' )
@@ -153,7 +153,7 @@ export default
              *  Then do custom settings
              *  @overwrite
              */
-            Settings( <ExpressApp>this.service )
+            Settings( <Express.Application> this.service )
 
         }
 
@@ -166,8 +166,8 @@ export default
          *  @returns { void }
          * 
          */
-        private middlewares(): void {
-            Middlewares( <ExpressApp>this.service )
+        private middlewares (): void {
+            Middlewares( <Express.Application> this.service )
         }
 
 
@@ -179,26 +179,26 @@ export default
          *  @returns { void }
          * 
          */
-        private routes(): void {
+        private routes (): void {
             this.service.use( MainRouter.length ? MainRouter : () => null )
         }
 
 
         /**
          * 
-         *  Start express server on the specified or default port
+         *  Serve express in the specified port
          * 
-         *  @async @method start
-         *  @returns { Promise }
+         *  @async @method serve
+         *  @returns { http.Server }
          * 
          */
-        public async start( port?: number ): Promise<http.Server> {
+        public serve ( port?: number ): http.Server {
             
             if ( port )
-                this.service.set( 'port', this.port = port )
+                this.service.set( 'port', this.port=port )
             ;
 
-            const httpServer: http.Server = await this.service.listen( this.service.get('port') )
+            const httpServer: http.Server = this.service.listen( this.service.get('port') )
 
 
             return httpServer

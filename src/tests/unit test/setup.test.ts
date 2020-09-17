@@ -13,17 +13,17 @@ import request, { Response } from 'supertest'
 
 
 // Apollo server instance
-let apollo_server: any = apollo.app()
+let apollo_server: any = apollo.application()
 
 // Express server instance
-let express_server: any = express.app()
+let express_server: any = express.application()
 
 
 beforeAll( async () => {
 
     // If apollo server is not an express middleware then we start the service
     if ( !apollo.middleware )
-        apollo_server = await apollo.start( apollo.port + 1 /* avoid port in use*/ )
+        apollo_server = await apollo.serve( apollo.port + 1 /* avoid port in use*/ )
     ;
 
 })

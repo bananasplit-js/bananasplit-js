@@ -33,7 +33,7 @@ const Stack = ( services: any[] ): IStack => ({
             let host: string = `http://localhost:${service.port}`
 
             if ( !service.middleware )
-                await service.start()
+                await service.serve()
 
             else
                 host = service.path
