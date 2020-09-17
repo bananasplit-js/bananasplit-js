@@ -37,7 +37,7 @@ type IApollo = {
 type IApolloServer = {
     url: string,
     subscriptionsPath: string,
-    httpServer?: http.Server
+    server?: http.Server
 }
 
 

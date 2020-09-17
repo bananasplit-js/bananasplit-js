@@ -11,5 +11,5 @@ module.exports = {
     ... defaults,
     roots: [ "<rootDir>/src/tests" ],
     coveragePathIgnorePatterns: [ "/node_modules/", "<rootDir>/src/providers" ],
-    preset: 'ts-jest',
+    preset: 'ts-jest'
 }

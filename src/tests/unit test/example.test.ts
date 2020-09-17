@@ -7,16 +7,21 @@
  * 
  */
 import { express } from '../../services'
+import { Sequelize } from '../../providers'
+
 import request, { Response } from 'supertest'
 
 
-// Express service as parallel instance
-const express_server: any = express.application()
+// Express server
+let Express: any
 
 
-beforeAll( async () => {
+/**
+ *  Do something before run the tests
+ */
+beforeAll( () => {
 
-    // Do something before run the tests
+    Express = express.serve( 6627 )
 
 })
 
@@ -26,16 +31,22 @@ beforeAll( async () => {
  */
 test( 'Here the action I describe', async () => {
 
-    const response: Response = await request( express_server ).get( '/route' )
-
-    expect( 1 + 1 ).toBe( 2 )   // or is not?
+    const response: Response = await request( Express ).get( '/' )
+    expect( response.status ).toBe( 200 )
 
 })
 
 
-afterAll( done => {
+/**
+ *  Do something after run the tests
+ */
+afterAll( async done => {
 
-    // Do something after run the tests
+    Express.close()
+
+    // Closing connection allow to jest exit successfully
+    await Sequelize.close()
+    
     done()
     
 })
