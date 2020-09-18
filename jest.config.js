@@ -9,7 +9,7 @@ const { defaults } = require( 'jest-config' )
 
 module.exports = {
     ... defaults,
-    roots: [ "<rootDir>/src/tests" ],
+    roots: [ "<rootDir>/tests" ],
     coveragePathIgnorePatterns: [ "/node_modules/", "<rootDir>/src/providers" ],
     preset: 'ts-jest'
 }

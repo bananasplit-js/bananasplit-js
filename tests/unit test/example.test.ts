@@ -1,13 +1,13 @@
 /**
  * 
- *  Test: Integration test example
- *  @module "tests/integration test/example"
+ *  Test: Unit test example
+ *  @module "tests/unit test/example"
  * 
  *  @description * you can remove or modify this file *
  * 
  */
-import { express } from '../../services'
-import { Sequelize } from '../../providers'
+import { express } from '../../src/services'
+import { Sequelize } from '../../src/providers'
 
 import request, { Response } from 'supertest'
 
@@ -24,12 +24,12 @@ beforeAll( () => {
     Express = express.serve( 6627 )
 
 })
-// 
+
 
 /**
- *  @test Test a entire module
+ *  @test Here the action I describe
  */
-test( 'Test a entire module', async () => {
+test( 'Here the action I describe', async () => {
 
     const response: Response = await request( Express ).get( '/' )
     expect( response.status ).toBe( 200 )
@@ -46,7 +46,7 @@ afterAll( async done => {
 
     // Closing connection allow to jest exit successfully
     await Sequelize.close()
-
+    
     done()
     
 })
