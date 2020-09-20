@@ -7,11 +7,13 @@
  * 
  */
 import http from 'http'
-import Express from 'express'
+import Express, { Router, Request, Response } from 'express'
 
 import Settings from '@settings/express'
 import Middlewares from '@middlewares/express'
 import MainRouter from '@routes/main.routes'
+
+import SetupController from '@bananasplit-js/app/controllers/setup.controller'
 
 
 /**
@@ -180,7 +182,11 @@ export default
          * 
          */
         private routes (): void {
-            this.service.use( MainRouter.length ? MainRouter : () => null )
+
+            this.service.use( MainRouter.length ?
+                MainRouter : Router().get( '/', SetupController.hello )
+            )
+
         }
 
 
