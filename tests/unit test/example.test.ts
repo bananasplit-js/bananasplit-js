@@ -6,8 +6,8 @@
  *  @description * you can remove or modify this file *
  * 
  */
-import { express } from '../../src/services'
-import { Sequelize } from '../../src/providers'
+import { express } from '@services'
+import { Sequelize } from '@bananasplit-js'
 
 import request, { Response } from 'supertest'
 
