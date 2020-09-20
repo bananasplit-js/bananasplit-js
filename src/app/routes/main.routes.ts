@@ -14,7 +14,7 @@
  *  Your routers import goes here
  * 
  */
-import SetupRouter from './setup.routes'
+import SetupRouter from '@bananasplit-js/app/routes/setup.routes'
 
 
 export default [

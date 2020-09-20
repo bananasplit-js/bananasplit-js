@@ -10,7 +10,7 @@ import Sequelize from './libs/sequelize'
 import Express from './libs/express'
 import Apollo from './libs/apollo'
 
-import Stack from './stack/bootstrap'
+import Stack from './jobs/bootstrap'
 
 
 export {
