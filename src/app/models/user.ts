@@ -6,7 +6,7 @@
  *  @description user basic model
  * 
  */
-import { Sequelize as sequelize } from '../../providers'
+import { Sequelize as sequelize } from '@bananasplit-js'
 import { Model, DataTypes } from 'sequelize'
 
 

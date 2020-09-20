@@ -18,7 +18,7 @@ const router: Router = Router()
  *  Your controller import goes here
  * 
  */
-import Setup from '../controllers/setup.controller'
+import Setup from '@controllers/setup.controller'
 
 
 ; ( $ => {

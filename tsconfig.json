@@ -46,9 +46,27 @@
 
     /* Module Resolution Options */
 
-    // "moduleResolution": "node",            /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */
-    // "baseUrl": "./",                       /* Base directory to resolve non-absolute module names. */
-    // "paths": {},                           /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
+    "moduleResolution": "node",               /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */
+    "baseUrl": "./src",                           /* Base directory to resolve non-absolute module names. */
+    "paths": {                                /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
+      "@bananasplit-js": ["providers/core"],
+      "@bananasplit-js/*": ["providers/core/*"],
+      "@services": ["providers/services"],
+      "@providers/*": ["providers/*"],
+      "@database/*": ["database/*"],
+      "@graphql/*": ["graphql/*"],
+      "@schemas/*": ["graphql/schemas/*"],
+      "@resolvers/*": ["graphql/resolvers/*"],
+      "@settings/*": ["settings/*"],
+      "@middlewares/*": ["middlewares/*"],
+      "@controllers/*": ["app/controllers/*"],
+      "@models/*": ["app/models/*"],
+      "@routes/*": ["app/routes/*"],
+      "@helpers/*": ["app/helpers/*"],
+
+      // Custom:
+      
+    },
     // "rootDirs": [],                        /* List of root folders whose combined content represents the structure of the project at runtime. */
     // "typeRoots": [],                       /* List of folders to include type definitions from. */
     // "types": [],                           /* Type declaration files to be included in compilation. */
@@ -77,5 +95,5 @@
     "forceConsistentCasingInFileNames": true  /* Disallow inconsistently-cased references to the same file. */
   },
   
-  "exclude": ["./tests", "./jest.config.js"],
+  "exclude": ["./tests", "./jest.config.js"]
 }

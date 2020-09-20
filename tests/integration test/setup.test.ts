@@ -6,8 +6,8 @@
  *  @description * you can remove or modify this file *
  * 
  */
-import { express, apollo } from '../../src/services'
-import { Sequelize } from '../../src/providers'
+import { express, apollo } from '../../src/providers/services'
+import { Sequelize } from '../../src/providers/core'
 
 import request, { Response } from 'supertest'
 

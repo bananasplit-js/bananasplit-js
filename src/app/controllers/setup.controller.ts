@@ -7,7 +7,7 @@
  * 
  */
 import { Request, Response } from 'express'
-import { Sequelize } from '../../providers'
+import { Sequelize } from '@bananasplit-js'
 
 
 /**
@@ -16,7 +16,7 @@ import { Sequelize } from '../../providers'
  *  Your model import goes here
  * 
  */
-import User from '../models/user'
+import User from '@models/user'
 
 
 export default

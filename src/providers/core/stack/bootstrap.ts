@@ -1,13 +1,13 @@
 /**
  * 
- *  Providers: Bootstrap
+ *  Providers: Bootstrap (Stack)
  *  @module providers/bootstrap
  * 
  *  @description runs bananasplit services!
  * 
  */
 import chalk from 'chalk'
-import { servicesLog } from './helpers'
+import { servicesLog } from '../helpers'
 
 
 interface IStack {
@@ -51,4 +51,4 @@ const Stack = ( services: any[] ): IStack => ({
 })
 
 
-export { Stack }
+export default Stack

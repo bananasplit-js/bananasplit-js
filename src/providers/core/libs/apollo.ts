@@ -12,9 +12,9 @@ import { ApolloServer } from 'apollo-server'
 import { ApolloServer as ApolloServerMiddleware, makeExecutableSchema } from 'apollo-server-express'
 import { GraphQLSchema } from 'graphql'
 
-import Schemas from '../../graphql/schemas/main'
-import Resolvers from '../../graphql/resolvers/main'
-import customizeGraphQL from '../../graphql/custom/graphql'
+import Schemas from '@schemas/main'
+import Resolvers from '@resolvers/main'
+import customizeGraphQL from '@graphql/custom/graphql'
 
 
 /**

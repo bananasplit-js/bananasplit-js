@@ -16,6 +16,15 @@ import path from 'path'
 dontenv.config()
 
 
+/**
+ * 
+ *  @import @middlewares
+ *  Your custom middlewares import goes here
+ * 
+ */
+
+
+
 export default
 
     ( app: Express.Application ) => {

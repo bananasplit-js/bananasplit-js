@@ -6,8 +6,10 @@
  *  @description all begins here
  * 
  */
-import { Stack } from './providers/bootstrap'
-import { express, apollo } from './services'
+import 'module-alias/register'
+
+import { Stack } from '@bananasplit-js'
+import { express, apollo } from '@services'
 
 
 const services = Stack([

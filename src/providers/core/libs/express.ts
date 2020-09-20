@@ -9,15 +9,15 @@
 import http from 'http'
 import Express from 'express'
 
-import Settings from '../../settings/express'
-import Middlewares from '../../middlewares/express'
-import MainRouter from '../../app/routes/main.routes'
+import Settings from '@settings/express'
+import Middlewares from '@middlewares/express'
+import MainRouter from '@routes/main.routes'
 
 
 /**
  * 
  *  Definitions for ExpressProvider singleton parameters
- *  @typedef
+ *  @type { AppProps }
  * 
  */
 type AppProps = {

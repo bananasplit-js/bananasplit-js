@@ -33,7 +33,6 @@
   },
   "homepage": "",
   "dependencies": {
-    "@popperjs/core": "^2.4.0",
     "@types/bluebird": "^3.5.30",
     "@types/node": "^13.13.4",
     "@types/validator": "^13.0.0",
@@ -45,6 +44,7 @@
     "express": "^4.17.1",
     "graphql": "^15.0.0",
     "i": "^0.3.6",
+    "module-alias": "^2.2.2",
     "morgan": "^1.10.0",
     "mysql2": "^2.1.0",
     "npm": "^6.14.4",
@@ -66,5 +66,20 @@
     "ts-jest": "^25.4.0",
     "ts-node": "^8.9.1",
     "typescript": "^3.8.3"
+  },
+  "_moduleAliases": {
+    "@bananasplit-js": "src/providers/core",
+    "@services": "src/providers/services",
+    "@providers": "src/providers",
+    "@database": "src/database",
+    "@graphql": "src/graphql",
+    "@schemas": "src/graphql/schemas",
+    "@resolvers": "src/graphql/resolvers",
+    "@settings": "src/settings",
+    "@middlewares": "src/middlewares",
+    "@controllers": "src/app/controllers",
+    "@models": "src/app/models",
+    "@routes": "src/app/routes",
+    "@helpers": "src/app/helpers"
   }
 }
