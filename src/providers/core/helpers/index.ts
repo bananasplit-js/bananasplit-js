@@ -1,7 +1,7 @@
 /**
  * 
  *  Providers: Helpers
- *  @module providers/helpers
+ *  @module providers/core/helpers
  * 
  *  @description Contains helpers used in providers
  * 

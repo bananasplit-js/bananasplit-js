@@ -1,7 +1,7 @@
 /**
  *
  *  Provider: Express
- *  @module providers/modules/express
+ *  @module providers/core/libs/express
  * 
  *  @description the express nodejs provider
  * 

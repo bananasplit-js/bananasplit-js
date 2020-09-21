@@ -1,7 +1,7 @@
 /**
  *
  *  Provider: Sequelize
- *  @module providers/modules/sequelize
+ *  @module providers/core/libs/sequelize
  * 
  *  @description provides an ORM for interact with the database
  * 

@@ -1,7 +1,7 @@
 /**
  * 
  *  Providers: Bootstrap (Stack)
- *  @module providers/bootstrap
+ *  @module providers/core/jobs/bootstrap
  * 
  *  @description runs bananasplit services!
  * 

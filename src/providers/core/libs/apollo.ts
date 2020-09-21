@@ -1,7 +1,7 @@
 /**
  *
  *  Provider: Apollo
- *  @module providers/modules/apollo
+ *  @module providers/core/libs/apollo
  * 
  *  @description provides graphql service throw apollo server 
  * 
