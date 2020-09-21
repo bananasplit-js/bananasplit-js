@@ -1,9 +1,9 @@
 /**
  * 
- *  Controller
- *  @module app/controllers/setup
+ *  Controller: Setup
+ *  @module providers/core/app/controllers/setup
  * 
- *  @description * you can remove or modify this *
+ *  @description controller for setup test
  * 
  */
 import { Request, Response } from 'express'
@@ -11,10 +11,7 @@ import { Sequelize } from '@bananasplit-js'
 
 
 /**
- * 
  *  @model @import
- *  Your model import goes here
- * 
  */
 import User from '@models/user'
 

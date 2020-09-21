@@ -45,7 +45,7 @@ test( 'Hello response is received', async () => {
  */
 test( 'Database authetication is correct', async () => {
 
-    const response: Response = await request( Express ).get( '/auth-test' )
+    const response: Response = await request( Express ).get( '/test-auth' )
 
     expect( response.status ).toBe( 200 )
     expect( response.text ).toBe( 'Connection has been established successfully.' )
@@ -62,7 +62,7 @@ test( 'Hello from database is received', async () => {
         result: String
     }
 
-    const response: Response = await request( Express ).get( '/query-test' )
+    const response: Response = await request( Express ).get( '/test-query' )
     const JSONResponse: IResponse[] = JSON.parse( response.text )
 
     expect( response.status ).toBe( 200 )
@@ -76,7 +76,7 @@ test( 'Hello from database is received', async () => {
  */
 test( 'User model returns all users', async () => {
 
-    const response: Response = await request( Express ).get( '/model-test' )
+    const response: Response = await request( Express ).get( '/test-model' )
     const JSONResponse: Object[] = await JSON.parse( response.text )
 
     expect( response.status ).toBe( 200 )

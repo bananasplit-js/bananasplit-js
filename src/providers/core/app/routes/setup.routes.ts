@@ -1,9 +1,9 @@
 /**
  * 
  *  Router: Setup
- *  @module app/routes/setup
+ *  @module providers/core/app/routes/setup
  * 
- *  @description * you can remove or modify this file *
+ *  @description routes for setup test
  * 
  */
 import { Router } from 'express'
@@ -13,10 +13,7 @@ const router: Router = Router()
 
 
 /**
- * 
  *  @import @controller
- *  Your controller import goes here
- * 
  */
 import Setup from '@bananasplit-js/app/controllers/setup.controller'
 
@@ -24,10 +21,7 @@ import Setup from '@bananasplit-js/app/controllers/setup.controller'
 ; ( $ => {
 
     /**
-     * 
      *  @routes
-     *  Your routes goes here
-     * 
      */
 
     // Hello
@@ -36,17 +30,17 @@ import Setup from '@bananasplit-js/app/controllers/setup.controller'
     ;
 
     // Database connection test
-    $.route( '/auth-test' )
+    $.route( '/test-auth' )
         .get( Setup.databaseConnectionTest )
     ;
 
     // Database query test
-    $.route( '/query-test' )
+    $.route( '/test-query' )
         .get( Setup.databaseQueryTest )
     ;
 
     // Sequelize ORM test, get users
-    $.route( '/model-test' )
+    $.route( '/test-model' )
         .get( Setup.getUsers )
     ;
 
