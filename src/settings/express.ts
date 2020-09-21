@@ -22,7 +22,7 @@ export default
          */
 
         // Public folder
-        app.set( 'public', path.join(__dirname, '../public') )
+        app.set( 'public', path.join(__dirname, '../../public') )
         
     }
 
