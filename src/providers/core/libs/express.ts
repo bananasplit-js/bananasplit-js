@@ -148,7 +148,7 @@ export default
          */
         private settings ( config?: AppProps ): void {
 
-            this.service.set( 'port', config ? (config.port || this.port) : this.port )
+            this.service.set( 'port', (config && config.port) ? config.port : this.port )
             this.port = this.service.get( 'port' )
 
             /**
