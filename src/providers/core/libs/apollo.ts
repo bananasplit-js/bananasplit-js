@@ -155,9 +155,10 @@ export default
                 // Returns a manipulated schema within options object
                 this.instance.customizeGraphQL()
 
-                // Creates apollo server as middleware or independent service
+
                 if ( middleware ) {
 
+                    // Express middleware service
                     this.instance.service = new ApolloServerMiddleware( this.instance.options )
 
                     this.instance.service.applyMiddleware({
@@ -170,10 +171,14 @@ export default
 
                 } else {
 
+                    // Independent service
                     this.instance.service = new ApolloServer( this.instance.options )
 
                     if ( port )
                         this.instance.port = port
+                    
+                    else
+                        this.instance.port = <number> ( process.env.GRAPHQL_PORT || this.instance.port )
                     ;
 
                 }

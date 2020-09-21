@@ -148,8 +148,15 @@ export default
          */
         private settings ( config?: AppProps ): void {
 
-            this.service.set( 'port', (config && config.port) ? config.port : this.port )
-            this.port = this.service.get( 'port' )
+            if ( config && config.port )
+                this.port = config.port
+            
+            else
+                this.port = <number> ( process.env.PORT || this.port )
+            ;
+
+            this.service.set( 'port', this.port )
+            
 
             /**
              *  Then do custom settings
