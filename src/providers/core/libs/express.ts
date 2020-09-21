@@ -7,7 +7,7 @@
  * 
  */
 import http from 'http'
-import Express, { Router, Request, Response } from 'express'
+import Express, { Router } from 'express'
 
 import Settings from '@settings/express'
 import Middlewares from '@middlewares/express'
