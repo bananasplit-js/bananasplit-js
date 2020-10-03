@@ -54,7 +54,7 @@ npx @diegoulloao/banana-cli new my-app
 **Bananasplit** is an **open source** project so we are looking for contributors. If you are interested in contribute feel free to send a `pull request` or get in [contact](mailto:diegoulloao@icloud.com) with me.
 
 # License
-**Bananasplit** is licensed under **[MIT](https://github.com/diegoulloao/bananasplit-express-template/blob/master/LICENSE)** and is supported by the community. Any improvement can be merged to `master` branch and permissions to build a brand new product based on this is totally granted.
+**Bananasplit** is licensed under **[MIT](https://github.com/diegoulloao/bananasplit-express-template/blob/master/LICENSE)** and is supported by the **community**.
 
 ---
 ![label](https://img.shields.io/badge/2020-banana--split-yellow?style=for-the-badge)
