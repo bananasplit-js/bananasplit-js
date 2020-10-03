@@ -6,7 +6,7 @@
  *  @description * you can remove or modify this file *
  * 
  */
-import { express, apollo } from '@services'
+import { express } from '@services'
 import { Sequelize } from '@bananasplit-js'
 
 import request, { Response } from 'supertest'
@@ -15,14 +15,10 @@ import request, { Response } from 'supertest'
 // Express server
 let Express: any
 
-// Apollo server
-let Apollo: any
-
 
 beforeAll( async () => {
 
     Express = express.serve( 6627 )
-    Apollo = apollo.middleware ? apollo.application() : await apollo.serve( 5627 )
 
 })
 
@@ -71,6 +67,7 @@ test( 'Hello from database is received', async () => {
 
 })
 
+
 /**
  *  @test User model returns all users
  */
@@ -85,59 +82,9 @@ test( 'User model returns all users', async () => {
 })
 
 
-/**
- *  @test Graphql playground loads
- */
-test( 'Graphql playground loads', async() => {
-
-    const endpoint: Express.Application | String = apollo.middleware ?
-        Express : Apollo.url
-    ;
-
-    const response: Response = await request( endpoint )
-        .get( Apollo.subscriptionsPath )
-        .accept( 'text/html' )
-    ;
-
-
-    expect( response.status ).toBe( 200 )
-    expect( response.text ).toMatch( 'GraphQL Playground' )
-
-})
-
-
-/**
- *  @test Hello from graphql is received
- */
-test( 'Hello from graphql is received', async() => {
-
-    interface IResponse {
-        data: {
-            hello: String
-        }
-    }
-
-    const endpoint: Express.Application | String = apollo.middleware ?
-        Express : Apollo.url
-    ;
-
-    const response: Response = await request( endpoint )
-        .post( Apollo.subscriptionsPath )
-        .send({ query: `query { hello }` })
-    ;
-
-    const JSONResponse: IResponse = await JSON.parse( response.text )
-
-
-    expect( JSONResponse.data.hello ).toBe( 'Hello from GraphQL!' )
-
-})
-
-
 afterAll( async done => {
 
     Express.close()
-    apollo.middleware || Apollo.server.close()
 
     // Closing connection allow to jest exit successfully
     await Sequelize.close()
