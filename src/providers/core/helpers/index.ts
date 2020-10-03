@@ -25,7 +25,7 @@ export const servicesLog = ( output: string ): void => {
 
         `${ chalk.yellow('Serving!') }\n\n`,
         `${ output }\n\n`,
-        `${ chalk.grey(`${process.env.NODE_ENV!.toUpperCase()} MODE`) }`
+        `${ chalk.green(`${process.env.NODE_ENV!.toUpperCase()} MODE`) }`
 
     ]
 

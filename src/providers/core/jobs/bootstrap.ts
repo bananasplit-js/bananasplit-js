@@ -39,7 +39,7 @@ const Stack = ( services: any[] ): IStack => ({
                 host = service.path
             ;
             
-            output.push( `${chalk.bold(`- ${service.name}:`)}  ${host}` )
+            output.push( `${chalk.bold.cyan(`- ${service.name} →`)} ${chalk.red(host)}` )
         }
 
         
