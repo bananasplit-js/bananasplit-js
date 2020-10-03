@@ -3,11 +3,11 @@
  *  Model: User
  *  @module app/models/user
  * 
- *  @description user basic model
+ *  @description basic user model
  * 
  */
-import { Sequelize as sequelize } from '@bananasplit-js'
-import { Model, DataTypes } from 'sequelize'
+import { Model } from '@bananasplit-js'
+import { DataTypes } from 'sequelize'
 
 
 class User extends Model {
@@ -25,11 +25,12 @@ class User extends Model {
     /**
      *  @model
      */
-    public static fields = {
+    public static model = {
 
         id: {
             type: DataTypes.INTEGER.UNSIGNED,
             autoIncrement: true,
+            
             primaryKey: true
         },
 
@@ -59,15 +60,8 @@ class User extends Model {
     /**
      *  @options
      */
-    public static options = {
-        sequelize,
+    public static $options = {
         timestamps: true
-    }
-
-
-    // Init
-    public static init () {
-        super.init.call( this, this.fields, this.options )
     }
 
 }

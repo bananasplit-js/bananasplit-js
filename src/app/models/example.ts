@@ -6,8 +6,8 @@
  *  @description { description }
  * 
  */
-import { Sequelize as sequelize } from '@bananasplit-js'
-import { Model, DataTypes } from 'sequelize'
+import { Model } from '@bananasplit-js'
+import { DataTypes } from 'sequelize'
 
 
 class Name extends Model {
@@ -21,11 +21,12 @@ class Name extends Model {
     /**
      *  @model
      */
-    public static fields = {
+    public static model = {
 
         id: {
             type: DataTypes.INTEGER.UNSIGNED,
             autoIncrement: true,
+            
             primaryKey: true
         },
         
@@ -35,15 +36,8 @@ class Name extends Model {
     /**
      *  @options
      */
-    public static options = {
-        sequelize,
+    public static $options = {
         timestamps: true
-    }
-
-
-    // Init
-    public static init () {
-        super.init.call( this, this.fields, this.options )
     }
 
 }
