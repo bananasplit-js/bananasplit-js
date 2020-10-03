@@ -8,6 +8,9 @@
  */
 import { Express } from '@bananasplit-js'
 
+// Extensions
+import Apollo from '@providers/addons/apollo'
+
 
 /* ------------------------------------------------
  *  
@@ -20,5 +23,10 @@ import { Express } from '@bananasplit-js'
 // Express server provider
 const express: Express = Express.provide()
 
+// Apollo server provider
+const apollo: Apollo = Apollo.provide({
+    middleware: express
+})
 
-export { express }
+
+export { express, apollo }

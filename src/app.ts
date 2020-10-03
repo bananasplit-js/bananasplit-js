@@ -7,11 +7,12 @@
  * 
  */
 import { Stack } from '@bananasplit-js'
-import { express } from '@services'
+import { express, apollo } from '@services'
 
 
 const services = Stack([
-    express
+    express,
+    apollo
 ])
 
 services.serve()
