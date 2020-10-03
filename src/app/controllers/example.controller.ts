@@ -25,8 +25,8 @@ export default
         /**
          *  @handler { Action description }
          */
-        public static action ( request: Request, response: Response ) {
-            return response
+        public static action ( req: Request, res: Response ) {
+            return res
         }
 
     }
