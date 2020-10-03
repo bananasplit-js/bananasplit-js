@@ -8,7 +8,7 @@
     <img src="https://img.shields.io/badge/graphql-apollo-blue?logo=graphql">
     <img src="https://img.shields.io/badge/orm-sequelize-blue">
     <img src="https://img.shields.io/badge/test-jest-green?logo=jest">
-    <img src="https://img.shields.io/badge/version-v1.2-orange">
+    <img src="https://img.shields.io/badge/version-v2.0-orange">
     <img src="https://img.shields.io/badge/license-MIT-blue">
 </p>
 
@@ -31,9 +31,9 @@
 | **[supertest](https://www.npmjs.com/package/supertest)** | http-based tests support |
 | **[faker](https://www.npmjs.com/package/faker)** | generate seeders random data |
 | **[npm-check-updates](https://www.npmjs.com/package/npm-check-updates)** | auto update dependencies |
-| **[module-alias](https://www.npmjs.com/package/module-alias)** | custom paths for your modules |
-| **[tsconfig-paths](https://www.npmjs.com/package/tsconfig-paths)** | custom paths support for typescript |
-| **[alias-hq](https://www.npmjs.com/package/alias-hq)** | custom paths support for jest (typescript)|
+| **[module-alias](https://www.npmjs.com/package/module-alias)** | custom paths for your dist modules |
+| **[tsconfig-paths](https://www.npmjs.com/package/tsconfig-paths)** | custom paths support for compiling on the run |
+| **[alias-hq](https://www.npmjs.com/package/alias-hq)** | custom paths support for jest typescript|
 | **[chalk](https://www.npmjs.com/package/chalk)** | colorful console outputs |
 | **[boxen](https://www.npmjs.com/package/boxen)** | beautiful console info boxes |
 
