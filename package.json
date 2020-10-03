@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "dev": "nodemon --exec ts-node -r tsconfig-paths/register src/app.ts --ignore tests",
-    "start": "node -r ts-node/register/transpile-only -r tsconfig-paths/register dist/app.js",
+    "start": "node -r module-alias/register dist/app.js",
     "build": "tsc",
     "test": "jest --runInBand",
     "test:watch": "jest --watch --runInBand",
@@ -44,6 +44,7 @@
     "express": "^4.17.1",
     "graphql": "^15.0.0",
     "i": "^0.3.6",
+    "module-alias": "^2.2.2",
     "morgan": "^1.10.0",
     "mysql2": "^2.1.0",
     "npm": "^6.14.4",
@@ -66,5 +67,20 @@
     "ts-node": "^8.9.1",
     "tsconfig-paths": "^3.9.0",
     "typescript": "^3.8.3"
+  },
+  "_moduleAliases": {
+    "@bananasplit-js": "dist/providers/core",
+    "@services": "dist/providers/services",
+    "@providers": "dist/providers",
+    "@database": "dist/database",
+    "@graphql": "dist/graphql",
+    "@schemas": "dist/graphql/schemas",
+    "@resolvers": "dist/graphql/resolvers",
+    "@settings": "dist/settings",
+    "@middlewares": "dist/middlewares",
+    "@controllers": "dist/app/controllers",
+    "@models": "dist/app/models",
+    "@routes": "dist/app/routes",
+    "@helpers": "dist/app/helpers"
   }
 }
