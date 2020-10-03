@@ -3,11 +3,11 @@
     "target": "es6",
     "module": "commonjs",
     "allowJs": true,
-    "outDir": "./dist",
+    "outDir": "dist",
     "removeComments": true,
     "strict": true,
     "moduleResolution": "node",
-    "baseUrl": "./src",
+    "baseUrl": "src",
     "paths": {
       "@bananasplit-js": ["providers/core"],
       "@bananasplit-js/*": ["providers/core/*"],
@@ -27,5 +27,5 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true
   },
-  "exclude": ["./jest.config.js"]
+  "exclude": ["./jest.config.js", "./tests"]
 }

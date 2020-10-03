@@ -6,7 +6,7 @@
  *  @description all begins here
  * 
  */
-import 'module-alias/register'
+// import 'module-alias/register'
 
 import { Stack } from '@bananasplit-js'
 import { express, apollo } from '@services'

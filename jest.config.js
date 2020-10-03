@@ -4,7 +4,7 @@
  *  @config
  * 
  */
-const hq = require( 'alias-hq' )
+// const hq = require( 'alias-hq' )
 const { defaults } = require( 'jest-config' )
 
 
@@ -13,5 +13,5 @@ module.exports = {
     roots: [ "<rootDir>/tests" ],
     coveragePathIgnorePatterns: [ "/node_modules/", "<rootDir>/src/providers" ],
     preset: 'ts-jest',
-    moduleNameMapper: hq.get( 'jest' )
+    // moduleNameMapper: hq.get( 'jest' )
 }

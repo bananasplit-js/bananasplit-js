@@ -4,8 +4,8 @@
   "description": "A bananasplit app",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon src/app.ts --exec ts-node --ignore tests",
-    "start": "node dist/app.js",
+    "dev": "nodemon --exec ts-node -r tsconfig-paths/register src/app.ts --ignore tests",
+    "start": "node -r ts-node/register/transpile-only -r tsconfig-paths/register dist/app.js",
     "build": "tsc",
     "test": "jest --runInBand",
     "test:watch": "jest --watch --runInBand",
@@ -44,7 +44,6 @@
     "express": "^4.17.1",
     "graphql": "^15.0.0",
     "i": "^0.3.6",
-    "module-alias": "^2.2.2",
     "morgan": "^1.10.0",
     "mysql2": "^2.1.0",
     "npm": "^6.14.4",
@@ -65,21 +64,7 @@
     "supertest": "^4.0.2",
     "ts-jest": "^25.4.0",
     "ts-node": "^8.9.1",
+    "tsconfig-paths": "^3.9.0",
     "typescript": "^3.8.3"
-  },
-  "_moduleAliases": {
-    "@bananasplit-js": "src/providers/core",
-    "@services": "src/providers/services",
-    "@providers": "src/providers",
-    "@database": "src/database",
-    "@graphql": "src/graphql",
-    "@schemas": "src/graphql/schemas",
-    "@resolvers": "src/graphql/resolvers",
-    "@settings": "src/settings",
-    "@middlewares": "src/middlewares",
-    "@controllers": "src/app/controllers",
-    "@models": "src/app/models",
-    "@routes": "src/app/routes",
-    "@helpers": "src/app/helpers"
   }
 }
