@@ -1,13 +1,13 @@
 /**
  *
  *  Provider: Apollo
- *  @module providers/core/libs/apollo
+ *  @module providers/addons/apollo
  * 
  *  @description provides graphql service throw apollo server 
  * 
  */
 import http from 'http'
-import ExpressProvider from './express'
+import ExpressProvider from '../core/libs/express'
 import { ApolloServer } from 'apollo-server'
 import { ApolloServer as ApolloServerMiddleware, makeExecutableSchema } from 'apollo-server-express'
 import { GraphQLSchema } from 'graphql'

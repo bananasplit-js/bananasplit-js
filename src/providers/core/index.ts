@@ -11,13 +11,11 @@ import Stack from './jobs/bootstrap'
 
 import Sequelize from './libs/sequelize'
 import Express from './libs/express'
-import Apollo from './libs/apollo'
 
 
 
 export {
     Express,
-    Apollo,
     Sequelize,
     
     Model,
