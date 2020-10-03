@@ -58,7 +58,6 @@
     "@types/morgan": "^1.9.0",
     "@types/sequelize": "^4.28.8",
     "@types/supertest": "^2.0.9",
-    "alias-hq": "^5.1.6",
     "faker": "^4.1.0",
     "jest": "^25.5.4",
     "nodemon": "^2.0.3",
