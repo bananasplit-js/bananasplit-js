@@ -1,9 +1,9 @@
 /**
  * 
- *  Graphql: Resolvers
- *  @module graphql/resolvers/main
+ *  Apollo: Resolvers
+ *  @module apollo/resolvers/main
  * 
- *  @description registers all graphql resolvers
+ *  @description registers all apollo resolvers
  * 
  */
 

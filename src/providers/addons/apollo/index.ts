@@ -7,14 +7,14 @@
  * 
  */
 import http from 'http'
-import ExpressProvider from '../core/libs/express'
+import { Express as ExpressProvider } from '@bananasplit-js'
 import { ApolloServer } from 'apollo-server'
 import { ApolloServer as ApolloServerMiddleware, makeExecutableSchema } from 'apollo-server-express'
 import { GraphQLSchema } from 'graphql'
 
 import Schemas from '@schemas/main'
 import Resolvers from '@resolvers/main'
-import customizeGraphQL from '@graphql/custom/graphql'
+import customizeGraphQL from '@apollo/custom/graphql'
 
 
 /**
@@ -55,7 +55,7 @@ export default
          *  @property { string } name
          * 
          */
-        public readonly name: string = 'GraphQL'
+        public readonly name: string = 'Apollo '
 
 
         /**
@@ -178,7 +178,7 @@ export default
                         this.instance.port = port
                     
                     else
-                        this.instance.port = <number> ( process.env.GRAPHQL_PORT || this.instance.port )
+                        this.instance.port = <number> ( process.env.APOLLO_PORT || this.instance.port )
                     ;
 
                 }

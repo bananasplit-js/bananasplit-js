@@ -1,7 +1,7 @@
 /**
  * 
  *  Resolvers example
- *  @module graphql/resolvers/example
+ *  @module apollo/resolvers/example
  * 
  *  @description * you can remove or modify this file *
  * 

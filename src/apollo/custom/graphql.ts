@@ -1,9 +1,9 @@
 /**
  * 
  *  Apollo: Customize
- *  @module graphql/custom/graphql
+ *  @module apollo/custom/graphql
  * 
- *  @description allow to manipulate the graphql schema as you want. Returns an options object that is passed directly to the ApolloServer constructor
+ *  @description allow to manipulate the graphql schema as you want. Returns an options object that is passed directly to the apollo server constructor
  * 
  */
 import { GraphQLSchema } from 'graphql'
@@ -13,7 +13,7 @@ export default
 
     ( schema: GraphQLSchema ): object => {
 
-        // You can customize the schema object here ---------------
+        // Customize the schema here ------------------------------
 
 
 

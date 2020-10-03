@@ -1,7 +1,7 @@
 /**
  * 
- *  Graphql: Schemas
- *  @module graphql/schemas/main
+ *  Apollo: Schemas
+ *  @module apollo/schemas/main
  * 
  *  @description register all graphql schemas
  * 

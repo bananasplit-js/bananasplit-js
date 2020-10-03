@@ -1,7 +1,7 @@
 /**
  * 
  *  Schema example
- *  @module graphql/schemas/example
+ *  @module apollo/schemas/example
  * 
  *  @description * you can remove or modify this file *
  * 
