@@ -2,8 +2,6 @@
 <h1 style="margin:25px" align="center"><a href="https://bananasplit.js.org/">Bananasplit-js</a> for express</h1>
 <p align="center">An express.js <b>superset template</b> that brings to you a background to quickly develop your app</p>
 
-<!-- ![label](https://img.shields.io/badge/js-banana--split-yellow?style=for-the-badge) -->
-
 <p align="center">
     <img src="https://img.shields.io/badge/written-typescript-blue?logo=typescript">
     <img src="https://img.shields.io/badge/js-express-lightgray">
@@ -13,8 +11,6 @@
     <img src="https://img.shields.io/badge/version-v1.2-orange">
     <img src="https://img.shields.io/badge/license-MIT-blue">
 </p>
-
-<!-- ![label](https://img.shields.io/badge/coverage-100%25-brightgreen) ![label](https://img.shields.io/badge/code%20quality-A-brightgreen) -->
 
 ### Integrated support for:
  * **[Express](https://expressjs.com/)** framework
@@ -35,7 +31,11 @@
 | **[supertest](https://www.npmjs.com/package/supertest)** | http-based tests support |
 | **[faker](https://www.npmjs.com/package/faker)** | generate seeders random data |
 | **[npm-check-updates](https://www.npmjs.com/package/npm-check-updates)** | auto update dependencies |
+| **[module-alias](https://www.npmjs.com/package/module-alias)** | custom paths for your modules |
+| **[tsconfig-paths](https://www.npmjs.com/package/tsconfig-paths)** | custom paths support for typescript |
+| **[alias-hq](https://www.npmjs.com/package/alias-hq)** | custom paths support for jest (typescript)|
 | **[chalk](https://www.npmjs.com/package/chalk)** | colorful console outputs |
+| **[boxen](https://www.npmjs.com/package/boxen)** | beautiful console info boxes |
 
 # Get started!
 
@@ -50,8 +50,11 @@ npx @diegoulloao/banana-cli new my-app
 
 ### Check the documentation: https://bananasplit.js.org/docs
 
+# Contributing
+**Bananasplit** is an **open source** project so we are looking for contributors. If you are interested in contribute feel free to send a `pull request` or get in [contact](mailto:diegoulloao@icloud.com) with me.
+
 # License
 **Bananasplit** is licensed under **[MIT](https://github.com/diegoulloao/bananasplit-express-template/blob/master/LICENSE)** and is supported by the community. Any improvement can be merged to `master` branch and permissions to build a brand new product based on this is totally granted.
 
 ---
-**Bananasplit • 2020**
+![label](https://img.shields.io/badge/2020-banana--split-yellow?style=for-the-badge)
