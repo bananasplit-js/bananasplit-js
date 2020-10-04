@@ -1,6 +1,6 @@
 /**
  * 
- *  User generator
+ *  Generator: User
  *  @description creates an user based on fake data
  * 
  */

@@ -1,6 +1,6 @@
 /**
  * 
- *  Users seeder
+ *  Seeder: Users
  *  @description seeds the user table with fake data
  * 
  */
@@ -14,7 +14,7 @@
 import createUser from '@generators/create-user'
 
 
-export function up ( queryInterface, Sequelize ) {
+export function up ( queryInterface ) {
 
     let amount = 10
     let users = []
@@ -28,6 +28,8 @@ export function up ( queryInterface, Sequelize ) {
 }
 
 
-export function down ( queryInterface, Sequelize ) {
+export function down ( queryInterface ) {
+
     return queryInterface.bulkDelete( 'Users', null, {} )
+
 }
