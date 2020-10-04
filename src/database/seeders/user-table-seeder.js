@@ -7,7 +7,12 @@
 'use strict';
 
 
-const createUser = require( '../factories/create-user' )
+/**
+ * 
+ *  @generator @import
+ * 
+ */
+const createUser = require( '../generators/create-user' )
 
 
 module.exports = {
@@ -15,14 +20,14 @@ module.exports = {
     up: ( queryInterface, Sequelize ) => {
 
         let amount = 10
-        let data = []
+        let users = []
 
         while ( amount-- )
-            data.push( createUser() )
+            users.push( createUser() )
         ;
 
 
-        return queryInterface.bulkInsert( 'Users', data, {} )
+        return queryInterface.bulkInsert( 'Users', users, {} )
 
     },
 

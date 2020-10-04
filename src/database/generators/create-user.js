@@ -1,6 +1,6 @@
 /**
  * 
- *  Users factory
+ *  User generator
  *  @description creates an user based on fake data
  * 
  */
@@ -21,13 +21,15 @@ const faker = require( 'faker' )
 const date = new Date
 
 
-module.exports = () => ({
+module.exports = ( user={} ) => ({
 
     name: faker.name.firstName(),
     lastname: faker.name.lastName(),
     email: faker.internet.email(),
     password: faker.internet.password(),
     createdAt: date,
-    updatedAt: date
+    updatedAt: date,
+
+    ...user
 
 })
