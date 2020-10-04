@@ -41,8 +41,8 @@ export default
         /**
          *  @init
          */
-        public static init () {
-            super.init.call( this, this.model, {...this.options, ...this.$options} )
+        public static init (): SequelizeModel {
+            return super.init.call( this, this.model, {...this.options, ...this.$options} )
         }
 
     }
