@@ -19,7 +19,8 @@
       "@controllers/*": ["src/app/controllers/*"],
       "@models/*": ["src/app/models/*"],
       "@routes/*": ["src/app/routes/*"],
-      "@helpers/*": ["src/app/helpers/*"]
+      "@helpers/*": ["src/app/helpers/*"],
+      "@generators/*": ["src/database/generators*"]
     },
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true

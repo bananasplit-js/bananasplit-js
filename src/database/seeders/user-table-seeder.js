@@ -6,13 +6,15 @@
  */
 'use strict';
 
+require('alias-hq').get( 'module-alias' )
+
 
 /**
  * 
  *  @generator @import
  * 
  */
-const createUser = require( '../generators/create-user' )
+const createUser = require( '@generators/create-user' )
 
 
 module.exports = {
