@@ -59,7 +59,7 @@
     "faker": "^4.1.0",
     "jest": "^25.5.4",
     "nodemon": "^2.0.3",
-    "npm-check-updates": "^4.1.2",
+    "npm-check-updates": "^9.0.3",
     "supertest": "^4.0.2",
     "ts-jest": "^25.4.0",
     "ts-node": "^8.9.1",
