@@ -1,47 +1,35 @@
 /**
  * 
  *  Users seeder
- *  @description seeds user table with fake data
+ *  @description seeds the user table with fake data
  * 
  */
 'use strict';
 
-const faker = require( 'faker' )
+require('alias-hq').get( 'module-alias' )
 
 
 /**
  * 
- *  You can set your locate with:
- *  faker.setLocale('es')
+ *  @generator @import
  * 
  */
+const createUser = require( '@generators/create-user' )
 
 
 module.exports = {
 
     up: ( queryInterface, Sequelize ) => {
 
-        let data = []
-        
-        const date = new Date
         let amount = 10
+        let users = []
 
         while ( amount-- )
-
-            data.push({
-
-                name: faker.name.firstName(),
-                lastname: faker.name.lastName(),
-                email: faker.internet.email(),
-                password: faker.internet.password(),
-                createdAt: date,
-                updatedAt: date
-
-            })
+            users.push( createUser() )
         ;
 
 
-        return queryInterface.bulkInsert( 'Users', data, {} )
+        return queryInterface.bulkInsert( 'Users', users, {} )
 
     },
 

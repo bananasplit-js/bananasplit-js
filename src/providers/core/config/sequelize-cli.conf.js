@@ -6,6 +6,11 @@
  *  @description contains all sequelize-cli configurations
  *
  */
+'use strict';
+
+require('alias-hq').get( 'module-alias' )
+
+
 const dotenv = require( 'dotenv' )
 const CustomOptions = require( '@database/config/sequelize-cli.conf' )
 

@@ -41,6 +41,7 @@ module.exports = {
 
             
             // Timestamps
+            
             createdAt: {
                 type: 'TIMESTAMP',
                 defaultValue: DataTypes.literal( 'CURRENT_TIMESTAMP' ),
@@ -54,7 +55,6 @@ module.exports = {
                 allowNull: false
 
             }
-            // End Timestamps
             
         } )
 
