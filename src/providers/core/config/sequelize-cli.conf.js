@@ -6,6 +6,8 @@
  *  @description contains all sequelize-cli configurations
  *
  */
+'use strict';
+
 require('alias-hq').get( 'module-alias' )
 
 

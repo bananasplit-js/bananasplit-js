@@ -4,6 +4,7 @@
  *  @description overwrites the default sequelize client configuration
  * 
  */
+'use strict';
 
 
 const Options = {
