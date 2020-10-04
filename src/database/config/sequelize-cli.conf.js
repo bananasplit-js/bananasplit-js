@@ -1,10 +1,9 @@
 /**
  * 
- *  Sequelize: Client configuration
- *  @description overwrites the default sequelize client configuration
+ *  Sequelize-CLI: Configuration
+ *  @description overwrites the default sequelize-cli configuration
  * 
  */
-'use strict';
 
 
 const Options = {
