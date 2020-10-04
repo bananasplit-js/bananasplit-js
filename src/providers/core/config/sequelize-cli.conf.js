@@ -7,7 +7,7 @@
  *
  */
 const dotenv = require( 'dotenv' )
-const CustomOptions = require( '@database/config/sequelize-cli.conf' )
+const CustomOptions = require( '../../../database/config/sequelize-cli.conf' )
 
 
 dotenv.config()
