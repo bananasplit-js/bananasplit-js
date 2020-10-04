@@ -1,213 +1,61 @@
-![label](https://img.shields.io/badge/js-banana--split-yellow?style=for-the-badge)
+<p align="center"><img src="https://bananasplit.js.org/assets/images/bananasplit-logo.png" width="200"></p>
+<h1 style="margin:25px" align="center"><a href="https://bananasplit.js.org/">Bananasplit-js</a> for express</h1>
+<p align="center">An express.js <b>superset template</b> that brings to you a background to quickly develop your app</p>
 
-![label](https://img.shields.io/badge/js-express-lightgray) ![label](https://img.shields.io/badge/written-typescript-blue?logo=typescript) ![label](https://img.shields.io/badge/precompiler-sass-ff69b4?logo=sass) ![label](https://img.shields.io/badge/template-handlebars-orange) ![label](https://img.shields.io/badge/graphql-apollo-blue?logo=graphql) ![label](https://img.shields.io/badge/orm-sequelize-blue) ![label](https://img.shields.io/badge/test-jest-green?logo=jest) ![label](https://img.shields.io/badge/css-bootstrap-green?logo=bootstrap)
+<p align="center">
+    <img src="https://img.shields.io/badge/written-typescript-blue?logo=typescript">
+    <img src="https://img.shields.io/badge/js-express-lightgray">
+    <img src="https://img.shields.io/badge/graphql-apollo-blue?logo=graphql">
+    <img src="https://img.shields.io/badge/orm-sequelize-blue">
+    <img src="https://img.shields.io/badge/test-jest-green?logo=jest">
+    <img src="https://img.shields.io/badge/version-v2.0-orange">
+    <img src="https://img.shields.io/badge/license-MIT-blue">
+</p>
 
-![label](https://img.shields.io/badge/version-v1.1-orange) ![label](https://img.shields.io/badge/release%20date-february%202020-red) ![label](https://img.shields.io/badge/license-MIT-blue)
-![label](https://img.shields.io/badge/coverage-100%25-brightgreen) ![label](https://img.shields.io/badge/code%20quality-A-brightgreen)
+### Integrated support for:
+ * **[Express](https://expressjs.com/)** framework
+ * **[Apollo](https://www.apollographql.com/)** graphql
+ * **[Jest](https://jestjs.io/)** testing
+ * **[Sequelize](https://sequelize.org/)** ORM
+ * **[Typescript](https://www.typescriptlang.org/)** language
 
-![label](https://img.shields.io/github/stars/diegoulloao/bananasplit-express-template?style=social)
+### Packages:
+| name |  description |
+| ---- | ------------ |
+| **[nodemon](https://www.npmjs.com/package/nodemon)** | auto restart your server every time a change is detected |
+| **[ts-node](https://www.npmjs.com/package/ts-node)** | autocompiles typescript |
+| **[ts-jest](https://www.npmjs.com/package/ts-jest)** | provides typescript support for jest |
+| **[morgan](https://www.npmjs.com/package/morgan)** | print requests on console |
+| **[sequelize-cli](https://www.npmjs.com/package/sequelize-cli)** | a sequelize client for manage migrations and seeders |
+| **[dotenv](https://www.npmjs.com/package/dotenv)** | secure enviroment variables |
+| **[supertest](https://www.npmjs.com/package/supertest)** | http-based tests support for jest |
+| **[faker](https://www.npmjs.com/package/faker)** | generates fake data in your generators and seeders |
+| **[npm-check-updates](https://www.npmjs.com/package/npm-check-updates)** | auto updates your project dependencies |
+| **[module-alias](https://www.npmjs.com/package/module-alias)** | custom paths support for your dist modules |
+| **[tsconfig-paths](https://www.npmjs.com/package/tsconfig-paths)** | custom paths support when compiling typescript on the run |
+| **[alias-hq](https://www.npmjs.com/package/alias-hq)** | custom paths support for jest with typescript |
+| **[@babel/core](https://www.npmjs.com/package/alias-hq)** | enables modern javascript features (including plugins and presets) |
+| **[chalk](https://www.npmjs.com/package/chalk)** | colorful console outputs |
+| **[boxen](https://www.npmjs.com/package/boxen)** | beautiful console info boxes |
 
-![banana-split](https://i.imgur.com/Khs8Vrf.png)
+# Get started!
 
-# Bananasplit-js for Express
+### Create a new project:
+```
+npx @diegoulloao/banana-cli new my-app
+```
 
-**Bananasplit** is a **Express.js** **_superset Template_** that brings to you a background to _quickly develop your project_.
+**Read more about configuration:** https://bananasplit.js.org/docs/#config
 
-### Banana includes integrated support for:
- * **Express Framework** for Node.js
- * **Apollo** for GraphQL
- * **Jest** for Testing
- * **Sequelize** ORM for Data Management
- * **Typescript** Superset for Javascript
- * **SASS** Precompiler for CSS
- * **Handlebars** Template engine for rendering Views
- * **Bootstrap** Framework for CSS
+# Read the docs
 
-## Banana also includes useful npm-packages already configured like:
-* **nodemon** to auto-restart your server every time your code change
-* **ts-node** to autocompile your Typescript files when they change
-* **ts-jest** to provides Typescript support to Jest
-* **morgan** to print in console detailed information about your server requests
-* **node-sass-middleware** to autocompile your .scss or .sass files on every page load
-* **sequelize-cli** to manage your database migrations and seeders
-* **dotenv** to protect your project privacy with _out-side protected_ enviroment variables and database credentials
-* **supertest** to build your http-based tests with Jest
-* **faker** to generate random data and seed your database with Sequelize
-* **npm-check-updates** to auto-update all your project dependencies
-* **chalk** to put colorful messages in your console output
+### Check the documentation: https://bananasplit.js.org/docs
+
+# Contributing
+**Bananasplit** is an **open source** project so we are looking for contributors. If you are interested in contribute feel free to send a `pull request` or get in [contact](mailto:diegoulloao@icloud.com) with me.
+
+# License
+**Bananasplit** is licensed under **[MIT](https://github.com/diegoulloao/bananasplit-express-template/blob/master/LICENSE)** and is supported by the **community**.
 
 ---
-
-# Features
-
-### A ready to code project structure
-A predefined structure project with an intelligent modularization.
-
-### All Built-in
-A set of multiple technologies and configurations ready to code
-
-### Service Providers
-You only need two instructions to get Express and Apollo server working.
-
-### File templates
-A set of template files including routes, controllers, models, tests, and more.
-
-### Lightweight code implementation
-The same Express code you always knew.
-
-### JSDocs3 documentation
-Documented code based on the most professional practices.
-
----
-
-# Documentation
-#### You can visit the official documentation here (recommended)
-https://bananasplit.js.org/docs
-
----
-
-# Installation
-### Step 1: Install banana-cli
-Run on terminal:
-
-```
-    npm i @diegoulloao/banana-cli -g
-```
-
-### Step 2: Create a new project
-Replace by your project name:
-
-```
-    banana new project-name
-```
-
-**Ready.**
-
----
-
-You can also automatically init a new git repository
-
-`banana new project-name --git` or `banana new project-name -g`
-
----
-
-# Configuration
-
-## 1. Dependencies
-Install the project dependencies:
-
-```
-    npm i
-```
-
-## 2. Database engine
-**Choose** to install your database driver:
-
-* **MySQL:** `npm i mysql2`
-* **MariaDB:** `npm i mariadb`
-* **Postgres:** `npm i pg pg-hstore`
-* **MSSQL:** `npm i tedious`
-* **SQLite:** `npm i sqlite3`
-
----
-
-**Note: SQLite3 receives special parameters.**
-
-Read for more information: https://sequelize.org/v5/manual/getting-started.html
-
----
-
-## 3. Enviroment variables
-**Rename** the _.env.example_ file to _.env_, then **set your vars.**
-
-Example:
-```
-    # [development]
-
-    DB_DIALECT=mysql
-
-    DB_HOST=localhost
-    DB_PORT=3306
-
-    # Auth
-    DB_DATABASE=test
-    DB_USERNAME=root
-    DB_PASSWORD=1234
-```
-
----
-
-**For DB_DIALECT your choices are:**
-
-`mysql | mariadb | postgres | mssql | sqlite`
-
-
-## 4. Database and tables
-**Create the database:**
-```
-    npx sequelize db:create
-```
-
-**Create the test table:** (optional) 
-```
-    npx sequelize db:migrate
-```
-
-**Seed the test table:** (optional)
-```
-    npx sequelize db:seed --seed user-table-seeder
-```
-
----
-
-## Run the server!
-
-```
-    npm start
-```
-
-#### Check http://localhost:3000
-
----
-
-## Testing your app setup (optional)
-You can test your app services integration by running jest:
-
-`npx jest setup.test`
-
-Test should be pass:
-
-* **"Hello response is received"** http://localhost:3000/
-* **"Database Authetication is correct"** http://localhost:3000/auth-test
-* **"Hello from Database response is received"** http://localhost:3000/query-test
-* **"User model returns all users"** http://localhost:3000/model-test
-* **"GraphQL Playground loads"** http://localhost:3000/graphql
-* **"Hello from GraphQL is received"** http://localhost:3000/graphql?query=%7Bhello%7D
-
----
-
-**Note:**
-Jest run your test in a testing enviroment. So you should have your vars already set in your .env file.
-
----
-
-# Further Information
-
-**For more information you can visit the official documentations:**
-
-* **Express:** https://expressjs.com
-* **Apollo:** https://www.apollographql.com/docs/apollo-server/
-* **GraphQL:** https://graphql.org/learn/
-* **Sequelize:** https://sequelize.org/v5/
-* **Jest:** https://jestjs.io/docs/en/getting-started and https://www.albertgao.xyz/2017/05/24/how-to-test-expressjs-with-jest-and-supertest/
-* **Supertest:** https://github.com/visionmedia/supertest
-* **Typescript:** https://www.typescriptlang.org/docs/home.html
-* **SASS:** https://sass-lang.com/documentation
-* **Handlebars:** https://handlebarsjs.com/guide/
-
----
-**Bananasplit • 2020**
-
-**Official site:** https://bananasplit.js.org
-
-**Licensed** [MIT](https://github.com/diegoulloao/bananasplit-express-template/blob/master/LICENSE)
+![label](https://img.shields.io/badge/2020-banana--split-yellow?style=for-the-badge)

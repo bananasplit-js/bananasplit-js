@@ -1,60 +1,35 @@
 /**
  * 
- *  Users Seeder
- *  (generated with Sequelize-CLI)
- *  @seeder @db
- * 
- *  @description a seeder example for User
+ *  Seeder: Users
+ *  @description seeds the user table with fake data
  * 
  */
-
-
- 
-'use strict';
-
-
-const faker = require( 'faker' )
 
 
 /**
  * 
- *  You can set your locate with:
- *  faker.setLocale('en')
+ *  @generator @import
  * 
  */
+import createUser from '@generators/create-user'
 
 
- 
-module.exports = {
+export function up ( queryInterface ) {
 
-    up: ( queryInterface, Sequelize ) => {
+    let amount = 10
+    let users = []
 
-        let data = []
-        
-        const date = new Date()
-        let amount = 10
+    while ( amount-- )
+        users.push( createUser() )
+    ;
 
-        while ( amount-- )
+    return queryInterface.bulkInsert( 'Users', users, {} )
 
-            data.push({
-
-                name: faker.name.firstName(),
-                lastname: faker.name.lastName(),
-                email: faker.internet.email(),
-                password: faker.internet.password(),
-                createdAt: date,
-                updatedAt: date
-
-            })
-        ;
+}
 
 
-        return queryInterface.bulkInsert( 'Users', data, {} )
+export function down ( queryInterface ) {
 
-    },
-
-    down: ( queryInterface, Sequelize ) => {
-          return queryInterface.bulkDelete( 'Users', null, {} )
-    }
+    return queryInterface.bulkDelete( 'Users', null, {} )
 
 }

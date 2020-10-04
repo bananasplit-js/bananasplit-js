@@ -1,39 +1,36 @@
 /**
  *
- *  User Model
- *  @model
- * 
+ *  Model: User
  *  @module app/models/user
- *  @description Defines an user model example
+ * 
+ *  @description basic user model
  * 
  */
+import { Model } from '@bananasplit-js'
+import { DataTypes } from 'sequelize'
 
 
+class User extends Model {
 
- import { Model, DataTypes } from 'sequelize'
- import sequelize from '../../providers/sequelize'
-
- 
-
- class User extends Model {
-
-    // Fields
+    /**
+     *  @def
+     */
     private id!: number
     private name!: string
     private lastname!: string
     private email!: string
     private password!: string
 
-    private readonly createdAt!: Date
-    private readonly updatedAt!: Date
 
-
-    // Fields Definitions
-    public static fields = {
+    /**
+     *  @model
+     */
+    public static model = {
 
         id: {
             type: DataTypes.INTEGER.UNSIGNED,
             autoIncrement: true,
+            
             primaryKey: true
         },
 
@@ -59,33 +56,24 @@
         
     }
 
-    // Options
-    public static options = {
-        sequelize,
+
+    /**
+     *  @options
+     */
+    public static $options = {
         timestamps: true
     }
 
-
-    // Init
-    public static init() {
-        super.init.call( this, this.fields, this.options )
-    }
-
- }
- 
-
- 
- // Load the model
- User.init()
+}
 
 
- 
- ; ( async () => {
- 
-     // do something async before export the model
- 
- } )()
+; ( async () => {
 
- 
- 
- export default User
+    User.init()
+
+    // do something async before export the model like synchronize
+
+})()
+
+
+export default User
