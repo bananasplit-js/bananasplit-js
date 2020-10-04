@@ -1,7 +1,7 @@
 /**
  * 
  *  Provider: Model
- *  @module providers/core/utils/model @extends SequelizeModel
+ *  @module providers/core/utils/model
  *  
  *  @description provides an easy to handle sequelize model
  * 
@@ -11,7 +11,12 @@ import Sequelize from '../libs/sequelize'
 
 
 export default
-
+    /**
+     * 
+     *  @class Model
+     *  @extends SequelizeModel
+     * 
+     */
     class Model extends SequelizeModel {
 
         /**
