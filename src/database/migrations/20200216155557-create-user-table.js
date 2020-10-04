@@ -4,65 +4,60 @@
  *  @description migration for users table
  * 
  */
-'use strict';
 
 
-module.exports = {
+export function up ( queryInterface, DataTypes ) {
 
-    up: ( queryInterface, DataTypes ) => {
+    return queryInterface.createTable( 'Users', {
 
-        return queryInterface.createTable( 'Users', {
+        id: {
+            type: DataTypes.INTEGER.UNSIGNED,
+            autoIncrement: true,
+            primaryKey: true
+        },
 
-            id: {
-                type: DataTypes.INTEGER.UNSIGNED,
-                autoIncrement: true,
-                primaryKey: true
-            },
-    
-            name: {
-                type: new DataTypes.STRING(30),
-                allowNull: false
-            },
-    
-            lastname: {
-                type: new DataTypes.STRING(30),
-                allowNull: false
-            },
-    
-            email: {
-                type: new DataTypes.STRING(50),
-                allowNull: false
-            },
-    
-            password: {
-                type: new DataTypes.STRING(50),
-                allowNull: false
-            },
+        name: {
+            type: new DataTypes.STRING(30),
+            allowNull: false
+        },
 
-            
-            // Timestamps
-            
-            createdAt: {
-                type: 'TIMESTAMP',
-                defaultValue: DataTypes.literal( 'CURRENT_TIMESTAMP' ),
-                allowNull: false
+        lastname: {
+            type: new DataTypes.STRING(30),
+            allowNull: false
+        },
 
-            },
+        email: {
+            type: new DataTypes.STRING(50),
+            allowNull: false
+        },
 
-            updatedAt: {
-                type: 'TIMESTAMP',
-                defaultValue: DataTypes.literal('CURRENT_TIMESTAMP'),
-                allowNull: false
+        password: {
+            type: new DataTypes.STRING(50),
+            allowNull: false
+        },
 
-            }
-            
-        } )
+        
+        // Timestamps
+        
+        createdAt: {
+            type: 'TIMESTAMP',
+            defaultValue: DataTypes.literal( 'CURRENT_TIMESTAMP' ),
+            allowNull: false
 
-    },
+        },
+
+        updatedAt: {
+            type: 'TIMESTAMP',
+            defaultValue: DataTypes.literal('CURRENT_TIMESTAMP'),
+            allowNull: false
+
+        }
+        
+    } )
+
+}
 
 
-    down: ( queryInterface, Sequelize ) => {
-        return queryInterface.dropTable( 'Users' )
-    }
-
+export function down ( queryInterface, Sequelize ) {
+    return queryInterface.dropTable( 'Users' )
 }

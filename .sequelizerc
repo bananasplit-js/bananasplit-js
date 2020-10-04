@@ -4,6 +4,10 @@
  *  @config
  * 
  */
+require( '@babel/register' )
+require('alias-hq').get( 'module-alias' )
+
+
 const path = require( 'path' )
 
 

@@ -4,9 +4,6 @@
  *  @description seeds the user table with fake data
  * 
  */
-'use strict';
-
-require('alias-hq').get( 'module-alias' )
 
 
 /**
@@ -14,27 +11,23 @@ require('alias-hq').get( 'module-alias' )
  *  @generator @import
  * 
  */
-const createUser = require( '@generators/create-user' )
+import createUser from '@generators/create-user'
 
 
-module.exports = {
+export function up ( queryInterface, Sequelize ) {
 
-    up: ( queryInterface, Sequelize ) => {
+    let amount = 10
+    let users = []
 
-        let amount = 10
-        let users = []
+    while ( amount-- )
+        users.push( createUser() )
+    ;
 
-        while ( amount-- )
-            users.push( createUser() )
-        ;
+    return queryInterface.bulkInsert( 'Users', users, {} )
+
+}
 
 
-        return queryInterface.bulkInsert( 'Users', users, {} )
-
-    },
-
-    down: ( queryInterface, Sequelize ) => {
-        return queryInterface.bulkDelete( 'Users', null, {} )
-    }
-
+export function down ( queryInterface, Sequelize ) {
+    return queryInterface.bulkDelete( 'Users', null, {} )
 }

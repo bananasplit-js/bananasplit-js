@@ -6,13 +6,8 @@
  *  @description contains all sequelize-cli configurations
  *
  */
-'use strict';
-
-require('alias-hq').get( 'module-alias' )
-
-
-const dotenv = require( 'dotenv' )
-const CustomOptions = require( '@database/config/sequelize-cli.conf' )
+import dotenv from 'dotenv'
+import CustomOptions from '@database/config/sequelize-cli.conf'
 
 
 dotenv.config()
@@ -89,4 +84,4 @@ Options.test = { ...Options.test, ...CustomOptions.test }
 Options.production = { ...Options.production, ...CustomOptions.production }
 
 
-module.exports = Options
+export default Options
