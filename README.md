@@ -22,18 +22,19 @@
 ### Packages:
 | name |  description |
 | ---- | ------------ |
-| **[nodemon](https://www.npmjs.com/package/nodemon)** | auto restart your server every time change is detected |
-| **[ts-node](https://www.npmjs.com/package/ts-node)** | autocompiles typescript on run |
-| **[ts-jest](https://www.npmjs.com/package/ts-jest)** | provides jest typescript support |
+| **[nodemon](https://www.npmjs.com/package/nodemon)** | auto restart your server every time a change is detected |
+| **[ts-node](https://www.npmjs.com/package/ts-node)** | autocompiles typescript |
+| **[ts-jest](https://www.npmjs.com/package/ts-jest)** | provides typescript support for jest |
 | **[morgan](https://www.npmjs.com/package/morgan)** | print requests on console |
-| **[sequelize-cli](https://www.npmjs.com/package/sequelize-cli)** | provides jest typescript support |
-| **[dotenv](https://www.npmjs.com/package/dotenv)** | enviroment variables |
-| **[supertest](https://www.npmjs.com/package/supertest)** | http-based tests support |
-| **[faker](https://www.npmjs.com/package/faker)** | generate seeders random data |
-| **[npm-check-updates](https://www.npmjs.com/package/npm-check-updates)** | auto update dependencies |
-| **[module-alias](https://www.npmjs.com/package/module-alias)** | custom paths for your dist modules |
-| **[tsconfig-paths](https://www.npmjs.com/package/tsconfig-paths)** | custom paths support for compiling on the run |
-| **[alias-hq](https://www.npmjs.com/package/alias-hq)** | custom paths support for jest typescript|
+| **[sequelize-cli](https://www.npmjs.com/package/sequelize-cli)** | a sequelize client for manage migrations and seeders |
+| **[dotenv](https://www.npmjs.com/package/dotenv)** | secure enviroment variables |
+| **[supertest](https://www.npmjs.com/package/supertest)** | http-based tests support for jest |
+| **[faker](https://www.npmjs.com/package/faker)** | generates fake data in your generators and seeders |
+| **[npm-check-updates](https://www.npmjs.com/package/npm-check-updates)** | auto updates your project dependencies |
+| **[module-alias](https://www.npmjs.com/package/module-alias)** | custom paths support for your dist modules |
+| **[tsconfig-paths](https://www.npmjs.com/package/tsconfig-paths)** | custom paths support when compiling typescript on the run |
+| **[alias-hq](https://www.npmjs.com/package/alias-hq)** | custom paths support for jest with typescript |
+| **[@babel/core](https://www.npmjs.com/package/alias-hq)** | enables modern javascript features (including plugins and presets) |
 | **[chalk](https://www.npmjs.com/package/chalk)** | colorful console outputs |
 | **[boxen](https://www.npmjs.com/package/boxen)** | beautiful console info boxes |
 

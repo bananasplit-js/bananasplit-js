@@ -4,10 +4,7 @@
  *  @description creates an user based on fake data
  * 
  */
-'use strict';
-
-
-const faker = require( 'faker' )
+import { name, internet } from 'faker'
 
 
 /**
@@ -21,12 +18,12 @@ const faker = require( 'faker' )
 const date = new Date
 
 
-module.exports = ( user={} ) => ({
+export default ( user={} ) => ({
 
-    name: faker.name.firstName(),
-    lastname: faker.name.lastName(),
-    email: faker.internet.email(),
-    password: faker.internet.password(),
+    name: name.firstName(),
+    lastname: name.lastName(),
+    email: internet.email(),
+    password: internet.password(),
     createdAt: date,
     updatedAt: date,
 

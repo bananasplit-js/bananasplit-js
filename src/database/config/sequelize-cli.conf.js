@@ -57,4 +57,4 @@ const Options = {
 }
 
 
-module.exports = Options
+export default Options
