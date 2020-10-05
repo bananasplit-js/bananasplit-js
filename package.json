@@ -24,6 +24,8 @@
     "sequelize",
     "jest",
     "typescript",
+    "apollo",
+    "graphql",
     "template"
   ],
   "author": "@bananasplit-js",
