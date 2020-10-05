@@ -40,9 +40,15 @@
 
 # Get started!
 
-### Create a new project:
+### Create a new project
+**Express template:**
 ```
-npx @diegoulloao/banana-cli new my-app
+npx bananasplit-js new my-app
+```
+
+**Express + Apollo template:**
+```
+npx bananasplit-js new my-app --apollo
 ```
 
 **Read more about configuration:** https://bananasplit.js.org/docs/#config
