@@ -40,7 +40,7 @@
 
 # Get started!
 
-### Create a new project
+### Create a new app
 **Express template:**
 ```
 npx bananasplit-js new my-app
