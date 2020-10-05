@@ -15,24 +15,27 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/diegoulloao/bananasplit-express-template"
+    "url": "https://github.com/bananasplit-js/bananasplit-js"
   },
   "keywords": [
+    "bananasplit",
     "express",
     "nodejs",
     "sequelize",
     "jest",
     "typescript",
-    "graphql",
-    "apollo",
     "template"
   ],
-  "author": "@diegoulloao",
+  "author": "@bananasplit-js",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/diegoulloao/bananasplit-express-template/issues"
+    "url": "https://github.com/bananasplit-js/bananasplit-js/issues"
   },
-  "homepage": "",
+  "homepage": "https://bananasplit.js.org/",
+  "template": {
+    "version": "2.0.0",
+    "type": "express"
+  },
   "dependencies": {
     "@types/bluebird": "^3.5.32",
     "@types/node": "^14.11.2",
