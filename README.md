@@ -42,13 +42,13 @@
 
 ### Create a new app
 **Express template:**
-```
-npx bananasplit-js new my-app
+```bash
+npx bananasplit-js new "my-app"
 ```
 
 **Express + Apollo template:**
-```
-npx bananasplit-js new my-app --apollo
+```bash
+npx bananasplit-js new "my-app" --apollo
 ```
 
 **Read more about configuration:** https://bananasplit.js.org/docs/#config
@@ -58,10 +58,10 @@ npx bananasplit-js new my-app --apollo
 ### Check the documentation: https://bananasplit.js.org/docs
 
 # Contributing
-**Bananasplit** is an **open source** project so we are looking for contributors. If you are interested in contribute feel free to send a `pull request` or get in [contact](mailto:diegoulloao@icloud.com) with me.
+**Bananasplit-js** is an **open source** project so we are looking for contributors. If you are interested in contribute feel free to send a `pull request` or get in [contact](mailto:diegoulloao@icloud.com) with me.
 
 # License
-**Bananasplit** is licensed under **[MIT](https://github.com/diegoulloao/bananasplit-express-template/blob/master/LICENSE)** and is supported by the **community**.
+**Bananasplit-js** is licensed under **[MIT](https://github.com/diegoulloao/bananasplit-express-template/blob/master/LICENSE)** and is supported by the **community**.
 
 ---
 ![label](https://img.shields.io/badge/2020-bananasplit--js-yellow?style=for-the-badge)
