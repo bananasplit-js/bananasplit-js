@@ -11,7 +11,8 @@
     "test": "jest --runInBand",
     "test:watch": "jest --watch --runInBand",
     "test:coverage": "jest --coverage --runInBand",
-    "test:cache": "jest --clearCache"
+    "test:cache": "jest --clearCache",
+    "postinstall": "ts-node src/providers/core/jobs/postinstall.ts"
   },
   "repository": {
     "type": "git",
@@ -47,7 +48,6 @@
     "i": "^0.3.6",
     "module-alias": "^2.2.2",
     "morgan": "^1.10.0",
-    "mysql2": "^2.2.5",
     "npm": "^6.14.8",
     "sequelize": "^6.3.5",
     "sequelize-cli": "^6.2.0"
@@ -62,6 +62,7 @@
     "@types/jest": "^26.0.14",
     "@types/morgan": "^1.9.1",
     "@types/sequelize": "^4.28.9",
+    "@types/shelljs": "^0.8.8",
     "@types/supertest": "^2.0.10",
     "alias-hq": "^5.1.6",
     "babel-plugin-add-module-exports": "^1.0.4",
@@ -69,6 +70,7 @@
     "jest": "^26.4.2",
     "nodemon": "^2.0.4",
     "npm-check-updates": "^9.0.3",
+    "shelljs": "^0.8.4",
     "supertest": "^5.0.0",
     "ts-jest": "^26.4.1",
     "ts-node": "^9.0.0",
