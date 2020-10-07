@@ -3,7 +3,7 @@
  *  Build Stack
  *  @module src/providers/core/jobs/build-stack
  * 
- *  @description install the dependencies, create, migrate, seed the dabatase and run the tests
+ *  @description cross-platform solution for build the entire bananasplit stack
  *  @author diegoulloao
  * 
  */
@@ -11,18 +11,49 @@ const { spawnSync } = require( 'child_process' )
 const path = require( 'path' )
 
 
-// npm|yarn execution path
-const packageManagerExecPath =  process.env.npm_execpath
+const npmUserAgent = process.env.npm_config_user_agent
 
-// if no path founded then exits
-if ( !packageManagerExecPath ) {
-    console.log( 'The npm package manager path could not be founded. Please run the stack installation manually' )
+const Abort = () => {
+    console.log( 'The npm package manager could not be identified. Please run the stack installation manually' )
     process.exit(0)
 }
 
+// if no npm agent founded then exits
+if ( !npmUserAgent )
+    Abort()
+;
+
+
+const getPackageManager = () => {
+    const isWindows = ( process.platform === 'win32' )
+
+    switch( true ) {
+        case /^yarn/.test(npmUserAgent):
+            return isWindows ? 'yarn.cmd':'yarn'
+        ;
+
+        case /^npm/.test(npmUserAgent):
+            return isWindows ? 'npm.cmd':'npm'
+        ;
+
+        default:
+            return false
+        ;
+    }
+}
+
+
+// npm|yarn executor
+let packageManagerExec = getPackageManager()
+
+if ( !packageManagerExec )
+    Abort()
+;
+
+
 const RunNpmProcess = cmd => {
     // runs the npm process
-    const $process = spawnSync( packageManagerExecPath, cmd, {
+    const $process = spawnSync( packageManagerExec, cmd, {
         cwd: path.resolve( process.cwd() ),
         stdio: 'inherit'
     })
@@ -34,9 +65,11 @@ const RunNpmProcess = cmd => {
     }
 }
 
+
 // builds the stack step by step
 RunNpmProcess([ 'install' ])
 RunNpmProcess([ 'run', 'build:database' ])
 RunNpmProcess([ 'test', 'setup' ])
+
 
 process.exit(0)
