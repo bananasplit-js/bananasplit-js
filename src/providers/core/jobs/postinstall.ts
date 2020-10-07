@@ -11,7 +11,7 @@ import shell from 'shelljs'
 
 import { getPackageManager } from '../helpers'
 
-console.log(process.env.npm_config_user_agent); console.log(process.env.npm_execpath)
+
 dontenv.config()
 
 
