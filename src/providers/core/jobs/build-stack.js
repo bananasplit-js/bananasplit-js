@@ -8,26 +8,99 @@
  * 
  */
 const { spawnSync } = require( 'child_process' )
+const fs = require( 'fs' )
 const path = require( 'path' )
+
+
+const Abort = msg => {
+    console.error( msg )
+    process.exit(0)
+}
+
+
+const findDialect = () => {
+    const envPath = path.resolve( '.env' )
+
+    const env = fs.readFileSync( envPath, 'utf8' )
+    const envAsArray = env.split( /\n/ )
+
+    let dialect ;
+
+    envAsArray.some( line => {
+        if ( line.startsWith('DB_DIALECT') ) {
+            dialect = line.split('=')[1]
+            return true
+        }
+    })
+
+    return dialect
+}
+
+
+const dialect = findDialect()
+
+if ( !dialect )
+    Abort( 'You must define a db_dialect in the .env file' )
+;
+
+
+const getDatabaseDriverPackages = dialect => {
+    let packages ;
+    
+    switch ( dialect ) {
+        case 'mysql':
+            packages = 'mysql2'
+            break
+        ;
+        
+        case 'mariadb':
+            packages = 'mariadb'
+            break
+        ;
+
+        case 'postgres':
+            packages = 'pg pg-hstore'
+            break
+        ;
+
+        case 'mssql':
+            packages = 'tedious'
+            break
+        ;
+
+        case 'sqlite':
+            packages = 'sqlite3'
+            break
+        ;
+
+        default:
+            packages = ''
+        ;
+    }
+
+    return packages
+}
+
+
+const databaseDriverPackages = getDatabaseDriverPackages( dialect )
+
+if ( !databaseDriverPackages )
+    Abort( `${dialect} is not valid. Please choose one of: mysql|mariadb|postgres|mssql|sqlite` )
+;
 
 
 const npmUserAgent = process.env.npm_config_user_agent
 
-const Abort = () => {
-    console.log( 'The npm package manager could not be identified. Please run the stack installation manually' )
-    process.exit(0)
-}
-
 // if no npm agent founded then exits
 if ( !npmUserAgent )
-    Abort()
+    Abort( 'The npm package manager could not be identified. Please run the stack installation manually' )
 ;
 
 
 const getPackageManager = () => {
     const isWindows = ( process.platform === 'win32' )
 
-    switch( true ) {
+    switch ( true ) {
         case /^yarn/.test(npmUserAgent):
             return isWindows ? 'yarn.cmd':'yarn'
         ;
@@ -47,14 +120,14 @@ const getPackageManager = () => {
 let packageManagerExec = getPackageManager()
 
 if ( !packageManagerExec )
-    Abort()
+    Abort( 'The npm package manager could not be identified. Please run the stack installation manually' )
 ;
 
 
 const RunNpmProcess = cmd => {
     // runs the npm process
     const $process = spawnSync( packageManagerExec, cmd, {
-        cwd: path.resolve( process.cwd() ),
+        cwd: process.cwd(),
         stdio: 'inherit'
     })
 
@@ -68,6 +141,7 @@ const RunNpmProcess = cmd => {
 
 // builds the stack step by step
 RunNpmProcess([ 'install' ])
+RunNpmProcess([ 'install', databaseDriverPackages ])
 RunNpmProcess([ 'run', 'build:database' ])
 RunNpmProcess([ 'test', 'setup' ])
 
