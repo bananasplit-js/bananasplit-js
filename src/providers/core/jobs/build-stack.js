@@ -23,13 +23,16 @@ const Abort = msg => {
 const findDialect = () => {
     const envPath = path.resolve( '.env' )
 
+    // checks if .env exists
     fs.existsSync( envPath ) || Abort( '.env file missing' )
 
+    // parse each line to an array
     const env = fs.readFileSync( envPath, 'utf8' )
     const envAsArray = env.split( /\n|\r|\r\n/ )
 
     let dialect ;
 
+    // search for db_dialect and then break
     envAsArray.some( line => {
         if ( line.startsWith('DB_DIALECT') ) {
             dialect = line.split('=')[1]
@@ -86,6 +89,7 @@ const getDatabaseDriverPackages = dialect => {
 }
 
 
+// get database driver packages based on the dialect
 const databaseDriverPackages = getDatabaseDriverPackages( dialect )
 
 if ( !databaseDriverPackages )
@@ -102,6 +106,7 @@ if ( !npmUserAgent )
 
 
 const getPackageManager = () => {
+    // check for windows
     const isWindows = ( process.platform === 'win32' )
 
     switch ( true ) {
