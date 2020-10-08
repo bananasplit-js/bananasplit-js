@@ -18,7 +18,7 @@ import SetupRouter from '@providers/core/app/routes/setup.routes'
 import { getRoutersPath } from '@providers/core/helpers'
 
 // Interfaces
-import { IModule } from '@providers/core/interfaces'
+import { IModules } from '@providers/core/interfaces'
 
 
 /**
@@ -195,7 +195,7 @@ export default
          */
         private routes (): void {
 
-            const routersPaths: IModule[] = getRoutersPath()
+            const routersPaths: IModules[] = getRoutersPath()
             
             if ( routersPaths.length )
                 for ( const router of routersPaths ) {

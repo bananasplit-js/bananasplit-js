@@ -12,7 +12,7 @@ import chalk from 'chalk'
 import boxen from 'boxen'
 
 // Interfaces
-import { IModule } from '@providers/core/interfaces'
+import { IModules } from '@providers/core/interfaces'
 
 
 /**
@@ -48,36 +48,44 @@ export const servicesLog = ( output: string ): void => {
 }
 
 
-export const getModulesPath =
+interface IM {
+    dir: string
+    criteria: RegExp
+    excludeList: string[]
+    modulesList?: IModules[]
+}
 
-    ( dir: string, criteria: RegExp, excludeList: string[]=[], modulesList: IModule[]=[] ): IModule[] => {
+export const getModulesPath = ( params: IM ): IModules[] => {
+    
+    const { dir, criteria, excludeList } = params
+    let { modulesList=[] } = params
 
-        const modulesDir: string = path.resolve( dir )
-        const elements: string[] = fs.readdirSync( modulesDir )
 
-        elements.forEach( element => {
-            const elementPath: string = path.resolve( modulesDir, element )
+    const modulesDir: string = path.resolve( dir )
+    const elements: string[] = fs.readdirSync( modulesDir )
 
-            if ( fs.statSync(elementPath).isDirectory() ) {
-                // recursive call
-                modulesList = getModulesPath( elementPath, criteria, excludeList, modulesList )
-            
-            } else if ( !excludeList.includes(element) && criteria.test(element) ) {
-                modulesList.push({
-                    path: elementPath,
-                    filename: element
-                })
-            }
-        })
+    elements.forEach( element => {
+        const elementPath: string = path.resolve( modulesDir, element )
+
+        if ( fs.statSync(elementPath).isDirectory() ) {
+            // recursive call
+            modulesList = getModulesPath({ dir:elementPath, criteria, excludeList, modulesList })
         
-        return modulesList
+        } else if ( !excludeList.includes(element) && criteria.test(element) ) {
+            modulesList.push({
+                path: elementPath,
+                filename: element
+            })
+        }
+    })
+    
 
-    }
+    return modulesList
 
-;
+}
 
 
-export const getRoutersPath = (): IModule[] => {
+export const getRoutersPath = (): IModules[] => {
 
     const routersDir: string = './src/app/routes'
     const criteria: RegExp = /^.+\.routes\.(ts|js)$/
@@ -87,6 +95,6 @@ export const getRoutersPath = (): IModule[] => {
         'example.routes.js'
     ]
     
-    return getModulesPath( routersDir, criteria, excludeList )
+    return getModulesPath({ dir:routersDir, criteria, excludeList })
     
 }

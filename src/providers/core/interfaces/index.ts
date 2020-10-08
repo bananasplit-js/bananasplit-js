@@ -1,10 +1,10 @@
 /**
  * 
  *  Module auto-import definitions
- *  @type { IModule }
+ *  @type { IModules }
  * 
  */
-export interface IModule { // TODO: remove
-    path: string,
+export interface IModules {
+    path: string
     filename: string
 }
