@@ -29,7 +29,7 @@ const router: Router = Router()
      *  Your routes goes here
      * 
      */
-    $.route( '/{path}' )
+    $.route( '/path' )
         .get( /* @handler */ )
     ;
 
