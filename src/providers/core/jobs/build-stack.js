@@ -26,7 +26,7 @@ const findDialect = () => {
     fs.existsSync( envPath ) || Abort( '.env file missing' )
 
     const env = fs.readFileSync( envPath, 'utf8' )
-    const envAsArray = env.split( /\n/ )
+    const envAsArray = env.split( /\n|\r|\r\n/ )
 
     let dialect ;
 
