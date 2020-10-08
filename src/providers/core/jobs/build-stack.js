@@ -145,7 +145,7 @@ const RunNpmProcess = cmd => {
 
 // builds the stack step by step
 RunNpmProcess([ 'install' ])
-RunNpmProcess([ 'install', databaseDriverPackages ])
+RunNpmProcess([ 'add', databaseDriverPackages ])
 RunNpmProcess([ 'run', 'build:database' ])
 RunNpmProcess([ 'test', 'setup' ])
 
