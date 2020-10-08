@@ -7,6 +7,8 @@
  *  @author diegoulloao
  * 
  */
+'use strict';
+
 const { spawnSync } = require( 'child_process' )
 const fs = require( 'fs' )
 const path = require( 'path' )
@@ -20,6 +22,8 @@ const Abort = msg => {
 
 const findDialect = () => {
     const envPath = path.resolve( '.env' )
+
+    fs.existsSync( envPath ) || Abort( '.env file missing' )
 
     const env = fs.readFileSync( envPath, 'utf8' )
     const envAsArray = env.split( /\n/ )
@@ -85,7 +89,7 @@ const getDatabaseDriverPackages = dialect => {
 const databaseDriverPackages = getDatabaseDriverPackages( dialect )
 
 if ( !databaseDriverPackages )
-    Abort( `${dialect} is not valid. Please choose one of: mysql|mariadb|postgres|mssql|sqlite` )
+    Abort( `${dialect} is not a valid db_dialect. Please choose one of: mysql|mariadb|postgres|mssql|sqlite` )
 ;
 
 
