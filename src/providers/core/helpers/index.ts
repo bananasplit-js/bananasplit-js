@@ -8,6 +8,7 @@
  */
 import fs from 'fs'
 import path from 'path'
+
 import chalk from 'chalk'
 import boxen from 'boxen'
 
@@ -54,7 +55,21 @@ interface IM {
     excludeList: string[]
     modulesList?: IModules[]
 }
-
+/**
+ * 
+ *  Get modules path
+ *  @description get all modules path in a directory recursively
+ * 
+ *  @param { IM } params - {
+ *      dir: string,
+ *      criteria: RegExp,
+ *      excludeList: string[],
+ *      moduleList?: IModules[]
+ *  }: IM
+ * 
+ *  @returns { IModules[] }
+ * 
+ */
 export const getModulesPath = ( params: IM ): IModules[] => {
     
     const { dir, criteria, excludeList } = params
@@ -85,6 +100,14 @@ export const getModulesPath = ( params: IM ): IModules[] => {
 }
 
 
+/**
+ * 
+ *  Get routers path
+ *  @description get all routers module path in app routes directory
+ * 
+ *  @returns { IModules[] }
+ * 
+ */
 export const getRoutersPath = (): IModules[] => {
 
     const routersDir: string = './src/app/routes'
