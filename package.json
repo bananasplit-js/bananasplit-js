@@ -8,6 +8,7 @@
     "start": "node -r module-alias/register dist/app.js",
     "build": "tsc",
     "build:database": "npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all",
+    "build:stack": "node src/providers/core/jobs/build-stack.js",
     "test": "jest --runInBand",
     "test:watch": "jest --watch --runInBand",
     "test:coverage": "jest --coverage --runInBand",
@@ -52,7 +53,6 @@
     "i": "^0.3.6",
     "module-alias": "^2.2.2",
     "morgan": "^1.10.0",
-    "mysql2": "^2.2.5",
     "npm": "^6.14.8",
     "sequelize": "^6.3.5",
     "sequelize-cli": "^6.2.0"

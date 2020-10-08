@@ -6,6 +6,9 @@
  *  @description Contains helpers used in providers
  * 
  */
+import path from 'path'
+import fs from 'fs'
+
 import chalk from 'chalk'
 import boxen from 'boxen'
 
@@ -41,3 +44,16 @@ export const servicesLog = ( output: string ): void => {
     )
 
 }
+
+
+/**
+ * 
+ *  Get package manager
+ *  @description gets the package manager name
+ * 
+ *  @returns { string }
+ * 
+ */
+export const getPackageManager = (): string => (
+    fs.existsSync( path.resolve(process.cwd(), 'yarn.lock') ) ? 'yarn' : 'npm'
+)
