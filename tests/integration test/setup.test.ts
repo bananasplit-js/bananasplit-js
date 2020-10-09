@@ -107,9 +107,9 @@ test( 'Database seeders are ok', async () => {
 
 
 /**
- *  @test Graphql playground loads
+ *  @test Graphql playground is ok
  */
-test( 'Graphql playground loads', async() => {
+test( 'Graphql playground is ok', async() => {
 
     const endpoint: Express.Application | String = apollo.middleware ?
         Express : Apollo.url
@@ -128,9 +128,9 @@ test( 'Graphql playground loads', async() => {
 
 
 /**
- *  @test Hello from graphql is received
+ *  @test Graphql queries are ok
  */
-test( 'Hello from graphql is received', async() => {
+test( 'Graphql queries are ok', async() => {
 
     interface IResponse {
         data: {
