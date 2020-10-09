@@ -15,7 +15,7 @@ const router: Router = Router()
 /**
  *  @import @controller
  */
-import Setup from '@bananasplit-js/app/controllers/setup.controller'
+import Setup from '@providers/core/app/controllers/setup.controller'
 
 
 ; ( $ => {
@@ -24,13 +24,13 @@ import Setup from '@bananasplit-js/app/controllers/setup.controller'
      *  @routes
      */
 
-    // Hello
+    // Express test
     $.route( '/' )
-        .get( Setup.hello )
+        .get( Setup.expressTest )
     ;
 
     // Database connection test
-    $.route( '/test-auth' )
+    $.route( '/test-connection' )
         .get( Setup.databaseConnectionTest )
     ;
 
@@ -39,9 +39,14 @@ import Setup from '@bananasplit-js/app/controllers/setup.controller'
         .get( Setup.databaseQueryTest )
     ;
 
-    // Sequelize ORM test, get users
-    $.route( '/test-model' )
-        .get( Setup.getUsers )
+    // User table migration test
+    $.route( '/test-migration' )
+        .get( Setup.userTableMigrationTest )
+    ;
+
+    // User table seeder test
+    $.route( '/test-seeder' )
+        .get( Setup.userTableSeederTest )
     ;
 
 })( router )

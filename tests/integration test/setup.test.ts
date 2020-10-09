@@ -3,7 +3,9 @@
  *  Test: Setup test
  *  @module "tests/unit test/setup"
  * 
- *  @description * you can remove or modify this file *
+ *  @description tests the entire stack setup
+ *  
+ *  * you can remove or modify this file *
  * 
  */
 import { express } from '@services'
@@ -24,9 +26,9 @@ beforeAll( async () => {
 
 
 /**
- *  @test Hello response is received
+ *  @test Express server is ok
  */
-test( 'Hello response is received', async () => {
+test( 'Express server is ok', async () => {
 
     const response: Response = await request( Express ).get( '/' )
 
@@ -37,11 +39,11 @@ test( 'Hello response is received', async () => {
 
 
 /**
- *  @test Database authetication is correct
+ *  @test Database connection is ok
  */
-test( 'Database authetication is correct', async () => {
+test( 'Database connection is ok', async () => {
 
-    const response: Response = await request( Express ).get( '/test-auth' )
+    const response: Response = await request( Express ).get( '/test-connection' )
 
     expect( response.status ).toBe( 200 )
     expect( response.text ).toBe( 'Connection has been established successfully.' )
@@ -50,9 +52,9 @@ test( 'Database authetication is correct', async () => {
 
 
 /**
- *  @test Hello from database is received
+ *  @test Database queries are ok
  */
-test( 'Hello from database is received', async () => {
+test( 'Database queries are ok', async () => {
 
     interface IResponse {
         result: String
@@ -69,11 +71,30 @@ test( 'Hello from database is received', async () => {
 
 
 /**
- *  @test User model returns all users
+ *  @test Database migrations are ok
  */
-test( 'User model returns all users', async () => {
+test( 'Database migrations are ok', async () => {
 
-    const response: Response = await request( Express ).get( '/test-model' )
+    interface IResponse {
+        Tables_in_test: String
+    }
+
+    const response: Response = await request( Express ).get( '/test-migration' )
+    const JSONResponse: IResponse[] = JSON.parse( response.text )
+
+    expect( response.status ).toBe( 200 )
+    expect( JSONResponse[1]['Tables_in_test'] ).toBe( 'Users' )
+
+
+})
+
+
+/**
+ *  @test Database seeders are ok
+ */
+test( 'Database seeders are ok', async () => {
+
+    const response: Response = await request( Express ).get( '/test-seeder' )
     const JSONResponse: Object[] = await JSON.parse( response.text )
 
     expect( response.status ).toBe( 200 )
