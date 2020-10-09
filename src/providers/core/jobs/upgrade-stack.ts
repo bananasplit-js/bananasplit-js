@@ -15,6 +15,7 @@ const Abort = ( msg: string ): void => {
     process.exit(0)
 }
 
+
 const npmUserAgent: string = process.env.npm_config_user_agent!
 
 // if no npm agent founded then exits
@@ -39,6 +40,7 @@ const getPackageManager = (): string => {
     }
 }
 
+
 // npm|yarn executor
 const packageManager: string = getPackageManager()
 
@@ -48,7 +50,7 @@ if ( !packageManager )
 
 
 // runs the ncu upgrade
-const $process: SpawnSyncReturns<Buffer> = spawnSync(
+const $process: SpawnSyncReturns <Buffer> = spawnSync(
     'npx',
     [ 'ncu', '--doctor', '--packageManager', packageManager, '-u' ], 
     {
