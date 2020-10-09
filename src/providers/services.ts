@@ -3,7 +3,7 @@
  *  Services
  *  @module providers/services
  * 
- *  @description services provided by Bananasplit
+ *  @description services provided by bananasplit
  * 
  */
 import { Express } from '@bananasplit-js'

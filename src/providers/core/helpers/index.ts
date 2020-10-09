@@ -6,11 +6,14 @@
  *  @description Contains helpers used in providers
  * 
  */
-import path from 'path'
 import fs from 'fs'
+import path from 'path'
 
 import chalk from 'chalk'
 import boxen from 'boxen'
+
+// Interfaces
+import { IModules } from '@providers/core/interfaces'
 
 
 /**
@@ -34,26 +37,87 @@ export const servicesLog = ( output: string ): void => {
 
     
     console.log(
-
         boxen( message.join(''), {
             padding: 1,
             margin: 1,
             borderColor: 'yellow'
         })
-        
     )
+
+}
+
+
+interface IM {
+    dir: string
+    criteria: RegExp
+    excludeList: string[]
+    modulesList?: IModules[]
+}
+/**
+ * 
+ *  Get modules path
+ *  @description get all modules path in a directory recursively
+ * 
+ *  @param { IM } params - {
+ *      dir: string,
+ *      criteria: RegExp,
+ *      excludeList: string[],
+ *      moduleList?: IModules[]
+ *  }
+ * 
+ *  @returns { IModules[] }
+ * 
+ */
+export const getModulesPath = ( params: IM ): IModules[] => {
+    
+    // Params
+    const { dir, criteria, excludeList } = params
+    let { modulesList=[] } = params
+
+
+    const modulesDir: string = path.resolve( dir )
+    const elements: string[] = fs.readdirSync( modulesDir )
+
+    elements.forEach( element => {
+        const elementPath: string = path.resolve( modulesDir, element )
+
+        if ( fs.statSync(elementPath).isDirectory() ) {
+            // recursive call
+            modulesList = getModulesPath({ dir:elementPath, criteria, excludeList, modulesList })
+        
+        } else if ( !excludeList.includes(element) && criteria.test(element) ) {
+            modulesList.push({
+                path: elementPath,
+                filename: element
+            })
+        }
+    })
+    
+
+    return modulesList
 
 }
 
 
 /**
  * 
- *  Get package manager
- *  @description gets the package manager name
+ *  Get routers path
+ *  @description get all routers module path in app routes directory
  * 
- *  @returns { string }
+ *  @returns { IModules[] }
  * 
  */
-export const getPackageManager = (): string => (
-    fs.existsSync( path.resolve(process.cwd(), 'yarn.lock') ) ? 'yarn' : 'npm'
-)
+export const getRoutersPath = (): IModules[] => {
+
+    const routersDir: string = './src/app/routes'
+    const criteria: RegExp = /^.+\.routes\.(ts|js)$/
+
+    const excludeList: string[] = [
+        'example.routes.ts',
+        'example.routes.js'
+    ]
+    
+
+    return getModulesPath({ dir:routersDir, criteria, excludeList })
+    
+}

@@ -142,7 +142,7 @@ const RunNpmProcess = cmd => {
 
     // if an error ocurrs it prints it and exits
     if ( $process.status === 1 ) {
-        console.log( $process.error || '' )
+        console.error( $process.error || '' )
         process.exit(1)
     }
 }

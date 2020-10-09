@@ -29,11 +29,14 @@ const router: Router = Router()
      *  Your routes goes here
      * 
      */
-    $.route( '/{path}' )
-        .get( /* @handler */ )
+    $.route( '/url' )
+        .get( /* @handler from controller */ )
+        .post( /* same */ )
     ;
 
+
 })( router )
+
 
 
 export default router

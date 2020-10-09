@@ -37,7 +37,7 @@ export function up ( queryInterface, DataTypes ) {
         },
 
         
-        // Timestamps
+        /* Timestamps */
         
         createdAt: {
             type: 'TIMESTAMP',
@@ -53,7 +53,7 @@ export function up ( queryInterface, DataTypes ) {
 
         }
         
-    } )
+    })
 
 }
 
