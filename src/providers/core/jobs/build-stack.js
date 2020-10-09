@@ -126,7 +126,7 @@ const getPackageManager = () => {
 
 
 // npm|yarn executor
-let packageManagerExec = getPackageManager()
+const packageManagerExec = getPackageManager()
 
 if ( !packageManagerExec )
     Abort( 'The npm package manager could not be identified. Please run the stack installation manually' )
@@ -142,7 +142,7 @@ const RunNpmProcess = cmd => {
 
     // if an error ocurrs it prints it and exits
     if ( $process.status === 1 ) {
-        console.log( $process.error || '' )
+        console.error( $process.error || '' )
         process.exit(1)
     }
 }
