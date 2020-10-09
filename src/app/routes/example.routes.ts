@@ -30,10 +30,11 @@ const router: Router = Router()
      * 
      */
     $.route( '/path' )
-        .get( /* @handler */ )
+        .get( /* @handler from controller */ )
     ;
 
 })( router )
+
 
 
 export default router
