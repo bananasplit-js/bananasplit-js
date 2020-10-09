@@ -9,7 +9,6 @@
 import { Sequelize, Options } from 'sequelize'
 import CustomOptions from '@database/config/sequelize.conf'
 
-import chalk from 'chalk'
 import dotenv from 'dotenv'
 
 

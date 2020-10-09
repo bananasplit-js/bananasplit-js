@@ -21,9 +21,9 @@ export default
     class Controller {
 
         /**
-         *   @handler Hello response
+         *   @handler Express test
          */
-        public static hello ( request: Request, response: Response ) {
+        public static expressTest ( request: Request, response: Response ) {
             return response.status( 200 ).send( 'GET 200 / Hello' )
         }
 
@@ -63,9 +63,26 @@ export default
 
 
         /**
-         *  @handler Sequelize ORM query test
+         *  @handler User table migration test
          */
-        public static async getUsers ( request: Request, response: Response ) {
+        public static async userTableMigrationTest ( request: Request, response: Response ) {
+            try {
+                const [ result ] = await Sequelize.query( "SHOW TABLES" )
+                response.status( 200 ).send( result )
+
+            } catch(e) {
+                response.status( 500 ).send( `Unable to connect to the database: ${e}` )
+            }
+
+
+            return response
+        }
+
+
+        /**
+         *  @handler User table seeder test
+         */
+        public static async userTableSeederTest ( request: Request, response: Response ) {
             try {
                 const result = await User.findAll()
                 response.status( 200 ).send( result )

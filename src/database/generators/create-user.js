@@ -1,7 +1,7 @@
 /**
  * 
  *  Generator: User
- *  @description creates an user based on fake data
+ *  @description creates an user object based on fake data
  * 
  */
 import { name, internet } from 'faker'
@@ -9,7 +9,7 @@ import { name, internet } from 'faker'
 
 /**
  * 
- *  You can set your locate with:
+ *  You can set your locale:
  *  faker.setLocale('en')
  * 
  */

@@ -3,7 +3,7 @@
  *  Helpers
  *  @module app/helpers/example
  * 
- * 	@description helper file example containing helpful functions to help
+ * 	@description helper file example
  * 
  */
 
@@ -14,7 +14,7 @@
  *	Your helpers goes here
  * 
  */
-export function helper(): void {
+export function helper() {
 
 	// do something helpful
 

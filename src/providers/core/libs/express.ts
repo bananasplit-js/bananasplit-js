@@ -7,13 +7,18 @@
  * 
  */
 import http from 'http'
-import Express, { Router } from 'express'
+import Express from 'express'
+
+import chalk from 'chalk'
 
 import Settings from '@settings/express'
 import Middlewares from '@middlewares/express'
-import MainRouter from '@routes/main.routes'
+import SetupRouter from '@providers/core/app/routes/setup.routes'
 
-import SetupRouter from '@bananasplit-js/app/routes/setup.routes'
+import { getRoutersPath } from '@providers/core/helpers'
+
+// Interfaces
+import { IModules } from '@providers/core/interfaces'
 
 
 /**
@@ -190,7 +195,27 @@ export default
          */
         private routes (): void {
 
-            this.service.use( MainRouter.length ? MainRouter : SetupRouter )
+            const routersPaths: IModules[] = getRoutersPath()
+            
+            if ( routersPaths.length )
+                for ( const router of routersPaths ) {
+                    let { default: routerModule } = require( router.path )
+
+                    if ( routerModule instanceof Function )
+                        this.service.use( routerModule )
+                    
+                    else
+                        console.warn( chalk.yellow(
+                            `\nWARNING!
+                            \n@router → ${router.filename} must export a middleware function by default`
+                        ))
+                    ;
+
+                }
+                
+            else
+                this.service.use( SetupRouter )
+            ;
 
         }
 
