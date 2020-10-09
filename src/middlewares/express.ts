@@ -42,7 +42,9 @@ export default
         app.use( Express.json() )
 
         // Public
-        app.use( Express.static(app.get('public')) )
+        app.use(
+            Express.static( app.get('public') )
+        )
 
     }
 ;

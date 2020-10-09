@@ -26,7 +26,7 @@ export default
          *  @handler { Action description }
          */
         public static action ( req: Request, res: Response ) {
-            return res
+            return res.send()
         }
 
     }

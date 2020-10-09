@@ -47,7 +47,7 @@ class Name extends Model {
 
     Name.init()
 
-    // do something async before export the model like synchronize
+    // do something async before export the model, like synchronize
 
 })()
 

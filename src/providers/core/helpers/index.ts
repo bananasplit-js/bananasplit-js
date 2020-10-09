@@ -37,13 +37,11 @@ export const servicesLog = ( output: string ): void => {
 
     
     console.log(
-
         boxen( message.join(''), {
             padding: 1,
             margin: 1,
             borderColor: 'yellow'
         })
-        
     )
 
 }
@@ -65,13 +63,14 @@ interface IM {
  *      criteria: RegExp,
  *      excludeList: string[],
  *      moduleList?: IModules[]
- *  }: IM
+ *  }
  * 
  *  @returns { IModules[] }
  * 
  */
 export const getModulesPath = ( params: IM ): IModules[] => {
     
+    // Params
     const { dir, criteria, excludeList } = params
     let { modulesList=[] } = params
 
@@ -118,6 +117,7 @@ export const getRoutersPath = (): IModules[] => {
         'example.routes.js'
     ]
     
+
     return getModulesPath({ dir:routersDir, criteria, excludeList })
     
 }
