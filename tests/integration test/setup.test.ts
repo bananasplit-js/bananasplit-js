@@ -83,8 +83,8 @@ test( 'Database migrations are ok', async () => {
     const JSONResponse: IResponse[] = JSON.parse( response.text )
 
     expect( response.status ).toBe( 200 )
-    expect( JSONResponse[1]['Tables_in_test'] ).toBe( 'Users' )
-
+    expect( JSONResponse[0]['Tables_in_test'].toLowerCase() ).toBe( 'sequelizemeta' )
+    expect( JSONResponse[1]['Tables_in_test'].toLowerCase() ).toBe( 'users' )
 
 })
 
