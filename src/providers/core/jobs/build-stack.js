@@ -126,7 +126,7 @@ const getPackageManager = () => {
 
 
 // npm|yarn executor
-let packageManagerExec = getPackageManager()
+const packageManagerExec = getPackageManager()
 
 if ( !packageManagerExec )
     Abort( 'The npm package manager could not be identified. Please run the stack installation manually' )

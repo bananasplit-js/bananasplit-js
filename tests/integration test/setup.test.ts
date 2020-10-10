@@ -86,8 +86,9 @@ test( 'Database migrations are ok', async () => {
     const JSONResponse: IResponse[] = JSON.parse( response.text )
 
     expect( response.status ).toBe( 200 )
-    expect( JSONResponse[1]['Tables_in_test'] ).toBe( 'Users' )
-
+    // case insensitive fixs the problem on windows tables name
+    expect( JSONResponse[0]['Tables_in_test'] ).toMatch( /SequelizeMeta/i )
+    expect( JSONResponse[1]['Tables_in_test'] ).toMatch( /Users/i )
 
 })
 
