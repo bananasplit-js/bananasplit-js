@@ -2,7 +2,7 @@
   "name": "bananasplit-js",
   "version": "2.0.0",
   "description": "A bananasplit app",
-  "main": "app.js",
+  "main": "dist/src/app.js",
   "scripts": {
     "dev": "nodemon --exec ts-node -r tsconfig-paths/register src/app.ts --ignore tests",
     "start": "node -r module-alias/register dist/src/app.js",
