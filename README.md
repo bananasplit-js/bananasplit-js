@@ -59,7 +59,7 @@ npx bananasplit-js new "my-app" --apollo
 yarn build:stack | npm run build:stack
 ```
 
-**Run the development server:**
+:rocket: **Run the development server**
 ```bash
 yarn dev | npm run dev
 ```
