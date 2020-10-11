@@ -7,15 +7,15 @@
     "dev": "nodemon --exec ts-node -r tsconfig-paths/register src/app.ts --ignore tests",
     "start": "node -r module-alias/register dist/src/app.js",
     "build": "tsc",
-    "build:database": "npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all",
+    "build:database": "sequelize db:create && sequelize db:migrate && sequelize db:seed:all",
     "build:stack": "node src/providers/core/jobs/build-stack.js",
     "test": "jest --runInBand",
     "test:watch": "jest --watch --runInBand",
     "test:coverage": "jest --coverage --runInBand",
     "test:cache": "jest --clearCache",
     "upgrade:stack": "ts-node src/providers/core/jobs/upgrade-stack.ts",
-    "lint": "npx eslint src tests",
-    "lint:fix": "npx eslint src tests --fix"
+    "lint": "eslint src tests",
+    "lint:fix": "eslint src tests --fix"
   },
   "repository": {
     "type": "git",
