@@ -5,16 +5,16 @@
 <p align="center">
     <img src="https://img.shields.io/badge/written-typescript-blue?logo=typescript">
     <img src="https://img.shields.io/badge/js-express-lightgray">
-    <img src="https://img.shields.io/badge/graphql-apollo-blue?logo=graphql">
+    <!-- <img src="https://img.shields.io/badge/graphql-apollo-blue?logo=graphql"> -->
     <img src="https://img.shields.io/badge/orm-sequelize-blue">
     <img src="https://img.shields.io/badge/test-jest-green?logo=jest">
     <img src="https://img.shields.io/badge/version-v2.0-orange">
     <img src="https://img.shields.io/badge/license-MIT-blue">
 </p>
 
+ <!-- * **[Apollo](https://www.apollographql.com/)** graphql -->
 ### Integrated support for:
  * **[Express](https://expressjs.com/)** framework
- * **[Apollo](https://www.apollographql.com/)** graphql
  * **[Jest](https://jestjs.io/)** testing
  * **[Sequelize](https://sequelize.org/)** ORM
  * **[Typescript](https://www.typescriptlang.org/)** language
@@ -35,6 +35,8 @@
 | **[tsconfig-paths](https://www.npmjs.com/package/tsconfig-paths)** | custom paths support when compiling typescript on the run |
 | **[alias-hq](https://www.npmjs.com/package/alias-hq)** | custom paths support for jest with typescript |
 | **[@babel/core](https://www.npmjs.com/package/alias-hq)** | enables modern javascript features (including plugins and presets) |
+| **[eslint](https://www.npmjs.com/package/eslint)** | lints and fixes your code syntax |
+| **[prettier](https://www.npmjs.com/package/prettier)** | format your code |
 | **[chalk](https://www.npmjs.com/package/chalk)** | colorful console outputs |
 | **[boxen](https://www.npmjs.com/package/boxen)** | beautiful console info boxes |
 
@@ -46,10 +48,10 @@
 npx bananasplit-js new "my-app"
 ```
 
-**Express + Apollo template:**
+<!-- **Express + Apollo template:**
 ```bash
 npx bananasplit-js new "my-app" --apollo
-```
+``` -->
 
 **Read more about configuration:** https://bananasplit.js.org/docs/#config
 
