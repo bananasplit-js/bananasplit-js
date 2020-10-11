@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "dev": "nodemon --exec ts-node -r tsconfig-paths/register src/app.ts --ignore tests",
-    "start": "node -r module-alias/register dist/app.js",
+    "start": "node -r module-alias/register dist/src/app.js",
     "build": "tsc",
     "build:database": "npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all",
     "build:stack": "node src/providers/core/jobs/build-stack.js",
@@ -77,15 +77,16 @@
     "typescript": "^4.0.3"
   },
   "_moduleAliases": {
-    "@bananasplit-js": "dist/providers/core",
-    "@services": "dist/providers/services",
-    "@providers": "dist/providers",
-    "@database": "dist/database",
-    "@settings": "dist/settings",
-    "@middlewares": "dist/middlewares",
-    "@controllers": "dist/app/controllers",
-    "@models": "dist/app/models",
-    "@routes": "dist/app/routes",
-    "@helpers": "dist/app/helpers"
+    "@bananasplit-js": "dist/src/providers/core",
+    "@services": "dist/src/providers/services",
+    "@providers": "dist/src/providers",
+    "@database": "dist/src/database",
+    "@settings": "dist/src/settings",
+    "@middlewares": "dist/src/middlewares",
+    "@controllers": "dist/src/app/controllers",
+    "@models": "dist/src/app/models",
+    "@routes": "dist/src/app/routes",
+    "@helpers": "dist/src/app/helpers",
+    "@config": "dist/src/config"
   }
 }

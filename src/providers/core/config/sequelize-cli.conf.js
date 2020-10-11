@@ -7,7 +7,7 @@
  *
  */
 import dotenv from 'dotenv'
-import CustomOptions from '@database/config/sequelize-cli.conf'
+import CustomOptions from '@config/sequelize/sequelize-cli.conf'
 
 
 dotenv.config()
