@@ -34,7 +34,7 @@
 | **[module-alias](https://www.npmjs.com/package/module-alias)** | custom paths support for your dist modules |
 | **[tsconfig-paths](https://www.npmjs.com/package/tsconfig-paths)** | custom paths support when compiling typescript on the run |
 | **[alias-hq](https://www.npmjs.com/package/alias-hq)** | custom paths support for jest with typescript |
-| **[@babel/core](https://www.npmjs.com/package/alias-hq)** | enables modern javascript features (including plugins and presets) |
+| **[@babel/core](https://www.npmjs.com/package/alias-hq)** | enables modern javascript features (include plugins and presets) |
 | **[eslint](https://www.npmjs.com/package/eslint)** | lints and fixes your code syntax |
 | **[prettier](https://www.npmjs.com/package/prettier)** | format your code |
 | **[chalk](https://www.npmjs.com/package/chalk)** | colorful console outputs |
@@ -42,7 +42,7 @@
 
 # Get started!
 
-### Create a new app
+### 1. Create a new app
 **Express template:**
 ```bash
 npx bananasplit-js new "my-app"
@@ -52,6 +52,17 @@ npx bananasplit-js new "my-app"
 ```bash
 npx bananasplit-js new "my-app" --apollo
 ``` -->
+
+### 2. Setup the stack
+**Add your database access to `.env`**
+```bash
+yarn build:stack | npm run build:stack
+```
+
+**Run the development server:**
+```bash
+yarn dev | npm run dev
+```
 
 **Read more about configuration:** https://bananasplit.js.org/docs/#config
 
