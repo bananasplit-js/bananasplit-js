@@ -11,5 +11,14 @@
     },
     "rules": {
         // "@typescript-eslint/explicit-function-return-type": "off",
-    }
+    },
+    "ignorePatterns": [
+        "dist/*",
+        "public/*",
+        "node_modules/*",
+        "coverage/*",
+        "src/providers/core/*",
+        "src/providers/addons/*",
+        "jest.config.js"
+    ]
 }
