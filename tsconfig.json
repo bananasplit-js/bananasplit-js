@@ -9,6 +9,7 @@
     "moduleResolution": "node",
     "baseUrl": ".",
     "paths": {
+      "@root/*": ["./*"],
       "@bananasplit-js": ["src/providers/core"],
       "@bananasplit-js/*": ["src/providers/core/*"],
       "@services": ["src/providers/services"],
@@ -20,10 +21,12 @@
       "@models/*": ["src/app/models/*"],
       "@routes/*": ["src/app/routes/*"],
       "@helpers/*": ["src/app/helpers/*"],
-      "@generators/*": ["src/database/generators*"]
+      "@generators/*": ["src/database/generators/*"],
+      "@config/*": ["src/config/*"]
     },
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true
   },
-  "exclude": ["./jest.config.js", "./tests"]
+  "exclude": ["jest.config.js", "dist"]
 }
