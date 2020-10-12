@@ -3,14 +3,14 @@
  *  Post Build
  *  @module src/providers/core/jobs/post-build
  * 
- *  @description updates _moduleAliases at package.json when building the dist
+ *  @description prepare dist/package.json for production
  *  @author diegoulloao
  * 
  */
 import fs from 'fs'
 import path from 'path'
 
-import packageJson from '@root/package.json'
+import packageJson from '@root/dist/package.json'
 import tsconfigJson from '@root/tsconfig.json'
 
 
@@ -37,37 +37,50 @@ if ( !pathsPair.length ) {
 
 // any type allows index the object by string
 var _moduleAliases: any = {}
-
-const prefix: string = tsconfigJson.compilerOptions.outDir
 const cRex: RegExp[] = [ /\/\*$/, /\/\// ]
 
 
 pathsPair.forEach( pathPair => {
-    // if not @root|root
     const index: string = pathPair[0].replace( cRex[0], '' )
-    let distPath: string
-
-    if ( !/@?root/.test(pathPair[0]) )
-        distPath = `${prefix}/${pathPair[1][0].replace(cRex[0], '').replace(cRex[1], '/')}`
-
-    else
-        distPath = pathPair[1][0].replace(cRex[0], '').replace(cRex[1], '/')
-    ;
+    const distPath = pathPair[1][0].replace(cRex[0], '').replace(cRex[1], '/')
 
     _moduleAliases[ index ] = distPath
 })
 
 
-try {
-    packageJson._moduleAliases = _moduleAliases
+// type any allows to use delete
+const $packageJson: any = packageJson
 
-    fs.writeFileSync( path.resolve('./package.json'), JSON.stringify(packageJson, null, 2) )
-    console.log( '_moduleAliases updated at package.json' )
+delete $packageJson.scripts.dev
+delete $packageJson.scripts.build
+delete $packageJson.scripts['upgrade:stack']
+delete $packageJson.scripts.lint
+delete $packageJson.scripts['lint:fix']
+delete $packageJson.scripts.prebuild
+delete $packageJson.scripts.postbuild
+
+// type any allows to use delete
+delete $packageJson.devDependencies
+
+
+// new asignments
+$packageJson._moduleAliases = _moduleAliases
+$packageJson.scripts.start = packageJson.scripts.start.replace( 'dist/', '' )
+$packageJson.main = packageJson.main.replace( /\.ts$/, '.js' )
+
+
+try {
+    // overwrites dist/package.json for production
+    fs.writeFileSync( path.resolve('./dist/package.json'), JSON.stringify($packageJson, null, 4) )
+    console.log( 'Post-build: dist/package.json is ready for production 🚀' )
     
 } catch ( error ) {
     console.error( error )
     process.exit(1)
 }
+
+
+console.log( '\nBuild done!\n' )
 
 
 process.exit(0)
