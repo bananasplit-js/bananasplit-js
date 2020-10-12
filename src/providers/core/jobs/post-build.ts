@@ -1,3 +1,12 @@
+/**
+ * 
+ *  Post Build
+ *  @module src/providers/core/jobs/post-build
+ * 
+ *  @description updates _moduleAliases at package.json when building the dist
+ *  @author diegoulloao
+ * 
+ */
 import fs from 'fs'
 import path from 'path'
 
