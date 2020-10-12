@@ -79,7 +79,7 @@ $packageJson.main = packageJson.main.replace( /\.ts$/, '.js' )
 try {
     // overwrites dist/package.json for production
     fs.writeFileSync( path.resolve('./dist/package.json'), JSON.stringify($packageJson, null, 4) )
-    console.log( `${chalk.green('Post-build:')} dist/package.json is ready for production 🚀` )
+    console.log( `${chalk.green('● Post-build:')} dist/package.json is ready for production 🚀` )
     
 } catch ( error ) {
     console.error( error )
@@ -87,7 +87,7 @@ try {
 }
 
 
-console.log( chalk.bgGreen('\n Build done! \n') )
+console.log( `${chalk.bgGreen.black('\n Build done! ')} ✨\n` )
 
 
 process.exit(0)
