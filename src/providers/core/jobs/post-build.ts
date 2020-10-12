@@ -9,6 +9,7 @@
  */
 import fs from 'fs'
 import path from 'path'
+import chalk from 'chalk'
 
 import packageJson from '@root/dist/package.json'
 import tsconfigJson from '@root/tsconfig.json'
@@ -72,7 +73,7 @@ $packageJson.main = packageJson.main.replace( /\.ts$/, '.js' )
 try {
     // overwrites dist/package.json for production
     fs.writeFileSync( path.resolve('./dist/package.json'), JSON.stringify($packageJson, null, 4) )
-    console.log( 'Post-build: dist/package.json is ready for production 🚀' )
+    console.log( `${chalk.green('Post-build:')} dist/package.json is ready for production 🚀` )
     
 } catch ( error ) {
     console.error( error )
@@ -80,7 +81,7 @@ try {
 }
 
 
-console.log( '\nBuild done!\n' )
+console.log( chalk.bgGreen('\n Build done! \n') )
 
 
 process.exit(0)

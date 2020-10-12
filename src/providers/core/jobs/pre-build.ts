@@ -9,12 +9,13 @@
  */
 import fs from 'fs'
 import path from 'path'
+import chalk from 'chalk'
 
 import packageJson from '@root/package.json'
 import tsconfigJson from '@root/tsconfig.json'
 
 
-console.log( 'Preparing to build...' )
+console.log( chalk.yellow('Preparing to build...') )
 
 
 const Abort: Function = ( msg: string ): void => {
@@ -68,7 +69,7 @@ packageJson._moduleAliases = _moduleAliases
 try {
     // overwrites package.json
     fs.writeFileSync( path.resolve('./package.json'), JSON.stringify(packageJson, null, 4) )
-    console.log( '\nPre-build: moduleAliases was updated at package.json ✅\n' )
+    console.log( `${chalk.green('\nPre-build:')} moduleAliases was updated at package.json ✅\n` )
     
 } catch ( error ) {
     console.error( error )
@@ -76,7 +77,7 @@ try {
 }
 
 
-console.log( 'Building...' )
+console.log( chalk.yellow('Building...') )
 
 
 process.exit(0)
