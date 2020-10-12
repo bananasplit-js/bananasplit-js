@@ -28,6 +28,11 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true
   },
-  "include": ["src/**/*", "tests/**/*", "package.json"],
-  "exclude": ["src/providers/core/jobs/*"]
+  "include": ["src/**/*", "package.json"],
+  "exclude": [
+    "dist",
+    "src/database/seeders/*",
+    "src/database/generators/*",
+    "src/providers/core/jobs/*"
+  ]
 }

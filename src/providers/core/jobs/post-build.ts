@@ -54,6 +54,11 @@ const $packageJson: any = packageJson
 
 delete $packageJson.scripts.dev
 delete $packageJson.scripts.build
+delete $packageJson.scripts['build:stack']
+delete $packageJson.scripts.test
+delete $packageJson.scripts['test:watch']
+delete $packageJson.scripts['test:coverage']
+delete $packageJson.scripts['test:cache']
 delete $packageJson.scripts['upgrade:stack']
 delete $packageJson.scripts.lint
 delete $packageJson.scripts['lint:fix']
@@ -67,6 +72,7 @@ delete $packageJson.devDependencies
 // new asignments
 $packageJson._moduleAliases = _moduleAliases
 $packageJson.scripts.start = packageJson.scripts.start.replace( 'dist/', '' )
+$packageJson.scripts['build:database'] = packageJson.scripts['build:database'].replace( ' && sequelize db:seed:all', '' )
 $packageJson.main = packageJson.main.replace( /\.ts$/, '.js' )
 
 
