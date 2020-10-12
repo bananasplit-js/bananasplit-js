@@ -52,21 +52,21 @@ pathsPair.forEach( pathPair => {
 // type any allows to use delete
 const $packageJson: any = packageJson
 
-delete $packageJson.scripts.dev
-delete $packageJson.scripts.build
-delete $packageJson.scripts['build:stack']
-delete $packageJson.scripts.test
-delete $packageJson.scripts['test:watch']
-delete $packageJson.scripts['test:coverage']
-delete $packageJson.scripts['test:cache']
-delete $packageJson.scripts['upgrade:stack']
-delete $packageJson.scripts.lint
-delete $packageJson.scripts['lint:fix']
-delete $packageJson.scripts.prebuild
-delete $packageJson.scripts.postbuild
+$packageJson.scripts.dev && delete $packageJson.scripts.dev
+$packageJson.scripts.build && delete $packageJson.scripts.build
+$packageJson.scripts['build:stack'] && delete $packageJson.scripts['build:stack']
+$packageJson.scripts.test && delete $packageJson.scripts.test
+$packageJson.scripts['test:watch'] && delete $packageJson.scripts['test:watch']
+$packageJson.scripts['test:coverage'] && delete $packageJson.scripts['test:coverage']
+$packageJson.scripts['test:cache'] && delete $packageJson.scripts['test:cache']
+$packageJson.scripts['upgrade:stack'] && delete $packageJson.scripts['upgrade:stack']
+$packageJson.scripts.lint && delete $packageJson.scripts.lint
+$packageJson.scripts['lint:fix'] && delete $packageJson.scripts['lint:fix']
+$packageJson.scripts.prebuild && delete $packageJson.scripts.prebuild
+$packageJson.scripts.postbuild && delete $packageJson.scripts.postbuild
 
 // type any allows to use delete
-delete $packageJson.devDependencies
+$packageJson.devDependencies && delete $packageJson.devDependencies
 
 
 // new asignments
