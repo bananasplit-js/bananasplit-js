@@ -9,6 +9,7 @@
     "moduleResolution": "node",
     "baseUrl": ".",
     "paths": {
+      "@root/*": ["./*"],
       "@bananasplit-js": ["src/providers/core"],
       "@bananasplit-js/*": ["src/providers/core/*"],
       "@services": ["src/providers/services"],
@@ -24,7 +25,8 @@
       "@config/*": ["src/config/*"]
     },
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true
   },
   "exclude": ["jest.config.js", "dist"]
 }

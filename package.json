@@ -15,7 +15,8 @@
     "test:cache": "jest --clearCache",
     "upgrade:stack": "ts-node src/providers/core/jobs/upgrade-stack.ts",
     "lint": "eslint src tests",
-    "lint:fix": "eslint src tests --fix"
+    "lint:fix": "eslint src tests --fix",
+    "postbuild": "ts-node -r tsconfig-paths/register src/providers/core/jobs/post-build.ts"
   },
   "repository": {
     "type": "git",
@@ -86,6 +87,7 @@
     "typescript": "^4.0.3"
   },
   "_moduleAliases": {
+    "@root": ".",
     "@bananasplit-js": "dist/src/providers/core",
     "@services": "dist/src/providers/services",
     "@providers": "dist/src/providers",
@@ -96,6 +98,7 @@
     "@models": "dist/src/app/models",
     "@routes": "dist/src/app/routes",
     "@helpers": "dist/src/app/helpers",
+    "@generators": "dist/src/database/generators",
     "@config": "dist/src/config"
   }
 }
