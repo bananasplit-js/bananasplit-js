@@ -3,16 +3,21 @@
  *  Post Build
  *  @module src/providers/core/jobs/post-build
  * 
- *  @description prepare dist/package.json for production
+ *  @description prepare the dist extras for production
  *  @author diegoulloao
  * 
  */
-import fs from 'fs'
+import fs from 'fs-extra'
 import path from 'path'
 import chalk from 'chalk'
 
 import packageJson from '@root/dist/package.json'
 import tsconfigJson from '@root/tsconfig.json'
+import bananasplitJson from '@root/bananasplit.json'
+
+
+console.log( `${chalk.green('● Build:')} app compiled to dist!\n` )
+console.log( chalk.yellow('○ Packing...') )
 
 
 const Abort: Function = ( msg: string ): void => {
@@ -33,6 +38,33 @@ try {
 
 if ( !pathsPair.length ) {
     Abort( 'There is no path defined into property paths at tsconfig.json' )
+}
+
+
+const includes: (string|string[])[] = bananasplitJson.dist.include || []
+const excludes: string[] = bananasplitJson.dist.exclude || []
+const options: Object = bananasplitJson.dist.options || {}
+
+
+if ( includes.length ) {
+    console.log( chalk.cyanBright(`Copying files...\n`) )
+
+    includes.forEach( ( include: string | string[] ) => {
+        const src: string = ( include instanceof Array ) ? include[0] : include
+        const dest: string = ( include instanceof Array ) ? `dist/${include[1]}` : `dist/${include}`
+
+        try {
+            fs.copy( src, dest, {
+                ...options,
+                filter: ( src: string ): boolean => excludes.includes( src ) ? false : true
+            })
+            
+        } catch ( error ) {
+            Abort( error )
+        }
+    })
+
+    console.log( `${chalk.green('● Post-build:')} files copied successfully!` )
 }
 
 
@@ -88,6 +120,3 @@ try {
 
 
 console.log( `${chalk.bgGreen.black('\n Build done! ')} ✨\n` )
-
-
-process.exit(0)

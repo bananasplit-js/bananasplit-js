@@ -78,6 +78,3 @@ try {
 
 
 console.log( chalk.yellow('○ Building...') )
-
-
-process.exit(0)

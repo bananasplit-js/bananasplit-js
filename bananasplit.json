@@ -1,0 +1,15 @@
+{
+    "dist": {
+        "include": [
+            "public",
+            "README.md",
+            "tests"
+        ],
+        "exclude": [
+            "public/.gitignore"
+        ],
+        "options": {
+            "overwrite": true
+        }
+    }
+}
