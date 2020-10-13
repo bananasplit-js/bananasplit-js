@@ -1,9 +1,7 @@
 {
     "dist": {
         "include": [
-            "public",
-            "README.md",
-            "tests"
+            "public"
         ],
         "exclude": [
             "public/.gitignore"
