@@ -4,7 +4,7 @@
     "description": "A bananasplit app",
     "main": "src/app.ts",
     "scripts": {
-        "dev": "nodemon --exec ts-node -r tsconfig-paths/register src/app",
+        "dev": "nodemon --exec ts-node -r tsconfig-paths/register src/app.ts",
         "start": "node -r module-alias/register dist/src/app",
         "build": "tsc",
         "build:database": "sequelize db:create && sequelize db:migrate && sequelize db:seed:all",
