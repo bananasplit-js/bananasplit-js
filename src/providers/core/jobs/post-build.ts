@@ -77,7 +77,13 @@ if ( includes.length ) {
                 ...options,
                 
                 // exclude filter
-                filter: ( src: string ): boolean => excludes.includes( src ) ? false : true
+                filter: ( src: string ): boolean => {
+                    // Check for windows
+                    const isWindows: boolean = ( process.platform === 'win32' )
+                    src = isWindows ? src.replace( /\\/g, '/' ) : src
+
+                    return excludes.includes( src ) ? false : true
+                }
             })
             
         } catch ( err ) {
