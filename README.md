@@ -37,8 +37,7 @@
 | **[@babel/core](https://www.npmjs.com/package/alias-hq)** | enables modern javascript features (include plugins and presets) |
 | **[eslint](https://www.npmjs.com/package/eslint)** | lints and fixes your code syntax |
 | **[prettier](https://www.npmjs.com/package/prettier)** | format your code |
-| **[chalk](https://www.npmjs.com/package/chalk)** | colorful console outputs |
-| **[boxen](https://www.npmjs.com/package/boxen)** | beautiful console info boxes |
+| **[chalk](https://www.npmjs.com/package/chalk)** | highlights console outputs |
 
 # Get started!
 

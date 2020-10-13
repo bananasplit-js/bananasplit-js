@@ -1,7 +1,7 @@
 /**
  * 
  *  Build Stack
- *  @module src/providers/core/jobs/build-stack
+ *  @script src/providers/core/jobs/build-stack
  * 
  *  @description cross-platform solution for build the entire bananasplit stack
  *  @author diegoulloao
@@ -14,25 +14,34 @@ const fs = require( 'fs' )
 const path = require( 'path' )
 
 
+/**
+ * 
+ *  Abort the execution of the script
+ * 
+ *  @param { string } msg
+ *  @returns { void }
+ * 
+ */
 const Abort = msg => {
     console.error( msg )
     process.exit(0)
 }
 
 
+// Return the dialect used in DB_DIALECT
 const findDialect = () => {
     const envPath = path.resolve( '.env' )
 
-    // checks if .env exists
+    // Checks if .env exists
     fs.existsSync( envPath ) || Abort( '.env file missing' )
 
-    // parse each line to an array
+    // Parse each line to an array
     const env = fs.readFileSync( envPath, 'utf8' )
     const envAsArray = env.split( /\n|\r|\r\n/ )
 
     let dialect ;
 
-    // search for db_dialect and then break
+    // Search for db_dialect then break
     envAsArray.some( line => {
         if ( line.startsWith('DB_DIALECT') ) {
             dialect = line.split('=')[1]
@@ -44,6 +53,7 @@ const findDialect = () => {
 }
 
 
+// Store the database dialect
 const dialect = findDialect()
 
 if ( !dialect )
@@ -51,6 +61,7 @@ if ( !dialect )
 ;
 
 
+// Map to the database drivers package as string
 const getDatabaseDriverPackages = dialect => {
     let packages ;
     
@@ -86,10 +97,11 @@ const getDatabaseDriverPackages = dialect => {
     }
 
     return packages
+
 }
 
 
-// get database driver packages based on the dialect
+// Gets database driver packages based on the dialect
 const databaseDriverPackages = getDatabaseDriverPackages( dialect )
 
 if ( !databaseDriverPackages )
@@ -97,6 +109,7 @@ if ( !databaseDriverPackages )
 ;
 
 
+// System package manager used
 const npmUserAgent = process.env.npm_config_user_agent
 
 // if no npm agent founded then exits
@@ -105,8 +118,9 @@ if ( !npmUserAgent )
 ;
 
 
+// Map to the used package manager executor (cross-platform)
 const getPackageManager = () => {
-    // check for windows
+    // Check for windows
     const isWindows = ( process.platform === 'win32' )
 
     switch ( true ) {
@@ -133,8 +147,9 @@ if ( !packageManagerExec )
 ;
 
 
+// Runs sync npm process
 const RunNpmProcess = cmd => {
-    // runs the npm process
+    // Run the process
     const $process = spawnSync( packageManagerExec, cmd, {
         cwd: process.cwd(),
         stdio: 'inherit'
@@ -148,11 +163,8 @@ const RunNpmProcess = cmd => {
 }
 
 
-// builds the stack step by step
+// Builds the stack
 RunNpmProcess([ 'install' ])
 RunNpmProcess([ 'add', databaseDriverPackages ])
 RunNpmProcess([ 'run', 'build:database' ])
 RunNpmProcess([ 'test', 'setup' ])
-
-
-process.exit(0)

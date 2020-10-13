@@ -1,7 +1,7 @@
 /**
  * 
  *  Upgrade Stack
- *  @module src/provideres/core/jobs/upgrade-stack
+ *  @script src/provideres/core/jobs/upgrade-stack
  * 
  *  @description cross-platform solution for upgrade the bananasplit stack
  *  @author diegoulloao
@@ -10,20 +10,30 @@
 import { spawnSync, SpawnSyncReturns } from 'child_process'
 
 
+/**
+ * 
+ *  Abort the execution of the script
+ * 
+ *  @param { string } msg
+ *  @returns { void }
+ * 
+ */
 const Abort = ( msg: string ): void => {
     console.error( msg )
     process.exit(0)
 }
 
 
+// System package manager used
 const npmUserAgent: string = process.env.npm_config_user_agent!
 
-// if no npm agent founded then exits
+// If no npm agent founded then exits
 if ( !npmUserAgent )
     Abort( 'The npm package manager could not be identified. Please run the stack upgrade manually' )
 ;
 
 
+// Map to the package manager name
 const getPackageManager = (): string => {
     switch ( true ) {
         case /^yarn/.test(npmUserAgent):
@@ -49,7 +59,7 @@ if ( !packageManager )
 ;
 
 
-// runs the ncu upgrade
+// Runs the ncu upgrade
 const $process: SpawnSyncReturns <Buffer> = spawnSync(
     ( process.platform === 'win32' ) ? 'npx.cmd':'npx',
     [ 'ncu', '--doctor', '--packageManager', packageManager, '-u' ], 
@@ -59,11 +69,8 @@ const $process: SpawnSyncReturns <Buffer> = spawnSync(
     }
 )
 
-// if an error ocurrs it prints it and exits
+// If an error ocurrs it prints it and exits
 if ( $process.status === 1 ) {
     console.error( $process.error || '' )
     process.exit(1)
 }
-
-
-process.exit(0)

@@ -28,5 +28,10 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true
   },
-  "exclude": ["jest.config.js", "dist"]
+  "include": ["src/**/*", "package.json"],
+  "exclude": [
+    "src/database/generators",
+    "src/database/seeders",
+    "src/providers/core/jobs/*"
+  ]
 }
