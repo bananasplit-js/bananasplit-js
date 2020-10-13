@@ -60,6 +60,8 @@ const includes: (string|string[])[] = bananasplitJson.dist.include || []
 const excludes: string[] = bananasplitJson.dist.exclude || []
 const options: Object = bananasplitJson.dist.options || {}
 
+const dist: string = tsconfigJson.compilerOptions.outDir || 'dist'
+
 
 if ( includes.length ) {
     console.log( chalk.cyanBright(`Copying files...\n`) )
@@ -69,7 +71,7 @@ if ( includes.length ) {
 
         // Include element can be: "src" or ["src", "dest"]
         const src: string = ( include instanceof Array ) ? include[0] : include
-        const dest: string = ( include instanceof Array ) ? `dist/${include[1]}` : `dist/${include}`
+        const dest: string = ( include instanceof Array ) ? `${dist}/${include[1]}` : `${dist}/${include}`
 
         try {
             // Copy the file or dist recursively

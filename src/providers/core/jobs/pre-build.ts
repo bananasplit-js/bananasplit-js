@@ -94,7 +94,7 @@ try {
     fs.writeFileSync( path.resolve('./package.json'), JSON.stringify(packageJson, null, 4) )
 
     // All right!
-    console.log( `${chalk.green('\n● Pre-build:')} module aliases were updated at package.json\n` )
+    console.log( `${chalk.green('\n● Pre-build:')} module aliases updated at package.json\n` )
     
 } catch ( error ) {
     console.error( error )
