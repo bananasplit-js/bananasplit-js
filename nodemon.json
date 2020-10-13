@@ -3,6 +3,7 @@
     "ext": "ts,js,json",
     "ignore": [
         "src/database",
-        "src/providers/core/jobs"
+        "src/providers/core/jobs",
+        "src/config/sequelize/sequelize-cli.conf.js"
     ]
 }
