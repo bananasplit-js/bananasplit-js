@@ -16,8 +16,8 @@
         "upgrade:stack": "ts-node src/providers/core/jobs/upgrade-stack",
         "lint": "eslint src tests",
         "lint:fix": "eslint src tests --fix",
-        "prebuild": "ts-node -r tsconfig-paths/register src/providers/core/jobs/pre-build",
-        "postbuild": "ts-node -r tsconfig-paths/register src/providers/core/jobs/post-build"
+        "prebuild": "ts-node src/providers/core/jobs/pre-build",
+        "postbuild": "ts-node src/providers/core/jobs/post-build"
     },
     "repository": {
         "type": "git",

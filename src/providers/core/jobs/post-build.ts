@@ -7,6 +7,8 @@
  *  @author diegoulloao
  * 
  */
+import 'tsconfig-paths/register'
+
 import fs from 'fs-extra'
 import path from 'path'
 import chalk from 'chalk'
