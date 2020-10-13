@@ -64,6 +64,3 @@ if ( $process.status === 1 ) {
     console.error( $process.error || '' )
     process.exit(1)
 }
-
-
-process.exit(0)

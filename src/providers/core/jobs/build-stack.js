@@ -153,6 +153,3 @@ RunNpmProcess([ 'install' ])
 RunNpmProcess([ 'add', databaseDriverPackages ])
 RunNpmProcess([ 'run', 'build:database' ])
 RunNpmProcess([ 'test', 'setup' ])
-
-
-process.exit(0)
