@@ -11,9 +11,10 @@ import fs from 'fs-extra'
 import path from 'path'
 import chalk from 'chalk'
 
-import packageJson from '@root/dist/package.json'
-import tsconfigJson from '@root/tsconfig.json'
-import bananasplitJson from '@root/bananasplit.json'
+// import from @root with require prevents editor messages by problems because jobs are excluded in tsconfig.json
+const tsconfigJson = require( '@root/tsconfig.json' )
+const bananasplitJson = require( '@root/bananasplit.json' )
+const packageJson = require( '@root/dist/package.json' )
 
 
 console.log( `${chalk.green('● Build:')} app compiled to dist!\n` )

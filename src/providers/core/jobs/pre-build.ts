@@ -11,8 +11,9 @@ import fs from 'fs'
 import path from 'path'
 import chalk from 'chalk'
 
-import packageJson from '@root/package.json'
-import tsconfigJson from '@root/tsconfig.json'
+// import from @root with require prevents editor messages by problems because jobs are excluded in tsconfig.json
+const packageJson = require( '@root/package.json' )
+const tsconfigJson = require( '@root/tsconfig.json' )
 
 
 console.log( chalk.yellow('○ Preparing to build...') )
