@@ -7,7 +7,7 @@
  * 
  */
 import Model from './utils/model'
-import Stack from './jobs/bootstrap'
+import Stack from './app/bootstrap'
 
 import Sequelize from './libs/sequelize'
 import Express from './libs/express'
@@ -17,7 +17,6 @@ import Express from './libs/express'
 export {
     Express,
     Sequelize,
-    
     Model,
     Stack
 }

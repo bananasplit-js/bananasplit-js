@@ -30,8 +30,7 @@
   },
   "include": ["src/**/*", "package.json"],
   "exclude": [
-    "src/database/seeders/*",
-    "src/database/generators/*",
+    "src/database",
     "src/providers/core/jobs/*"
   ]
 }
