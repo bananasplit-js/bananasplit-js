@@ -48,7 +48,7 @@ export const getModules: Function = ( params: IM ): IModule[] => {
             // Recursive call
             modulesList = getModules({ dir:modulePath, criteria, excludeList, modulesList })
         
-        } else if ( !excludeList.includes($module) && criteria.test($module) ) {
+        } else if ( criteria.test($module) && !excludeList.includes($module) ) {
             modulesList.push({
                 path: modulePath,
                 filename: $module,
