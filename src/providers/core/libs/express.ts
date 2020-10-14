@@ -12,14 +12,10 @@ import Express from 'express'
 import Settings from '@settings/express'
 import SetupRouter from '@providers/core/app/routes/setup.routes'
 
-import {
-    loadModules,
-    getRoutersPath,
-    getMiddlewaresPath
-} from '@providers/core/helpers'
+import { loadResources, getRouters, getMiddlewares } from '@providers/core/helpers/resources'
 
 // Interfaces
-import { IModules } from '@providers/core/interfaces'
+import { IModule } from '@providers/core/interfaces'
 
 
 /**
@@ -182,10 +178,10 @@ export default
          * 
          */
         private middlewares (): void {
-            const middlewaresPaths: IModules[] = getMiddlewaresPath()
+            const modulePaths: IModule[] = getMiddlewares()
 
-            if ( middlewaresPaths.length )
-                loadModules({ service:this.service, modulesPaths:middlewaresPaths })
+            if ( modulePaths.length )
+                loadResources({ service:this.service, modulePaths })
             ;
         }
 
@@ -200,12 +196,12 @@ export default
          */
         private routes (): void {
 
-            const routersPaths: IModules[] = getRoutersPath()
+            const modulePaths: IModule[] = getRouters()
             
-            if ( routersPaths.length ) {
-                loadModules({
+            if ( modulePaths.length ) {
+                loadResources({
                     service: this.service,
-                    modulesPaths: routersPaths,
+                    modulePaths,
                     callback: ( $router: Express.Router ) => {
                         this.service.use( $router )
                     }
