@@ -26,15 +26,15 @@
 | **[ts-node](https://www.npmjs.com/package/ts-node)** | autocompiles typescript |
 | **[ts-jest](https://www.npmjs.com/package/ts-jest)** | provides typescript support for jest |
 | **[morgan](https://www.npmjs.com/package/morgan)** | print requests on console |
-| **[sequelize-cli](https://www.npmjs.com/package/sequelize-cli)** | a sequelize client for manage migrations and seeders |
+| **[sequelize-cli](https://www.npmjs.com/package/sequelize-cli)** | sequelize client for manage migrations and seeders |
 | **[dotenv](https://www.npmjs.com/package/dotenv)** | secure enviroment variables |
 | **[supertest](https://www.npmjs.com/package/supertest)** | http-based tests support for jest |
-| **[faker](https://www.npmjs.com/package/faker)** | generates fake data in your generators and seeders |
+| **[faker](https://www.npmjs.com/package/faker)** | generates fake data in generators and seeders |
 | **[npm-check-updates](https://www.npmjs.com/package/npm-check-updates)** | auto updates your project dependencies |
-| **[module-alias](https://www.npmjs.com/package/module-alias)** | custom paths support for your dist modules |
-| **[tsconfig-paths](https://www.npmjs.com/package/tsconfig-paths)** | custom paths support when compiling typescript on the run |
-| **[alias-hq](https://www.npmjs.com/package/alias-hq)** | custom paths support for jest with typescript |
-| **[@babel/core](https://www.npmjs.com/package/alias-hq)** | enables modern javascript features (include plugins and presets) |
+| **[module-alias](https://www.npmjs.com/package/module-alias)** | custom paths support for dist modules |
+| **[tsconfig-paths](https://www.npmjs.com/package/tsconfig-paths)** | custom paths support for typescript on the run |
+| **[alias-hq](https://www.npmjs.com/package/alias-hq)** | custom paths support for jest typescript |
+| **[@babel/core](https://www.npmjs.com/package/alias-hq)** | modern javascript features for js files (plugins and presets) |
 | **[eslint](https://www.npmjs.com/package/eslint)** | lints and fixes your code syntax |
 | **[prettier](https://www.npmjs.com/package/prettier)** | format your code |
 | **[chalk](https://www.npmjs.com/package/chalk)** | highlights console outputs |
