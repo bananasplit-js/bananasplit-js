@@ -44,7 +44,7 @@
 ### 1. Create a new app
 **Express template:**
 ```bash
-npx bananasplit-js new "my-app"
+npx bananasplit-js new "my-app"  # optional: --git|-g
 ```
 
 <!-- **Express + Apollo template:**
@@ -58,7 +58,7 @@ npx bananasplit-js new "my-app" --apollo
 yarn build:stack | npm run build:stack
 ```
 
-:rocket: **Run the development server**
+:rocket:&nbsp; **Run the development server**
 ```bash
 yarn dev | npm run dev
 ```
