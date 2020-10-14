@@ -1,10 +1,10 @@
 /**
  * 
  *  Module auto-import definitions
- *  @type { IModules }
+ *  @type { IModule }
  * 
  */
-export interface IModules {
+export interface IModule {
     path: string
     filename: string
     type: string
