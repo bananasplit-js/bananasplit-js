@@ -1,9 +1,9 @@
 /**
  * 
- *  Middlewares
- *  @module middlewares/example
+ *  Middleware: {Name}
+ *  @module middlewares/{name}
  * 
- *  @description an example middleware
+ *  @description {description}
  * 
  */
 import Express, { Request, Response } from 'express'
