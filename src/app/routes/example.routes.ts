@@ -9,7 +9,7 @@
 import { Router } from 'express'
 
 
-const router: Router = Router()
+const $: Router = Router()
 
 
 /**
@@ -21,22 +21,17 @@ const router: Router = Router()
 
 
 
-; ( $ => {
-
-    /**
-     * 
-     *  @routes
-     *  Your routes goes here
-     * 
-     */
-    $.route( '/url' )
-        .get( /* @handler from controller */ )
-        .post( /* same */ )
-    ;
-
-
-})( router )
+/**
+ * 
+ *  @routes
+ *  Your routes goes here
+ * 
+ */
+$.route( '/url' )
+    .get( /* @handler from controller */ )
+    .post( /* same */ )
+;
 
 
 
-export default router
+export default $
