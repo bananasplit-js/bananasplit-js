@@ -1,9 +1,9 @@
 /**
  * 
- *  Helpers
- *  @module app/helpers/example
+ *  Helpers: {Name}
+ *  @module app/helpers/{name}
  * 
- * 	@description helper file example
+ * 	@description {description}
  * 
  */
 
@@ -17,5 +17,7 @@
 export function helper() {
 
 	// do something helpful
+
+	return 'something'
 
 }

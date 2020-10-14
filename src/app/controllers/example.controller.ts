@@ -1,9 +1,9 @@
 /**
  * 
- *  Controller: { Name }
+ *  Controller: {Name}
  *  @module controllers/{name}
  * 
- *  @description { description }
+ *  @description {description}
  * 
  */
 import { Request, Response } from 'express'
@@ -23,7 +23,7 @@ export default
     class Name {
         
         /**
-         *  @handler { Action description }
+         *  @handler {action description}
          */
         public static action ( req: Request, res: Response ) {
             return res.send()

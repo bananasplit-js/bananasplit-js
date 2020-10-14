@@ -1,9 +1,9 @@
 /**
  *
- *  Model: { Name }
+ *  Model: {Name}
  *  @module app/models/{name}
  * 
- *  @description { description }
+ *  @description {description}
  * 
  */
 import { Model } from '@bananasplit-js'
