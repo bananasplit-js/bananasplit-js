@@ -22,11 +22,9 @@ import boxen from 'boxen'
 export const servicesLog: Function = ( output: string ): void => {
 
     let message: string[] = [
-
         `${ chalk.yellow('Serving!') }\n\n`,
         `${ output }\n\n`,
         `${ chalk.green(`${process.env.NODE_ENV!.toUpperCase()} MODE`) }`
-
     ]
     
     console.log(

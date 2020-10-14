@@ -7,6 +7,7 @@
  * 
  */
 import Express from 'express'
+
 import fs from 'fs'
 import path from 'path'
 import chalk from 'chalk'
@@ -23,8 +24,8 @@ interface IM {
 }
 /**
  * 
- *  Get modules path
- *  @description get all modules path in a directory recursively
+ *  Get modules
+ *  @description gets all modules path in a directory recursively
  * 
  *  @param { IM } params
  *  @returns { IModule[] }
@@ -32,26 +33,25 @@ interface IM {
  */
 export const getModules: Function = ( params: IM ): IModule[] => {
     
-    // Params
     const { dir, criteria, excludeList } = params
     let { modulesList=[] } = params
 
     const modulesDir: string = path.resolve( dir )
-    const elements: string[] = fs.readdirSync( modulesDir )
+    const resources: string[] = fs.readdirSync( modulesDir )
 
     const r: RegExp[] = ( process.platform === 'win32' ) ? [/\\\w+$/, /^\\/] : [/\/\w+$/, /^\//]
 
-    elements.forEach( (element: string) => {
-        const elementPath: string = path.resolve( modulesDir, element )
+    resources.forEach( (resource: string) => {
+        const resourcePath: string = path.resolve( modulesDir, resource )
 
-        if ( fs.statSync(elementPath).isDirectory() ) {
-            // recursive call
-            modulesList = getModules({ dir:elementPath, criteria, excludeList, modulesList })
+        if ( fs.statSync(resourcePath).isDirectory() ) {
+            // Recursive call
+            modulesList = getModules({ dir:resourcePath, criteria, excludeList, modulesList })
         
-        } else if ( !excludeList.includes(element) && criteria.test(element) ) {
+        } else if ( !excludeList.includes(resource) && criteria.test(resource) ) {
             modulesList.push({
-                path: elementPath,
-                filename: element,
+                path: resourcePath,
+                filename: resource,
                 type: modulesDir.match(r[0])![0].replace(r[1], '')
             })
         }
@@ -64,8 +64,8 @@ export const getModules: Function = ( params: IM ): IModule[] => {
 
 /**
  * 
- *  Get routers path
- *  @description get all router modules path from app routes directory
+ *  Get routers
+ *  @description gets all router modules path from app routes directory
  * 
  *  @returns { IModule[] }
  * 
@@ -88,8 +88,8 @@ export const getRouters: Function = (): IModule[] => {
 
 /**
  * 
- *  Get middlewares path
- *  @description get all middleware modules path from middlewares directory
+ *  Get middlewares
+ *  @description gets all middleware modules path from middlewares directory
  * 
  *  @returns { IModule[] }
  * 
