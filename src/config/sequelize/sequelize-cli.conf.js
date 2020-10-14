@@ -1,7 +1,7 @@
 /**
  * 
- *  Sequelize-CLI: Configuration
- *  @description overwrites the default sequelize-cli configuration
+ *  Sequelize client: configuration
+ *  @description options for the sequelize client
  * 
  */
 
