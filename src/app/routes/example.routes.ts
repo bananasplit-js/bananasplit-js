@@ -1,15 +1,15 @@
 /**
  * 
- *  Router: { Name }
+ *  Router: {Name}
  *  @module app/routes/{name}
  * 
- *  @description { description }
+ *  @description {description}
  * 
  */
-import { Router } from 'express'
+import Express, { Router } from 'express'
 
 
-const $: Router = Router()
+const $: Express.Router = Router()
 
 
 /**
@@ -21,17 +21,20 @@ const $: Router = Router()
 
 
 
-/**
- * 
- *  @routes
- *  Your routes goes here
- * 
- */
-$.route( '/url' )
-    .get( /* @handler from controller */ )
-    .post( /* same */ )
-;
+export default ( app: Express.Application ) => {
+    
+    /**
+     * 
+     *  @routes
+     *  Your routes goes here
+     * 
+     */
+    $.route( '/url' )
+        .get( /* @handler from controller */ )
+        .post( /* same */ )
+    ;
 
 
+    return $
 
-export default $
+}

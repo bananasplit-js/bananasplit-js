@@ -7,4 +7,5 @@
 export interface IModules {
     path: string
     filename: string
+    type: string
 }
