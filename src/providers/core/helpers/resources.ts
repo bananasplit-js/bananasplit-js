@@ -41,17 +41,17 @@ export const getModules: Function = ( params: IM ): IModule[] => {
 
     const r: RegExp[] = ( process.platform === 'win32' ) ? [/\\\w+$/, /^\\/] : [/\/\w+$/, /^\//]
 
-    modules.forEach( ($module: string) => {
-        const modulePath: string = path.resolve( modulesDir, $module )
+    modules.forEach( (_module: string) => {
+        const modulePath: string = path.resolve( modulesDir, _module )
 
         if ( fs.statSync(modulePath).isDirectory() ) {
             // Recursive call
             modulesList = getModules({ dir:modulePath, criteria, excludeList, modulesList })
         
-        } else if ( criteria.test($module) && !excludeList.includes($module) ) {
+        } else if ( criteria.test(_module) && !excludeList.includes(_module) ) {
             modulesList.push({
                 path: modulePath,
-                filename: $module,
+                filename: _module,
                 type: modulesDir.match(r[0])![0].replace(r[1], '')
             })
         }
@@ -79,7 +79,6 @@ export const getRouters: Function = (): IModule[] => {
         'example.routes.ts',
         'example.routes.js'
     ]
-    
 
     return getModules({ dir, criteria, excludeList })
     
