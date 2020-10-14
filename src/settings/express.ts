@@ -10,20 +10,16 @@ import Express from 'express'
 import path from 'path'
 
 
-export default
+export default ( app: Express.Application ) => {
 
-    ( app: Express.Application ) => {
+    /**
+     * 
+     *  @settings
+     *  Your express settings goes here
+     * 
+     */
 
-        /**
-         * 
-         *  @settings
-         *  Your express settings goes here
-         * 
-         */
-
-        // Public folder
-        app.set( 'public', path.join(__dirname, '../../public') )
-        
-    }
-
-;
+    // Public folder
+    app.set( 'public', path.join(__dirname, '../../public') )
+    
+}

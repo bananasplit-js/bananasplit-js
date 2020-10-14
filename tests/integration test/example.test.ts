@@ -1,9 +1,9 @@
 /**
  * 
- *  Test: Integration test example
- *  @module "tests/integration test/example"
+ *  Test: {Name}
+ *  @module "tests/integration test/{name}"
  * 
- *  @description * you can remove or modify this file *
+ *  @description {description}
  * 
  */
 const { express } = require( '@services' )
