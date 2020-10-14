@@ -37,21 +37,21 @@ export const getModules: Function = ( params: IM ): IModule[] => {
     let { modulesList=[] } = params
 
     const modulesDir: string = path.resolve( dir )
-    const resources: string[] = fs.readdirSync( modulesDir )
+    const modules: string[] = fs.readdirSync( modulesDir )
 
     const r: RegExp[] = ( process.platform === 'win32' ) ? [/\\\w+$/, /^\\/] : [/\/\w+$/, /^\//]
 
-    resources.forEach( (resource: string) => {
-        const resourcePath: string = path.resolve( modulesDir, resource )
+    modules.forEach( ($module: string) => {
+        const modulePath: string = path.resolve( modulesDir, $module )
 
-        if ( fs.statSync(resourcePath).isDirectory() ) {
+        if ( fs.statSync(modulePath).isDirectory() ) {
             // Recursive call
-            modulesList = getModules({ dir:resourcePath, criteria, excludeList, modulesList })
+            modulesList = getModules({ dir:modulePath, criteria, excludeList, modulesList })
         
-        } else if ( !excludeList.includes(resource) && criteria.test(resource) ) {
+        } else if ( !excludeList.includes($module) && criteria.test($module) ) {
             modulesList.push({
-                path: resourcePath,
-                filename: resource,
+                path: modulePath,
+                filename: $module,
                 type: modulesDir.match(r[0])![0].replace(r[1], '')
             })
         }
