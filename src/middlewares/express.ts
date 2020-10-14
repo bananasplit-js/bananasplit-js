@@ -10,7 +10,6 @@ import Express from 'express'
 
 import Morgan from 'morgan'
 import dontenv from 'dotenv'
-import path from 'path'
 
 
 dontenv.config()

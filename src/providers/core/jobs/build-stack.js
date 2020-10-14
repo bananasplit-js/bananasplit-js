@@ -105,7 +105,7 @@ const getDatabaseDriverPackages = dialect => {
 const databaseDriverPackages = getDatabaseDriverPackages( dialect )
 
 if ( !databaseDriverPackages )
-    Abort( `${dialect} is not a valid db_dialect. Please choose one of: mysql|mariadb|postgres|mssql|sqlite` )
+    Abort( `${dialect} is not a valid db_dialect. Please choose one of: mysql|mariadb|postgres|mssql|sqlite or ensure remove the comment` )
 ;
 
 
