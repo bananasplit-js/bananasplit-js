@@ -15,35 +15,23 @@ import dontenv from 'dotenv'
 dontenv.config()
 
 
-/**
- * 
- *  @import @middlewares
- *  Your custom middlewares import goes here
- * 
- */
+export default ( app: Express.Application ) => {
+    
+    /**
+     *
+     *  @middlewares 
+     *  Your middlewares goes here
+     * 
+     */
+    if ( process.env.NODE_ENV === 'development' )
+        app.use( Morgan('dev') )
+    ;
 
+    app.use( Express.json() )
 
+    // Public
+    app.use(
+        Express.static( app.get('public') )
+    )
 
-export default
-
-    ( app: Express.Application ) => {
-        
-        /**
-         *
-         *  @middlewares 
-         *  Your middlewares goes here
-         * 
-         */
-        if ( process.env.NODE_ENV === 'development' )
-            app.use( Morgan('dev') )
-        ;
-
-        app.use( Express.json() )
-
-        // Public
-        app.use(
-            Express.static( app.get('public') )
-        )
-
-    }
-;
+}

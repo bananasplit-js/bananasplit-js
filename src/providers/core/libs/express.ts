@@ -9,13 +9,14 @@
 import http from 'http'
 import Express from 'express'
 
-import chalk from 'chalk'
-
 import Settings from '@settings/express'
-import Middlewares from '@middlewares/express'
 import SetupRouter from '@providers/core/app/routes/setup.routes'
 
-import { getRoutersPath } from '@providers/core/helpers'
+import {
+    loadModules,
+    getRoutersPath,
+    getMiddlewaresPath
+} from '@providers/core/helpers'
 
 // Interfaces
 import { IModules } from '@providers/core/interfaces'
@@ -181,7 +182,11 @@ export default
          * 
          */
         private middlewares (): void {
-            Middlewares( <Express.Application> this.service )
+            const middlewaresPaths: IModules[] = getMiddlewaresPath()
+
+            if ( middlewaresPaths.length )
+                loadModules({ service:this.service, modulesPaths:middlewaresPaths })
+            ;
         }
 
 
@@ -197,25 +202,19 @@ export default
 
             const routersPaths: IModules[] = getRoutersPath()
             
-            if ( routersPaths.length )
-                for ( const router of routersPaths ) {
-                    let { default: routerModule } = require( router.path )
-
-                    if ( routerModule instanceof Function )
-                        this.service.use( routerModule )
-                    
-                    else
-                        console.warn( chalk.yellow(
-                            `\nWARNING!
-                            \n@router → ${router.filename} must export a middleware function by default`
-                        ))
-                    ;
-
-                }
+            if ( routersPaths.length ) {
+                loadModules({
+                    service: this.service,
+                    modulesPaths: routersPaths,
+                    callback: ( $router: Express.Router ) => {
+                        this.service.use( $router )
+                    }
+                })
                 
-            else
-                this.service.use( SetupRouter )
-            ;
+            } else {
+                const defaultRouter: Express.Router = SetupRouter( this.service )
+                this.service.use( defaultRouter )
+            }
 
         }
 

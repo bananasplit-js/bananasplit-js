@@ -6,6 +6,7 @@
  *  @description Contains helpers used in providers
  * 
  */
+import Express from 'express'
 import fs from 'fs'
 import path from 'path'
 
@@ -34,7 +35,6 @@ export const servicesLog = ( output: string ): void => {
         `${ chalk.green(`${process.env.NODE_ENV!.toUpperCase()} MODE`) }`
 
     ]
-
     
     console.log(
         boxen( message.join(''), {
@@ -58,13 +58,7 @@ interface IM {
  *  Get modules path
  *  @description get all modules path in a directory recursively
  * 
- *  @param { IM } params - {
- *      dir: string,
- *      criteria: RegExp,
- *      excludeList: string[],
- *      moduleList?: IModules[]
- *  }
- * 
+ *  @param { IM } params
  *  @returns { IModules[] }
  * 
  */
@@ -74,9 +68,12 @@ export const getModulesPath = ( params: IM ): IModules[] => {
     const { dir, criteria, excludeList } = params
     let { modulesList=[] } = params
 
-
     const modulesDir: string = path.resolve( dir )
     const elements: string[] = fs.readdirSync( modulesDir )
+
+    const r: RegExp[] = ( process.platform === 'win32' ) ?
+        [/\\\w+$/, /^\\/] : [/\/\w+$/, /^\//]
+    ;
 
     elements.forEach( element => {
         const elementPath: string = path.resolve( modulesDir, element )
@@ -88,12 +85,12 @@ export const getModulesPath = ( params: IM ): IModules[] => {
         } else if ( !excludeList.includes(element) && criteria.test(element) ) {
             modulesList.push({
                 path: elementPath,
-                filename: element
+                filename: element,
+                type: modulesDir.match(r[0])![0].replace(r[1], '')
             })
         }
     })
     
-
     return modulesList
 
 }
@@ -102,7 +99,7 @@ export const getModulesPath = ( params: IM ): IModules[] => {
 /**
  * 
  *  Get routers path
- *  @description get all routers module path in app routes directory
+ *  @description get all router modules path from app routes directory
  * 
  *  @returns { IModules[] }
  * 
@@ -120,4 +117,66 @@ export const getRoutersPath = (): IModules[] => {
 
     return getModulesPath({ dir:routersDir, criteria, excludeList })
     
+}
+
+
+/**
+ * 
+ *  Get middlewares path
+ *  @description get all middleware modules path from middlewares directory
+ * 
+ *  @returns { IModules[] }
+ * 
+ */
+export const getMiddlewaresPath = (): IModules[] => {
+
+    const middlewaresDir: string = './src/middlewares'
+    const criteria: RegExp = /^.+\.(ts|js)$/
+
+    const excludeList: string[] = [
+        'example.ts',
+        'example.js'
+    ]
+
+    return getModulesPath({ dir:middlewaresDir, criteria, excludeList })
+    
+}
+
+
+interface ILM {
+    service: Express.Application
+    modulesPaths: IModules[]
+    callback?: Function
+}
+/**
+ * 
+ *  Load modules
+ *  @description loads modules and executes them
+ * 
+ *  @param { ILM } params
+ *  @returns { void }
+ * 
+ */
+export const loadModules = ( params: ILM ): void => {
+
+    const { service, modulesPaths, callback }: ILM = params
+
+    for ( const _module of modulesPaths ) {
+        const { default: Module } = require( _module.path )
+        let resource: any | undefined
+
+        if ( Module instanceof Function ) {
+            resource = Module( service )
+            
+            if ( callback instanceof Function )
+                callback( resource )
+            ;
+        
+        } else
+            console.warn( chalk.yellow(
+                `WARNING: @${_module.type} → ${_module.filename.replace(/\.(ts|js)$/, '')} must export a function by default`
+            ))
+        ;
+    }
+
 }
