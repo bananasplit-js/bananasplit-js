@@ -9,7 +9,7 @@
 import { Router } from 'express'
 
 
-const router: Router = Router()
+const $: Router = Router()
 
 
 /**
@@ -18,38 +18,36 @@ const router: Router = Router()
 import Setup from '@providers/core/app/controllers/setup.controller'
 
 
-; ( $ => {
 
-    /**
-     *  @routes
-     */
+/**
+ *  @routes
+ */
 
-    // Express test
-    $.route( '/' )
-        .get( Setup.expressTest )
-    ;
+// Express test
+$.route( '/' )
+    .get( Setup.expressTest )
+;
 
-    // Database connection test
-    $.route( '/test-connection' )
-        .get( Setup.databaseConnectionTest )
-    ;
+// Database connection test
+$.route( '/test-connection' )
+    .get( Setup.databaseConnectionTest )
+;
 
-    // Database query test
-    $.route( '/test-query' )
-        .get( Setup.databaseQueryTest )
-    ;
+// Database query test
+$.route( '/test-query' )
+    .get( Setup.databaseQueryTest )
+;
 
-    // User table migration test
-    $.route( '/test-migration' )
-        .get( Setup.userTableMigrationTest )
-    ;
+// User table migration test
+$.route( '/test-migration' )
+    .get( Setup.userTableMigrationTest )
+;
 
-    // User table seeder test
-    $.route( '/test-seeder' )
-        .get( Setup.userTableSeederTest )
-    ;
-
-})( router )
+// User table seeder test
+$.route( '/test-seeder' )
+    .get( Setup.userTableSeederTest )
+;
 
 
-export default router
+
+export default $
