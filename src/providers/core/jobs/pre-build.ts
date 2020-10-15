@@ -41,7 +41,7 @@ try {
     // Parse to array of arrays containing path-alias and system-path
     pathsPair = Object.entries( tsconfigJson.compilerOptions.paths )
 
-} catch ( error ) {
+} catch (_) {
     Abort( 'Key paths does not exists at tsconfig.json' )
 }
 
@@ -63,7 +63,7 @@ const cRex: RegExp[] = [ /\/\*$/, /\/\// ]
 
 
 // Parse each path pair to package.json compatible format
-pathsPair.forEach( pathPair => {
+pathsPair.forEach( (pathPair: [string, string[]] ) => {
     
     // Removes /* at the end of each path alias: @path-alias/* -> @path-alias
     const index: string = pathPair[0].replace( cRex[0], '' )
@@ -96,8 +96,8 @@ try {
     // All right!
     console.log( `${chalk.green('\n● Pre-build:')} module aliases updated at package.json\n` )
     
-} catch ( error ) {
-    console.error( error )
+} catch ( err: any ) {
+    console.error( err )
     process.exit(1)
 }
 

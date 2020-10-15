@@ -44,7 +44,7 @@ try {
     // Parse to array of arrays containing path-alias and system-path
     pathsPair = Object.entries( tsconfigJson.compilerOptions.paths )
 
-} catch ( _ ) {
+} catch (_) {
     Abort( 'Key paths does not exists at tsconfig.json' )
 }
 
@@ -88,7 +88,7 @@ if ( includes.length ) {
                 }
             })
             
-        } catch ( err ) {
+        } catch ( err: any ) {
             Abort( err )
         }
     })
@@ -111,9 +111,9 @@ const cRex: RegExp[] = [ /\/\*$/, /\/\// ]
  *  @path-alias/*: path/to/module/* -> @path-alias: path/to/module
  * 
  */
-pathsPair.forEach( pathPair => {
+pathsPair.forEach( (pathPair: [string, string[]] ) => {
     const index: string = pathPair[0].replace( cRex[0], '' )
-    const distPath = pathPair[1][0].replace(cRex[0], '').replace(cRex[1], '/')
+    const distPath: string = pathPair[1][0].replace(cRex[0], '').replace(cRex[1], '/')
 
     _moduleAliases[ index ] = distPath
 })
@@ -152,8 +152,8 @@ try {
     // All right!
     console.log( `${chalk.green('● Post-build:')} dist/package.json is ready for production 🚀` )
     
-} catch ( error ) {
-    console.error( error )
+} catch ( err: any ) {
+    console.error( err )
     process.exit(1)
 }
 
