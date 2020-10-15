@@ -16,6 +16,15 @@ import chalk from 'chalk'
 import { IModule } from '@providers/core/interfaces'
 
 
+/**
+ * 
+ *  Resources types returned by modules
+ *  @type
+ * 
+ */
+type Resource = Express.Router | undefined
+
+
 interface IM {
     readonly dir: string
     readonly criteria: RegExp
@@ -128,20 +137,20 @@ export const loadResources = ( params: ILR ): void => {
 
     modulePaths.forEach(( _module: IModule ) => {
         const { default: Module } = require( _module.path )
-        let $resource: Express.Router | undefined
 
         if ( Module instanceof Function ) {
-            $resource = Module( service )
+            const $resource: Resource = Module( service )
             
             if ( callback instanceof Function )
                 callback( $resource )
             ;
         
-        } else
+        } else {
             console.warn( chalk.yellow(
                 `WARNING: @${_module.type} → ${_module.filename.replace(/\.(ts|js)$/, '')} must export a function by default`
             ))
-        ;
+            
+        }
     })
 
 }
