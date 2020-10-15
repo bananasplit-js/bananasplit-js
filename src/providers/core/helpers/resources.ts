@@ -31,7 +31,7 @@ interface IM {
  *  @returns { IModule[] }
  * 
  */
-export const getModules: Function = ( params: IM ): IModule[] => {
+export const getModules = ( params: IM ): IModule[] => {
     
     const { dir, criteria, excludeList } = params
     let { modulesList=[] } = params
@@ -70,7 +70,7 @@ export const getModules: Function = ( params: IM ): IModule[] => {
  *  @returns { IModule[] }
  * 
  */
-export const getRouters: Function = (): IModule[] => {
+export const getRouters = (): IModule[] => {
 
     const dir: string = './src/app/routes'
     const criteria: RegExp = /^.+\.routes\.(ts|js)$/
@@ -93,7 +93,7 @@ export const getRouters: Function = (): IModule[] => {
  *  @returns { IModule[] }
  * 
  */
-export const getMiddlewares: Function = (): IModule[] => {
+export const getMiddlewares = (): IModule[] => {
 
     const dir: string = './src/middlewares'
     const criteria: RegExp = /^.+\.(ts|js)$/
@@ -111,7 +111,7 @@ export const getMiddlewares: Function = (): IModule[] => {
 interface ILR {
     readonly service: Express.Application
     readonly modulePaths: IModule[]
-    callback?( resource: any ): () => void
+    callback?: Function
 }
 /**
  * 
@@ -122,13 +122,13 @@ interface ILR {
  *  @returns { void }
  * 
  */
-export const loadResources: Function = ( params: ILR ): void => {
+export const loadResources = ( params: ILR ): void => {
 
     const { service, modulePaths, callback } = params
 
     modulePaths.forEach(( _module: IModule ) => {
         const { default: Module } = require( _module.path )
-        let $resource: any | undefined
+        let $resource: Express.Router | undefined
 
         if ( Module instanceof Function ) {
             $resource = Module( service )

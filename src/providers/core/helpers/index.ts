@@ -19,7 +19,7 @@ import boxen from 'boxen'
  *  @returns { void }
  * 
  */
-export const servicesLog: Function = ( output: string ): void => {
+export const servicesLog = ( output: string ): void => {
 
     let message: string[] = [
         `${ chalk.yellow('Serving!') }\n\n`,
