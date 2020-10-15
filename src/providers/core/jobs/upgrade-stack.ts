@@ -18,7 +18,7 @@ import { spawnSync, SpawnSyncReturns } from 'child_process'
  *  @returns { void }
  * 
  */
-const Abort: Function = ( msg: string ): void => {
+const Abort = ( msg: string ): void => {
     console.error( msg )
     process.exit(0)
 }
@@ -34,7 +34,7 @@ if ( !npmUserAgent )
 
 
 // Map to the package manager name
-const getPackageManager: Function = (): string => {
+const getPackageManager = (): string => {
     switch ( true ) {
         case /^yarn/.test(npmUserAgent):
             return 'yarn'

@@ -29,7 +29,7 @@ console.log( chalk.yellow('○ Preparing to build...') )
  *  @returns { void }
  * 
  */
-const Abort: Function = ( msg: string ): void => { 
+const Abort = ( msg: string ): void => { 
     console.error( `\n${msg}` )
     process.exit(0)
 }
