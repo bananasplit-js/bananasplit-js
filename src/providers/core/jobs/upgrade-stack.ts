@@ -18,7 +18,7 @@ import { spawnSync, SpawnSyncReturns } from 'child_process'
  *  @returns { void }
  * 
  */
-const Abort = ( msg: string ): void => {
+const Abort: Function = ( msg: string ): void => {
     console.error( msg )
     process.exit(0)
 }
@@ -34,7 +34,7 @@ if ( !npmUserAgent )
 
 
 // Map to the package manager name
-const getPackageManager = (): string => {
+const getPackageManager: Function = (): string => {
     switch ( true ) {
         case /^yarn/.test(npmUserAgent):
             return 'yarn'
@@ -61,7 +61,7 @@ if ( !packageManager )
 
 // Runs the ncu upgrade
 const $process: SpawnSyncReturns <Buffer> = spawnSync(
-    ( process.platform === 'win32' ) ? 'npx.cmd':'npx',
+    process.platform === 'win32' ? 'npx.cmd':'npx',
     [ 'ncu', '--doctor', '--packageManager', packageManager, '-u' ], 
     {
         cwd: process.cwd(),

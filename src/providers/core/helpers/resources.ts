@@ -41,7 +41,7 @@ export const getModules: Function = ( params: IM ): IModule[] => {
 
     const r: RegExp[] = ( process.platform === 'win32' ) ? [/\\\w+$/, /^\\/] : [/\/\w+$/, /^\//]
 
-    modules.forEach( (_module: string) => {
+    modules.forEach(( _module: string ) => {
         const modulePath: string = path.resolve( modulesDir, _module )
 
         if ( fs.statSync(modulePath).isDirectory() ) {
@@ -126,7 +126,7 @@ export const loadResources: Function = ( params: ILR ): void => {
 
     const { service, modulePaths, callback } = params
 
-    modulePaths.forEach( (_module: IModule) => {
+    modulePaths.forEach(( _module: IModule ) => {
         const { default: Module } = require( _module.path )
         let $resource: any | undefined
 

@@ -26,7 +26,7 @@ interface IStack {
  */
 const Stack = ( services: any[] ): IStack => ({
     
-    async serve(): Promise<void> {
+    async serve(): Promise <void> {
         let output: string[] = []
 
         for ( const service of services ) {
