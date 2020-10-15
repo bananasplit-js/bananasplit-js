@@ -35,7 +35,7 @@ const Abort: Function = ( msg: string ): void => {
 }
 
 // Stores path alias and system path as pair
-let pathsPair: [ string, string[] ][] = []
+let pathsPair: [string, string[]][] = []
 
 try {
     // Parse to array of arrays containing path-alias and system-path
@@ -63,7 +63,7 @@ const cRex: RegExp[] = [ /\/\*$/, /\/\// ]
 
 
 // Parse each path pair to package.json compatible format
-pathsPair.forEach( (pathPair: [string, string[]] ) => {
+pathsPair.forEach(( pathPair: [string, string[]] ) => {
     
     // Removes /* at the end of each path alias: @path-alias/* -> @path-alias
     const index: string = pathPair[0].replace( cRex[0], '' )

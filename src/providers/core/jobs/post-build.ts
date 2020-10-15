@@ -38,7 +38,7 @@ const Abort: Function = ( msg: string ): void => {
 
 
 // Stores path alias and system path as pair
-let pathsPair: [ string, string[] ][] = []
+let pathsPair: [string, string[]][] = []
 
 try {
     // Parse to array of arrays containing path-alias and system-path
@@ -56,7 +56,7 @@ if ( !pathsPair.length ) {
 
 
 // Picks includes and excludes files/dir from bananasplit.json
-const includes: (string|string[])[] = bananasplitJson.dist.include || []
+const includes: [string|string[]] = bananasplitJson.dist.include || []
 const excludes: string[] = bananasplitJson.dist.exclude || []
 const options: Object = bananasplitJson.dist.options || {}
 
@@ -67,7 +67,7 @@ if ( includes.length ) {
     console.log( chalk.cyanBright(`Copying files...\n`) )
 
     // Copy each extra file/dir to "dist"
-    includes.forEach( ( include: string | string[] ) => {
+    includes.forEach(( include: string|string[] ) => {
 
         // Include element can be: "src" or ["src", "dest"]
         const src: string = ( include instanceof Array ) ? include[0] : include
@@ -111,7 +111,7 @@ const cRex: RegExp[] = [ /\/\*$/, /\/\// ]
  *  @path-alias/*: path/to/module/* -> @path-alias: path/to/module
  * 
  */
-pathsPair.forEach( (pathPair: [string, string[]] ) => {
+pathsPair.forEach(( pathPair: [string, string[]] ) => {
     const index: string = pathPair[0].replace( cRex[0], '' )
     const distPath: string = pathPair[1][0].replace(cRex[0], '').replace(cRex[1], '/')
 
