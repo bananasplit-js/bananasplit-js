@@ -20,8 +20,8 @@ import { IModule } from '@providers/core/interfaces'
 
 /**
  * 
- *  Definitions for ExpressProvider singleton parameters
- *  @type { AppProps }
+ *  Definition for config options
+ *  @interface { IC }
  * 
  */
 interface IC {
@@ -33,7 +33,7 @@ export default
     /**
      * 
      *  @class ExpressProvider
-     *  @classdesc provides an express server
+     *  @description provides an express server
      * 
      */
     class ExpressProvider {
