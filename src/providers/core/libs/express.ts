@@ -10,12 +10,12 @@ import http from 'http'
 import Express from 'express'
 
 import CustomSettings from '@settings/express'
-import SetupRouter from '@providers/core/app/routes/setup.routes'
+import SetupRouter from '@core/app/routes/setup.routes'
 
-import { loadResources, getRouters, getMiddlewares } from '@providers/core/helpers/resources'
+import { loadResources, getRouters, getMiddlewares } from '@core/helpers/resources'
 
 // Interfaces
-import { IModule } from '@providers/core/interfaces'
+import { IModule } from '@core/interfaces'
 
 
 /**

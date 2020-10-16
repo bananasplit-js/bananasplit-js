@@ -13,6 +13,8 @@
       "@root/*": ["./*"],
       "@bananasplit-js": ["src/providers/core"],
       "@bananasplit-js/*": ["src/providers/core/*"],
+      "@core": ["src/providers/core"],
+      "@core/*": ["src/providers/core/*"],
       "@services": ["src/providers/services"],
       "@providers/*": ["src/providers/*"],
       "@database/*": ["src/database/*"],

@@ -13,7 +13,7 @@ import path from 'path'
 import chalk from 'chalk'
 
 // Interfaces
-import { IModule } from '@providers/core/interfaces'
+import { IModule } from '@core/interfaces'
 
 
 /**
