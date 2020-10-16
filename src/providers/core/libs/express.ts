@@ -211,17 +211,8 @@ export default
          *  @returns { http.Server }
          * 
          */
-        public serve ( port?: number ): http.Server {
-            
-            if ( port )
-                this.service.set( 'port', this.port=port )
-            ;
-
-            const httpServer: http.Server = this.service.listen( this.service.get('port') )
-
-
-            return httpServer
-
+        public serve (): http.Server {
+            return this.service.listen( this.port )
         }
 
     }
