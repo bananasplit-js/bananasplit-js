@@ -48,7 +48,7 @@ export default
         
         /**
          * 
-         *  @private @property { Express.Application } service
+         *  @property { Express.Application } service
          * 
          */
         private service!: Express.Application
@@ -65,7 +65,7 @@ export default
         /**
          *
          *  Singleton instance
-         *  @private @static @property { ExpressProvider } instance
+         *  @property { ExpressProvider } instance
          * 
          */
         private static instance: ExpressProvider
@@ -74,7 +74,6 @@ export default
         /**
          * 
          *  @constructor
-         *  @private
          * 
          *  Not accesible
          *  Implements: singleton pattern
@@ -88,8 +87,8 @@ export default
          *  Singleton
          *  @description provides or returns a singleton instance for ExpressProvider
          * 
-         *  @static @method provide
-         *  @param { IC } config? - config object
+         *  @method provide
+         *  @param { IC } config - config object
          * 
          *  @returns { ExpressProvider }
          * 
@@ -97,7 +96,6 @@ export default
         public static provide ( config?: IC ): ExpressProvider {
 
             if ( !this.instance ) {
-
                 // Creates a new instance
                 this.instance = new ExpressProvider()
                 this.instance.service = Express()
@@ -106,7 +104,6 @@ export default
                 this.instance.settings( config )
                 this.instance.middlewares()
                 this.instance.routes()
-
             }
 
             return this.instance
@@ -118,7 +115,7 @@ export default
          * 
          *  Returns the ExpressProvider singleton instance
          * 
-         *  @static @method getInstance
+         *  @method getInstance
          *  @returns { ExpressProvider }
          * 
          */
@@ -140,7 +137,7 @@ export default
          * 
          *  Settings for ExpressProvider
          * 
-         *  @private @method settings
+         *  @method settings
          * 
          *  @params { IC } config object
          *  @returns { void }
@@ -151,9 +148,7 @@ export default
             this.port = config?.port || <number>( process.env.PORT || this.port )
             this.service.set( 'port', this.port )
             
-            /**
-             *  custom settings @overwrite
-             */
+            /** Custom settings @overwrite */
             Settings( <Express.Application> this.service )
 
         }
@@ -163,7 +158,7 @@ export default
          * 
          *  Sets all middlewares
          * 
-         *  @private @method middlewares
+         *  @method middlewares
          *  @returns { void }
          * 
          */
@@ -178,7 +173,7 @@ export default
          * 
          *  Adds routes for ExpressProvider
          * 
-         *  @private @method routes
+         *  @method routes
          *  @returns { void }
          * 
          */
@@ -207,7 +202,7 @@ export default
          * 
          *  Serve express in the specified port
          * 
-         *  @async @method serve
+         *  @method serve
          *  @returns { http.Server }
          * 
          */
