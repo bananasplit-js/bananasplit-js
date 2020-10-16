@@ -103,23 +103,11 @@ class SequelizeProvider {
      */
     private makeAuth = (): DBAuth | string => {
 
-        let DBAuth: DBAuth | string
-
-
-        if ( process.env['DB_STRING'] )
-            DBAuth = <string> process.env[ 'DB_STRING' ]
-
-        else
-            DBAuth = {
-
-                database: <string> process.env[ 'DB_DATABASE' ],
-                username: <string> process.env[ 'DB_USERNAME' ],
-                password: <string> process.env[ 'DB_PASSWORD' ]
-            
-            }
-        ;
-
-        return DBAuth
+        return process.env['DB_STRING'] || {
+            database: process.env['DB_DATABASE']!,
+            username: process.env['DB_USERNAME']!,
+            password: process.env['DB_PASSWORD']
+        }
 
     }
 
