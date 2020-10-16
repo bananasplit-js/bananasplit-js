@@ -143,7 +143,7 @@ export default
          */
         private settings ( config?: IC ): void {
 
-            this.port = config?.port || <number>( process.env.PORT || this.port )
+            this.port = config?.port || <number> ( process.env.PORT || this.port )
             this.service.set( 'port', this.port )
             
             /** Custom settings @overwrite */
