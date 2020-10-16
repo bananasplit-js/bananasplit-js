@@ -32,14 +32,14 @@ interface DBAuth {
 /**
  * 
  *  @class SequelizeProvider
- *  @classdesc Provides an ORM for interact with database
+ *  @description provides an ORM for interact with database
  * 
  */
 class SequelizeProvider {
 
     /**
      * 
-     *  @private @property { Sequelize } service
+     *  @property { Sequelize } service
      * 
      */
     private service: ( Sequelize | undefined )
@@ -48,7 +48,7 @@ class SequelizeProvider {
     /**
      *
      *  Singleton instance
-     *  @private @static @property { SequelizeProvider } instance
+     *  @property { SequelizeProvider } instance
      * 
      */
     private static instance: SequelizeProvider
@@ -57,7 +57,6 @@ class SequelizeProvider {
     /**
      * 
      *  @constructor
-     *  @private
      * 
      *  Not accesible
      *  Implements: singleton pattern
@@ -73,7 +72,7 @@ class SequelizeProvider {
      *  Singleton
      *  @description build or returns a singleton instance
      * 
-     *  @static @method build
+     *  @method build
      *  @returns { SequelizeProvider }
      * 
      */
@@ -110,7 +109,7 @@ class SequelizeProvider {
     /**
      * 
      *  Builds the DB auth
-     *  @private @method makeAuth
+     *  @method makeAuth
      * 
      *  @returns { DBAuth | string }
      * 
@@ -145,7 +144,7 @@ class SequelizeProvider {
      * 
      *  Builds the configuration options
      * 
-     *  @private @method makeOptions
+     *  @method makeOptions
      *  @returns { Options }
      * 
      */
