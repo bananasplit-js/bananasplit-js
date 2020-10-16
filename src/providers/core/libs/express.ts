@@ -96,11 +96,9 @@ export default
         public static provide ( config?: IC ): ExpressProvider {
 
             if ( !this.instance ) {
-                // Creates a new instance
                 this.instance = new ExpressProvider()
                 this.instance.service = Express()
                 
-                // Executes provide build parts
                 this.instance.settings( config )
                 this.instance.middlewares()
                 this.instance.routes()
