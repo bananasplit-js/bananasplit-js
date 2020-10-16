@@ -185,11 +185,12 @@ export default
                     modulePaths,
                     callback: ( $router: Express.Router ) => this.service.use( $router )
                 })
-                
-            } else {
-                const defaultRouter: Express.Router = SetupRouter( this.service )
-                this.service.use( defaultRouter )
+
+                return ;
             }
+
+            const defaultRouter: Express.Router = SetupRouter( this.service )
+            this.service.use( defaultRouter )
 
         }
 
