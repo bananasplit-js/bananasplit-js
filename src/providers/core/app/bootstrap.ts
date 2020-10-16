@@ -7,7 +7,7 @@
  * 
  */
 import chalk from 'chalk'
-import { servicesLog } from '@core/helpers'
+import { serviceLog } from '@core/helpers'
 
 
 interface IStack {
@@ -29,14 +29,14 @@ export default ( services: any[] ): IStack => ({
     serve(): void {
         let output: string[] = []
 
-        services.forEach( async service => {
+        services.forEach( async (service: any) => {
             let host: string = `http://localhost:${service.port}`
             service.middleware ? host=service.path : await service.serve()
 
             output.push( `${chalk.bold.cyan(`- ${service.name} →`)} ${chalk.red(host)}` )
         })
         
-        servicesLog( output.join('\n') )        
+        serviceLog( output.join('\n') )        
     }
 
 })

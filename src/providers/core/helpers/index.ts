@@ -12,14 +12,14 @@ import boxen from 'boxen'
 
 /**
  * 
- *  Services log
+ *  Service log
  *  @description print to console services status
  * 
  *  @param { string } output - content to print
  *  @returns { void }
  * 
  */
-export const servicesLog = ( output: string ): void => {
+export const serviceLog = ( output: string ): void => {
 
     let message: string[] = [
         `${ chalk.yellow('Serving!') }\n\n`,
