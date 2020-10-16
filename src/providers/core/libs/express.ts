@@ -150,19 +150,11 @@ export default
          */
         private settings ( config?: AppProps ): void {
 
-            if ( config && config.port )
-                this.port = config.port
-            
-            else
-                this.port = <number> ( process.env.PORT || this.port )
-            ;
-
+            this.port = config?.port || <number>( process.env.PORT || this.port )
             this.service.set( 'port', this.port )
             
-
             /**
-             *  Then do custom settings
-             *  @overwrite
+             *  custom settings @overwrite
              */
             Settings( <Express.Application> this.service )
 
@@ -178,6 +170,7 @@ export default
          * 
          */
         private middlewares (): void {
+
             const modulePaths: IModule[] = getMiddlewares()
 
             if ( modulePaths.length )
