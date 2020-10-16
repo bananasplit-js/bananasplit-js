@@ -130,7 +130,7 @@ export default
          *  @returns { Express.Application }
          *  
          */
-        public application = (): Express.Application => <Express.Application>ExpressProvider.getInstance().service
+        public application = (): Express.Application => ExpressProvider.getInstance().service
 
 
         /**
@@ -149,7 +149,7 @@ export default
             this.service.set( 'port', this.port )
             
             /** Custom settings @overwrite */
-            Settings( <Express.Application> this.service )
+            Settings( this.service )
 
         }
 
