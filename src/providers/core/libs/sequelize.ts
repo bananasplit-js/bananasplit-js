@@ -42,7 +42,7 @@ class SequelizeProvider {
      *  @property { Sequelize } service
      * 
      */
-    private service: ( Sequelize | undefined )
+    private service: Sequelize | undefined
 
 
     /**
@@ -62,9 +62,7 @@ class SequelizeProvider {
      *  Implements: singleton pattern
      * 
      */
-    private constructor() {
-        // Singleton      
-    }
+    private constructor() { /* Singleton */ }
 
 
     /**
@@ -80,26 +78,20 @@ class SequelizeProvider {
 
         if ( !this.instance ) {
 
-            // Creates a new instance
             this.instance = new SequelizeProvider()
 
-            // Builds auth credentials
             const DBAuth: DBAuth | string = this.instance.makeAuth()
-
-            // Builds config options
             const Options: Options = this.instance.makeOptions()
 
 
-            // Creates a sequelize instance
             if ( typeof DBAuth === 'object' )
                 this.instance.service = new Sequelize( ...Object.values(<Object> DBAuth), Options )
             
             else
-                // String connection way
                 this.instance.service = new Sequelize( DBAuth, Options )
+            ;
 
         }
-
 
         return this.instance
 
@@ -123,7 +115,6 @@ class SequelizeProvider {
             DBAuth = <string> process.env[ 'DB_STRING' ]
 
         else
-
             DBAuth = {
 
                 database: <string> process.env[ 'DB_DATABASE' ],
@@ -131,9 +122,7 @@ class SequelizeProvider {
                 password: <string> process.env[ 'DB_PASSWORD' ]
             
             }
-
         ;
-
 
         return DBAuth
 
@@ -162,7 +151,6 @@ class SequelizeProvider {
             logging: ( process.env.NODE_ENV === 'development' ) ?
                 console.log : false
             ,
-
         }
 
 
@@ -173,7 +161,6 @@ class SequelizeProvider {
             dialect: eval( `"${process.env['DB_DIALECT']}"` ),
             host: <string> process.env['DB_HOST'],
             port: parseInt( process.env['DB_PORT']! )
-        
         }
 
 
