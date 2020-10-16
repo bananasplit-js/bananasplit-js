@@ -163,7 +163,7 @@ export default
         private middlewares (): void {
 
             const modulePaths: IModule[] = getMiddlewares()
-            modulePaths.length && loadResources({ service:this.service, modulePaths })
+            modulePaths.length && loadResources({ service: this.service, modulePaths })
             
         }
 
@@ -187,7 +187,7 @@ export default
                     callback: ( $router: Express.Router ) => this.service.use( $router )
                 })
 
-                return ;
+                return
             }
 
             const defaultRouter: Express.Router = SetupRouter( this.service )
