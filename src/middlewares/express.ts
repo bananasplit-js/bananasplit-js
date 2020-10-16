@@ -15,7 +15,7 @@ import dontenv from 'dotenv'
 dontenv.config()
 
 
-export default ( app: Express.Application ) => {
+export default ( app: Express.Application ): void => {
     
     /**
      *
