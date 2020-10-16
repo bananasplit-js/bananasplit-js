@@ -23,76 +23,76 @@ export default
         /**
          *   @handler Express test
          */
-        public static expressTest ( request: Request, response: Response ) {
-            return response.status( 200 ).send( 'GET 200 / Hello' )
+        public static expressTest ( req: Request, res: Response ): Response {
+            return res.status( 200 ).send( 'GET 200 / Hello' )
         }
 
 
         /**
          *  @handler Database connection test
          */
-        public static async databaseConnectionTest ( request: Request, response: Response ) {
+        public static async databaseConnectionTest ( req: Request, res: Response ): Promise<Response> {
             try {
                 await Sequelize.authenticate()
-                response.status( 200 ).send( 'Connection has been established successfully.' )
+                res.status( 200 ).send( 'Connection has been established successfully.' )
 
             } catch(e) {
-                response.status( 500 ).send( `Unable to connect to the database: ${e}` )
+                res.status( 500 ).send( `Unable to connect to the database: ${e}` )
             }
 
 
-            return response
+            return res
         }
 
 
         /**
          *  @handler Database query test
          */
-        public static async databaseQueryTest ( request: Request, response: Response ) {
+        public static async databaseQueryTest ( req: Request, res: Response ): Promise<Response> {
             try {
                 const [ result ] = await Sequelize.query( "SELECT 'Hello from database!' as result" )
-                response.status( 200 ).send( result )
+                res.status( 200 ).send( result )
 
             } catch(e) {
-                response.status( 500 ).send( `Unable to connect to the database: ${e}` )
+                res.status( 500 ).send( `Unable to connect to the database: ${e}` )
             }
 
 
-            return response
+            return res
         }
 
 
         /**
          *  @handler User table migration test
          */
-        public static async userTableMigrationTest ( request: Request, response: Response ) {
+        public static async userTableMigrationTest ( req: Request, res: Response ): Promise<Response> {
             try {
                 const [ result ] = await Sequelize.query( "SHOW TABLES" )
-                response.status( 200 ).send( result )
+                res.status( 200 ).send( result )
 
             } catch(e) {
-                response.status( 500 ).send( `Unable to connect to the database: ${e}` )
+                res.status( 500 ).send( `Unable to connect to the database: ${e}` )
             }
 
 
-            return response
+            return res
         }
 
 
         /**
          *  @handler User table seeder test
          */
-        public static async userTableSeederTest ( request: Request, response: Response ) {
+        public static async userTableSeederTest ( req: Request, res: Response ): Promise<Response> {
             try {
                 const result = await User.findAll()
-                response.status( 200 ).send( result )
+                res.status( 200 ).send( result )
 
             } catch(e) {
-                response.status( 500 ).send( e )
+                res.status( 500 ).send( e )
             }
 
 
-            return response
+            return res
         }
 
     }
