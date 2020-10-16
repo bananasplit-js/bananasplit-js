@@ -164,6 +164,7 @@ export default
 
             const modulePaths: IModule[] = getMiddlewares()
             modulePaths.length && loadResources({ service:this.service, modulePaths })
+            
         }
 
 
