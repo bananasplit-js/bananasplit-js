@@ -7,7 +7,7 @@
  * 
  */
 import { Request, Response } from 'express'
-import { Sequelize } from '@bananasplit-js'
+import { Sequelize } from '@core'
 
 
 /**

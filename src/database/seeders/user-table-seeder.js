@@ -29,7 +29,5 @@ export function up ( queryInterface ) {
 
 
 export function down ( queryInterface ) {
-
     return queryInterface.bulkDelete( 'Users', null, {} )
-
 }

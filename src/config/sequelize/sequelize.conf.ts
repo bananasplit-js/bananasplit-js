@@ -4,15 +4,15 @@
  *  @description sequelize options
  * 
  */
-import { Options } from 'sequelize'
+import { Options as SequelizeOptions } from 'sequelize'
 
 
-const Options: Options = {
+const Options: SequelizeOptions = {
 
     /**
      * 
      *  @options
-     *  This object is passed directly to the sequelize constructor in providers
+     *  This object is passed directly to the sequelize constructor
      * 
      */
 

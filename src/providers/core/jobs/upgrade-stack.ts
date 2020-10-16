@@ -61,12 +61,9 @@ if ( !packageManager )
 
 // Runs the ncu upgrade
 const $process: SpawnSyncReturns <Buffer> = spawnSync(
-    process.platform === 'win32' ? 'npx.cmd':'npx',
+    ( process.platform === 'win32' ) ? 'npx.cmd' : 'npx',
     [ 'ncu', '--doctor', '--packageManager', packageManager, '-u' ], 
-    {
-        cwd: process.cwd(),
-        stdio: 'inherit'
-    }
+    { cwd: process.cwd(), stdio: 'inherit' }
 )
 
 // If an error ocurrs it prints it and exits
