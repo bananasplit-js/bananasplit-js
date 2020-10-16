@@ -24,7 +24,7 @@ import { IModule } from '@providers/core/interfaces'
  *  @type { AppProps }
  * 
  */
-type AppProps = {
+interface IC {
     port?: number
 }
 
@@ -80,9 +80,7 @@ export default
          *  Implements: singleton pattern
          * 
          */
-        private constructor () {
-            // Singleton      
-        }
+        private constructor () { /* Singleton */ }
 
         
         /**
@@ -91,12 +89,12 @@ export default
          *  @description provides or returns a singleton instance for ExpressProvider
          * 
          *  @static @method provide
-         *  @param { AppProps } config? - configuration object
+         *  @param { IC } config? - config object
          * 
          *  @returns { ExpressProvider }
          * 
          */
-        public static provide ( config?: AppProps ): ExpressProvider {
+        public static provide ( config?: IC ): ExpressProvider {
 
             if ( !this.instance ) {
 
@@ -135,7 +133,7 @@ export default
          *  @returns { Express.Application }
          *  
          */
-        public application = (): Express.Application => <Express.Application> ExpressProvider.getInstance().service
+        public application = (): Express.Application => <Express.Application>ExpressProvider.getInstance().service
 
 
         /**
@@ -144,11 +142,11 @@ export default
          * 
          *  @private @method settings
          * 
-         *  @params { AppProps } config?
+         *  @params { IC } config object
          *  @returns { void }
          * 
          */
-        private settings ( config?: AppProps ): void {
+        private settings ( config?: IC ): void {
 
             this.port = config?.port || <number>( process.env.PORT || this.port )
             this.service.set( 'port', this.port )
