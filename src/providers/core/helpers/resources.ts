@@ -45,7 +45,8 @@ export const getModules = ( params: IM ): IModule[] => {
     const { dir, criteria, excludeList } = params
     let { modulesList=[] } = params
 
-    const modulesDir: string = path.resolve( dir )
+    const modulePrefix: string = getModulePrefix() // includes slash
+    const modulesDir: string = path.resolve( `${modulePrefix}${dir}` )
     const modules: string[] = fs.readdirSync( modulesDir )
 
     const r: RegExp[] = ( process.platform === 'win32' ) ? [/\\\w+$/, /^\\/] : [/\/\w+$/, /^\//]
@@ -153,4 +154,17 @@ export const loadResources = ( params: ILR ): void => {
         }
     })
 
+}
+
+/**
+ * 
+ *  Get module prefix
+ *  @description get the prefix to start compiled app from relative path (not dist)
+ * 
+ *  @returns { string }
+ * 
+ */
+export const getModulePrefix = ( args=process.argv.slice(2) ): string => {
+    const c: string = ( process.platform === 'win32' ) ? '\\' : '/'
+    return ( args[0] === '--exec' && args[1] ) ? `${args[1]}${c}` : ''
 }
