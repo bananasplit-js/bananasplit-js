@@ -9,7 +9,7 @@
 import http from 'http'
 import Express from 'express'
 
-import Settings from '@settings/express'
+import CustomSettings from '@settings/express'
 import SetupRouter from '@providers/core/app/routes/setup.routes'
 
 import { loadResources, getRouters, getMiddlewares } from '@providers/core/helpers/resources'
@@ -149,7 +149,7 @@ export default
             this.service.set( 'port', this.port )
             
             /** Custom settings @overwrite */
-            Settings( this.service )
+            CustomSettings( this.service )
 
         }
 
