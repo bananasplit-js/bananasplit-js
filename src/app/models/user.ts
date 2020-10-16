@@ -7,7 +7,7 @@
  * 
  */
 import { Model } from '@bananasplit-js'
-import { DataTypes } from 'sequelize'
+import { DataTypes, ModelAttributes } from 'sequelize'
 
 
 class User extends Model {
@@ -25,7 +25,7 @@ class User extends Model {
     /**
      *  @model
      */
-    public static model = {
+    public static model: ModelAttributes = {
 
         id: {
             type: DataTypes.INTEGER.UNSIGNED,
@@ -60,14 +60,14 @@ class User extends Model {
     /**
      *  @options
      */
-    public static $options = {
+    public static $options: object = {
         timestamps: true
     }
 
 }
 
 
-; ( async () => {
+; ( async (): Promise<void> => {
 
     User.init()
 
