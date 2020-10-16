@@ -6,11 +6,11 @@
  *  @description the providers index point to import
  * 
  */
-import Model from './utils/model'
-import Stack from './app/bootstrap'
+import Model from '@core/utils/model'
+import Stack from '@core/app/bootstrap'
 
-import Sequelize from './libs/sequelize'
-import Express from './libs/express'
+import Sequelize from '@core/libs/sequelize'
+import Express from '@core/libs/express'
 
 
 

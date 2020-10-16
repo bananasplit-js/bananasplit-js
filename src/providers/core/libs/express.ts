@@ -9,22 +9,22 @@
 import http from 'http'
 import Express from 'express'
 
-import Settings from '@settings/express'
-import SetupRouter from '@providers/core/app/routes/setup.routes'
+import CustomSettings from '@settings/express'
+import SetupRouter from '@core/app/routes/setup.routes'
 
-import { loadResources, getRouters, getMiddlewares } from '@providers/core/helpers/resources'
+import { loadResources, getRouters, getMiddlewares } from '@core/helpers/resources'
 
 // Interfaces
-import { IModule } from '@providers/core/interfaces'
+import { IModule } from '@core/interfaces'
 
 
 /**
  * 
- *  Definitions for ExpressProvider singleton parameters
- *  @type { AppProps }
+ *  Definition for config options
+ *  @interface { IC }
  * 
  */
-type AppProps = {
+interface IC {
     port?: number
 }
 
@@ -33,7 +33,7 @@ export default
     /**
      * 
      *  @class ExpressProvider
-     *  @classdesc provides an express server
+     *  @description provides an express server
      * 
      */
     class ExpressProvider {
@@ -48,7 +48,7 @@ export default
         
         /**
          * 
-         *  @private @property { Express.Application } service
+         *  @property { Express.Application } service
          * 
          */
         private service!: Express.Application
@@ -65,7 +65,7 @@ export default
         /**
          *
          *  Singleton instance
-         *  @private @static @property { ExpressProvider } instance
+         *  @property { ExpressProvider } instance
          * 
          */
         private static instance: ExpressProvider
@@ -74,15 +74,12 @@ export default
         /**
          * 
          *  @constructor
-         *  @private
          * 
          *  Not accesible
          *  Implements: singleton pattern
          * 
          */
-        private constructor () {
-            // Singleton      
-        }
+        private constructor () { /* Singleton */ }
 
         
         /**
@@ -90,25 +87,21 @@ export default
          *  Singleton
          *  @description provides or returns a singleton instance for ExpressProvider
          * 
-         *  @static @method provide
-         *  @param { AppProps } config? - configuration object
+         *  @method provide
+         *  @param { IC } config - config object
          * 
          *  @returns { ExpressProvider }
          * 
          */
-        public static provide ( config?: AppProps ): ExpressProvider {
+        public static provide ( config?: IC ): ExpressProvider {
 
             if ( !this.instance ) {
-
-                // Creates a new instance
                 this.instance = new ExpressProvider()
                 this.instance.service = Express()
                 
-                // Executes provide build parts
                 this.instance.settings( config )
                 this.instance.middlewares()
                 this.instance.routes()
-
             }
 
             return this.instance
@@ -120,7 +113,7 @@ export default
          * 
          *  Returns the ExpressProvider singleton instance
          * 
-         *  @static @method getInstance
+         *  @method getInstance
          *  @returns { ExpressProvider }
          * 
          */
@@ -135,36 +128,26 @@ export default
          *  @returns { Express.Application }
          *  
          */
-        public application = (): Express.Application => <Express.Application> ExpressProvider.getInstance().service
+        public application = (): Express.Application => ExpressProvider.getInstance().service
 
 
         /**
          * 
          *  Settings for ExpressProvider
          * 
-         *  @private @method settings
+         *  @method settings
          * 
-         *  @params { AppProps } config?
+         *  @params { IC } config object
          *  @returns { void }
          * 
          */
-        private settings ( config?: AppProps ): void {
+        private settings ( config?: IC ): void {
 
-            if ( config && config.port )
-                this.port = config.port
-            
-            else
-                this.port = <number> ( process.env.PORT || this.port )
-            ;
-
+            this.port = config?.port || <number> ( process.env.PORT || this.port )
             this.service.set( 'port', this.port )
             
-
-            /**
-             *  Then do custom settings
-             *  @overwrite
-             */
-            Settings( <Express.Application> this.service )
+            /** Custom settings @overwrite */
+            CustomSettings( this.service )
 
         }
 
@@ -173,16 +156,15 @@ export default
          * 
          *  Sets all middlewares
          * 
-         *  @private @method middlewares
+         *  @method middlewares
          *  @returns { void }
          * 
          */
         private middlewares (): void {
-            const modulePaths: IModule[] = getMiddlewares()
 
-            if ( modulePaths.length )
-                loadResources({ service:this.service, modulePaths })
-            ;
+            const modulePaths: IModule[] = getMiddlewares()
+            modulePaths.length && loadResources({ service: this.service, modulePaths })
+            
         }
 
 
@@ -190,7 +172,7 @@ export default
          * 
          *  Adds routes for ExpressProvider
          * 
-         *  @private @method routes
+         *  @method routes
          *  @returns { void }
          * 
          */
@@ -202,15 +184,14 @@ export default
                 loadResources({
                     service: this.service,
                     modulePaths,
-                    callback: ( $router: Express.Router ) => {
-                        this.service.use( $router )
-                    }
+                    callback: ( $router: Express.Router ) => this.service.use( $router )
                 })
-                
-            } else {
-                const defaultRouter: Express.Router = SetupRouter( this.service )
-                this.service.use( defaultRouter )
+
+                return
             }
+
+            const defaultRouter: Express.Router = SetupRouter( this.service )
+            this.service.use( defaultRouter )
 
         }
 
@@ -219,21 +200,12 @@ export default
          * 
          *  Serve express in the specified port
          * 
-         *  @async @method serve
+         *  @method serve
          *  @returns { http.Server }
          * 
          */
-        public serve ( port?: number ): http.Server {
-            
-            if ( port )
-                this.service.set( 'port', this.port=port )
-            ;
-
-            const httpServer: http.Server = this.service.listen( this.service.get('port') )
-
-
-            return httpServer
-
+        public serve (): http.Server {
+            return this.service.listen( this.port )
         }
 
     }

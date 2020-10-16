@@ -1,9 +1,9 @@
 /**
  * 
- *  Sequelize-cli configuration
+ *  Sequelize Client: options
  *  @config
  * 
- *  @description contains all sequelize-cli configurations
+ *  @description manage default and custom sequelize client options
  *
  */
 import dotenv from 'dotenv'
@@ -13,10 +13,11 @@ import CustomOptions from '@config/sequelize/sequelize-cli.conf'
 dotenv.config()
 
 
-let Options = {
+export default {
 
-    // For development
-
+    /**
+     *  @development 
+     */
     development: {
 
         dialect: eval(`"${process.env.DB_DIALECT}"`),
@@ -32,56 +33,55 @@ let Options = {
             bigNumberStrings: true
         },
 
+        ...CustomOptions.development
+
     },
 
 
-    // For testing
-
+    /**
+     *  @test
+     */
     test: {
 
-        dialect: eval(`"${process.env.TEST_DB_DIALECT}"`),
+        dialect: eval(`"${process.env.DB_DIALECT}"`),
 
-        host: process.env.TEST_DB_HOST,
-        port: process.env.TEST_DB_PORT,
+        host: process.env.DB_HOST,
+        port: process.env.DB_PORT,
 
-        username: process.env.TEST_DB_USERNAME,
-        password: process.env.TEST_DB_PASSWORD,
-        database: process.env.TEST_DB_DATABASE,
+        username: process.env.DB_USERNAME,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_DATABASE,
 
         dialectOptions: {
             bigNumberStrings: true
         },
 
+        ...CustomOptions.test
+
     },
 
-    
-    // For production
-    
+
+    /**
+     *  @production
+     */
     production: {
 
-        dialect: eval(`"${process.env.PROD_DB_DIALECT}"`),
+        dialect: eval(`"${process.env.DB_DIALECT}"`),
 
-        host: process.env.PROD_DB_HOST,
-        port: process.env.PROD_DB_PORT,
+        host: process.env.DB_HOST,
+        port: process.env.DB_PORT,
 
-        username: process.env.PROD_DB_USERNAME,
-        password: process.env.PROD_DB_PASSWORD,
-        database: process.env.PROD_DB_DATABASE,
+        username: process.env.DB_USERNAME,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_DATABASE,
 
         dialectOptions: {
             bigNumberStrings: true,
             ssl: {}
         },
 
+        ...CustomOptions.production
+
     }
 
 }
-
-
-// Merge defaults with customs
-Options.development = { ...Options.development, ...CustomOptions.development }
-Options.test = { ...Options.test, ...CustomOptions.test }
-Options.production = { ...Options.production, ...CustomOptions.production }
-
-
-export default Options

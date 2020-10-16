@@ -1,7 +1,7 @@
 /**
  * 
- *  Module auto-import definitions
- *  @type { IModule }
+ *  Module autoimport
+ *  @interface { IModule }
  * 
  */
 export interface IModule {

@@ -1,18 +1,17 @@
 /**
  * 
- *  Sequelize client: configuration
- *  @description options for the sequelize client
+ *  Sequelize Client: custom options
+ *  @config
+ * 
+ *  @description custom options for sequelize client
  * 
  */
 
 
-const Options = {
+export default {
 
     /**
-     * 
-     *  DEVELOPMENT
-     *  @options
-     * 
+     *  @development
      */
     development: {
         
@@ -24,10 +23,7 @@ const Options = {
 
 
     /**
-     * 
-     *  TESTING
-     *  @options
-     * 
+     *  @test
      */
     test: {
 
@@ -39,10 +35,7 @@ const Options = {
 
 
     /**
-     * 
-     *  PRODUCTION
-     *  @options
-     * 
+     *  @production
      */
     production: {
 
@@ -54,6 +47,3 @@ const Options = {
     }
 
 }
-
-
-export default Options

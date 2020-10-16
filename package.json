@@ -93,6 +93,7 @@
     "_moduleAliases": {
         "@root": ".",
         "@bananasplit-js": "dist/src/providers/core",
+        "@core": "dist/src/providers/core",
         "@services": "dist/src/providers/services",
         "@providers": "dist/src/providers",
         "@database": "dist/src/database",

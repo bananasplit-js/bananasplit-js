@@ -21,9 +21,9 @@ dotenv.config()
  *  @typedef
  * 
  */
-type DBAuth = {
-    database: string,
-    username: string,
+interface DBAuth {
+    database: string
+    username: string
     password?: string
 }
 
@@ -32,23 +32,23 @@ type DBAuth = {
 /**
  * 
  *  @class SequelizeProvider
- *  @classdesc Provides an ORM for interact with database
+ *  @description provides an ORM for interact with database
  * 
  */
 class SequelizeProvider {
 
     /**
      * 
-     *  @private @property { Sequelize } service
+     *  @property { Sequelize } service
      * 
      */
-    private service: ( Sequelize | undefined )
+    private service!: Sequelize
 
 
     /**
      *
      *  Singleton instance
-     *  @private @static @property { SequelizeProvider } instance
+     *  @property { SequelizeProvider } instance
      * 
      */
     private static instance: SequelizeProvider
@@ -57,15 +57,12 @@ class SequelizeProvider {
     /**
      * 
      *  @constructor
-     *  @private
      * 
      *  Not accesible
      *  Implements: singleton pattern
      * 
      */
-    private constructor() {
-        // Singleton      
-    }
+    private constructor() { /* Singleton */ }
 
 
     /**
@@ -73,34 +70,23 @@ class SequelizeProvider {
      *  Singleton
      *  @description build or returns a singleton instance
      * 
-     *  @static @method build
+     *  @method build
      *  @returns { SequelizeProvider }
      * 
      */
     public static provide (): SequelizeProvider {
 
         if ( !this.instance ) {
-
-            // Creates a new instance
             this.instance = new SequelizeProvider()
 
-            // Builds auth credentials
             const DBAuth: DBAuth | string = this.instance.makeAuth()
+            const $Options: Options = this.instance.makeOptions()
 
-            // Builds config options
-            const Options: Options = this.instance.makeOptions()
-
-
-            // Creates a sequelize instance
-            if ( typeof DBAuth === 'object' )
-                this.instance.service = new Sequelize( ...Object.values(<Object> DBAuth), Options )
-            
-            else
-                // String connection way
-                this.instance.service = new Sequelize( DBAuth, Options )
-
+            this.instance.service = ( DBAuth instanceof Object )
+                ? new Sequelize( ...Object.values(DBAuth), $Options )
+                : new Sequelize( DBAuth, $Options )
+            ;
         }
-
 
         return this.instance
 
@@ -110,33 +96,18 @@ class SequelizeProvider {
     /**
      * 
      *  Builds the DB auth
-     *  @private @method makeAuth
+     *  @method makeAuth
      * 
      *  @returns { DBAuth | string }
      * 
      */
     private makeAuth = (): DBAuth | string => {
 
-        let DBAuth: DBAuth | string
-
-
-        if ( process.env['DB_STRING'] )
-            DBAuth = <string> process.env[ 'DB_STRING' ]
-
-        else
-
-            DBAuth = {
-
-                database: <string> process.env[ 'DB_DATABASE' ],
-                username: <string> process.env[ 'DB_USERNAME' ],
-                password: <string> process.env[ 'DB_PASSWORD' ]
-            
-            }
-
-        ;
-
-
-        return DBAuth
+        return process.env['DB_STRING'] || {
+            database: process.env['DB_DATABASE']!,
+            username: process.env['DB_USERNAME']!,
+            password: process.env['DB_PASSWORD']
+        }
 
     }
 
@@ -145,64 +116,54 @@ class SequelizeProvider {
      * 
      *  Builds the configuration options
      * 
-     *  @private @method makeOptions
+     *  @method makeOptions
      *  @returns { Options }
      * 
      */
-    private makeOptions = (): Options => {
-
-        let Options: Options = {
-            
-            pool: {
-                max: 5,
-                min: 0,
-                acquire: 30000,
-                idle: 10000
-            },
-
-            logging: ( process.env.NODE_ENV === 'development' ) ?
-                console.log : false
-            ,
-
-        }
-
-
-        Options = {
-
-            ...Options,
-
-            dialect: eval( `"${process.env['DB_DIALECT']}"` ),
-            host: <string> process.env['DB_HOST'],
-            port: parseInt( process.env['DB_PORT']! )
+    private makeOptions = (): Options => ({
         
-        }
+        dialect: eval( `"${process.env['DB_DIALECT']}"` ),
+        host: process.env['DB_HOST'],
+        port: Number( process.env['DB_PORT'] ),
 
+        logging: ( process.env.NODE_ENV === 'development' ) ?
+            console.log : false,
 
-        // Overwrite default options by custom
-        Options = { ...Options, ...CustomOptions }
+        pool: {
+            max: 5,
+            min: 0,
+            acquire: 30000,
+            idle: 10000
+        },
 
+        ...CustomOptions
 
-        return Options
+    })
 
-    }
+    
+    /**
+     * 
+     *  Returns the sequelize provider instance
+     * 
+     *  @method getInstance
+     *  @returns { SequelizeProvider }
+     * 
+     */
+    public static getInstance = (): SequelizeProvider => SequelizeProvider.instance
 
 
     /**
      * 
-     *  Returns sequelize instance
+     *  Returns the sequelize instance
      *  
-     *  @method app
+     *  @method application
      *  @returns { Sequelize }
      * 
      */
-    public application = (): Sequelize => <Sequelize> this.service
+    public application = (): Sequelize => SequelizeProvider.getInstance().service
 
 }
 
 
-// Singleton sequelize instance for usage
-const sequelizeProvider: SequelizeProvider = SequelizeProvider.provide()
-const sequelize: Sequelize = sequelizeProvider.application()
 
-
-export default sequelize
+export default SequelizeProvider.provide().application()
