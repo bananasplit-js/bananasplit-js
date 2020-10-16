@@ -21,7 +21,7 @@ const $: Express.Router = Router()
 
 
 
-export default ( app: Express.Application ) => {
+export default ( app: Express.Application ): Router => {
     
     /**
      * 

@@ -14,7 +14,7 @@
  *	Your helpers goes here
  * 
  */
-export function helper() {
+export function helper(): string {
 
 	// do something helpful
 

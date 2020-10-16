@@ -96,7 +96,7 @@ test( 'Database migrations are ok', async () => {
 test( 'Database seeders are ok', async () => {
 
     const response: Response = await request( Express ).get( '/test-seeder' )
-    const JSONResponse: Object[] = await JSON.parse( response.text )
+    const JSONResponse: object[] = await JSON.parse( response.text )
 
     expect( response.status ).toBe( 200 )
     expect( JSONResponse.length ).toBeGreaterThan( 0 )

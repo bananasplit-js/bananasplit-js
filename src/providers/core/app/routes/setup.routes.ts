@@ -20,7 +20,7 @@ const $: Express.Router = Router()
 import Setup from '@core/app/controllers/setup.controller'
 
 
-export default ( app: Express.Application ) => {
+export default ( app: Express.Application ): Router => {
     
     /**
      * 

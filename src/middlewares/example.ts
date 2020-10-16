@@ -9,7 +9,7 @@
 import Express, { Request, Response } from 'express'
 
 
-export default ( app: Express.Application ) => {
+export default ( app: Express.Application ): void => {
     
     /**
      *
@@ -17,7 +17,7 @@ export default ( app: Express.Application ) => {
      *  Your middlewares goes here
      * 
      */
-    app.use(( req: Request, res: Response, next: Function ) => {
+    app.use(( req: Request, res: Response, next: Function ): void => {
 
         // middleware
 

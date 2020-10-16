@@ -25,7 +25,7 @@ export default
         /**
          *  @handler {action description}
          */
-        public static action ( req: Request, res: Response ) {
+        public static action ( req: Request, res: Response ): Response {
             return res.send()
         }
 
