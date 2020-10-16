@@ -42,7 +42,7 @@ class SequelizeProvider {
      *  @property { Sequelize } service
      * 
      */
-    private service: Sequelize | undefined
+    private service!: Sequelize
 
 
     /**
@@ -140,16 +140,26 @@ class SequelizeProvider {
 
     })
 
+    /**
+     * 
+     *  Returns the SequelizeProvider singleton instance
+     * 
+     *  @method getInstance
+     *  @returns { SequelizeProvider }
+     * 
+     */
+    public static getInstance = (): SequelizeProvider => SequelizeProvider.instance
+
 
     /**
      * 
-     *  Returns sequelize instance
+     *  Returns the sequelize instance
      *  
-     *  @method app
+     *  @method application
      *  @returns { Sequelize }
      * 
      */
-    public application = (): Sequelize => <Sequelize> this.service
+    public application = (): Sequelize => SequelizeProvider.getInstance().service
 
 }
 
