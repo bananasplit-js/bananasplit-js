@@ -183,9 +183,7 @@ export default
                 loadResources({
                     service: this.service,
                     modulePaths,
-                    callback: ( $router: Express.Router ) => {
-                        this.service.use( $router )
-                    }
+                    callback: ( $router: Express.Router ) => this.service.use( $router )
                 })
                 
             } else {
