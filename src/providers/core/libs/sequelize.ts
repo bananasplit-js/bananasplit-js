@@ -77,20 +77,15 @@ class SequelizeProvider {
     public static provide (): SequelizeProvider {
 
         if ( !this.instance ) {
-
             this.instance = new SequelizeProvider()
 
             const DBAuth: DBAuth | string = this.instance.makeAuth()
-            const Options: Options = this.instance.makeOptions()
+            const $Options: Options = this.instance.makeOptions()
 
-
-            if ( typeof DBAuth === 'object' )
-                this.instance.service = new Sequelize( ...Object.values(<Object> DBAuth), Options )
-            
-            else
-                this.instance.service = new Sequelize( DBAuth, Options )
+            this.instance.service = ( DBAuth instanceof Object )
+                ? new Sequelize( ...Object.values(DBAuth), $Options )
+                : new Sequelize( DBAuth, $Options )
             ;
-
         }
 
         return this.instance
