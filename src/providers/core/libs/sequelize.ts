@@ -140,9 +140,10 @@ class SequelizeProvider {
 
     })
 
+    
     /**
      * 
-     *  Returns the SequelizeProvider singleton instance
+     *  Returns the sequelize provider instance
      * 
      *  @method getInstance
      *  @returns { SequelizeProvider }
@@ -164,9 +165,5 @@ class SequelizeProvider {
 }
 
 
-// Singleton sequelize instance for usage
-const sequelizeProvider: SequelizeProvider = SequelizeProvider.provide()
-const sequelize: Sequelize = sequelizeProvider.application()
 
-
-export default sequelize
+export default SequelizeProvider.provide().application()
