@@ -21,9 +21,9 @@ dotenv.config()
  *  @typedef
  * 
  */
-type DBAuth = {
-    database: string,
-    username: string,
+interface DBAuth {
+    database: string
+    username: string
     password?: string
 }
 
