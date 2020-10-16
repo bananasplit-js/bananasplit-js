@@ -13,7 +13,7 @@ import CustomOptions from '@config/sequelize/sequelize-cli.conf'
 dotenv.config()
 
 
-let Options = {
+export default {
 
     // For development
 
@@ -31,6 +31,8 @@ let Options = {
         dialectOptions: {
             bigNumberStrings: true
         },
+
+        ...CustomOptions.development
 
     },
 
@@ -51,6 +53,8 @@ let Options = {
         dialectOptions: {
             bigNumberStrings: true
         },
+
+        ...CustomOptions.test
 
     },
 
@@ -73,15 +77,8 @@ let Options = {
             ssl: {}
         },
 
+        ...CustomOptions.production
+
     }
 
 }
-
-
-// Merge defaults with customs
-Options.development = { ...Options.development, ...CustomOptions.development }
-Options.test = { ...Options.test, ...CustomOptions.test }
-Options.production = { ...Options.production, ...CustomOptions.production }
-
-
-export default Options
