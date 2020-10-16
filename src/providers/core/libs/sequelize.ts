@@ -120,40 +120,25 @@ class SequelizeProvider {
      *  @returns { Options }
      * 
      */
-    private makeOptions = (): Options => {
+    private makeOptions = (): Options => ({
+        
+        dialect: eval( `"${process.env['DB_DIALECT']}"` ),
+        host: process.env['DB_HOST'],
+        port: Number( process.env['DB_PORT'] ),
 
-        let Options: Options = {
-            
-            pool: {
-                max: 5,
-                min: 0,
-                acquire: 30000,
-                idle: 10000
-            },
+        logging: ( process.env.NODE_ENV === 'development' ) ?
+            console.log : false,
 
-            logging: ( process.env.NODE_ENV === 'development' ) ?
-                console.log : false
-            ,
-        }
+        pool: {
+            max: 5,
+            min: 0,
+            acquire: 30000,
+            idle: 10000
+        },
 
+        ...CustomOptions
 
-        Options = {
-
-            ...Options,
-
-            dialect: eval( `"${process.env['DB_DIALECT']}"` ),
-            host: <string> process.env['DB_HOST'],
-            port: parseInt( process.env['DB_PORT']! )
-        }
-
-
-        // Overwrite default options by custom
-        Options = { ...Options, ...CustomOptions }
-
-
-        return Options
-
-    }
+    })
 
 
     /**
