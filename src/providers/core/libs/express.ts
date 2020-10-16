@@ -170,10 +170,7 @@ export default
         private middlewares (): void {
 
             const modulePaths: IModule[] = getMiddlewares()
-
-            if ( modulePaths.length )
-                loadResources({ service:this.service, modulePaths })
-            ;
+            modulePaths.length && loadResources({ service:this.service, modulePaths })
         }
 
 
