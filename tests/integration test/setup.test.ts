@@ -12,7 +12,10 @@ const { express } = require( '@services' )
 const { Sequelize } = require( '@bananasplit-js' )
 
 import request, { Response } from 'supertest'
+import dotenv from 'dotenv'
 
+
+dotenv.config()
 
 // Express server
 let Express: any
@@ -66,7 +69,6 @@ test( 'Database queries are ok', async () => {
     expect( response.status ).toBe( 200 )
     expect( JSONResponse[0].result ).toBe( 'Hello from database!' )
 
-
 })
 
 
@@ -75,17 +77,16 @@ test( 'Database queries are ok', async () => {
  */
 test( 'Database migrations are ok', async () => {
 
-    interface IResponse {
-        Tables_in_test: String
-    }
+    const tablesKey: string = `Tables_in_${process.env.DB_DATABASE}`
 
     const response: Response = await request( Express ).get( '/test-migration' )
-    const JSONResponse: IResponse[] = JSON.parse( response.text )
+    const JSONResponse: any[] = JSON.parse( response.text )
 
     expect( response.status ).toBe( 200 )
+
     // case insensitive fixs the problem on windows tables name
-    expect( JSONResponse[0]['Tables_in_test'] ).toMatch( /SequelizeMeta/i )
-    expect( JSONResponse[1]['Tables_in_test'] ).toMatch( /Users/i )
+    expect( JSONResponse[0][tablesKey] ).toMatch( /SequelizeMeta/i )
+    expect( JSONResponse[1][tablesKey] ).toMatch( /Users/i )
 
 })
 
@@ -113,4 +114,4 @@ afterAll( async done => {
 
     done()
     
-})
+
