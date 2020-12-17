@@ -13,10 +13,7 @@ import path from 'path'
 export default ( app: Express.Application ) => {
 
     /**
-     * 
      *  @settings
-     *  Your express settings goes here
-     * 
      */
 
     // Public folder

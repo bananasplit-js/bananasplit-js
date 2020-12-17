@@ -4,7 +4,7 @@
  *  @description creates an user object based on fake data
  * 
  */
-import { name, internet } from 'faker'
+import faker from 'faker'
 
 
 /**
@@ -20,10 +20,10 @@ const date = new Date()
 
 export default ( user={} ) => ({
 
-    name: name.firstName(),
-    lastname: name.lastName(),
-    email: internet.email(),
-    password: internet.password(),
+    name: faker.name.firstName(),
+    lastname: faker.name.lastName(),
+    email: faker.internet.email(),
+    password: faker.internet.password(),
     createdAt: date,
     updatedAt: date,
 

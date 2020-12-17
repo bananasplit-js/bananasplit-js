@@ -9,10 +9,7 @@
 
 
 /**
- * 
  *	@helpers
- *	Your helpers goes here
- * 
  */
 export function helper(): string {
 

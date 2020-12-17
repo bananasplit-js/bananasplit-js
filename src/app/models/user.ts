@@ -13,7 +13,7 @@ import { DataTypes, ModelAttributes } from 'sequelize'
 class User extends Model {
 
     /**
-     *  @def
+     *  @fields
      */
     private id!: number
     private name!: string
