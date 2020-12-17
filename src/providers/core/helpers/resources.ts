@@ -86,8 +86,8 @@ export const getRouters = (): IModule[] => {
     const criteria: RegExp = /^.+\.routes\.(ts|js)$/
 
     const excludeList: string[] = [
-        'example.routes.ts',
-        'example.routes.js'
+        'tmpl.routes.ts',
+        'tmpl.routes.js'
     ]
 
     return getModules({ dir, criteria, excludeList })
@@ -109,8 +109,8 @@ export const getMiddlewares = (): IModule[] => {
     const criteria: RegExp = /^.+\.(ts|js)$/
 
     const excludeList: string[] = [
-        'example.ts',
-        'example.js'
+        'tmpl.ts',
+        'tmpl.js'
     ]
 
     return getModules({ dir, criteria, excludeList })

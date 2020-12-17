@@ -17,7 +17,6 @@ export default ( app: Express.Application ): void => {
     app.use(( req: Request, res: Response, next: Function ): void => {
 
         // middleware logic
-
         next()
         
     })
