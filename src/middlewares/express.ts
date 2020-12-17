@@ -18,10 +18,7 @@ dontenv.config()
 export default ( app: Express.Application ): void => {
     
     /**
-     *
      *  @middlewares 
-     *  Your middlewares goes here
-     * 
      */
     if ( process.env.NODE_ENV === 'development' )
         app.use( Morgan('dev') )

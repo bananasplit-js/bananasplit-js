@@ -7,9 +7,7 @@
 
 
 /**
- * 
- *  @generator @import
- * 
+ *  @generator
  */
 import createUser from '@generators/create-user'
 
