@@ -22,7 +22,8 @@ export default ( app: Express.Application ): Router => {
     /**
      *  @routes
      */
-    $.route( '/url' ).get( /* @handler from controller */ )
+    $.route( '/url' )
+      .get( /* @handler from controller */ )
 
     return $
 
