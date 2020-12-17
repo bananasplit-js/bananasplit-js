@@ -8,19 +8,15 @@
  */
 import { Request, Response } from 'express'
 
-
 /**
- * 
- *  @model @import
- *  Your model import goes here
- * 
+ *  @model
  */
 
 
 
 export default
 
-    class Name {
+    class NameController {
         
         /**
          *  @handler {action description}

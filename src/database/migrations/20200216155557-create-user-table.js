@@ -38,7 +38,6 @@ export function up ( queryInterface, DataTypes ) {
 
         
         /* Timestamps */
-        
         createdAt: {
             type: 'TIMESTAMP',
             defaultValue: DataTypes.literal( 'CURRENT_TIMESTAMP' ),
@@ -61,3 +60,4 @@ export function up ( queryInterface, DataTypes ) {
 export function down ( queryInterface, Sequelize ) {
     return queryInterface.dropTable( 'Users' )
 }
+
