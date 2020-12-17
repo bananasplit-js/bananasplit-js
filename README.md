@@ -19,12 +19,28 @@
 npx bananasplit-js new "my-app" --apollo
 ``` -->
 
-## 1. Setup the stack
+## 1. Add the following enviroments variables
+`.env`
+
+```
+# [Database]
+
+DB_DIALECT=mysql
+
+DB_HOST=localhost
+DB_PORT=3306
+
+DB_DATABASE=gitpod
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+## 2. Setup the stack
 ```bash
 yarn build:stack | npm run build:stack
 ```
 
-## 2. Run the development server
+## 3. Run the development server
 ```bash
 yarn dev | npm run dev
 ```
