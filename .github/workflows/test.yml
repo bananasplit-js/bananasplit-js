@@ -1,0 +1,65 @@
+
+# Bananasplit-test: this will protect your master branch from bugs
+
+name: bananasplit-test
+
+on:
+  push:
+    branches: [ master ]
+    
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [ 14.x ]
+
+    env:
+      NODE_ENV: test
+      
+      DB_DIALECT: mysql
+      DB_HOST: localhost
+      DB_PORT: 3306
+
+      DB_DATABASE: bananasplit-test
+      DB_USERNAME: root
+      DB_PASSWORD: secret
+
+    steps:
+      - uses: actions/checkout@v2
+        
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+        
+      - name: Install dependencies
+        run: npm i
+
+        # Test is runned with mysql
+      - name: Install mysql2 driver
+        run: npm i mysql2
+
+      - name: Do migrations
+        run: npx sequelize db:migrate
+
+      - name: Seed the database
+        run: npx sequelize db:seed:all
+
+      - name: Test with jest
+        run: npm test setup
+    
+    services:
+      mysql:
+        image: mysql:latest
+
+        env:
+            MYSQL_DATABASE: bananasplit-test
+            MYSQL_ROOT_PASSWORD: secret
+
+        ports:
+          - 3306:3306
