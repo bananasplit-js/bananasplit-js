@@ -15,11 +15,11 @@ class User extends Model {
     /**
      *  @fields
      */
-    private id!: number
-    private name!: string
-    private lastname!: string
-    private email!: string
-    private password!: string
+    public id!: number
+    public name!: string
+    public lastname!: string
+    public email!: string
+    public password!: string
 
 
     /**

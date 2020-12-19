@@ -11,7 +11,7 @@ import { Sequelize } from '@core'
 
 
 /**
- *  @model @import
+ *  @model
  */
 import User from '@models/user'
 
@@ -21,7 +21,7 @@ export default
     class Controller {
 
         /**
-         *   @handler Express test
+         *   @description Express test
          */
         public static expressTest ( req: Request, res: Response ): Response {
             return res.status( 200 ).send( 'GET 200 / Hello' )
@@ -29,7 +29,7 @@ export default
 
 
         /**
-         *  @handler Database connection test
+         *  @description Database connection test
          */
         public static async databaseConnectionTest ( req: Request, res: Response ): Promise<Response> {
             try {
@@ -46,7 +46,7 @@ export default
 
 
         /**
-         *  @handler Database query test
+         *  @description Database query test
          */
         public static async databaseQueryTest ( req: Request, res: Response ): Promise<Response> {
             try {
@@ -63,7 +63,7 @@ export default
 
 
         /**
-         *  @handler User table migration test
+         *  @description User table migration test
          */
         public static async userTableMigrationTest ( req: Request, res: Response ): Promise<Response> {
             try {
@@ -80,7 +80,7 @@ export default
 
 
         /**
-         *  @handler User table seeder test
+         *  @description User table seeder test
          */
         public static async userTableSeederTest ( req: Request, res: Response ): Promise<Response> {
             try {

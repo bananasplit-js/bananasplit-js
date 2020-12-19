@@ -13,19 +13,23 @@ import Express, { Router } from 'express'
  */
 
 
-
+// Router
 const $: Express.Router = Router()
 
 
-export default ( app: Express.Application ): Router => {
-    
-    /**
-     *  @routes
-     */
-    $.route( '/url' )
-      .get( /* @handler from controller */ )
+export default
 
-    return $
+    ( app: Express.Application ): Router => {
+        
+        /**
+         *  @routes
+         */
+        $.route( '/url' )
+          .get( /* controller @handler */ )
 
-}
+        return $
+
+    }
+
+;
 

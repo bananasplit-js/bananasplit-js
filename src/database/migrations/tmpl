@@ -1,14 +1,14 @@
 /**
  * 
- *  Migration: Users
- *  @description migration for users table
+ *  Migration: {Name}
+ *  @description migration for {name} table
  * 
  */
 
 
 export function up ( queryInterface, DataTypes ) {
 
-    return queryInterface.createTable( 'Users', {
+    return queryInterface.createTable( 'Name', {
 
         id: {
             type: DataTypes.INTEGER.UNSIGNED,
@@ -16,28 +16,8 @@ export function up ( queryInterface, DataTypes ) {
 
             primaryKey: true
         },
+       
 
-        name: {
-            type: new DataTypes.STRING(30),
-            allowNull: false
-        },
-
-        lastname: {
-            type: new DataTypes.STRING(30),
-            allowNull: false
-        },
-
-        email: {
-            type: new DataTypes.STRING(50),
-            allowNull: false
-        },
-
-        password: {
-            type: new DataTypes.STRING(50),
-            allowNull: false
-        },
-
-        
         /* Timestamps */
         createdAt: {
             type: 'TIMESTAMP',
@@ -59,6 +39,6 @@ export function up ( queryInterface, DataTypes ) {
 
 
 export function down ( queryInterface, Sequelize ) {
-    return queryInterface.dropTable( 'Users' )
+    return queryInterface.dropTable( 'Name' )
 }
 
