@@ -1,16 +1,16 @@
 /**
  *
- *  Model: {Name}
- *  @module app/models/{name}
+ *  Model: {SingularName}
+ *  @module app/models/{singular_name}
  * 
- *  @description {description}
+ *  @description model for {singular_name}
  * 
  */
 import { Model } from '@bananasplit-js'
 import { DataTypes, ModelAttributes } from 'sequelize'
 
 
-class Name extends Model {
+class SingularName extends Model {
 
     /**
      *  @fields
@@ -45,11 +45,11 @@ class Name extends Model {
 
 ; ( async (): Promise<void> => {
 
-    Name.init()
+    SingularName.init()
 
     // do something async before export the model, like synchronize
 
 })()
 
 
-export default Name
+export default SingularName
