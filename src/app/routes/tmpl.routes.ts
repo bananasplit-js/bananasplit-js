@@ -1,9 +1,9 @@
 /**
  * 
- *  Router: {Name}
- *  @module app/routes/{name}
+ *  Router: {PluralName}
+ *  @module app/routes/{plural_name}
  * 
- *  @description {description}
+ *  @description routes for {plural_name}
  * 
  */
 import Express, { Router } from 'express'
@@ -25,7 +25,7 @@ export default
          *  @routes
          */
         $.route( '/url' )
-          .get( /* controller @handler */ )
+          .get( /* controller handler */ )
 
         return $
 

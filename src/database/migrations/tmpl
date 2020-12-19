@@ -1,14 +1,14 @@
 /**
  * 
- *  Migration: {Name}
- *  @description migration for {name} table
+ *  Migration: {PluralName}
+ *  @description migration for {plural_name} table
  * 
  */
 
 
 export function up ( queryInterface, DataTypes ) {
 
-    return queryInterface.createTable( 'Name', {
+    return queryInterface.createTable( 'PluralName', {
 
         id: {
             type: DataTypes.INTEGER.UNSIGNED,
@@ -39,6 +39,6 @@ export function up ( queryInterface, DataTypes ) {
 
 
 export function down ( queryInterface, Sequelize ) {
-    return queryInterface.dropTable( 'Name' )
+    return queryInterface.dropTable( 'PluralName' )
 }
 

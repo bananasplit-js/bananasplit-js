@@ -1,9 +1,9 @@
 /**
  * 
- *  Controller: {Name}
- *  @module controllers/{name}
+ *  Controller: {PluralName}
+ *  @module controllers/{plural_name}
  * 
- *  @description {description}
+ *  @description controller for {plural_name}
  * 
  */
 import { Request, Response } from 'express'
@@ -16,12 +16,12 @@ import { Request, Response } from 'express'
 
 export default
 
-    class NameController {
+    class PluralNameController {
         
         /**
-         *  @description {action description}
+         *  @description {handler description}
          */
-        public static action ( req: Request, res: Response ): Response {
+        public static actionName ( req: Request, res: Response ): Response {
             return res.send()
         }
 
