@@ -1,7 +1,7 @@
-# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Bananasplit-js CI Testing
+# Bananasplit-test: this will protect your master branch from bugs
+
+name: bananasplit-test
 
 on:
   push:
@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [ 12.x ]
+        node-version: [ 14.x ]
 
     env:
       NODE_ENV: test
@@ -25,9 +25,9 @@ jobs:
       DB_HOST: localhost
       DB_PORT: 3306
 
-      DB_DATABASE: test
+      DB_DATABASE: bananasplit-test
       DB_USERNAME: root
-      DB_PASSWORD: pass
+      DB_PASSWORD: secret
 
     steps:
       - uses: actions/checkout@v2
@@ -37,8 +37,10 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
         
-      - run: npm ci
+      - name: Install dependencies
+        run: npm i
 
+        # Test is runned with mysql
       - name: Install mysql2 driver
         run: npm i mysql2
 
@@ -46,17 +48,18 @@ jobs:
         run: npx sequelize db:migrate
 
       - name: Seed the database
-        run: npx sequelize db:seed
+        run: npx sequelize db:seed:all
 
       - name: Test with jest
         run: npm test setup
     
     services:
       mysql:
-        image: mysql:5.7
+        image: mysql:latest
+
         env:
-            MYSQL_ROOT_PASSWORD: pass
-            MYSQL_DATABASE: test
+            MYSQL_DATABASE: bananasplit-test
+            MYSQL_ROOT_PASSWORD: secret
+
         ports:
           - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
