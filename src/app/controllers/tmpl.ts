@@ -19,7 +19,7 @@ export default
     class NameController {
         
         /**
-         *  @handler {action description}
+         *  @description {action description}
          */
         public static action ( req: Request, res: Response ): Response {
             return res.send()

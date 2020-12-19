@@ -9,16 +9,21 @@
 import Express, { Request, Response } from 'express'
 
 
-export default ( app: Express.Application ): void => {
-    
-    /**
-     *  @middlewares 
-     */
-    app.use(( req: Request, res: Response, next: Function ): void => {
+export default
 
-        // middleware logic
-        next()
+    ( app: Express.Application ): void => {
         
-    })
+        /**
+         *  @middlewares 
+         */
+        app.use(( req: Request, res: Response, next: Function ): void => {
 
-}
+            // middleware logic
+            next()
+            
+        })
+
+    }
+
+;
+

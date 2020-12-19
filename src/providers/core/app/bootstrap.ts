@@ -24,19 +24,24 @@ interface IStack {
  *  @returns { IStack }
  * 
  */
-export default ( services: any[] ): IStack => ({
-    
-    async serve(): Promise<void> {
-        let output: string[] = []
+export default
 
-        for ( const service of services ) {
-            let host: string = `http://localhost:${service.port}`
-            service.middleware ? host=service.path : await service.serve()
-
-            output.push( `${chalk.bold.cyan(`- ${service.name} →`)} ${chalk.red(host)}` )
-        }
+    ( services: any[] ): IStack => ({
         
-        serviceLog( output.join('\n') )        
-    }
+        async serve(): Promise<void> {
+            let output: string[] = []
 
-})
+            for ( const service of services ) {
+                let host: string = `http://localhost:${service.port}`
+                service.middleware ? host=service.path : await service.serve()
+
+                output.push( `${chalk.bold.cyan(`- ${service.name} →`)} ${chalk.red(host)}` )
+            }
+            
+            serviceLog( output.join('\n') )        
+        }
+
+    })
+
+;
+

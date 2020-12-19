@@ -15,20 +15,25 @@ import dontenv from 'dotenv'
 dontenv.config()
 
 
-export default ( app: Express.Application ): void => {
-    
-    /**
-     *  @middlewares 
-     */
-    if ( process.env.NODE_ENV === 'development' )
-        app.use( Morgan('dev') )
-    ;
+export default
 
-    app.use( Express.json() )
+    ( app: Express.Application ): void => {
+        
+        /**
+         *  @middlewares 
+         */
+        if ( process.env.NODE_ENV === 'development' )
+            app.use( Morgan('dev') )
+        ;
 
-    // Public
-    app.use(
-        Express.static( app.get('public') )
-    )
+        app.use( Express.json() )
 
-}
+        // Public
+        app.use(
+            Express.static( app.get('public') )
+        )
+
+    }
+
+;
+
