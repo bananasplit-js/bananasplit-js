@@ -1,7 +1,7 @@
 /**
  * 
- *  Generator: {Name}
- *  @description creates an {name} object based on fake data
+ *  Generator: {SingularName}
+ *  @description creates an {singular_name} object based on fake data
  * 
  */
 import faker from 'faker'
@@ -21,16 +21,16 @@ const date = new Date()
 
 export default
 
-    ( name={} ) => ({
+    ( singular_name={} ) => ({
         
         // Fields
-        name: faker.name.firstName(),
+        field: faker.lorem.word(),
         
         // Timestamps
         createdAt: date,
         updatedAt: date,
 
-        ...name
+        ...singular_name
 
     })
 

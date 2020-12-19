@@ -1,7 +1,7 @@
 /**
  * 
- *  Seeder: {Name}
- *  @description seeds the {name} table with fake data
+ *  Seeder: {PluralName}
+ *  @description seeds the {plural_name} table with fake data
  * 
  */
 
@@ -9,23 +9,23 @@
 /**
  *  @generator
  */
-import createName from '@generators/create-name'
+import createSingularName from '@generators/create-singular_name'
 
 
 export function up ( queryInterface ) {
 
     let amount = 10
-    let name = []
+    let plural_name = []
 
     while ( amount-- )
-        name.push( createName() )
+        plural_name.push( createSingularName() )
     ;
 
-    return queryInterface.bulkInsert( 'Name', name, {} )
+    return queryInterface.bulkInsert( 'PluralName', plural_name, {} )
 
 }
 
 
 export function down ( queryInterface ) {
-    return queryInterface.bulkDelete( 'Name', null, {} )
+    return queryInterface.bulkDelete( 'PluralName', null, {} )
 }
