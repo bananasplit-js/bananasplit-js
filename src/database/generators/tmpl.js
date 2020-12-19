@@ -1,7 +1,7 @@
 /**
  * 
- *  Generator: User
- *  @description creates an user object based on fake data
+ *  Generator: {Name}
+ *  @description creates an {name} object based on fake data
  * 
  */
 import faker from 'faker'
@@ -21,19 +21,16 @@ const date = new Date()
 
 export default
 
-    ( user={} ) => ({
-
+    ( name={} ) => ({
+        
         // Fields
         name: faker.name.firstName(),
-        lastname: faker.name.lastName(),
-        email: faker.internet.email(),
-        password: faker.internet.password(),
-
+        
         // Timestamps
         createdAt: date,
         updatedAt: date,
 
-        ...user
+        ...name
 
     })
 

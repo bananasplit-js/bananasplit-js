@@ -1,0 +1,31 @@
+/**
+ * 
+ *  Seeder: {Name}
+ *  @description seeds the {name} table with fake data
+ * 
+ */
+
+
+/**
+ *  @generator
+ */
+import createName from '@generators/create-name'
+
+
+export function up ( queryInterface ) {
+
+    let amount = 10
+    let name = []
+
+    while ( amount-- )
+        name.push( createName() )
+    ;
+
+    return queryInterface.bulkInsert( 'Name', name, {} )
+
+}
+
+
+export function down ( queryInterface ) {
+    return queryInterface.bulkDelete( 'Name', null, {} )
+}
