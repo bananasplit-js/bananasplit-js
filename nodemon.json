@@ -4,6 +4,9 @@
     "ignore": [
         "src/database",
         "src/providers/core/jobs",
-        "src/config/sequelize/sequelize-cli.conf.js"
+        "src/config/sequelize/sequelize-cli.conf.js",
+        "src/*/tmpl.ts",
+        "src/app/*/tmpl.ts",
+        "src/database/*/tmpl.js"
     ]
 }
