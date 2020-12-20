@@ -47,10 +47,6 @@ yarn dev | npm run dev
 
 **Read more about configuration:** https://bananasplit.js.org/docs/#config
 
-<a href="http://gitpod.io/#https://github.com/bananasplit-js/bananasplit-js/tree/main/gitpod/template" target="_blank">
-  <img src="https://gitpod.io/button/open-in-gitpod.svg" alt="">
-</a>
-
 # Read the docs
 
 ### Check the documentation: https://bananasplit.js.org/docs
