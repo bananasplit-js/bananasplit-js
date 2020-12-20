@@ -35,6 +35,7 @@
   "exclude": [
     "src/database/generators",
     "src/database/seeders",
-    "src/providers/core/jobs/*"
+    "src/providers/core/jobs/*",
+    "src/**/*/tmpl.*"
   ]
 }

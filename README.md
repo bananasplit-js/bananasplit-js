@@ -65,6 +65,8 @@ yarn dev | npm run dev
 
 **Read more about configuration:** https://bananasplit.js.org/docs/#config
 
+![gitpod](https://gitpod.io/button/open-in-gitpod.svg)
+
 # Read the docs
 
 ### Check the documentation: https://bananasplit.js.org/docs
