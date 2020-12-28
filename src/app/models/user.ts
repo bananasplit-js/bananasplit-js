@@ -67,13 +67,7 @@ class User extends Model {
 }
 
 
-; ( async (): Promise<void> => {
-
-    User.init()
-
-    // do something async before export the model like synchronize
-
-})()
-
+// Init the model
+User.init()
 
 export default User

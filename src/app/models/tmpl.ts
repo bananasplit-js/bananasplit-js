@@ -43,13 +43,7 @@ class SingularName extends Model {
 }
 
 
-; ( async (): Promise<void> => {
-
-    SingularName.init()
-
-    // do something async before export the model, like synchronize
-
-})()
-
+// Init the model
+SingularName.init()
 
 export default SingularName
