@@ -15,13 +15,13 @@ class SingularName extends Model {
     /**
      *  @fields
      */
-    private id!: number
+    public id!: number
 
 
     /**
      *  @model
      */
-    public static model: ModelAttributes = {
+    public static attributes: ModelAttributes = {
 
         id: {
             type: DataTypes.INTEGER.UNSIGNED,
