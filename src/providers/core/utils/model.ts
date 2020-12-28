@@ -35,14 +35,14 @@ export default
         /**
          *  @model definition
          */
-        public static model: ModelAttributes = {}
+        public static attributes: ModelAttributes = {}
 
 
         /**
          *  @init the model
          */
         public static init (): SequelizeModel {
-            return super.init.call( this, this.model, {
+            return super.init.call( this, this.attributes, {
                 ...this.options,
                 ...this.$options
             })
