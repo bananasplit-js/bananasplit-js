@@ -23,6 +23,8 @@ const Options: SequelizeOptions = {
         idle: 10000
     },
 
+    sync: {}
+
 }
 
 

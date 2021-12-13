@@ -25,7 +25,7 @@ class User extends Model {
     /**
      *  @model
      */
-    public static model: ModelAttributes = {
+    public static attributes: ModelAttributes = {
 
         id: {
             type: DataTypes.INTEGER.UNSIGNED,
@@ -35,22 +35,22 @@ class User extends Model {
         },
 
         name: {
-            type: new DataTypes.STRING(30),
+            type: DataTypes.STRING,
             allowNull: false
         },
 
         lastname: {
-            type: new DataTypes.STRING(30),
+            type: DataTypes.STRING,
             allowNull: false
         },
 
         email: {
-            type: new DataTypes.STRING(50),
+            type: DataTypes.STRING,
             allowNull: false
         },
 
         password: {
-            type: new DataTypes.STRING(50),
+            type: DataTypes.STRING,
             allowNull: false
         }
         
@@ -67,13 +67,7 @@ class User extends Model {
 }
 
 
-; ( async (): Promise<void> => {
-
-    User.init()
-
-    // do something async before export the model like synchronize
-
-})()
-
+// Init the model
+User.init()
 
 export default User
