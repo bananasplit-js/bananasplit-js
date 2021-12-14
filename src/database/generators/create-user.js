@@ -1,9 +1,10 @@
 /**
- * 
+ *	
  *  Generator: User
  *  @description creates an user object based on fake data
  * 
  */
+import generator from "@bananasplit-js/utils/generator"
 import faker from 'faker'
 
 
@@ -19,22 +20,22 @@ import faker from 'faker'
 const date = new Date()
 
 
-export default
+// Generator
+const createUser = ( user={} ) => ({
 
-    ( user={} ) => ({
+	// Fields
+	name: faker.name.firstName(),
+	lastname: faker.name.lastName(),
+	email: faker.internet.email(),
+	password: faker.internet.password(),
 
-        // Fields
-        name: faker.name.firstName(),
-        lastname: faker.name.lastName(),
-        email: faker.internet.email(),
-        password: faker.internet.password(),
+	// Timestamps
+	createdAt: date,
+	updatedAt: date,
 
-        // Timestamps
-        createdAt: date,
-        updatedAt: date,
+	...user
 
-        ...user
+})
 
-    })
 
-;
+export default generator(createUser)

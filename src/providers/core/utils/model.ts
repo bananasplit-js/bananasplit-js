@@ -1,6 +1,6 @@
 /**
  * 
- *  Provider: Model
+ *  Utils: Model
  *  @module providers/core/utils/model
  *  
  *  @description provides an easy to handle sequelize model

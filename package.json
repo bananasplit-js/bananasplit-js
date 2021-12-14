@@ -51,6 +51,7 @@
         "i": "^0.3.6",
         "module-alias": "^2.2.2",
         "morgan": "^1.10.0",
+        "mysql2": "^2.3.3",
         "npm": "^6.14.8",
         "sequelize": "^6.3.5",
         "sequelize-cli": "^6.2.0"
