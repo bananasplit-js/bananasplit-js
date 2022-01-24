@@ -56,13 +56,13 @@ const packageManager: string = getPackageManager()
 
 if ( !packageManager )
     Abort( 'The npm package manager could not be identified. Please run the stack upgrade manually' )
-;
 
+;
 
 // Runs the ncu upgrade
 const $process: SpawnSyncReturns <Buffer> = spawnSync(
     ( process.platform === 'win32' ) ? 'npx.cmd' : 'npx',
-    [ 'ncu', '--doctor', '--packageManager', packageManager, '-u' ], 
+    [ 'ncu', '--doctor', '--packageManager', packageManager, '-u', ...process.argv.slice(2) ], 
     { cwd: process.cwd(), stdio: 'inherit' }
 )
 

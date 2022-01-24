@@ -14,12 +14,7 @@ import createUser from '@generators/create-user'
 
 export function up ( queryInterface ) {
 
-    let amount = 10
-    let users = []
-
-    while ( amount-- )
-        users.push( createUser() )
-    ;
+	const users = createUser.amount(10)
 
     return queryInterface.bulkInsert( 'Users', users, {} )
 

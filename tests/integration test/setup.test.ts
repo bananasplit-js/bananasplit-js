@@ -36,7 +36,7 @@ test( 'Express server is ok', async () => {
     const response: Response = await request( Express ).get( '/' )
 
     expect( response.status ).toBe( 200 )
-    expect( response.text ).toMatch( 'GET 200 / Hello' )
+    expect( response.text ).toBe( 'GET 200 / Hello' )
 
 })
 
@@ -105,14 +105,12 @@ test( 'Database seeders are ok', async () => {
 })
 
 
-afterAll( async done => {
+afterAll( async () => {
 
     Express.close()
 
     // Closing connection allow to jest exit successfully
     await Sequelize.close()
-
-    done()
     
 })
 

@@ -40,13 +40,11 @@ test( 'Here the action I describe', async () => {
 /**
  *  Do something after run the tests
  */
-afterAll( async done => {
+afterAll( async () => {
 
     Express.close()
 
     // Closing connection allow to jest exit successfully
     await Sequelize.close()
-    
-    done()
     
 })

@@ -13,7 +13,6 @@ import Sequelize from '@core/libs/sequelize'
 import Express from '@core/libs/express'
 
 
-
 export {
     Express,
     Sequelize,
