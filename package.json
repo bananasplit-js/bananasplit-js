@@ -44,8 +44,8 @@
     },
     "engines": {},
     "dependencies": {
-        "boxen": "^4.2.0",
-        "chalk": "^4.1.0",
+        "boxen": "^5.1.2",
+        "chalk": "^4.1.2",
         "dotenv": "^14.2.0",
         "express": "^4.17.2",
         "i": "^0.3.7",
