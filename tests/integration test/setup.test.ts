@@ -105,14 +105,12 @@ test( 'Database seeders are ok', async () => {
 })
 
 
-afterAll( async done => {
+afterAll( async () => {
 
     Express.close()
 
     // Closing connection allow to jest exit successfully
     await Sequelize.close()
-
-    done()
     
 })
 
