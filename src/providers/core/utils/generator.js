@@ -6,13 +6,17 @@
  *  @description extends generator with functionallities
  * 
  */
+
+
 export default
 	/*
-	 *	Extend generator with functionallities
+	 *
+	 *	Extends generator with functionallities
 	 *
 	 */
-	(generator) => {
-		generator.amount = function (amount, data={}) {
+	( generator ) => {
+
+		generator.amount = function ( amount, data={} ) {
 			const registries = []
 
 			for ( let i = 1 ; i <= amount ; ++i ) {
@@ -23,6 +27,7 @@ export default
 		}
 
 		return generator
+
 	}
 
 ;
