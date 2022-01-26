@@ -12,33 +12,31 @@ import { DataTypes, ModelAttributes } from 'sequelize'
 
 class SingularName extends Model {
 
-    /**
-     *  @fields
-     */
-    public id!: number
+	/**
+	 *  @columns
+	 */
+	public id!: number
 
 
-    /**
-     *  @model
-     */
-    public static attributes: ModelAttributes = {
+	/**
+	 *  @attributes
+	 */
+	public static attributes: ModelAttributes = {
+		id: {
+			type: DataTypes.INTEGER.UNSIGNED,
+			autoIncrement: true,
 
-        id: {
-            type: DataTypes.INTEGER.UNSIGNED,
-            autoIncrement: true,
-            
-            primaryKey: true
-        },
-        
-    }
+			primaryKey: true
+		},
+	}
 
 
-    /**
-     *  @options
-     */
-    public static $options: object = {
-        timestamps: true
-    }
+	/**
+	 *  @options
+	 */
+	public static $options: object = {
+		timestamps: true
+	}
 
 }
 

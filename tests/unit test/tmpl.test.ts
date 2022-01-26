@@ -10,19 +10,18 @@ const { express } = require( '@services' )
 const { Sequelize } = require( '@bananasplit-js' )
 
 import request, { Response } from 'supertest'
+import http from "http"
 
 
 // Express server
-let Express: any
+let Express: http.Server
 
 
 /**
  *  Do something before run the tests
  */
 beforeAll( () => {
-
-    Express = express.serve( 6627 )
-
+	Express = express.serve( 6627 )
 })
 
 
@@ -31,8 +30,8 @@ beforeAll( () => {
  */
 test( 'Here the action I describe', async () => {
 
-    const response: Response = await request( Express ).get( '/' )
-    expect( response.status ).toBe( 200 )
+	const response: Response = await request( Express ).get( '/' )
+	expect( response.status ).toBe( 200 )
 
 })
 
@@ -41,10 +40,8 @@ test( 'Here the action I describe', async () => {
  *  Do something after run the tests
  */
 afterAll( async () => {
+	Express.close()
 
-    Express.close()
-
-    // Closing connection allow to jest exit successfully
-    await Sequelize.close()
-    
+	// Closing connection allow to jest exit successfully
+	await Sequelize.close()
 })

@@ -4,6 +4,7 @@
  *  @description creates an {singular_name} object based on fake data
  * 
  */
+import generator from "@bananasplit-js/utils/generator"
 import faker from 'faker'
 
 
@@ -19,19 +20,19 @@ import faker from 'faker'
 const date = new Date()
 
 
-export default
+// Generator
+const createSingularName = ( singular_name={} ) => ({
 
-    ( singular_name={} ) => ({
-        
-        // Fields
-        field: faker.lorem.word(),
-        
-        // Timestamps
-        createdAt: date,
-        updatedAt: date,
+	// Fields
+	field: faker.lorem.word(),
 
-        ...singular_name
+	// Timestamps
+	createdAt: date,
+	updatedAt: date,
 
-    })
+	...singular_name
 
-;
+})
+
+
+export default generator( createSingularName )

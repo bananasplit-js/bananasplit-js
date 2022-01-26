@@ -6,22 +6,20 @@
  *  @description contains all express server settings
  * 
  */
-import Express from 'express'
+import { Application } from 'express'
 import path from 'path'
 
 
 export default
+	( app: Application ) => {
 
-    ( app: Express.Application ) => {
+		/**
+		 *  @settings
+		 */
 
-        /**
-         *  @settings
-         */
+		// Public folder
+		app.set( 'public', path.join(__dirname, '../../public') )
 
-        // Public folder
-        app.set( 'public', path.join(__dirname, '../../public') )
-        
-    }
-
+	}
 ;
 

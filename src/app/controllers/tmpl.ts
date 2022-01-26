@@ -8,23 +8,21 @@
  */
 import { Request, Response } from 'express'
 
+
 /**
- *  @model
+ *  @models import
  */
 
 
-
 export default
+	class PluralNameController {
 
-    class PluralNameController {
-        
-        /**
-         *  @description {handler description}
-         */
-        public static actionName ( req: Request, res: Response ): Response {
-            return res.send()
-        }
+		/**
+		 *  @description {handler description}
+		 */
+		public static actionName ( req: Request, res: Response ): Response {
+			return res.send()
+		}
 
-    }
-
+	}
 ;

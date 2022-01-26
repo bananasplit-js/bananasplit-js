@@ -1,13 +1,13 @@
 {
-    "dist": {
-        "include": [
-            "public"
-        ],
-        "exclude": [
-            "public/.gitignore"
-        ],
-        "options": {
-            "overwrite": true
-        }
-    }
+	"dist": {
+		"include": [
+			"public"
+		],
+		"exclude": [
+			"public/.gitignore"
+		],
+		"options": {
+			"overwrite": true
+		}
+	}
 }
