@@ -12,10 +12,10 @@ import Express from 'express'
 import CustomSettings from '@settings/express'
 import SetupRouter from '@core/app/routes/setup.routes'
 
-import { loadResources, getRouters, getMiddlewares } from '@core/helpers/resources'
+import { loadResources, getRouters, getMiddleware } from '@core/helpers/resources'
 
 // Interfaces
-import { IModule } from '@core/interfaces'
+import { IModule, IRouters } from '@core/interfaces'
 
 
 /**
@@ -98,10 +98,10 @@ export default
             if ( !this.instance ) {
                 this.instance = new ExpressProvider()
                 this.instance.service = Express()
-                
                 this.instance.settings( config )
-                this.instance.middlewares()
-                this.instance.routes()
+
+                const routers: IRouters = this.instance.routers()
+                this.instance.middlewares( routers )
             }
 
             return this.instance
@@ -154,44 +154,56 @@ export default
 
         /**
          * 
-         *  Sets all middlewares
+         *  Sets the main middleware
          * 
          *  @method middlewares
          *  @returns { void }
          * 
          */
-        private middlewares (): void {
+        private middlewares ( routers: IRouters ): void {
 
-            const modulePaths: IModule[] = getMiddlewares()
-            modulePaths.length && loadResources({ service: this.service, modulePaths })
+            const expressMiddleware: IModule[] = getMiddleware()
+
+			if ( expressMiddleware.length ) {
+				loadResources({
+					service: this.service,
+					modulePaths: expressMiddleware,
+					moduleParams: [ routers ]
+				})
+			}
             
         }
 
 
         /**
          * 
-         *  Adds routes for ExpressProvider
+         *  Collects all routers
          * 
-         *  @method routes
-         *  @returns { void }
+         *  @method routers
+         *  @returns { IRouters }
          * 
          */
-        private routes (): void {
+        private routers (): IRouters {
 
             const modulePaths: IModule[] = getRouters()
             
             if ( modulePaths.length ) {
-                loadResources({
-                    service: this.service,
-                    modulePaths,
-                    callback: ( $router: Express.Router ) => this.service.use( $router )
-                })
+				const routers: IRouters = {}
 
-                return
+				modulePaths.forEach( (module: IModule) => {
+					const { default: Module } = require( module.path )
+					const key: string = module.filename.replace(/\.routes\.(ts|js)$/, "")
+
+					routers[ key ] = Module( this.service )
+				})
+
+                return routers
             }
 
             const defaultRouter: Express.Router = SetupRouter( this.service )
-            this.service.use( defaultRouter )
+			this.service.use( defaultRouter )
+
+			return {}
 
         }
 

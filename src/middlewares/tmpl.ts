@@ -6,24 +6,22 @@
  *  @description {description}
  * 
  */
-import Express, { Request, Response } from 'express'
+import { Request, Response, NextFunction } from 'express'
 
 
-export default
+/**
+ *
+ *	Middleware: Auth
+ *	@description checks for user auth before get the route
+ *
+ */
+export const authMiddleware = ( req: Request, res: Response, next: NextFunction ): void => {
 
-    ( app: Express.Application ): void => {
-        
-        /**
-         *  @middlewares 
-         */
-        app.use(( req: Request, res: Response, next: Function ): void => {
+	// middleware
+	// logic
+	// here
 
-            // middleware logic
-            next()
-            
-        })
-
-    }
-
-;
+	next()
+	
+}
 
