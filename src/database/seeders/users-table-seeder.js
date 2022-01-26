@@ -7,17 +7,14 @@
 
 
 /**
- *  @generator
+ *  @generator import
  */
 import createUser from '@generators/create-user'
 
 
 export function up ( queryInterface ) {
-
 	const users = createUser.amount(10)
-
     return queryInterface.bulkInsert( 'Users', users, {} )
-
 }
 
 

@@ -7,20 +7,13 @@
 
 
 /**
- *  @generator
+ *  @generator import
  */
 import createSingularName from '@generators/create-singular_name'
 
 
 export function up ( queryInterface ) {
-
-    let amount = 10
-    let plural_name = []
-
-    while ( amount-- )
-        plural_name.push( createSingularName() )
-    ;
-
+	const singular_name = createSingularName.amount(10)
     return queryInterface.bulkInsert( 'PluralName', plural_name, {} )
 
 }

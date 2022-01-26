@@ -14,11 +14,9 @@ export default {
      *  @development
      */
     development: {
-        
         dialectOptions: {
             bigNumberStrings: true
         },
-
     },
 
 
@@ -26,11 +24,9 @@ export default {
      *  @test
      */
     test: {
-
         dialectOptions: {
             bigNumberStrings: true
         },
-
     },
 
 
@@ -38,12 +34,10 @@ export default {
      *  @production
      */
     production: {
-
         dialectOptions: {
             bigNumberStrings: true,
             ssl: {}
         },
-
     }
 
 }

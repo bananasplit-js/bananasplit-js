@@ -8,10 +8,7 @@
  */
 
 
-/**
- *	@helpers
- */
-export function helper(): string {
+export function helper (): string {
 
 	// do something helpful
 

@@ -13,13 +13,13 @@ import { DataTypes, ModelAttributes } from 'sequelize'
 class SingularName extends Model {
 
     /**
-     *  @fields
+     *  @columns
      */
     public id!: number
 
 
     /**
-     *  @model
+     *  @attributes
      */
     public static attributes: ModelAttributes = {
 

@@ -38,4 +38,4 @@ const createUser = ( user={} ) => ({
 })
 
 
-export default generator(createUser)
+export default generator( createUser )

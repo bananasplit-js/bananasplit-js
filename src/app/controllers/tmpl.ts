@@ -8,14 +8,13 @@
  */
 import { Request, Response } from 'express'
 
+
 /**
- *  @model
+ *  @models import
  */
 
 
-
 export default
-
     class PluralNameController {
         
         /**
@@ -26,5 +25,4 @@ export default
         }
 
     }
-
 ;

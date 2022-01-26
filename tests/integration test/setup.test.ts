@@ -4,7 +4,6 @@
  *  @module "tests/unit test/setup"
  * 
  *  @description tests the entire stack setup
- *  
  *  * you can remove or modify this file *
  * 
  */
@@ -12,19 +11,19 @@ const { express } = require( '@services' )
 const { Sequelize } = require( '@bananasplit-js' )
 
 import request, { Response } from 'supertest'
+import http from "http"
+
 import dotenv from 'dotenv'
 
 
 dotenv.config()
 
 // Express server
-let Express: any
+let Express: http.Server
 
 
 beforeAll( async () => {
-
     Express = express.serve( 6627 )
-
 })
 
 
@@ -106,11 +105,9 @@ test( 'Database seeders are ok', async () => {
 
 
 afterAll( async () => {
-
     Express.close()
 
     // Closing connection allow to jest exit successfully
     await Sequelize.close()
-    
 })
 

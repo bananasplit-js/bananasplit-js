@@ -9,7 +9,6 @@
 export function up ( queryInterface, DataTypes ) {
 
     return queryInterface.createTable( 'PluralName', {
-
         id: {
             type: DataTypes.INTEGER.UNSIGNED,
             autoIncrement: true,
@@ -32,7 +31,6 @@ export function up ( queryInterface, DataTypes ) {
             allowNull: false
 
         }
-        
     })
 
 }

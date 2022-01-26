@@ -18,24 +18,21 @@ import { Application, Router } from 'express'
  */
 
 
-// Router
+// Basic Router
 const $: Router = Router()
 
 
 export default
-
     ( app: Application ): Router => {
         
         /**
          *  @routes
          */
         $.route( '/route' )
-          .get( /* controller handler */ )
+			.get( /* controller handler */ )
 
 
         return $
 
     }
-
 ;
-
