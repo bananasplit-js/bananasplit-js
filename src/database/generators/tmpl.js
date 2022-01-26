@@ -22,10 +22,10 @@ const date = new Date()
 
 // Generator
 const createSingularName = ( singular_name={} ) => ({
-	
+
 	// Fields
 	field: faker.lorem.word(),
-	
+
 	// Timestamps
 	createdAt: date,
 	updatedAt: date,

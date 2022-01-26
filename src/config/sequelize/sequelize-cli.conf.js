@@ -10,34 +10,34 @@
 
 export default {
 
-    /**
-     *  @development
-     */
-    development: {
-        dialectOptions: {
-            bigNumberStrings: true
-        },
-    },
+	/**
+	 *  @development
+	 */
+	development: {
+		dialectOptions: {
+			bigNumberStrings: true
+		},
+	},
 
 
-    /**
-     *  @test
-     */
-    test: {
-        dialectOptions: {
-            bigNumberStrings: true
-        },
-    },
+	/**
+	 *  @test
+	 */
+	test: {
+		dialectOptions: {
+			bigNumberStrings: true
+		},
+	},
 
 
-    /**
-     *  @production
-     */
-    production: {
-        dialectOptions: {
-            bigNumberStrings: true,
-            ssl: {}
-        },
-    }
+	/**
+	 *  @production
+	 */
+	production: {
+		dialectOptions: {
+			bigNumberStrings: true,
+			ssl: {}
+		},
+	}
 
 }

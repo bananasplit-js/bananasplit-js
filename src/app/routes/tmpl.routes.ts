@@ -23,16 +23,16 @@ const $: Router = Router()
 
 
 export default
-    ( app: Application ): Router => {
-        
-        /**
-         *  @routes
-         */
-        $.route( '/route' )
+	( app: Application ): Router => {
+
+		/**
+		 *  @routes
+		 */
+		$.route( '/route' )
 			.get( /* controller handler */ )
 
 
-        return $
+			return $
 
-    }
+	}
 ;

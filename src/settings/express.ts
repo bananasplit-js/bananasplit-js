@@ -11,15 +11,15 @@ import path from 'path'
 
 
 export default
-    ( app: Application ) => {
+	( app: Application ) => {
 
-        /**
-         *  @settings
-         */
+		/**
+		 *  @settings
+		 */
 
-        // Public folder
-        app.set( 'public', path.join(__dirname, '../../public') )
-        
-    }
+		// Public folder
+		app.set( 'public', path.join(__dirname, '../../public') )
+
+	}
 ;
 

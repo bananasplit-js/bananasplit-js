@@ -15,14 +15,14 @@ import { Request, Response } from 'express'
 
 
 export default
-    class PluralNameController {
-        
-        /**
-         *  @description {handler description}
-         */
-        public static actionName ( req: Request, res: Response ): Response {
-            return res.send()
-        }
+	class PluralNameController {
 
-    }
+		/**
+		 *  @description {handler description}
+		 */
+		public static actionName ( req: Request, res: Response ): Response {
+			return res.send()
+		}
+
+	}
 ;

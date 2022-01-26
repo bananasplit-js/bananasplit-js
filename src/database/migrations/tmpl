@@ -8,35 +8,32 @@
 
 export function up ( queryInterface, DataTypes ) {
 
-    return queryInterface.createTable( 'PluralName', {
-        id: {
-            type: DataTypes.INTEGER.UNSIGNED,
-            autoIncrement: true,
+	return queryInterface.createTable( 'PluralName', {
+		id: {
+			type: DataTypes.INTEGER.UNSIGNED,
+			autoIncrement: true,
 
-            primaryKey: true
-        },
-       
+			primaryKey: true
+		},
 
-        /* Timestamps */
-        createdAt: {
-            type: 'TIMESTAMP',
-            defaultValue: DataTypes.literal( 'CURRENT_TIMESTAMP' ),
-            allowNull: false
 
-        },
+		/* Timestamps */
+		createdAt: {
+			type: 'TIMESTAMP',
+			defaultValue: DataTypes.literal( 'CURRENT_TIMESTAMP' ),
+			allowNull: false
+		},
 
-        updatedAt: {
-            type: 'TIMESTAMP',
-            defaultValue: DataTypes.literal('CURRENT_TIMESTAMP'),
-            allowNull: false
-
-        }
-    })
+		updatedAt: {
+			type: 'TIMESTAMP',
+			defaultValue: DataTypes.literal('CURRENT_TIMESTAMP'),
+			allowNull: false
+		}
+	})
 
 }
 
 
 export function down ( queryInterface, Sequelize ) {
-    return queryInterface.dropTable( 'PluralName' )
+	return queryInterface.dropTable( 'PluralName' )
 }
-

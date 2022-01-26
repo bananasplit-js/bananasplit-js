@@ -1,41 +1,41 @@
 {
-  "compilerOptions": {
-    "target": "es6",
-    "module": "commonjs",
-    "allowJs": true,
-    "outDir": "dist",
-    "removeComments": true,
-    "strict": true,
-    "moduleResolution": "node",
-    "experimentalDecorators": true,
-    "baseUrl": ".",
-    "paths": {
-      "@root/*": ["./*"],
-      "@bananasplit-js": ["src/providers/core"],
-      "@bananasplit-js/*": ["src/providers/core/*"],
-      "@core": ["src/providers/core"],
-      "@core/*": ["src/providers/core/*"],
-      "@services": ["src/providers/services"],
-      "@providers/*": ["src/providers/*"],
-      "@database/*": ["src/database/*"],
-      "@settings/*": ["src/settings/*"],
-      "@middlewares/*": ["src/middlewares/*"],
-      "@controllers/*": ["src/app/controllers/*"],
-      "@models/*": ["src/app/models/*"],
-      "@routes/*": ["src/app/routes/*"],
-      "@helpers/*": ["src/app/helpers/*"],
-      "@generators/*": ["src/database/generators/*"],
-      "@config/*": ["src/config/*"]
-    },
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true
-  },
-  "include": ["src/**/*", "package.json"],
-  "exclude": [
-    "src/database/generators",
-    "src/database/seeders",
-    "src/providers/core/jobs/*",
-    "src/**/*/tmpl.*"
-  ]
+	"compilerOptions": {
+		"target": "es6",
+		"module": "commonjs",
+		"allowJs": true,
+		"outDir": "dist",
+		"removeComments": true,
+		"strict": true,
+		"moduleResolution": "node",
+		"experimentalDecorators": true,
+		"baseUrl": ".",
+		"paths": {
+			"@root/*": ["./*"],
+			"@bananasplit-js": ["src/providers/core"],
+			"@bananasplit-js/*": ["src/providers/core/*"],
+			"@core": ["src/providers/core"],
+			"@core/*": ["src/providers/core/*"],
+			"@services": ["src/providers/services"],
+			"@providers/*": ["src/providers/*"],
+			"@database/*": ["src/database/*"],
+			"@settings/*": ["src/settings/*"],
+			"@middlewares/*": ["src/middlewares/*"],
+			"@controllers/*": ["src/app/controllers/*"],
+			"@models/*": ["src/app/models/*"],
+			"@routes/*": ["src/app/routes/*"],
+			"@helpers/*": ["src/app/helpers/*"],
+			"@generators/*": ["src/database/generators/*"],
+			"@config/*": ["src/config/*"]
+		},
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"resolveJsonModule": true
+	},
+	"include": ["src/**/*", "package.json"],
+	"exclude": [
+		"src/database/generators",
+		"src/database/seeders",
+		"src/providers/core/jobs/*",
+		"src/**/*/tmpl.*"
+	]
 }
