@@ -6,26 +6,32 @@
  *  @description routes for {plural_name}
  * 
  */
-import Express, { Router } from 'express'
+import { Application, Router } from 'express'
 
 /**
- *  @controller
+ *  @middlewares import
+ */
+
+
+/**
+ *  @controllers import
  */
 
 
 // Router
-const $: Express.Router = Router()
+const $: Router = Router()
 
 
 export default
 
-    ( app: Express.Application ): Router => {
+    ( app: Application ): Router => {
         
         /**
          *  @routes
          */
-        $.route( '/url' )
+        $.route( '/route' )
           .get( /* controller handler */ )
+
 
         return $
 

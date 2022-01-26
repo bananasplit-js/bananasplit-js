@@ -97,23 +97,18 @@ export const getRouters = (): IModule[] => {
 
 /**
  * 
- *  Get middlewares
- *  @description gets all middleware modules path from middlewares directory
+ *  Get middleware
+ *  @description gets express middleware module path from middlewares directory
  * 
  *  @returns { IModule[] }
  * 
  */
-export const getMiddlewares = (): IModule[] => {
+export const getMiddleware = (): IModule[] => {
 
     const dir: string = './src/middlewares'
-    const criteria: RegExp = /^.+\.(ts|js)$/
+    const criteria: RegExp = /^express\.(ts|js)$/
 
-    const excludeList: string[] = [
-        'tmpl.ts',
-        'tmpl.js'
-    ]
-
-    return getModules({ dir, criteria, excludeList })
+    return getModules({ dir, criteria, excludeList: [] })
     
 }
 
@@ -121,6 +116,7 @@ export const getMiddlewares = (): IModule[] => {
 interface ILR {
     readonly service: Express.Application
     readonly modulePaths: IModule[]
+	readonly moduleParams?: any[]
     callback?: Function
 }
 /**
@@ -134,13 +130,13 @@ interface ILR {
  */
 export const loadResources = ( params: ILR ): void => {
 
-    const { service, modulePaths, callback } = params
+    const { service, modulePaths, moduleParams=[], callback } = params
 
     modulePaths.forEach(( _module: IModule ) => {
         const { default: Module } = require( _module.path )
 
         if ( Module instanceof Function ) {
-            const $resource: Resource = Module( service )
+			const $resource: Resource = Module.apply( null, [service, ...moduleParams] )
             
             if ( callback instanceof Function )
                 callback( $resource )
