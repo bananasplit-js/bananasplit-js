@@ -74,23 +74,21 @@ if ( includes.length ) {
 		const dest: string = (include instanceof Array) ? `${dist}/${include[1]}` : `${dist}/${include}`
 
 		try {
-			// Copy the file or dist recursively
-			fs.copy(
-				src,
-				dest,
-				{
-					...options,
+			const copyOptions: object = {
+				...options,
 
-					// exclude filter
-					filter: ( src: string ): boolean => {
-						// Check for windows
-						const isWindows: boolean = (process.platform === "win32")
-						src = isWindows ? src.replace(/\\/g, "/") : src
+				// exclude filter
+				filter: ( src: string ): boolean => {
+					// Check for windows
+					const isWindows: boolean = (process.platform === "win32")
+					src = isWindows ? src.replace(/\\/g, "/") : src
 
-						return excludes.includes(src) ? false : true
-					}
+					return excludes.includes(src) ? false : true
 				}
-			)
+			}
+
+			// Copy the file or dist recursively
+			fs.copy(src, dest, copyOptions)
 
 		} catch ( err: any ) {
 			Abort(err)

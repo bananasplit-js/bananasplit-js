@@ -138,9 +138,9 @@ export const loadResources = ( params: ILR ): void => {
 		if ( Module instanceof Function ) {
 			const $resource: Resource = Module.apply(null, [service, ...moduleParams])
 
-			if ( callback instanceof Function )
+			if ( callback instanceof Function ) {
 				callback($resource)
-			;
+			}
 
 		} else {
 			console.warn(chalk.yellow(
