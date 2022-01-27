@@ -56,14 +56,14 @@ const findDialect = () => {
 // Store the database dialect
 const dialect = findDialect()
 
-if ( !dialect )
-	Abort( "You must define a db_dialect in the .env file" )
-;
+if ( !dialect ) {
+	Abort("You must define a db_dialect in the .env file")
+}
 
 
 // Map to the database drivers package as string
 const getDatabaseDriverPackages = (dialect) => {
-	let packages ;
+	let packages
 
 	switch ( dialect ) {
 		case "mysql":

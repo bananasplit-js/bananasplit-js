@@ -199,8 +199,8 @@ export default
 				return routers
 			}
 
-			const defaultRouter: Express.Router = SetupRouter( this.service )
-			this.service.use( defaultRouter )
+			const defaultRouter: Express.Router = SetupRouter(this.service)
+			this.service.use(defaultRouter)
 
 			return {}
 

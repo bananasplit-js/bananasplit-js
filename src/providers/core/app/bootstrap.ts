@@ -35,10 +35,10 @@ export default
 				let host: string = `http://localhost:${service.port}`
 				service.middleware ? host=service.path : await service.serve()
 
-				output.push( `${chalk.bold.cyan(`- ${service.name} →`)} ${chalk.red(host)}` )
+				output.push(`${chalk.bold.cyan(`- ${service.name} →`)} ${chalk.red(host)}`)
 			}
 
-			serviceLog( output.join("\n") )
+			serviceLog(output.join("\n"))
 		}
 
 	})
