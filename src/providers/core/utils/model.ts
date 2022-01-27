@@ -6,47 +6,54 @@
  *  @description provides an easy to handle sequelize model
  * 
  */
-import { Model as SequelizeModel, InitOptions, ModelAttributes } from 'sequelize'
+import {
+	Model as SequelizeModel,
+	InitOptions,
+	ModelAttributes
+} from 'sequelize'
+
 import sequelize from '@core/libs/sequelize'
 
 
 export default
-    /**
-     * 
-     *  @class Model @extends SequelizeModel
-     *  @description provides a more simply layer to use models
-     * 
-     */
-    class Model extends SequelizeModel {
+	/**
+	 * 
+	 *  @class Model @extends SequelizeModel
+	 *  @description provides a more simply layer to use models
+	 * 
+	 */
+	class Model extends SequelizeModel {
+		/**
+		 *  @default options
+		 */
+		public static options: InitOptions = {
+			sequelize,
+			timestamps: true
+		}
 
-        /**
-         *  @default options
-         */
-        public static options: InitOptions = {
-            sequelize,
-            timestamps: true
-        }
+		/**
+		 *  @custom options
+		 */
+		public static $options: object = {}
 
-        /**
-         *  @custom options
-         */
-        public static $options: object = {}
-
-        /**
-         *  @model definition
-         */
-        public static attributes: ModelAttributes = {}
+		/**
+		 *  @model definition
+		 */
+		public static attributes: ModelAttributes = {}
 
 
-        /**
-         *  @init the model
-         */
-        public static init (this: any): any {
-            return super.init.call( this, this.model, {
-                ...this.options,
-                ...this.$options
-            })
-        }
+		/**
+		 *  @init the model
+		 */
+		public static init (this: any): any {
+			return (
+				super.init.call(
+					this,
+					this.model,
+					{ ...this.options, ...this.$options }
+				)
+			)
+		}
+	}
 
-    }
 ;

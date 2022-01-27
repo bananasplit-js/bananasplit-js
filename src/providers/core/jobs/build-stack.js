@@ -7,11 +7,11 @@
  *  @author diegoulloao
  * 
  */
-'use strict';
+"use strict";
 
-const { spawnSync } = require( 'child_process' )
-const fs = require( 'fs' )
-const path = require( 'path' )
+const { spawnSync } = require( "child_process" )
+const fs = require( "fs" )
+const path = require( "path" )
 
 
 /**
@@ -22,34 +22,34 @@ const path = require( 'path' )
  *  @returns { void }
  * 
  */
-const Abort = msg => {
-    console.error( msg )
-    process.exit(0)
+const Abort = (msg) => {
+	console.error(msg)
+	process.exit(0)
 }
 
 
 // Return the dialect used in DB_DIALECT
 const findDialect = () => {
-    const envPath = path.resolve( '.env' )
+	const envPath = path.resolve(".env")
 
-    // Checks if .env exists
-    fs.existsSync( envPath ) || Abort( '.env file missing' )
+	// Checks if .env exists
+	fs.existsSync(envPath) || Abort(".env file missing")
 
-    // Parse each line to an array
-    const env = fs.readFileSync( envPath, 'utf8' )
-    const envAsArray = env.split( /\n|\r|\r\n/ )
+	// Parse each line to an array
+	const env = fs.readFileSync(envPath, "utf8")
+	const envAsArray = env.split(/\n|\r|\r\n/)
 
-    let dialect ;
+	let dialect
 
-    // Search for db_dialect then break
-    envAsArray.some( line => {
-        if ( line.startsWith('DB_DIALECT') ) {
-            dialect = line.split('=')[1]
-            return true
-        }
-    })
+	// Search for db_dialect then break
+	envAsArray.some(line => {
+		if ( line.startsWith("DB_DIALECT") ) {
+			dialect = line.split("=")[1]
+			return true
+		}
+	})
 
-    return dialect
+	return dialect
 }
 
 
@@ -57,55 +57,55 @@ const findDialect = () => {
 const dialect = findDialect()
 
 if ( !dialect )
-    Abort( 'You must define a db_dialect in the .env file' )
+	Abort( "You must define a db_dialect in the .env file" )
 ;
 
 
 // Map to the database drivers package as string
-const getDatabaseDriverPackages = dialect => {
-    let packages ;
-    
-    switch ( dialect ) {
-        case 'mysql':
-            packages = 'mysql2'
-            break
-        ;
-        
-        case 'mariadb':
-            packages = 'mariadb'
-            break
-        ;
+const getDatabaseDriverPackages = (dialect) => {
+	let packages ;
 
-        case 'postgres':
-            packages = 'pg pg-hstore'
-            break
-        ;
+	switch ( dialect ) {
+		case "mysql":
+			packages = "mysql2"
+			break
+		;
 
-        case 'mssql':
-            packages = 'tedious'
-            break
-        ;
+		case "mariadb":
+			packages = "mariadb"
+			break
+		;
 
-        case 'sqlite':
-            packages = 'sqlite3'
-            break
-        ;
+		case "postgres":
+			packages = "pg pg-hstore"
+			break
+		;
 
-        default:
-            packages = ''
-        ;
-    }
+		case "mssql":
+			packages = "tedious"
+			break
+		;
 
-    return packages
+		case "sqlite":
+			packages = "sqlite3"
+			break
+		;
+
+		default:
+			packages = ""
+		;
+	}
+
+	return packages
 
 }
 
 
 // Gets database driver packages based on the dialect
-const databaseDriverPackages = getDatabaseDriverPackages( dialect )
+const databaseDriverPackages = getDatabaseDriverPackages(dialect)
 
 if ( !databaseDriverPackages )
-    Abort( `${dialect} is not a valid db_dialect. Please choose one of: mysql|mariadb|postgres|mssql|sqlite or ensure remove the comment` )
+	Abort(`${dialect} is not a valid db_dialect. Please choose one of: mysql|mariadb|postgres|mssql|sqlite or ensure remove the comment`)
 ;
 
 
@@ -114,28 +114,28 @@ const npmUserAgent = process.env.npm_config_user_agent
 
 // if no npm agent founded then exits
 if ( !npmUserAgent )
-    Abort( 'The npm package manager could not be identified. Please run the stack installation manually' )
+	Abort("The npm package manager could not be identified. Please run the stack installation manually")
 ;
 
 
 // Map to the used package manager executor (cross-platform)
 const getPackageManager = () => {
-    // Check for windows
-    const isWindows = ( process.platform === 'win32' )
+	// Check for windows
+	const isWindows = (process.platform === "win32")
 
-    switch ( true ) {
-        case /^yarn/.test(npmUserAgent):
-            return isWindows ? 'yarn.cmd':'yarn'
-        ;
+	switch ( true ) {
+		case /^yarn/.test(npmUserAgent):
+			return isWindows ? "yarn.cmd" : "yarn"
+		;
 
-        case /^npm/.test(npmUserAgent):
-            return isWindows ? 'npm.cmd':'npm'
-        ;
+		case /^npm/.test(npmUserAgent):
+			return isWindows ? "npm.cmd" : "npm"
+		;
 
-        default:
-            return false
-        ;
-    }
+		default:
+			return false
+		;
+	}
 }
 
 
@@ -143,28 +143,29 @@ const getPackageManager = () => {
 const packageManagerExec = getPackageManager()
 
 if ( !packageManagerExec )
-    Abort( 'The npm package manager could not be identified. Please run the stack installation manually' )
+	Abort("The npm package manager could not be identified. Please run the stack installation manually")
 ;
 
 
 // Runs sync npm process
-const RunNpmProcess = cmd => {
-    // Run the process
-    const $process = spawnSync( packageManagerExec, cmd, {
-        cwd: process.cwd(),
-        stdio: 'inherit'
-    })
+const RunNpmProcess = (cmd) => {
+	// Run the process
+	const $process = spawnSync(
+		packageManagerExec,
+		cmd,
+		{ cwd: process.cwd(), stdio: "inherit" }
+	)
 
-    // if an error ocurrs it prints it and exits
-    if ( $process.status === 1 ) {
-        console.error( $process.error || '' )
-        process.exit(1)
-    }
+	// if an error ocurrs it prints it and exits
+	if ( $process.status === 1 ) {
+		console.error($process.error || "")
+		process.exit(1)
+	}
 }
 
 
 // Builds the stack
-RunNpmProcess([ 'install' ])
-RunNpmProcess([ 'add', databaseDriverPackages ])
-RunNpmProcess([ 'run', 'build:database' ])
-RunNpmProcess([ 'test', 'setup' ])
+RunNpmProcess(["install"])
+RunNpmProcess(["add", databaseDriverPackages])
+RunNpmProcess(["run", "build:database"])
+RunNpmProcess(["test", "setup"])

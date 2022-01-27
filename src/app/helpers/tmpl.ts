@@ -12,6 +12,6 @@ export function helper (): string {
 
 	// do something helpful
 
-	return 'something'
+	return "something"
 
 }

@@ -6,8 +6,8 @@
  *  @description model for {singular_name}
  * 
  */
-import { Model } from '@bananasplit-js'
-import { DataTypes, ModelAttributes } from 'sequelize'
+import { Model } from "@bananasplit-js"
+import { DataTypes, ModelAttributes } from "sequelize"
 
 
 class SingularName extends Model {
@@ -43,5 +43,6 @@ class SingularName extends Model {
 
 // Init the model
 SingularName.init()
+
 
 export default SingularName

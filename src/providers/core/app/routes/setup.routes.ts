@@ -6,12 +6,12 @@
  *  @description routes for setup test
  * 
  */
-import Express, { Router } from 'express'
+import Express, { Router } from "express"
 
 /**
  *  @controller
  */
-import Setup from '@core/app/controllers/setup'
+import Setup from "@core/app/controllers/setup"
 
 
 // Router
@@ -20,34 +20,34 @@ const $: Express.Router = Router()
 
 export default
 
-    ( app: Express.Application ): Router => {
-        
-        /**
-         *  @routes
-         */
-        $.route( '/' )
-            .get( Setup.expressTest )
+	( app: Express.Application ): Router => {
 
-        // Database connection test
-        $.route( '/test-connection' )
-            .get( Setup.databaseConnectionTest )
+		/**
+		 *  @routes
+		 */
+		$.route("/")
+			.get(Setup.expressTest)
 
-        // Database query test
-        $.route( '/test-query' )
-            .get( Setup.databaseQueryTest )
+		// Database connection test
+		$.route("/test-connection")
+			.get(Setup.databaseConnectionTest)
 
-        // User table migration test
-        $.route( '/test-migration' )
-            .get( Setup.userTableMigrationTest )
+		// Database query test
+		$.route("/test-query")
+			.get(Setup.databaseQueryTest)
 
-        // User table seeder test
-        $.route( '/test-seeder' )
-            .get( Setup.userTableSeederTest )
+		// User table migration test
+		$.route("/test-migration")
+			.get(Setup.userTableMigrationTest)
+
+		// User table seeder test
+		$.route("/test-seeder")
+			.get(Setup.userTableSeederTest)
 
 
-        return $
+		return $
 
-    }
+	}
 
 ;
 

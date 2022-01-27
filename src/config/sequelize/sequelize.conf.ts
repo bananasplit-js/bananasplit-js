@@ -4,7 +4,7 @@
  *  @description sequelize options
  * 
  */
-import { Options as SequelizeOptions } from 'sequelize'
+import { Options as SequelizeOptions } from "sequelize"
 
 
 const Options: SequelizeOptions = {

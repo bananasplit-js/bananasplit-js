@@ -6,7 +6,7 @@
  *  @description services provided by bananasplit
  * 
  */
-import { Express } from '@bananasplit-js'
+import { Express } from "@bananasplit-js"
 
 
 /* ------------------------------------------------

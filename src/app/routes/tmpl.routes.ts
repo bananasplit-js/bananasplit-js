@@ -6,7 +6,7 @@
  *  @description routes for {plural_name}
  * 
  */
-import { Application, Router } from 'express'
+import { Application, Router } from "express"
 
 /**
  *  @middlewares import
@@ -23,16 +23,16 @@ const $: Router = Router()
 
 
 export default
-	( app: Application ): Router => {
 
+	( app: Application ): Router => {
 		/**
 		 *  @routes
 		 */
-		$.route( '/route' )
+		$.route( "/route" )
 			.get( /* controller handler */ )
 
 
 			return $
-
 	}
+
 ;
