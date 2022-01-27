@@ -35,9 +35,9 @@
 	"exclude": [
 		"src/database/generators",
 		"src/database/seeders",
-		"src/providers/core/jobs/post-build.ts",
-		"src/providers/core/jobs/pre-build.ts",
-		"src/providers/core/jobs/upgrade-stack.ts",
+		"src/providers/core/jobs/*",
+		"src/providers/core/app/controllers",
+		"src/providers/core/app/routes",
 		"src/**/*/tmpl.*"
 	]
 }

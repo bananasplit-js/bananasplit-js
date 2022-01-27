@@ -128,6 +128,7 @@ const cRex: RegExp[] = [/\/\*$/, /\/\//]
  $packageJson.scripts.dev && delete $packageJson.scripts.dev
  $packageJson.scripts.build && delete $packageJson.scripts.build
  $packageJson.scripts["build:stack"] && delete $packageJson.scripts["build:stack"]
+ $packageJson.scripts["routes:list"] && delete $packageJson.scripts["routes:list"]
  $packageJson.scripts.test && delete $packageJson.scripts.test
  $packageJson.scripts["test:watch"] && delete $packageJson.scripts["test:watch"]
  $packageJson.scripts["test:coverage"] && delete $packageJson.scripts["test:coverage"]
