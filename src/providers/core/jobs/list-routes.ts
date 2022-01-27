@@ -25,7 +25,7 @@ import path from "path"
  *  @returns { string }
  * 
  */
-const getPathFromRegex = (regexp: RegExp): string => {
+const getPathFromRegex = ( regexp: RegExp ): string => {
 
 	return regexp
 		.toString()
@@ -48,14 +48,19 @@ const getPathFromRegex = (regexp: RegExp): string => {
 const combineStacks = ( acc: [], stack: any ): any[] => {
 
 	if ( stack.handle.stack ) {
+		// Extract route path from regex
 		const routerPath: string = getPathFromRegex(stack.regexp)
+
+		// Collect inner stack adding routePath
 		const innerStack: object[] = stack.handle.stack.map(
 			(s: object) => ({ routerPath, ...s })
 		)
 
+		// Return accumulated inner stack
 		return [...acc, ...innerStack]
 	}
 
+	// Return accumulated stack
 	return [...acc, stack]
 
 }
@@ -70,6 +75,7 @@ const combineStacks = ( acc: [], stack: any ): any[] => {
  */
 const getRoutesFromStacks = ( stacks: any[] ): any[] => {
 
+	// Routes accumulator
 	const routes: any[] = []
 
 	if ( stacks ) {
@@ -78,19 +84,25 @@ const getRoutesFromStacks = ( stacks: any[] ): any[] => {
 				const routeLogged: { [index: string]: any } = {}
 
 				for ( const route of stack.route.stack ) {
-					const method: any = route.method ? route.method.toUpperCase() : null
+					// Extract route method
+					const method: string | null = route.method ? route.method.toUpperCase() : null
 
-					if ( !routeLogged[method] && method ) {
-						const stackMethod: string = method
+					if ( method && !routeLogged[method] ) {
+						// Route path parts
+						const fullPathArray: string[] = [stack.routerPath, stack.route.path, route.path]
+
+						// Convert path parts to a entire string
 						const stackPath: string = path.resolve(
-							[stack.routerPath, stack.route.path, route.path]
-								.filter((s: string) => !!s).join("")
+							fullPathArray.filter((s: string) => !!s).join("")
 						)
 
+						// Push method and route to the accumulator
 						routes.push([
-							chalk.cyan.bold(stackMethod),
+							chalk.cyan.bold(method),
 							chalk.white(stackPath)
 						])
+
+						routeLogged[method] = true
 					}
 				}
 			}
@@ -101,9 +113,23 @@ const getRoutesFromStacks = ( stacks: any[] ): any[] => {
 
 }
 
+// First message
 console.log("")
 console.log(chalk.yellow("Inspecting routes..."))
 
+// Server application, stacks and routes
+const server: Express.Application = express.application()
+const stacks: any[] = server._router.stack.reduce(combineStacks, [])
+const routes: any[] = getRoutesFromStacks(stacks)
+
+// Checks if express version >= 4 or exit
+if ( !server._router?.stack ) {
+	console.log("")
+	console.log(chalk.bgRed.black(" You must use a express version >= 4 "), "\n")
+	process.exit()
+}
+
+// Output table + config
 const table = new Table({
 	head: [
 		chalk.yellow.bold("\nmethod\n"),
@@ -135,12 +161,12 @@ const table = new Table({
 })
 
 
-const server: Express.Application = express.application()
-const stacks: any[] = server._router.stack.reduce(combineStacks, [])
-const routes: any[] = getRoutesFromStacks(stacks)
-
+// Push routes and an extra space to the table
 table.push(...routes, ["", ""])
 
+// Log the table
 console.log("")
 console.log(table.toString(), "\n")
+
+// Success message
 console.log(chalk.green("Are available in your application 🚀"), "\n")
