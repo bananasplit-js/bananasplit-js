@@ -17,6 +17,7 @@ dontenv.config()
 
 
 export default
+
 	( app: Application, routers: IRouters ): void => {
 		/**
 		 *  @middlewares 
@@ -37,4 +38,5 @@ export default
 			( router: Router ) => app.use(router)
 		)
 	}
+
 ;

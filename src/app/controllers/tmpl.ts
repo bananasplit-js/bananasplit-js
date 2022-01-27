@@ -15,6 +15,7 @@ import { Request, Response } from 'express'
 
 
 export default
+
 	class PluralNameController {
 
 		/**
@@ -25,4 +26,5 @@ export default
 		}
 
 	}
+
 ;

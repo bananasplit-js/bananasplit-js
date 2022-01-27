@@ -35,4 +35,4 @@ const createSingularName = ( singular_name={} ) => ({
 })
 
 
-export default generator( createSingularName )
+export default generator(createSingularName)

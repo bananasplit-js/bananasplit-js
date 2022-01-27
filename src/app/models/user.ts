@@ -68,4 +68,5 @@ class User extends Model {
 // Init the model
 User.init()
 
+
 export default User

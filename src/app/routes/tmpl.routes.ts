@@ -23,8 +23,8 @@ const $: Router = Router()
 
 
 export default
-	( app: Application ): Router => {
 
+	( app: Application ): Router => {
 		/**
 		 *  @routes
 		 */
@@ -33,6 +33,6 @@ export default
 
 
 			return $
-
 	}
+
 ;

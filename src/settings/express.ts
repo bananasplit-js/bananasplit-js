@@ -11,6 +11,7 @@ import path from 'path'
 
 
 export default
+
 	( app: Application ) => {
 
 		/**
@@ -21,5 +22,6 @@ export default
 		app.set( 'public', path.join(__dirname, '../../public') )
 
 	}
+
 ;
 

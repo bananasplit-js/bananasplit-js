@@ -44,4 +44,5 @@ class SingularName extends Model {
 // Init the model
 SingularName.init()
 
+
 export default SingularName
