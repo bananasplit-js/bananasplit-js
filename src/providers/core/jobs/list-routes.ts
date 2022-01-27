@@ -10,11 +10,13 @@
 
 
 import { express } from "@services"
-import Express from "express"
 
 import Table from "cli-table3"
 import chalk from "chalk"
 import path from "path"
+
+// Types
+import Express from "express"
 
 
 /**
@@ -32,6 +34,29 @@ const getPathFromRegex = ( regexp: RegExp ): string => {
 		.replace("/^", "")
 		.replace("?(?=\\/|$)/i", "")
 		.replace(/\\\//g, "/")
+
+}
+
+
+/**
+ * 
+ *  Colorizes route method string for nice output
+ * 
+ *  @param { string } method
+ *  @returns { string }
+ * 
+ */
+const colorizeRouteMethod = ( method: string ): string => {
+
+	const colors: { [key: string]: string } = {
+		"GET": chalk.green.bold(method),
+		"POST": chalk.blue.bold(method),
+		"PUT": chalk.yellow.bold(method),
+		"DELETE": chalk.red.bold(method),
+		"PATCH": chalk.cyan.bold(method)
+	}
+
+	return colors[method] || chalk.white.bold(method)
 
 }
 
@@ -98,7 +123,7 @@ const getRoutesFromStacks = ( stacks: any[] ): any[] => {
 
 						// Push method and route to the accumulator
 						routes.push([
-							chalk.cyan.bold(method),
+							colorizeRouteMethod(method),
 							chalk.white(stackPath)
 						])
 
