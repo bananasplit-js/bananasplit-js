@@ -13,7 +13,7 @@
 		"test:watch": "jest --watch --runInBand",
 		"test:coverage": "jest --coverage --runInBand",
 		"test:cache": "jest --clearCache",
-		"routes:list": "ts-node -r tsconfig-paths/register src/providers/core/jobs/list-routes",
+		"routes:list": "ts-node -r tsconfig-paths/register src/providers/core/jobs/routes-list",
 		"upgrade:stack": "ts-node src/providers/core/jobs/upgrade-stack",
 		"lint": "eslint src tests",
 		"lint:fix": "eslint src tests --fix",
