@@ -6,8 +6,8 @@
  *  @description contains all express server settings
  * 
  */
-import { Application } from 'express'
-import path from 'path'
+import { Application } from "express"
+import path from "path"
 
 
 export default
@@ -19,7 +19,7 @@ export default
 		 */
 
 		// Public folder
-		app.set( 'public', path.join(__dirname, '../../public') )
+		app.set("public", path.join(__dirname, "../../public"))
 
 	}
 

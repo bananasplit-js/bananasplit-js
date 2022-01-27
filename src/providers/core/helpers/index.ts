@@ -6,8 +6,8 @@
  *  @description contains common helpers used in providers
  * 
  */
-import chalk from 'chalk'
-import boxen from 'boxen'
+import chalk from "chalk"
+import boxen from "boxen"
 
 
 /**
@@ -21,18 +21,18 @@ import boxen from 'boxen'
  */
 export const serviceLog = ( output: string ): void => {
 
-    let message: string[] = [
-        `${ chalk.yellow('Serving!') }\n\n`,
-        `${ output }\n\n`,
-        `${ chalk.green(`${process.env.NODE_ENV!.toUpperCase()} MODE`) }`
-    ]
-    
-    console.log(
-        boxen( message.join(''), {
-            padding: 1,
-            margin: 1,
-            borderColor: 'yellow'
-        })
-    )
+	let message: string[] = [
+		`${chalk.yellow("Serving!")}\n\n`,
+		`${output}\n\n`,
+		`${chalk.green(`${process.env.NODE_ENV!.toUpperCase()} MODE`)}`
+	]
+
+	console.log(
+		boxen(message.join(""), {
+			padding: 1,
+			margin: 1,
+			borderColor: "yellow"
+		})
+	)
 
 }

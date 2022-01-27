@@ -9,15 +9,15 @@
 /**
  *  @generator import
  */
-import createSingularName from '@generators/create-singular_name'
+import createSingularName from "@generators/create-singular_name"
 
 
 export function up ( queryInterface ) {
 	const singular_name = createSingularName.amount(10)
-	return queryInterface.bulkInsert( 'PluralName', plural_name, {} )
+	return queryInterface.bulkInsert( "PluralName", plural_name, {} )
 }
 
 
 export function down ( queryInterface ) {
-	return queryInterface.bulkDelete( 'PluralName', null, {} )
+	return queryInterface.bulkDelete( "PluralName", null, {} )
 }

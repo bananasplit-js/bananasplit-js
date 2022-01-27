@@ -6,12 +6,12 @@
  *  @description runs bananasplit services!
  * 
  */
-import chalk from 'chalk'
-import { serviceLog } from '@core/helpers'
+import chalk from "chalk"
+import { serviceLog } from "@core/helpers"
 
 
 interface IStack {
-    serve: Function
+	serve: Function
 }
 
 
@@ -26,22 +26,22 @@ interface IStack {
  */
 export default
 
-    ( services: any[] ): IStack => ({
-        
-        async serve(): Promise<void> {
-            let output: string[] = []
+	( services: any[] ): IStack => ({
 
-            for ( const service of services ) {
-                let host: string = `http://localhost:${service.port}`
-                service.middleware ? host=service.path : await service.serve()
+		async serve(): Promise<void> {
+			let output: string[] = []
 
-                output.push( `${chalk.bold.cyan(`- ${service.name} →`)} ${chalk.red(host)}` )
-            }
-            
-            serviceLog( output.join('\n') )        
-        }
+			for ( const service of services ) {
+				let host: string = `http://localhost:${service.port}`
+				service.middleware ? host=service.path : await service.serve()
 
-    })
+				output.push( `${chalk.bold.cyan(`- ${service.name} →`)} ${chalk.red(host)}` )
+			}
+
+			serviceLog( output.join("\n") )
+		}
+
+	})
 
 ;
 

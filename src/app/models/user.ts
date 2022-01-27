@@ -6,8 +6,8 @@
  *  @description basic user model
  * 
  */
-import { Model } from '@bananasplit-js'
-import { DataTypes, ModelAttributes } from 'sequelize'
+import { Model } from "@bananasplit-js"
+import { DataTypes, ModelAttributes } from "sequelize"
 
 
 class User extends Model {

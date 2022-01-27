@@ -5,13 +5,13 @@
  * 
  */
 import generator from "@bananasplit-js/utils/generator"
-import faker from 'faker'
+import faker from "faker"
 
 
 /**
  * 
  *  You can set your locale:
- *  faker.setLocale('en')
+ *  faker.setLocale("en")
  * 
  */
 

@@ -6,7 +6,7 @@
  *  @description routes for {plural_name}
  * 
  */
-import { Application, Router } from 'express'
+import { Application, Router } from "express"
 
 /**
  *  @middlewares import
@@ -28,7 +28,7 @@ export default
 		/**
 		 *  @routes
 		 */
-		$.route( '/route' )
+		$.route( "/route" )
 			.get( /* controller handler */ )
 
 

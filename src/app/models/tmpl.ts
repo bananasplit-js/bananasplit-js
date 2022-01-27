@@ -6,8 +6,8 @@
  *  @description model for {singular_name}
  * 
  */
-import { Model } from '@bananasplit-js'
-import { DataTypes, ModelAttributes } from 'sequelize'
+import { Model } from "@bananasplit-js"
+import { DataTypes, ModelAttributes } from "sequelize"
 
 
 class SingularName extends Model {

@@ -7,20 +7,20 @@
  *  @author diegoulloao
  * 
  */
-import 'tsconfig-paths/register'
+import "tsconfig-paths/register"
 
-import fs from 'fs-extra'
-import path from 'path'
-import chalk from 'chalk'
+import fs from "fs-extra"
+import path from "path"
+import chalk from "chalk"
 
 // Require prevents module not found notifications by editor
-const tsconfigJson = require( '@root/tsconfig.json' )
-const bananasplitJson = require( '@root/bananasplit.json' )
-const packageJson = require( '@root/dist/package.json' )
+const tsconfigJson = require( "@root/tsconfig.json" )
+const bananasplitJson = require( "@root/bananasplit.json" )
+const packageJson = require( "@root/dist/package.json" )
 
 
-console.log( `${chalk.green('● Build:')} app compiled to dist!\n` )
-console.log( chalk.yellow('○ Packing...') )
+console.log(`${chalk.green("● Build:")} app compiled to dist!\n`)
+console.log(chalk.yellow("○ Packing..."))
 
 
 /**
@@ -32,8 +32,8 @@ console.log( chalk.yellow('○ Packing...') )
  * 
  */
 const Abort = ( msg: string ): void => {
-    console.error( `\n${msg}` )
-    process.exit(0)
+	console.error(`\n${msg}`)
+	process.exit(0)
 }
 
 
@@ -41,17 +41,17 @@ const Abort = ( msg: string ): void => {
 let pathsPair: [string, string[]][] = []
 
 try {
-    // Parse to array of arrays containing path-alias and system-path
-    pathsPair = Object.entries( tsconfigJson.compilerOptions.paths )
+	// Parse to array of arrays containing path-alias and system-path
+	pathsPair = Object.entries(tsconfigJson.compilerOptions.paths)
 
 } catch (_) {
-    Abort( 'Key paths does not exists at tsconfig.json' )
+	Abort("Key paths does not exists at tsconfig.json")
 }
 
 
 // Aborts when no paths founded in the list
 if ( !pathsPair.length ) {
-    Abort( 'There is no path defined into property paths at tsconfig.json' )
+	Abort("There is no path defined into property paths at tsconfig.json")
 }
 
 
@@ -60,41 +60,45 @@ const includes: [string|string[]] = bananasplitJson.dist.include || []
 const excludes: string[] = bananasplitJson.dist.exclude || []
 const options: Object = bananasplitJson.dist.options || {}
 
-const dist: string = tsconfigJson.compilerOptions.outDir || 'dist'
+const dist: string = tsconfigJson.compilerOptions.outDir || "dist"
 
 
 if ( includes.length ) {
-    console.log( chalk.cyanBright(`Copying files...\n`) )
+	console.log(chalk.cyanBright(`Copying files...\n`))
 
-    // Copy each extra file/dir to "dist"
-    includes.forEach(( include: string|string[] ) => {
+	// Copy each extra file/dir to "dist"
+	includes.forEach((include: string|string[]) => {
 
-        // Include element can be: "src" or ["src", "dest"]
-        const src: string = ( include instanceof Array ) ? include[0] : include
-        const dest: string = ( include instanceof Array ) ? `${dist}/${include[1]}` : `${dist}/${include}`
+		// Include element can be: "src" or ["src", "dest"]
+		const src: string = (include instanceof Array) ? include[0] : include
+		const dest: string = (include instanceof Array) ? `${dist}/${include[1]}` : `${dist}/${include}`
 
-        try {
-            // Copy the file or dist recursively
-            fs.copy( src, dest, {
-                ...options,
-                
-                // exclude filter
-                filter: ( src: string ): boolean => {
-                    // Check for windows
-                    const isWindows: boolean = ( process.platform === 'win32' )
-                    src = isWindows ? src.replace( /\\/g, '/' ) : src
+		try {
+			// Copy the file or dist recursively
+			fs.copy(
+				src,
+				dest,
+				{
+					...options,
 
-                    return excludes.includes( src ) ? false : true
-                }
-            })
-            
-        } catch ( err: any ) {
-            Abort( err )
-        }
-    })
+					// exclude filter
+					filter: ( src: string ): boolean => {
+						// Check for windows
+						const isWindows: boolean = (process.platform === "win32")
+						src = isWindows ? src.replace(/\\/g, "/") : src
+
+						return excludes.includes(src) ? false : true
+					}
+				}
+			)
+
+		} catch ( err: any ) {
+			Abort(err)
+		}
+	})
 
 
-    console.log( `${chalk.green('● Post-build:')} files copied successfully!` )
+	console.log(`${chalk.green("● Post-build:")} files copied successfully!`)
 }
 
 
@@ -102,7 +106,7 @@ if ( includes.length ) {
 var _moduleAliases: any = {}
 
 // Regex for clean /* from path alias
-const cRex: RegExp[] = [ /\/\*$/, /\/\// ]
+const cRex: RegExp[] = [/\/\*$/, /\/\//]
 
 
 /*
@@ -111,51 +115,51 @@ const cRex: RegExp[] = [ /\/\*$/, /\/\// ]
  *  @path-alias/*: path/to/module/* -> @path-alias: path/to/module
  * 
  */
-pathsPair.forEach(( pathPair: [string, string[]] ) => {
-    const index: string = pathPair[0].replace( cRex[0], '' )
-    const distPath: string = pathPair[1][0].replace(cRex[0], '').replace(cRex[1], '/')
+ pathsPair.forEach((pathPair: [string, string[]]) => {
+	 const index: string = pathPair[0].replace(cRex[0], "")
+	 const distPath: string = pathPair[1][0].replace(cRex[0], "").replace(cRex[1], "/")
 
-    _moduleAliases[ index ] = distPath
-})
-
-
-// Type "any" allow to use delete
-const $packageJson: any = packageJson
-
-// Removes all non-production package.json key:values
-$packageJson.scripts.dev && delete $packageJson.scripts.dev
-$packageJson.scripts.build && delete $packageJson.scripts.build
-$packageJson.scripts['build:stack'] && delete $packageJson.scripts['build:stack']
-$packageJson.scripts.test && delete $packageJson.scripts.test
-$packageJson.scripts['test:watch'] && delete $packageJson.scripts['test:watch']
-$packageJson.scripts['test:coverage'] && delete $packageJson.scripts['test:coverage']
-$packageJson.scripts['test:cache'] && delete $packageJson.scripts['test:cache']
-$packageJson.scripts['upgrade:stack'] && delete $packageJson.scripts['upgrade:stack']
-$packageJson.scripts.lint && delete $packageJson.scripts.lint
-$packageJson.scripts['lint:fix'] && delete $packageJson.scripts['lint:fix']
-$packageJson.scripts.prebuild && delete $packageJson.scripts.prebuild
-$packageJson.scripts.postbuild && delete $packageJson.scripts.postbuild
-$packageJson.devDependencies && delete $packageJson.devDependencies
+	 _moduleAliases[index] = distPath
+ })
 
 
-// Assigns new values to dist/package.json
-$packageJson._moduleAliases = _moduleAliases
-$packageJson.scripts.start = packageJson.scripts.start.replace( /dist\/|\s--exec\s\w+\s?/g, '' )
-$packageJson.scripts['build:database'] = packageJson.scripts['build:database'].replace( ' && sequelize db:seed:all', '' )
-$packageJson.main = packageJson.main.replace( /\.ts$/, '.js' )
+ // Type "any" allow to use delete
+ const $packageJson: any = packageJson
+
+ // Removes all non-production package.json key:values
+ $packageJson.scripts.dev && delete $packageJson.scripts.dev
+ $packageJson.scripts.build && delete $packageJson.scripts.build
+ $packageJson.scripts["build:stack"] && delete $packageJson.scripts["build:stack"]
+ $packageJson.scripts.test && delete $packageJson.scripts.test
+ $packageJson.scripts["test:watch"] && delete $packageJson.scripts["test:watch"]
+ $packageJson.scripts["test:coverage"] && delete $packageJson.scripts["test:coverage"]
+ $packageJson.scripts["test:cache"] && delete $packageJson.scripts["test:cache"]
+ $packageJson.scripts["upgrade:stack"] && delete $packageJson.scripts["upgrade:stack"]
+ $packageJson.scripts.lint && delete $packageJson.scripts.lint
+ $packageJson.scripts["lint:fix"] && delete $packageJson.scripts["lint:fix"]
+ $packageJson.scripts.prebuild && delete $packageJson.scripts.prebuild
+ $packageJson.scripts.postbuild && delete $packageJson.scripts.postbuild
+ $packageJson.devDependencies && delete $packageJson.devDependencies
 
 
-try {
-    // Writes the changes into dist/package.json
-    fs.writeFileSync( path.resolve('./dist/package.json'), JSON.stringify($packageJson, null, 4) )
-
-    // All right!
-    console.log( `${chalk.green('● Post-build:')} dist/package.json is ready for production 🚀` )
-    
-} catch ( err: any ) {
-    console.error( err )
-    process.exit(1)
-}
+ // Assigns new values to dist/package.json
+ $packageJson._moduleAliases = _moduleAliases
+ $packageJson.scripts.start = packageJson.scripts.start.replace(/dist\/|\s--exec\s\w+\s?/g, "")
+ $packageJson.scripts["build:database"] = packageJson.scripts["build:database"].replace(" && sequelize db:seed:all", "")
+ $packageJson.main = packageJson.main.replace(/\.ts$/, ".js")
 
 
-console.log( `${chalk.bgGreen.black('\n Build done! ')} ✨\n` )
+ try {
+	 // Writes the changes into dist/package.json
+	 fs.writeFileSync(path.resolve("./dist/package.json"), JSON.stringify($packageJson, null, 4))
+
+	 // All right!
+	 console.log(`${chalk.green("● Post-build:")} dist/package.json is ready for production 🚀`)
+
+ } catch ( err: any ) {
+	 console.error(err)
+	 process.exit(1)
+ }
+
+
+ console.log(`${chalk.bgGreen.black("\n Build done! ")} ✨\n`)
