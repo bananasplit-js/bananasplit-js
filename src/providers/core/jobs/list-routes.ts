@@ -106,9 +106,14 @@ console.log(chalk.yellow("Inspecting routes..."))
 
 const table = new Table({
 	head: [
-		chalk.yellow.bold("method"),
-		chalk.yellow.bold("route")
+		chalk.yellow.bold("\nmethod\n"),
+		chalk.yellow.bold("\nroute\n")
 	],
+
+	style: {
+		"padding-left": 3,
+		"padding-right": 3
+	},
 
 	chars: {
 		"top": chalk.yellow("═"),
@@ -120,11 +125,11 @@ const table = new Table({
 		"bottom-left": chalk.yellow("╚"),
 		"bottom-right": chalk.yellow("╝"),
 		"left": chalk.yellow("║"),
-		"left-mid": chalk.yellow("╟"),
-		"mid": chalk.yellow("─"),
-		"mid-mid": chalk.yellow("┼"),
+		"left-mid": "",
+		"mid": "",
+		"mid-mid": "",
 		"right": chalk.yellow("║"),
-		"right-mid": chalk.yellow("╢"),
+		"right-mid": "",
 		"middle": chalk.yellow("│")
 	}
 })
@@ -134,7 +139,7 @@ const server: Express.Application = express.application()
 const stacks: any[] = server._router.stack.reduce(combineStacks, [])
 const routes: any[] = getRoutesFromStacks(stacks)
 
-table.push(...routes)
+table.push(...routes, ["", ""])
 
 console.log("")
 console.log(table.toString(), "\n")
