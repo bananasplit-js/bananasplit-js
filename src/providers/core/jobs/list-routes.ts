@@ -9,7 +9,7 @@
  */
 
 
-import { express } from "@services"
+const { express } = require("@services")
 
 import Table from "cli-table3"
 import chalk from "chalk"
