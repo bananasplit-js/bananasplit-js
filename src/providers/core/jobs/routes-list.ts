@@ -1,7 +1,7 @@
 /**
  * 
- *  List Routes
- *  @script src/providers/core/jobs/list-routes
+ *  Routes List
+ *  @script src/providers/core/jobs/routes-list
  * 
  *  @description lists all server application routes
  *  @author diegoulloao
@@ -77,9 +77,16 @@ const combineStacks = ( acc: [], stack: any ): any[] => {
 		const routerPath: string = getPathFromRegex(stack.regexp)
 
 		// Collect inner stack adding routePath
-		const innerStack: object[] = stack.handle.stack.map(
-			(s: object) => ({ routerPath, ...s })
-		)
+		const innerStack: object[] = stack.handle.stack.map((s: any) => {
+			// Middlewares collection
+			const middlewares: string[] = []
+
+			if ( s.route?.stack ) {
+				middlewares.push(...s.route.stack.map((s: any) => s.name))
+			}
+
+			return { routerPath, middlewares, ...s }
+		})
 
 		// Return accumulated inner stack
 		return [...acc, ...innerStack]
@@ -115,18 +122,24 @@ const getRoutesFromStacks = ( stacks: any[] ): any[] => {
 					if ( method && !routeLogged[method] ) {
 						// Route path parts
 						const fullPathArray: string[] = [stack.routerPath, stack.route.path, route.path]
+						const middlewaresString: string = stack.middlewares.join(", ")
 
 						// Convert path parts to a entire string
 						const stackPath: string = path.resolve(
 							fullPathArray.filter((s: string) => !!s).join("")
 						)
 
+						// Highlights each :param with chalk
+						const highlightedParamsPath: string = stackPath.replace(/:[a-z0-9]+/g, chalk.cyan("$&"))
+
 						// Push method and route to the accumulator
 						routes.push([
 							colorizeRouteMethod(method),
-							chalk.white(stackPath)
+							chalk.white(highlightedParamsPath),
+							chalk.gray(middlewaresString)
 						])
 
+						// Avoid duplicated routes during iteration
 						routeLogged[method] = true
 					}
 				}
@@ -158,7 +171,8 @@ if ( !server._router?.stack ) {
 const table = new Table({
 	head: [
 		chalk.yellow.bold("\nmethod\n"),
-		chalk.yellow.bold("\nroute\n")
+		chalk.yellow.bold("\nroute\n"),
+		chalk.yellow.bold("\nmiddlewares\n")
 	],
 
 	style: {
@@ -187,7 +201,7 @@ const table = new Table({
 
 
 // Push routes and an extra space to the table
-table.push(...routes, ["", ""])
+table.push(...routes, ["", "", ""])
 
 // Log the table
 console.log("")
