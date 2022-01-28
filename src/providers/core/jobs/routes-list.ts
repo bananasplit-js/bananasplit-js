@@ -71,7 +71,6 @@ const colorizeRouteMethod = ( method: string ): string => {
  * 
  */
 const combineStacks = ( acc: [], stack: any ): any[] => {
-
 	if ( stack.handle.stack ) {
 		// Extract route path from regex
 		const routerPath: string = getPathFromRegex(stack.regexp)
@@ -122,7 +121,7 @@ const getRoutesFromStacks = ( stacks: any[] ): any[] => {
 					if ( method && !routeLogged[method] ) {
 						// Route path parts
 						const fullPathArray: string[] = [stack.routerPath, stack.route.path, route.path]
-						const middlewaresString: string = stack.middlewares.join(", ")
+						const middlewaresString: string = stack.middlewares ? stack.middlewares.join(", ") : ""
 
 						// Convert path parts to a entire string
 						const stackPath: string = path.resolve(

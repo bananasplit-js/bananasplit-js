@@ -37,6 +37,9 @@ export default
 		Object.values(routers).forEach(
 			(router: Router) => app.use(router)
 		)
+
+		const getAboutStore = (_: any, res: any) => res.send("about store")
+		app.get("/store/about", getAboutStore)
 	}
 
 ;
