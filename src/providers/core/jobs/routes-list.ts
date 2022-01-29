@@ -89,6 +89,16 @@ const combineStacks = ( acc: [], stack: any ): any[] => {
 
 		// Return accumulated inner stack
 		return [...acc, ...innerStack]
+
+	} else if ( stack.route ) {
+		// Middlewares collection
+		const middlewares: string[] = []
+
+		if ( stack.route.stack ) {
+			middlewares.push(...stack.route.stack.map((s: any) => s.name))
+		}
+
+		return [...acc, { middlewares, ...stack }]
 	}
 
 	// Return accumulated stack
@@ -131,11 +141,17 @@ const getRoutesFromStacks = ( stacks: any[] ): any[] => {
 						// Highlights each :param with chalk
 						const highlightedParamsPath: string = stackPath.replace(/:[a-z0-9]+/g, chalk.cyan("$&"))
 
+						//
+						const cleanedMiddlewareString: string = (
+							middlewaresString
+								.replace(/^<anonymous>$/g, chalk.red("$&"))
+						)
+
 						// Push method and route to the accumulator
 						routes.push([
 							colorizeRouteMethod(method),
 							chalk.white(highlightedParamsPath),
-							chalk.gray(middlewaresString)
+							chalk.gray(cleanedMiddlewareString)
 						])
 
 						// Avoid duplicated routes during iteration
@@ -205,6 +221,17 @@ table.push(...routes, ["", "", ""])
 // Log the table
 console.log("")
 console.log(table.toString(), "\n")
+
+// Check if there is anonymous functions used as middlewares
+const hasAnonymous: boolean = routes.some((r: string[]) => /<anonymous>/.test(r[2]))
+
+if ( hasAnonymous ) {
+	console.log(
+		chalk.red.bold(
+			"* Do not use anonymous functions as middlewares, store them in a constant instead.\n"
+		)
+	)
+}
 
 // Success message
 console.log(chalk.green("Are available in your application 🚀"), "\n")
