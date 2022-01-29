@@ -84,6 +84,7 @@
 		"nodemon": "^2.0.15",
 		"npm-check-updates": "^12.2.1",
 		"prettier": "^2.5.1",
+		"sort-route-paths": "^1.0.0",
 		"supertest": "^6.2.2",
 		"ts-jest": "^27.1.3",
 		"ts-node": "^10.4.0",

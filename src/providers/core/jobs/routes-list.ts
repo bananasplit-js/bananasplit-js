@@ -10,8 +10,8 @@
 
 
 const { express } = require("@services")
-
 const sortPaths: any = require("sort-route-paths")
+const packageJson: any = require("@root/package.json")
 
 import Table from "cli-table3"
 import chalk from "chalk"
@@ -174,10 +174,10 @@ const tablerizeRoutes = ( routes: any[] ): any[] => {
 
 	routes.reduce((p: any, n: any): any => {
 		// Highlights each :param with chalk
-		const highlightedParamsPath: string = n.path.replace(/:[a-z0-9]+/g, chalk.cyan("$&"))
+		const highlightedParamsPath: string = n.path.replace(/:[a-z0-9]+/g, chalk.cyan.bold("$&"))
 
 		// Changes <anonymous> by anonymous
-		const cleanedMiddlewareString: string = n.middlewares.replace(/^<anonymous>$/g, chalk.red("$&"))
+		const cleanedMiddlewareString: string = n.middlewares.replace(/^<anonymous>$/g, chalk.red("anonymous"))
 
 		// Add section label if previous and next routes have different base path
 		if ( p?.path.match(r)[0].replace(i, "") !== n.path.match(r)[0].replace(i, "") ) {
@@ -208,7 +208,16 @@ const tablerizeRoutes = ( routes: any[] ): any[] => {
 
 // First message
 console.log("")
-console.log(chalk.yellow("Inspecting routes..."))
+console.log(chalk.yellow("Inspecting routes..."), "\n")
+
+// Show application name if defined in package.json
+if ( packageJson.name ) {
+	console.log(
+		chalk.bgYellow.black.bold(
+			` ${packageJson.name.charAt(0).toUpperCase() + packageJson.name.substring(1)} `
+		)
+	)
+}
 
 // Server application, stacks and routes
 const server: Express.Application = express.application()
@@ -240,19 +249,19 @@ const table = new Table({
 	},
 
 	chars: {
-		"top": chalk.yellow("═"),
-		"top-mid": chalk.yellow("╤"),
-		"top-left": chalk.yellow("╔"),
-		"top-right": chalk.yellow("╗"),
-		"bottom": chalk.yellow("═"),
-		"bottom-mid": chalk.yellow("╧"), 
-		"bottom-left": chalk.yellow("╚"),
-		"bottom-right": chalk.yellow("╝"),
-		"left": chalk.yellow("║"),
+		"top": chalk.yellow("─"),
+		"top-mid": chalk.yellow("┬"),
+		"top-left": chalk.yellow("┌"),
+		"top-right": chalk.yellow("┐"),
+		"bottom": chalk.yellow("─"),
+		"bottom-mid": chalk.yellow("┴"), 
+		"bottom-left": chalk.yellow("└"),
+		"bottom-right": chalk.yellow("┘"),
+		"left": chalk.yellow("│"),
 		"left-mid": "",
 		"mid": "",
 		"mid-mid": "",
-		"right": chalk.yellow("║"),
+		"right": chalk.yellow("│"),
 		"right-mid": "",
 		"middle": chalk.yellow("│")
 	}
@@ -263,7 +272,6 @@ const table = new Table({
 table.push(...tablerizedRoutes, Array(3).fill(""))
 
 // Log the table
-console.log("")
 console.log(table.toString(), "\n")
 
 // Check if there is anonymous functions used as middlewares
@@ -278,4 +286,7 @@ if ( hasAnonymous ) {
 }
 
 // Success message
-console.log(chalk.green("Are available in your application 🚀"), "\n")
+console.log(
+	chalk.green(`${routes.length} route${routes.length > 1 ? "s" : ""} available in your application 🚀`),
+	"\n"
+)
