@@ -227,20 +227,20 @@ if ( !groupsParamArray.length ) {
 	console.log(chalk.yellow(headMessageArray.join(" ")), "\n")
 }
 
-// Show application name if defined in package.json
-if ( packageJson.name ) {
-	console.log(
-		chalk.bgYellow.black.bold(
-			` ${packageJson.name.charAt(0).toUpperCase() + packageJson.name.substring(1)} `
-		)
-	)
-}
-
 // Server application, stacks and routes
 const server: Express.Application = express.application()
+
+// Checks if express version >= 4 or exit
+if ( !server._router?.stack ) {
+	console.log("")
+	console.log(chalk.bgRed.black(" You must use a express version >= 4 "), "\n")
+	process.exit()
+}
+
+// Route Stacks from server application
 const stacks: any[] = server._router.stack.reduce(combineStacks, [])
 
-// Routes make-up
+// Routes inspect and sorting
 const routes: any[] = getRoutesFromStacks(stacks)
 const sortedRoutes: any = sortPaths(routes, (r: any) => r.path)
 
@@ -255,13 +255,6 @@ if ( groupsParamArray.length ) {
 
 // Colorizes all routes data parts
 const tablerizedRoutes: any[] = tablerizeRoutes(filteredRoutes || sortedRoutes)
-
-// Checks if express version >= 4 or exit
-if ( !server._router?.stack ) {
-	console.log("")
-	console.log(chalk.bgRed.black(" You must use a express version >= 4 "), "\n")
-	process.exit()
-}
 
 // Output table + config
 const table = new Table({
@@ -295,6 +288,14 @@ const table = new Table({
 	}
 })
 
+// Show application name if defined in package.json
+if ( packageJson.name ) {
+	console.log(
+		chalk.bgYellow.black.bold(
+			` ${packageJson.name.charAt(0).toUpperCase() + packageJson.name.substring(1)} `
+		)
+	)
+}
 
 // Push routes and an extra space to the table
 table.push(...tablerizedRoutes, Array(3).fill(""))
