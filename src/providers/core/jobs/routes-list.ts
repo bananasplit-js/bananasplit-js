@@ -9,16 +9,16 @@
  */
 
 
-const { express } = require("@services")
-const sortPaths: any = require("sort-route-paths")
-const packageJson: any = require("@root/package.json")
-
 import Table from "cli-table3"
 import chalk from "chalk"
 import path from "path"
 
 // Types
 import Express from "express"
+
+const { express } = require("@services")
+const sortPaths: any = require("sort-route-paths")
+const packageJson: any = require("@root/package.json")
 
 
 /**
@@ -73,6 +73,7 @@ const colorizeRouteMethod = ( method: string ): string => {
  * 
  */
 const combineStacks = ( acc: [], stack: any ): any[] => {
+
 	if ( stack.handle.stack ) {
 		// Extract route path from regex
 		const routerPath: string = getPathFromRegex(stack.regexp)
@@ -206,9 +207,25 @@ const tablerizeRoutes = ( routes: any[] ): any[] => {
 
 }
 
-// First message
+// Group filter array passed as params
+const groupsParamArray: string[] = process.argv.slice(2)
+
+// First message spacing
 console.log("")
-console.log(chalk.yellow("Inspecting routes..."), "\n")
+
+if ( !groupsParamArray.length ) {
+	// Message when inspecting all routes
+	console.log(chalk.yellow("Inspecting all routes..."), "\n")
+
+} else {
+	// Message when inspecting groups of routes
+	const headMessageArray: string[] = [
+		`Inspecting routes that matches with`,
+		groupsParamArray.join(groupsParamArray.length > 2 ? ", " : " and ") + "..."
+	]
+
+	console.log(chalk.yellow(headMessageArray.join(" ")), "\n")
+}
 
 // Show application name if defined in package.json
 if ( packageJson.name ) {
@@ -226,7 +243,18 @@ const stacks: any[] = server._router.stack.reduce(combineStacks, [])
 // Routes make-up
 const routes: any[] = getRoutesFromStacks(stacks)
 const sortedRoutes: any = sortPaths(routes, (r: any) => r.path)
-const tablerizedRoutes: any[] = tablerizeRoutes(sortedRoutes)
+
+// Filtered routes collection if filter defined
+let filteredRoutes: any[] | undefined
+
+if ( groupsParamArray.length ) {
+	filteredRoutes = sortedRoutes.filter(
+		(r: any) => new RegExp(`^\/(${groupsParamArray.join("|")})(\/|$)`).test(r.path)
+	)
+}
+
+// Colorizes all routes data parts
+const tablerizedRoutes: any[] = tablerizeRoutes(filteredRoutes || sortedRoutes)
 
 // Checks if express version >= 4 or exit
 if ( !server._router?.stack ) {
@@ -275,7 +303,9 @@ table.push(...tablerizedRoutes, Array(3).fill(""))
 console.log(table.toString(), "\n")
 
 // Check if there is anonymous functions used as middlewares
-const hasAnonymous: boolean = sortedRoutes.some((r: any) => /<anonymous>/.test(r.middlewares))
+const hasAnonymous: boolean = (
+	(filteredRoutes || sortedRoutes).some((r: any) => /<anonymous>/.test(r.middlewares))
+)
 
 if ( hasAnonymous ) {
 	console.log(
@@ -286,7 +316,24 @@ if ( hasAnonymous ) {
 }
 
 // Success message
-console.log(
-	chalk.green(`${routes.length} route${routes.length > 1 ? "s" : ""} available in your application 🚀`),
-	"\n"
-)
+if ( !filteredRoutes ) {
+	console.log(
+		chalk.green(
+			`${chalk.bold(`${routes.length} total`)} route${routes.length > 1 ? "s" : ""} available in your application 🚀`
+		),
+		"\n"
+	)
+
+} else {
+	// Filtered routes total
+	const totalFiltered: number = filteredRoutes.length
+
+	// Message as array
+	const filteredSuccessMessage: string[] = [
+		`${chalk.bold(`${totalFiltered} of ${routes.length}`)} total route${routes.length > 1 ? "s" : ""}`,
+		`that matches with ${chalk.bold(groupsParamArray.join(groupsParamArray.length > 2 ? ", " : " and "))}`,
+		`${totalFiltered ? "🚀" : ""}`
+	]
+
+	console.log(chalk.green(filteredSuccessMessage.join(" ")), "\n")
+}
