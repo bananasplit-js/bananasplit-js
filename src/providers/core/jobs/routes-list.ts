@@ -227,7 +227,7 @@ if ( !groupsParamArray.length ) {
 	console.log(chalk.yellow(headMessageArray.join(" ")), "\n")
 }
 
-// Server application, stacks and routes
+// Server application
 const server: Express.Application = express.application()
 
 // Checks if express version >= 4 or exit
