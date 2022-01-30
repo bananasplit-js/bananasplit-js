@@ -37,19 +37,6 @@ export default
 		Object.values(routers).forEach(
 			(router: Router) => app.use(router)
 		)
-
-		const getAboutStore = (_: any, res: any) => res.send("about store")
-		const dumbMiddleware = (_: any, res: any) => res.send("dumb middleware")
-
-		app.get("/store/about", [dumbMiddleware], getAboutStore)
-
-		const getShareProductMetada = (_: any, res: any) => res.send("share product")
-		app.get("/product/:id/share", getShareProductMetada)
-
-		const passMiddleware = (_: any, __: any, next: any) => next()
-		const passMiddleware2 = (_: any, __: any, next: any) => next()
-		app.use("/products", passMiddleware)
-		app.use("/products", passMiddleware2)
 	}
 
 ;
