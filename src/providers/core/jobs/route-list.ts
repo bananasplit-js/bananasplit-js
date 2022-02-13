@@ -17,7 +17,7 @@ import Express from "express"
 
 
 // Express server instance
-const server: Express.Application = express.application()
+const server: Express.Application = express.getApplication()
 
 // Print routes table in command-line
 routerDex(server, packageJson.name)
