@@ -1,6 +1,6 @@
 /**
  * 
- *  Routes List
+ *  Route List
  *  @script src/providers/core/jobs/route-list
  * 
  *  @description lists all server routes
@@ -10,7 +10,7 @@
 import routerDex from "router-dex/inspector"
 
 const { express } = require("@services")
-const packageJson = require("@root/package.json")
+const packageJson = require("package.json")
 
 // Types
 import Express from "express"
