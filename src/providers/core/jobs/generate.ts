@@ -46,6 +46,12 @@ try {
 	// Generator function
 	const Generator: IGenerator = require(generatorPath).default
 
+	// Top label
+	console.log("")
+	console.log(
+		chalk.bgYellow.black(` ${generatorName.charAt(0).toUpperCase() + generatorName.substring(1)} resource `)
+	)
+
 	// Resource generated
 	let resource: any = (amount !== undefined) ? Generator.amount(amount) : Generator()
 
@@ -61,5 +67,6 @@ try {
 	console.log(chalk.yellow("Copied to clipboard!"), "\n")
 
 } catch (e: any) {
+	console.log("")
 	console.log(chalk.bgRed.black(` Error: Generator "${generatorName}" not found. ` ), "\n")
 }
