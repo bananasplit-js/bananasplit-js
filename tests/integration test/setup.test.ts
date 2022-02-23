@@ -45,7 +45,7 @@ test("Express server is ok", async () => {
  */
 test("Database connection is ok", async () => {
 
-	const response: Response = await request(Express).get("/test-connection")
+	const response: Response = await request(Express).get("/test/connection")
 
 	expect(response.status).toBe(200)
 	expect(response.text).toBe("Connection has been established successfully.")
@@ -62,7 +62,7 @@ test("Database queries are ok", async () => {
 		result: String
 	}
 
-	const response: Response = await request(Express).get("/test-query")
+	const response: Response = await request(Express).get("/test/query")
 	const JSONResponse: IResponse[] = JSON.parse(response.text)
 
 	expect(response.status).toBe(200)
@@ -78,7 +78,7 @@ test("Database migrations are ok", async () => {
 
 	const tablesKey: string = `Tables_in_${process.env.DB_DATABASE}`
 
-	const response: Response = await request(Express).get("/test-migration")
+	const response: Response = await request(Express).get("/test/migration")
 	const JSONResponse: any[] = JSON.parse(response.text)
 
 	expect(response.status).toBe(200)
@@ -95,7 +95,7 @@ test("Database migrations are ok", async () => {
  */
 test("Database seeders are ok", async () => {
 
-	const response: Response = await request(Express).get("/test-seeder")
+	const response: Response = await request(Express).get("/test/seeder")
 	const JSONResponse: object[] = await JSON.parse(response.text)
 
 	expect(response.status).toBe(200)
