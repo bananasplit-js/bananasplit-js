@@ -49,7 +49,9 @@ try {
 	// Top label
 	console.log("")
 	console.log(
-		chalk.bgYellow.black(` ${generatorName.charAt(0).toUpperCase() + generatorName.substring(1)} resource `)
+		chalk.bgYellow.black(
+			` Resource: ${generatorName.charAt(0).toUpperCase() + generatorName.substring(1)} `
+		)
 	)
 
 	// Resource generated
@@ -61,6 +63,10 @@ try {
 	// Print the resource in command-line
 	console.log("")
 	console.log(resource)
+
+	// Resources amount messsage
+	console.log("")
+	console.log(chalk.cyan.bold(`Resources generated: ${amount || 1}`))
 
 	// Show copied to clipboard message
 	console.log("")
