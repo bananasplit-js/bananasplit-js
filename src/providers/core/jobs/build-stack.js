@@ -44,7 +44,7 @@ const findDialect = () => {
 	// Search for db_dialect then break
 	envAsArray.some(line => {
 		if ( line.startsWith("DB_DIALECT") ) {
-			dialect = line.split("=")[1]
+			dialect = line.split("=")[1].replace(/"/g, "")
 			return true
 		}
 	})
