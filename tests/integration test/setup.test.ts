@@ -35,7 +35,7 @@ test("Express server is ok", async () => {
 	const response: Response = await request(Express).get("/")
 
 	expect(response.status).toBe(200)
-	expect(response.text ).toBe("GET 200 / Hello")
+	expect(response.text ).toBe("GET 200 /")
 
 })
 
