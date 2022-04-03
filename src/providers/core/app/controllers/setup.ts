@@ -23,7 +23,7 @@ export default
 		 *   @description Express test
 		 */
 		public static expressTest ( req: Request, res: Response ): Response {
-			return res.status(200).send("GET 200 / Hello")
+			return res.status(200).send("GET 200 /")
 		}
 
 
