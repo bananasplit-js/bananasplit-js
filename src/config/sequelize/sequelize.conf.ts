@@ -11,7 +11,8 @@ const Options: SequelizeOptions = {
 
 	/**
 	 * 
-	 *  @options
+	 *  Options
+	 *
 	 *  This object is passed directly to the sequelize constructor
 	 * 
 	 */

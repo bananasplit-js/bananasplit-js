@@ -12,10 +12,10 @@ import path from "path"
 
 export default
 
-	( app: Application ) => {
+	(app: Application) => {
 
 		/**
-		 *  @settings
+		 *  settings
 		 */
 
 		// Public folder

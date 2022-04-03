@@ -18,19 +18,19 @@ dontenv.config()
 
 export default
 
-	( app: Application, routers: IRouters ): void => {
+	(app: Application, routers: IRouters): void => {
 		/**
 		 *  @middlewares 
 		 */
-		if ( process.env.NODE_ENV === "development" ) {
-			app.use( Morgan("dev") )
+		if (process.env.NODE_ENV === "development") {
+			app.use(Morgan("dev"))
 		}
 
-		app.use( Express.json() )
+		app.use(Express.json())
 
 		// Public
 		app.use(
-			Express.static( app.get("public") )
+			Express.static(app.get("public"))
 		)
 
 		// Use all routers by default
