@@ -22,7 +22,7 @@ import boxen from "boxen"
 export const serviceLog = ( output: string ): void => {
 
 	let message: string[] = [
-		`${chalk.yellow("Serving!")}\n\n`,
+		`${chalk.yellow.bold("Bananasplit-js")}\n\n`,
 		`${output}\n\n`,
 		`${chalk.green(`${process.env.NODE_ENV!.toUpperCase()} MODE`)}`
 	]

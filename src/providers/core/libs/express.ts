@@ -121,13 +121,13 @@ export default
 
 		/**
 		 * 
-		 *  Gets express application
+		 *  Gets the express server application
 		 * 
-		 *  @method application
+		 *  @method getApplication
 		 *  @returns { Express.Application }
 		 *  
 		 */
-		public application = (): Express.Application => ExpressProvider.getInstance().service
+		public getApplication = (): Express.Application => ExpressProvider.getInstance().service
 
 
 		/**

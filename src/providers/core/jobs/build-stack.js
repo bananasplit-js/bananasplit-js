@@ -169,3 +169,8 @@ RunNpmProcess(["install"])
 RunNpmProcess(["add", databaseDriverPackages])
 RunNpmProcess(["run", "build:database"])
 RunNpmProcess(["test", "setup"])
+
+// Success Output message
+console.log("")
+console.log('\x1B[43m\x1B[30m\x1B[1m Stack ready! \x1B[22m\x1B[39m\x1B[49m')
+console.log("")
