@@ -21,7 +21,7 @@ const date = new Date()
 
 
 // Generator
-const createSingularName = ( singular_name={} ) => ({
+const createSingularName = (singular_name={}) => ({
 
 	// Fields
 	field: faker.lorem.word(),

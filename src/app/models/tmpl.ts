@@ -13,13 +13,13 @@ import { DataTypes, ModelAttributes } from "sequelize"
 class SingularName extends Model {
 
 	/**
-	 *  @columns
+	 *  columns
 	 */
 	public id!: number
 
 
 	/**
-	 *  @attributes
+	 *  attributes
 	 */
 	public static attributes: ModelAttributes = {
 		id: {
@@ -32,7 +32,7 @@ class SingularName extends Model {
 
 
 	/**
-	 *  @options
+	 *  options
 	 */
 	public static $options: object = {
 		timestamps: true

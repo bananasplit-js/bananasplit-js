@@ -21,7 +21,7 @@ const date = new Date()
 
 
 // Generator
-const createUser = ( user={} ) => ({
+const createUser = (user={}) => ({
 
 	// Fields
 	name: faker.name.firstName(),

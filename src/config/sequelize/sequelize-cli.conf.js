@@ -11,7 +11,7 @@
 export default {
 
 	/**
-	 *  @development
+	 *  development
 	 */
 	development: {
 		dialectOptions: {
@@ -21,7 +21,7 @@ export default {
 
 
 	/**
-	 *  @test
+	 *  test
 	 */
 	test: {
 		dialectOptions: {
@@ -31,7 +31,7 @@ export default {
 
 
 	/**
-	 *  @production
+	 *  production
 	 */
 	production: {
 		dialectOptions: {

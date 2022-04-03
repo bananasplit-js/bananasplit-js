@@ -9,12 +9,12 @@
 import { Application, Router } from "express"
 
 /**
- *  @middlewares import
+ *  middlewares import
  */
 
 
 /**
- *  @controllers import
+ *  controllers import
  */
 
 
@@ -24,15 +24,15 @@ const $: Router = Router()
 
 export default
 
-	( app: Application ): Router => {
+	(app: Application): Router => {
 		/**
-		 *  @routes
+		 *  routes
 		 */
-		$.route( "/route" )
-			.get( /* controller handler */ )
+		$.route("/route")
+			.get(/* controller handler */)
 
 
-			return $
+		return $
 	}
 
 ;

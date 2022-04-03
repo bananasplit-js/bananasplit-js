@@ -10,7 +10,7 @@ import { Request, Response } from "express"
 
 
 /**
- *  @models import
+ *  models import
  */
 
 
@@ -21,7 +21,7 @@ export default
 		/**
 		 *  @description {handler description}
 		 */
-		public static actionName ( req: Request, res: Response ): Response {
+		public static actionName (req: Request, res: Response): Response {
 			return res.send()
 		}
 

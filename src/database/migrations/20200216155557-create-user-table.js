@@ -6,9 +6,9 @@
  */
 
 
-export function up ( queryInterface, DataTypes ) {
+export function up (queryInterface, DataTypes) {
 
-	return queryInterface.createTable( "Users", {
+	return queryInterface.createTable("Users", {
 		id: {
 			type: DataTypes.INTEGER.UNSIGNED,
 			autoIncrement: true,
@@ -40,7 +40,7 @@ export function up ( queryInterface, DataTypes ) {
 		/* Timestamps */
 		createdAt: {
 			type: "TIMESTAMP",
-			defaultValue: DataTypes.literal( "CURRENT_TIMESTAMP" ),
+			defaultValue: DataTypes.literal("CURRENT_TIMESTAMP"),
 			allowNull: false
 
 		},
@@ -56,7 +56,7 @@ export function up ( queryInterface, DataTypes ) {
 }
 
 
-export function down ( queryInterface, Sequelize ) {
-	return queryInterface.dropTable( "Users" )
+export function down (queryInterface, Sequelize) {
+	return queryInterface.dropTable("Users")
 }
 

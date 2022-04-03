@@ -13,7 +13,7 @@ import { DataTypes, ModelAttributes } from "sequelize"
 class User extends Model {
 
 	/**
-	 *  @columns
+	 *  columns
 	 */
 	public id!: number
 	public name!: string
@@ -23,7 +23,7 @@ class User extends Model {
 
 
 	/**
-	 *  @attributes
+	 *  attributes
 	 */
 	public static attributes: ModelAttributes = {
 		id: {
@@ -56,7 +56,7 @@ class User extends Model {
 
 
 	/**
-	 *  @options
+	 *  options
 	 */
 	public static $options: object = {
 		timestamps: true

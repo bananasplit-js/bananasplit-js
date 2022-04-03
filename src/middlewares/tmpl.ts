@@ -15,11 +15,9 @@ import { Request, Response, NextFunction } from "express"
  *	@description checks for user auth before get the route
  *
  */
-export const authMiddleware = ( req: Request, res: Response, next: NextFunction ): void => {
+export const authMiddleware = (req: Request, res: Response, next: NextFunction): void => {
 
-	// Middleware
-	// logic
-	// here
+	// Middleware logic here
 
 	next()
 
