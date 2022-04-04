@@ -64,7 +64,7 @@ const dist: string = tsconfigJson.compilerOptions.outDir || "dist"
 
 
 if ( includes.length ) {
-	console.log(chalk.cyanBright(`Copying files...\n`))
+	console.log("  ", chalk.cyanBright(`- Copying files\n`))
 
 	// Copy each extra file/dir to "dist"
 	includes.forEach((include: string|string[]) => {
@@ -161,4 +161,4 @@ const cRex: RegExp[] = [/\/\*$/, /\/\//]
  }
 
 
- console.log(`${chalk.bgGreen.black("\n Build done! ")} ✨\n`)
+ console.log(`${chalk.bgGreen.black.bold("\n Build done! ")} ✨\n`)
