@@ -79,7 +79,7 @@ yarn dev | npm run dev
 **Bananasplit-js** is an **open source** project so we are looking for contributors. If you are interested in contribute feel free to send a `pull request` or get in [touch](mailto:diegoulloao@icloud.com) with me.
 
 # License
-**Bananasplit-js** is licensed under **[MIT](https://github.com/diegoulloao/bananasplit-express-template/blob/master/LICENSE)** and is supported by the **community**.
+**Bananasplit-js** is licensed under **[MIT](https://github.com/bananasplit-js/bananasplit-js/blob/main/template/LICENSE)** and is supported by the **community**.
 
 ---
 ![label](https://img.shields.io/badge/2022-bananasplit--js-yellow?style=for-the-badge)
