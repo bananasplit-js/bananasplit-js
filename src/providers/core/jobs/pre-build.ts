@@ -12,13 +12,20 @@ import "tsconfig-paths/register"
 import fs from "fs"
 import path from "path"
 import chalk from "chalk"
+import { spawnSync } from "child_process"
+
+// Helpers
+const { getRouters } = require("@core/helpers/resources")
+
+// Interfaces
+const { IModule } = require("@core/interfaces")
 
 // Require prevents module not found notifications by editor
 const packageJson = require( "@root/package.json" )
 const tsconfigJson = require( "@root/tsconfig.json" )
 
 
-console.log(chalk.yellow("○ Preparing to build..."))
+console.log(`\n${chalk.yellow("○ Preparing to build...")}`)
 
 
 /**
@@ -93,13 +100,37 @@ try {
 	// Writes the changes in package.json
 	fs.writeFileSync(path.resolve("./package.json"), JSON.stringify(packageJson, null, 4))
 
-	// All right!
-	console.log(`${chalk.green("\n● Pre-build:")} module aliases updated at package.json\n`)
-
 } catch ( err: any ) {
 	console.error(err)
 	process.exit(1)
 }
 
+// All right!
+console.log(`${chalk.green("\n● Pre-build:")} module aliases updated at package.json`)
 
-console.log(chalk.yellow("○ Building..."))
+// Copy default routes if no routes were added
+const modulePaths: typeof IModule[] = getRouters()
+
+if ( !modulePaths.length ) {
+	// Copy default routes file
+	const $process = spawnSync(
+		"cp",
+		[
+			path.resolve("./src/providers/core/app/routes/setup.routes.ts"),
+			path.resolve("./src/app/routes")
+		],
+		{ cwd: process.cwd(), stdio: "inherit" }
+	)
+
+	if ( $process.status === 0 ) {
+		console.log(`${chalk.green("● Pre-build:")} ${chalk.cyan("no routes detected -> default were copied")}`)
+
+	} else {
+		console.log(`${chalk.red("● Pre-build:")} no routes detected -> defaults could not be copied`)
+	}
+}
+
+console.log("")
+
+
+console.log(chalk.yellow("○ Building...\n"))

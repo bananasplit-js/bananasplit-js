@@ -12,6 +12,7 @@ import "tsconfig-paths/register"
 import fs from "fs-extra"
 import path from "path"
 import chalk from "chalk"
+import { spawnSync } from "child_process"
 
 // Require prevents module not found notifications by editor
 const tsconfigJson = require( "@root/tsconfig.json" )
@@ -19,7 +20,7 @@ const bananasplitJson = require( "@root/bananasplit.json" )
 const packageJson = require( "@root/dist/package.json" )
 
 
-console.log(`${chalk.green("● Build:")} app compiled to dist!\n`)
+console.log(`\n${chalk.green("● Build:")} app compiled to dist!\n`)
 console.log(chalk.yellow("○ Packing..."))
 
 
@@ -64,7 +65,7 @@ const dist: string = tsconfigJson.compilerOptions.outDir || "dist"
 
 
 if ( includes.length ) {
-	console.log("  ", chalk.cyanBright(`- Copying files\n`))
+	console.log("  ", chalk.cyanBright(`- Copying static files\n`))
 
 	// Copy each extra file/dir to "dist"
 	includes.forEach((include: string|string[]) => {
@@ -113,52 +114,60 @@ const cRex: RegExp[] = [/\/\*$/, /\/\//]
  *  @path-alias/*: path/to/module/* -> @path-alias: path/to/module
  * 
  */
- pathsPair.forEach((pathPair: [string, string[]]) => {
-	 const index: string = pathPair[0].replace(cRex[0], "")
-	 const distPath: string = pathPair[1][0].replace(cRex[0], "").replace(cRex[1], "/")
+pathsPair.forEach((pathPair: [string, string[]]) => {
+	const index: string = pathPair[0].replace(cRex[0], "")
+	const distPath: string = pathPair[1][0].replace(cRex[0], "").replace(cRex[1], "/")
 
-	 _moduleAliases[index] = distPath
- })
-
-
- // Type "any" allow to use delete
- const $packageJson: any = packageJson
-
- // Removes all non-production package.json key:values
- $packageJson.scripts.dev && delete $packageJson.scripts.dev
- $packageJson.scripts.build && delete $packageJson.scripts.build
- $packageJson.scripts["build:stack"] && delete $packageJson.scripts["build:stack"]
- $packageJson.scripts["routes:list"] && delete $packageJson.scripts["routes:list"]
- $packageJson.scripts.test && delete $packageJson.scripts.test
- $packageJson.scripts["test:watch"] && delete $packageJson.scripts["test:watch"]
- $packageJson.scripts["test:coverage"] && delete $packageJson.scripts["test:coverage"]
- $packageJson.scripts["test:cache"] && delete $packageJson.scripts["test:cache"]
- $packageJson.scripts["upgrade:stack"] && delete $packageJson.scripts["upgrade:stack"]
- $packageJson.scripts.lint && delete $packageJson.scripts.lint
- $packageJson.scripts["lint:fix"] && delete $packageJson.scripts["lint:fix"]
- $packageJson.scripts.prebuild && delete $packageJson.scripts.prebuild
- $packageJson.scripts.postbuild && delete $packageJson.scripts.postbuild
- $packageJson.devDependencies && delete $packageJson.devDependencies
+	_moduleAliases[index] = distPath
+})
 
 
- // Assigns new values to dist/package.json
- $packageJson._moduleAliases = _moduleAliases
- $packageJson.scripts.start = packageJson.scripts.start.replace(/dist\/|\s--exec\s\w+\s?/g, "")
- $packageJson.scripts["build:database"] = packageJson.scripts["build:database"].replace(" && sequelize db:seed:all", "")
- $packageJson.main = packageJson.main.replace(/\.ts$/, ".js")
+// Type "any" allow to use delete
+const $packageJson: any = packageJson
+
+// Removes all non-production package.json key:values
+$packageJson.scripts.dev && delete $packageJson.scripts.dev
+$packageJson.scripts.build && delete $packageJson.scripts.build
+$packageJson.scripts["build:stack"] && delete $packageJson.scripts["build:stack"]
+$packageJson.scripts["routes:list"] && delete $packageJson.scripts["routes:list"]
+$packageJson.scripts.test && delete $packageJson.scripts.test
+$packageJson.scripts["test:watch"] && delete $packageJson.scripts["test:watch"]
+$packageJson.scripts["test:coverage"] && delete $packageJson.scripts["test:coverage"]
+$packageJson.scripts["test:cache"] && delete $packageJson.scripts["test:cache"]
+$packageJson.scripts["upgrade:stack"] && delete $packageJson.scripts["upgrade:stack"]
+$packageJson.scripts.lint && delete $packageJson.scripts.lint
+$packageJson.scripts["lint:fix"] && delete $packageJson.scripts["lint:fix"]
+$packageJson.scripts.prebuild && delete $packageJson.scripts.prebuild
+$packageJson.scripts.postbuild && delete $packageJson.scripts.postbuild
+$packageJson.devDependencies && delete $packageJson.devDependencies
 
 
- try {
-	 // Writes the changes into dist/package.json
-	 fs.writeFileSync(path.resolve("./dist/package.json"), JSON.stringify($packageJson, null, 4))
-
-	 // All right!
-	 console.log(`${chalk.green("● Post-build:")} dist/package.json is ready for production 🚀`)
-
- } catch ( err: any ) {
-	 console.error(err)
-	 process.exit(1)
- }
+// Assigns new values to dist/package.json
+$packageJson._moduleAliases = _moduleAliases
+$packageJson.scripts.start = packageJson.scripts.start.replace(/dist\/|\s--exec\s\w+\s?/g, "")
+$packageJson.scripts["build:database"] = packageJson.scripts["build:database"].replace(" && sequelize db:seed:all", "")
+$packageJson.main = packageJson.main.replace(/\.ts$/, ".js")
 
 
- console.log(`${chalk.bgGreen.black.bold("\n Build done! ")} ✨\n`)
+try {
+	// Writes the changes into dist/package.json
+	fs.writeFileSync(path.resolve("./dist/package.json"), JSON.stringify($packageJson, null, 4))
+
+	// All right!
+	console.log(`${chalk.green("● Post-build:")} dist/package.json is ready for production 🚀`)
+
+} catch ( err: any ) {
+	console.error(err)
+	process.exit(1)
+}
+
+
+// Silent: Remove setup.routes from routes folder if were copied
+spawnSync(
+	"rm",
+	[path.resolve("./src/app/routes/setup.routes.ts")],
+	{ cwd: process.cwd(), stdio: "ignore" }
+)
+
+
+console.log(`${chalk.bgGreen.black.bold("\n Build done! ")} ✨\n`)
