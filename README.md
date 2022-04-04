@@ -54,6 +54,8 @@ npx bananasplit-js new "my-app" --apollo
 
 ### 2. Setup the stack
 **Add your database access to `.env`**
+<sub><sup><a href="https://gist.github.com/diegoulloao/0bec57a988532e890146d57409076277" target="_blank"> (example)</a></sup></sub>
+
 ```bash
 yarn build:stack | npm run build:stack
 ```
@@ -80,4 +82,4 @@ yarn dev | npm run dev
 **Bananasplit-js** is licensed under **[MIT](https://github.com/diegoulloao/bananasplit-express-template/blob/master/LICENSE)** and is supported by the **community**.
 
 ---
-![label](https://img.shields.io/badge/2020-bananasplit--js-yellow?style=for-the-badge)
+![label](https://img.shields.io/badge/2022-bananasplit--js-yellow?style=for-the-badge)
