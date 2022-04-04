@@ -7,7 +7,6 @@
  *  @author diegoulloao
  * 
  */
-"use strict";
 
 const { spawnSync } = require( "child_process" )
 const fs = require( "fs" )
@@ -163,11 +162,16 @@ const RunNpmProcess = (cmd) => {
 	}
 }
 
-
 // Builds the stack
 RunNpmProcess(["install"])
+console.log("\n\033[1;33mPackages installed.\033[0m\n")
+
 RunNpmProcess(["add", databaseDriverPackages])
+console.log("\n\033[1;33mDatabase drivers installed.\033[0m\n")
+
 RunNpmProcess(["run", "build:database"])
+console.log("\n\033[1;33mDatabase created.\033[0m\n")
+
 RunNpmProcess(["test", "setup"])
 
 // Success Output message
