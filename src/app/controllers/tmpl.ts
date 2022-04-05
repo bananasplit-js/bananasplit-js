@@ -6,12 +6,8 @@
  *  @description controller for {plural_name}
  * 
  */
+
 import { Request, Response } from "express"
-
-
-/**
- *  models import
- */
 
 
 export default

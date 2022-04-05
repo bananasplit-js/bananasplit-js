@@ -5,10 +5,6 @@
  * 
  */
 
-
-/**
- *  @generator import
- */
 import createUser from "@generators/create-user"
 
 

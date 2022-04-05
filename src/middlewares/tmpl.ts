@@ -6,6 +6,7 @@
  *  @description {description}
  * 
  */
+
 import { Request, Response, NextFunction } from "express"
 
 
@@ -16,8 +17,6 @@ import { Request, Response, NextFunction } from "express"
  *
  */
 export const authMiddleware = (req: Request, res: Response, next: NextFunction): void => {
-
-	// Middleware logic here
 
 	next()
 

@@ -5,11 +5,7 @@
  * 
  */
 
-
-/**
- *  @generator import
- */
-import createSingularName from "@generators/create-singular_name"
+import createSingularName from "@generators/create-{singular_name}"
 
 
 export function up ( queryInterface ) {

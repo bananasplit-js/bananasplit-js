@@ -10,8 +10,6 @@
 
 export function helper (): string {
 
-	// do something helpful
-
 	return "something"
 
 }

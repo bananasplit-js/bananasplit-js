@@ -4,6 +4,7 @@
  *  @description creates an {singular_name} object based on fake data
  * 
  */
+
 import generator from "@bananasplit-js/utils/generator"
 import faker from "faker"
 
