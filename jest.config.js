@@ -4,6 +4,7 @@
  *  @config
  * 
  */
+
 const hq = require( "alias-hq" )
 const { defaults } = require( "jest-config" )
 

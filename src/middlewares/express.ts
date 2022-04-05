@@ -6,6 +6,7 @@
  *  @description main middleware
  * 
  */
+
 import Express, { Application, Router } from "express"
 import { IRouters } from "@bananasplit-js/interfaces"
 
@@ -19,9 +20,7 @@ dontenv.config()
 export default
 
 	(app: Application, routers: IRouters): void => {
-		/**
-		 *  @middlewares 
-		 */
+
 		if (process.env.NODE_ENV === "development") {
 			app.use(Morgan("dev"))
 		}
@@ -37,6 +36,7 @@ export default
 		Object.values(routers).forEach(
 			(router: Router) => app.use(router)
 		)
+
 	}
 
 ;
