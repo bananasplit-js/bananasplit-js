@@ -22,7 +22,7 @@ const path = require( "path" )
  * 
  */
 const Abort = (msg) => {
-	console.error(msg)
+	console.log(msg)
 	process.exit(0)
 }
 
@@ -56,65 +56,57 @@ const findDialect = () => {
 const dialect = findDialect()
 
 if ( !dialect ) {
-	Abort("You must define a db_dialect in the .env file")
+	// No dialect error message by parts
+	const noDialectMessage = [
+		"\n\x1B[41m\x1B[30m\x1B[1m Error \x1B[22m\x1B[39m\x1B[49m",
+		"\n\x1B[31mMust define a \x1B[37m\x1B[1mDB_DIALECT\x1B[22m\x1B[39m\x1B[31m value ",
+		"in the \x1B[37m\x1B[1m.env\x1B[22m\x1B[39m\x1B[31m file.\x1B[39m\n"
+	]
+
+	// Print message and abort
+	Abort(noDialectMessage.join(""))
 }
 
 
 // Map to the database drivers package as string
 const getDatabaseDriverPackages = (dialect) => {
-	let packages
-
-	switch ( dialect ) {
-		case "mysql":
-			packages = "mysql2"
-			break
-		;
-
-		case "mariadb":
-			packages = "mariadb"
-			break
-		;
-
-		case "postgres":
-			packages = "pg pg-hstore"
-			break
-		;
-
-		case "mssql":
-			packages = "tedious"
-			break
-		;
-
-		case "sqlite":
-			packages = "sqlite3"
-			break
-		;
-
-		default:
-			packages = ""
-		;
+	// Key-value pairs of driver-packages
+	const packages = {
+		mysql: "mysql2",
+		mariadb: "mariadb",
+		postgres: "pg pg-hstore",
+		mssql: "tedious",
+		sqlite: "sqlite3"
 	}
 
-	return packages
-
+	return packages[dialect] || ""
 }
 
 
 // Gets database driver packages based on the dialect
 const databaseDriverPackages = getDatabaseDriverPackages(dialect)
 
-if ( !databaseDriverPackages )
-	Abort(`${dialect} is not a valid db_dialect. Please choose one of: mysql|mariadb|postgres|mssql|sqlite or ensure remove the comment`)
-;
+if ( !databaseDriverPackages ) {
+	// Invalid dialect message by parts
+	const invalidDialect = [
+		"\n\x1B[41m\x1B[30m\x1B[1m Error \x1B[22m\x1B[39m\x1B[49m\n",
+		`${'\x1B[31m\x1B[37m\x1B[1m'}"${dialect}"${'\x1B[22m\x1B[39m\x1B[31m'} is not a valid `,
+		`${'\x1B[37m\x1B[1m'}DB_DIALECT${'\x1B[22m\x1B[39m\x1B[31m'} value.${'\x1B[39m'}`,
+		`\n\nPlease choose one of:\n${'\033[1;33m'}mysql | mariadb | postgres | mssql | sqlite${'\033[0m'}\n`
+	]
+
+	// Print message and abort the execution
+	Abort(invalidDialect.join(""))
+}
 
 
 // System package manager used
 const npmUserAgent = process.env.npm_config_user_agent
 
 // if no npm agent founded then exits
-if ( !npmUserAgent )
-	Abort("The npm package manager could not be identified. Please run the stack installation manually")
-;
+if ( !npmUserAgent ) {
+	Abort("'\x1B[31mThe npm package manager could not be identified. Please run the stack installation manually.\x1B[39m'")
+}
 
 
 // Map to the used package manager executor (cross-platform)
@@ -141,9 +133,9 @@ const getPackageManager = () => {
 // npm|yarn executor
 const packageManagerExec = getPackageManager()
 
-if ( !packageManagerExec )
-	Abort("The npm package manager could not be identified. Please run the stack installation manually")
-;
+if ( !packageManagerExec ) {
+	Abort("'\x1B[31mThe npm package manager could not be identified. Please run the stack installation manually.\x1B[39m'")
+}
 
 
 // Runs sync npm process
