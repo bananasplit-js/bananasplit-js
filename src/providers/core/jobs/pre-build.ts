@@ -98,7 +98,7 @@ packageJson._moduleAliases = _moduleAliases
 
 try {
 	// Writes the changes in package.json
-	fs.writeFileSync(path.resolve("./package.json"), JSON.stringify(packageJson, null, 4))
+	fs.writeFileSync(path.resolve("./package.json"), JSON.stringify(packageJson, null, 2))
 
 } catch ( err: any ) {
 	console.error(err)
