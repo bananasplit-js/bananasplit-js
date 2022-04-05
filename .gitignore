@@ -75,7 +75,3 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
-
-# FIXME: remove to master
-package-lock.json
-yarn.lock
