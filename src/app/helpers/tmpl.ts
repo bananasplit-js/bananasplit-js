@@ -7,7 +7,6 @@
  * 
  */
 
-
 export function helper (): string {
 
 	return "something"

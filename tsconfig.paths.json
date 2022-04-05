@@ -17,7 +17,9 @@
 			"@routes/*": ["src/app/routes/*"],
 			"@helpers/*": ["src/app/helpers/*"],
 			"@generators/*": ["src/database/generators/*"],
-			"@config/*": ["src/config/*"]
+			"@config/*": ["src/config/*"],
+			"@interfaces": ["src/app/interfaces"],
+			"@interfaces/*": ["src/app/interfaces/*"]
 		}
 	}
 }
