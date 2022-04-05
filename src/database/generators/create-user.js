@@ -5,7 +5,7 @@
  * 
  */
 
-import generator from "@bananasplit-js/utils/generator"
+import { Generator } from "@bananasplit-js"
 import faker from "faker"
 
 
@@ -39,4 +39,4 @@ const createUser = (user={}) => ({
 })
 
 
-export default generator(createUser)
+export default Generator(createUser)
