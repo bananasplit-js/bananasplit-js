@@ -23,6 +23,7 @@ const { IModule } = require("@core/interfaces")
 // Require prevents module not found notifications by editor
 const packageJson = require( "@root/package.json" )
 const tsconfigJson = require( "@root/tsconfig.json" )
+const tsconfigPathsJson = require( "@root/tsconfig.paths.json" )
 
 
 console.log(`\n${chalk.yellow("○ Preparing to build...")}`)
@@ -37,8 +38,8 @@ console.log(`\n${chalk.yellow("○ Preparing to build...")}`)
  * 
  */
 const Abort = ( msg: string ): void => { 
-	console.error(`\n${msg}`)
-	process.exit(0)
+	console.error(chalk.red(`\n${msg}`))
+	process.exit(1)
 }
 
 // Stores path alias and system path as pair
@@ -46,7 +47,7 @@ let pathsPair: [string, string[]][] = []
 
 try {
 	// Parse to array of arrays containing path-alias and system-path
-	pathsPair = Object.entries(tsconfigJson.compilerOptions.paths)
+	pathsPair = Object.entries(tsconfigPathsJson.compilerOptions.paths)
 
 } catch (_) {
 	Abort("Key paths does not exists at tsconfig.json")
@@ -106,7 +107,7 @@ try {
 }
 
 // All right!
-console.log(`${chalk.green("\n● Pre-build:")} module aliases updated at package.json`)
+console.log(`${chalk.green("\n● Pre-build:")} module aliases updated at local package.json`)
 
 // Copy default routes if no routes were added
 const modulePaths: typeof IModule[] = getRouters()
