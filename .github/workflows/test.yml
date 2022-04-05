@@ -5,10 +5,10 @@ name: bananasplit-test
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main/template ]
     
   pull_request:
-    branches: [ master ]
+    branches: [ main/template ]
 
 jobs:
   test:
@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [ 14.x ]
+        node-version: [ 17.x ]
 
     env:
       NODE_ENV: test
