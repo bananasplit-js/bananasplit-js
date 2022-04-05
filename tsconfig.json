@@ -8,25 +8,6 @@
 		"strict": true,
 		"moduleResolution": "node",
 		"experimentalDecorators": true,
-		"baseUrl": ".",
-		"paths": {
-			"@root/*": ["./*"],
-			"@bananasplit-js": ["src/providers/core"],
-			"@bananasplit-js/*": ["src/providers/core/*"],
-			"@core": ["src/providers/core"],
-			"@core/*": ["src/providers/core/*"],
-			"@services": ["src/providers/services"],
-			"@providers/*": ["src/providers/*"],
-			"@database/*": ["src/database/*"],
-			"@settings/*": ["src/settings/*"],
-			"@middlewares/*": ["src/middlewares/*"],
-			"@controllers/*": ["src/app/controllers/*"],
-			"@models/*": ["src/app/models/*"],
-			"@routes/*": ["src/app/routes/*"],
-			"@helpers/*": ["src/app/helpers/*"],
-			"@generators/*": ["src/database/generators/*"],
-			"@config/*": ["src/config/*"]
-		},
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
 		"resolveJsonModule": true
@@ -39,5 +20,6 @@
 		"src/providers/core/app/controllers",
 		"src/providers/core/app/routes",
 		"src/**/*/tmpl.*"
-	]
+	],
+	"extends": "./tsconfig.paths.json"
 }

@@ -16,6 +16,7 @@ import { spawnSync } from "child_process"
 
 // Require prevents module not found notifications by editor
 const tsconfigJson = require( "@root/tsconfig.json" )
+const tsconfigPathsJson = require( "@root/tsconfig.paths.json" )
 const bananasplitJson = require( "@root/bananasplit.json" )
 const packageJson = require( "@root/dist/package.json" )
 
@@ -33,8 +34,8 @@ console.log(chalk.yellow("○ Packing..."))
  * 
  */
 const Abort = ( msg: string ): void => {
-	console.error(`\n${msg}`)
-	process.exit(0)
+	console.error(chalk.red(`\n${msg}`))
+	process.exit(1)
 }
 
 
@@ -43,7 +44,7 @@ let pathsPair: [string, string[]][] = []
 
 try {
 	// Parse to array of arrays containing path-alias and system-path
-	pathsPair = Object.entries(tsconfigJson.compilerOptions.paths)
+	pathsPair = Object.entries(tsconfigPathsJson.compilerOptions.paths)
 
 } catch (_) {
 	Abort("Key paths does not exists at tsconfig.json")
@@ -129,7 +130,8 @@ const $packageJson: any = packageJson
 $packageJson.scripts.dev && delete $packageJson.scripts.dev
 $packageJson.scripts.build && delete $packageJson.scripts.build
 $packageJson.scripts["build:stack"] && delete $packageJson.scripts["build:stack"]
-$packageJson.scripts["routes:list"] && delete $packageJson.scripts["routes:list"]
+$packageJson.scripts["route:list"] && delete $packageJson.scripts["routes:list"]
+$packageJson.scripts["generator:create"] && delete $packageJson.scripts["generator:create"]
 $packageJson.scripts.test && delete $packageJson.scripts.test
 $packageJson.scripts["test:watch"] && delete $packageJson.scripts["test:watch"]
 $packageJson.scripts["test:coverage"] && delete $packageJson.scripts["test:coverage"]
