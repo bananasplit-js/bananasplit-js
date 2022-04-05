@@ -1,6 +1,6 @@
 {
 	"name": "bananasplit-js",
-	"version": "2.0.0",
+	"version": "2.0.0-rc1",
 	"description": "A bananasplit app",
 	"main": "src/app.ts",
 	"scripts": {
