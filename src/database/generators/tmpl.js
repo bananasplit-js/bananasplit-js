@@ -5,7 +5,7 @@
  * 
  */
 
-import { Generator } from "@bananasplit-js"
+import Generator from "@bananasplit-js/utils/generator"
 import faker from "faker"
 
 
