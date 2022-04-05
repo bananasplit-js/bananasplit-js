@@ -4,6 +4,7 @@
  *  @description sequelize options
  * 
  */
+
 import { Options as SequelizeOptions } from "sequelize"
 
 
