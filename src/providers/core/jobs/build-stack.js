@@ -23,7 +23,7 @@ const path = require( "path" )
  */
 const Abort = (msg) => {
 	console.log(msg)
-	process.exit(0)
+	process.exit(1)
 }
 
 

@@ -20,7 +20,7 @@ import { spawnSync, SpawnSyncReturns } from "child_process"
  */
 const Abort = ( msg: string ): void => {
 	console.error(msg)
-	process.exit(0)
+	process.exit(1)
 }
 
 

@@ -7,6 +7,7 @@
  *  @author diegoulloao
  * 
  */
+
 import "tsconfig-paths/register"
 
 import fs from "fs-extra"
@@ -153,7 +154,7 @@ $packageJson.main = packageJson.main.replace(/\.ts$/, ".js")
 
 try {
 	// Writes the changes into dist/package.json
-	fs.writeFileSync(path.resolve("./dist/package.json"), JSON.stringify($packageJson, null, 4))
+	fs.writeFileSync(path.resolve("./dist/package.json"), JSON.stringify($packageJson, null, 2))
 
 	// All right!
 	console.log(`${chalk.green("● Post-build:")} dist/package.json is ready for production 🚀`)
@@ -172,4 +173,5 @@ spawnSync(
 )
 
 
+// Success output message
 console.log(`${chalk.bgGreen.black.bold("\n Build done! ")} ✨\n`)

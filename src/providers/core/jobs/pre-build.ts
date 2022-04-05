@@ -7,6 +7,7 @@
  *  @author diegoulloao
  * 
  */
+
 import "tsconfig-paths/register"
 
 import fs from "fs"
