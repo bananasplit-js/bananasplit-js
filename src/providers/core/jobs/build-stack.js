@@ -105,7 +105,12 @@ const npmUserAgent = process.env.npm_config_user_agent
 
 // if no npm agent founded then exits
 if ( !npmUserAgent ) {
-	Abort("'\x1B[31mThe npm package manager could not be identified. Please run the stack installation manually.\x1B[39m'")
+	const noNpmAgentMessage = [
+		"\n\x1B[41m\x1B[30m\x1B[1m Error \x1B[22m\x1B[39m\x1B[49m\n",
+		"\x1B[31mThe npm package manager could not be identified. Please run the stack installation manually.\x1B[39m\n"
+	]
+
+	Abort(noNpmAgentMessage.join(""))
 }
 
 
@@ -134,7 +139,12 @@ const getPackageManager = () => {
 const packageManagerExec = getPackageManager()
 
 if ( !packageManagerExec ) {
-	Abort("'\x1B[31mThe npm package manager could not be identified. Please run the stack installation manually.\x1B[39m'")
+	const noNpmAgentMessage = [
+		"\n\x1B[41m\x1B[30m\x1B[1m Error \x1B[22m\x1B[39m\x1B[49m\n",
+		"\x1B[31mThe npm package manager could not be identified. Please run the stack installation manually.\x1B[39m\n"
+	]
+
+	Abort(noNpmAgentMessage.join(""))
 }
 
 
