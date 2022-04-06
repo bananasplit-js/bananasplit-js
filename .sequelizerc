@@ -5,19 +5,14 @@
  * 
  */
 
-require( "@babel/register" )
-require("alias-hq").get( "module-alias" )
+require("alias-hq").get("module-alias")
 
-
-const path = require( "path" )
-
+const path = require("path")
 
 module.exports = {
+	"config": path.resolve("src/providers/core/config", "sequelize-cli.conf.js"),
 
-	"config": path.resolve( "src/providers/core/config", "sequelize-cli.conf.js" ),
-
-	"models-path": path.resolve( "src/app", "models" ),
-	"seeders-path": path.resolve( "src/database", "seeders" ),
-	"migrations-path": path.resolve( "src/database", "migrations" ),
-
+	"models-path": path.resolve("src/app", "models"),
+	"seeders-path": path.resolve("src/database", "seeders"),
+	"migrations-path": path.resolve("src/database", "migrations")
 }

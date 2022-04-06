@@ -6,20 +6,17 @@
  *  @description manage default and custom sequelize client options
  *
  */
-import dotenv from "dotenv"
-import CustomOptions from "@config/sequelize/sequelize-cli.conf"
-
+const dotenv = require("dotenv")
+const CustomOptions = require("@config/sequelize/sequelize-cli.conf")
 
 dotenv.config()
 
-
-export default {
+module.exports = {
 
 	/**
-	 *  @development 
+	 *  development 
 	 */
 	development: {
-
 		dialect: eval(`"${process.env.DB_DIALECT}"`),
 
 		host: process.env.DB_HOST,
@@ -34,15 +31,13 @@ export default {
 		},
 
 		...CustomOptions.development
-
 	},
 
 
 	/**
-	 *  @test
+	 *  test
 	 */
 	test: {
-
 		dialect: eval(`"${process.env.DB_DIALECT}"`),
 
 		host: process.env.DB_HOST,
@@ -57,15 +52,13 @@ export default {
 		},
 
 		...CustomOptions.test
-
 	},
 
 
 	/**
-	 *  @production
+	 *  production
 	 */
 	production: {
-
 		dialect: eval(`"${process.env.DB_DIALECT}"`),
 
 		host: process.env.DB_HOST,
@@ -81,7 +74,6 @@ export default {
 		},
 
 		...CustomOptions.production
-
 	}
 
 }

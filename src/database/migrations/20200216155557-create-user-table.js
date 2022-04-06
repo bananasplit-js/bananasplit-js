@@ -5,9 +5,7 @@
  * 
  */
 
-
-export function up (queryInterface, DataTypes) {
-
+const up = (queryInterface, DataTypes) => {
 	return queryInterface.createTable("Users", {
 		id: {
 			type: DataTypes.INTEGER.UNSIGNED,
@@ -36,27 +34,23 @@ export function up (queryInterface, DataTypes) {
 			allowNull: false
 		},
 
-
 		/* Timestamps */
 		createdAt: {
 			type: "TIMESTAMP",
 			defaultValue: DataTypes.literal("CURRENT_TIMESTAMP"),
 			allowNull: false
-
 		},
 
 		updatedAt: {
 			type: "TIMESTAMP",
 			defaultValue: DataTypes.literal("CURRENT_TIMESTAMP"),
 			allowNull: false
-
 		}
 	})
-
 }
 
-
-export function down (queryInterface, Sequelize) {
+const down = (queryInterface, Sequelize) => {
 	return queryInterface.dropTable("Users")
 }
 
+module.exports = { up, down }

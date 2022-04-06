@@ -5,9 +5,8 @@
  * 
  */
 
-import Generator from "@bananasplit-js/utils/generator"
-import faker from "faker"
-
+const Generator = require("@bananasplit-js/utils/generator")
+const faker = require("faker")
 
 /**
  * 
@@ -16,14 +15,11 @@ import faker from "faker"
  * 
  */
 
-
 // Timestamps date
 const date = new Date()
 
-
 // Generator
 const createSingularName = (singular_name={}) => ({
-
 	// Fields
 	field: faker.lorem.word(),
 
@@ -31,9 +27,8 @@ const createSingularName = (singular_name={}) => ({
 	createdAt: date,
 	updatedAt: date,
 
+	// Extend
 	...singular_name
-
 })
 
-
-export default Generator(createSingularName)
+module.exports = Generator(createSingularName)

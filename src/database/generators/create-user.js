@@ -5,9 +5,8 @@
  * 
  */
 
-import Generator from "@bananasplit-js/utils/generator"
-import faker from "faker"
-
+const Generator = require("@bananasplit-js/utils/generator")
+const faker = require("faker")
 
 /**
  * 
@@ -16,14 +15,11 @@ import faker from "faker"
  * 
  */
 
-
 // Timestamps date
 const date = new Date()
 
-
 // Generator
 const createUser = (user={}) => ({
-
 	// Fields
 	name: faker.name.firstName(),
 	lastname: faker.name.lastName(),
@@ -34,9 +30,8 @@ const createUser = (user={}) => ({
 	createdAt: date,
 	updatedAt: date,
 
+	// Extend
 	...user
-
 })
 
-
-export default Generator(createUser)
+module.exports = Generator(createUser)

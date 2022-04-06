@@ -1,7 +1,0 @@
-{
-	"presets": ["@babel/preset-env"],
-	"plugins": [
-		"add-module-exports",
-		"@babel/plugin-transform-strict-mode"
-	]
-}
