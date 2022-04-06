@@ -34,7 +34,6 @@
 | **[module-alias](https://www.npmjs.com/package/module-alias)** | custom paths support for dist modules |
 | **[tsconfig-paths](https://www.npmjs.com/package/tsconfig-paths)** | custom paths support for typescript on the run |
 | **[alias-hq](https://www.npmjs.com/package/alias-hq)** | custom paths support for jest typescript |
-| **[@babel/core](https://www.npmjs.com/package/alias-hq)** | modern javascript features for js files (plugins and presets) |
 | **[eslint](https://www.npmjs.com/package/eslint)** | lints and fixes your code syntax |
 | **[prettier](https://www.npmjs.com/package/prettier)** | format your code |
 | **[chalk](https://www.npmjs.com/package/chalk)** | highlights console outputs |
