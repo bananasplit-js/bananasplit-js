@@ -5,17 +5,13 @@
  * 
  */
 
-
-export function up (queryInterface, DataTypes) {
-
+const up = (queryInterface, DataTypes) => {
 	return queryInterface.createTable("PluralName", {
 		id: {
 			type: DataTypes.INTEGER.UNSIGNED,
 			autoIncrement: true,
-
 			primaryKey: true
 		},
-
 
 		/* Timestamps */
 		createdAt: {
@@ -30,10 +26,8 @@ export function up (queryInterface, DataTypes) {
 			allowNull: false
 		}
 	})
-
 }
 
-
-export function down (queryInterface, Sequelize) {
+const down = (queryInterface, Sequelize) => {
 	return queryInterface.dropTable("PluralName")
 }

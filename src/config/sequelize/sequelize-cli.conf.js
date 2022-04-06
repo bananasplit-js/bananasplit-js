@@ -8,7 +8,7 @@
  */
 
 
-export default {
+module.exports = {
 
 	/**
 	 *  development
