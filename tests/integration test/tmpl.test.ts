@@ -13,10 +13,8 @@ const { Sequelize } = require( "@bananasplit-js" )
 import request, { Response } from "supertest"
 import http from "http"
 
-
 // Express server
 let Express: http.Server
-
 
 /**
  *  Do something before run the tests
@@ -25,17 +23,13 @@ beforeAll(() => {
 	Express = express.serve(6627)
 })
 
-
 /**
  *  @description Test a entire module
  */
 test("Test a entire module", async () => {
-
 	const response: Response = await request(Express).get("/")
 	expect(response.status).toBe(200)
-
 })
-
 
 /**
  *  Do something after run the tests

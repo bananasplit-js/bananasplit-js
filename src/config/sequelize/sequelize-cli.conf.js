@@ -7,9 +7,7 @@
  * 
  */
 
-
 module.exports = {
-
 	/**
 	 *  development
 	 */
@@ -18,7 +16,6 @@ module.exports = {
 			bigNumberStrings: true
 		},
 	},
-
 
 	/**
 	 *  test
@@ -29,7 +26,6 @@ module.exports = {
 		},
 	},
 
-
 	/**
 	 *  production
 	 */
@@ -39,5 +35,4 @@ module.exports = {
 			ssl: {}
 		},
 	}
-
 }

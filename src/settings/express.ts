@@ -10,15 +10,7 @@
 import { Application } from "express"
 import path from "path"
 
-
-export default
-
-	(app: Application) => {
-
-		// Public folder
-		app.set("public", path.join(__dirname, "../../public"))
-
-	}
-
-;
-
+export default (app: Application) => {
+	// Public folder
+	app.set("public", path.join(__dirname, "../../public"))
+}

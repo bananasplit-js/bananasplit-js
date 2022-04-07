@@ -7,17 +7,13 @@
 
 import { Options as SequelizeOptions } from "sequelize"
 
-
 const Options: SequelizeOptions = {
-
 	/**
 	 * 
 	 *  Options
-	 *
 	 *  This object is passed directly to the sequelize constructor
 	 * 
 	 */
-
 	pool: {
 		max: 5,
 		min: 0,
@@ -26,8 +22,6 @@ const Options: SequelizeOptions = {
 	},
 
 	sync: {}
-
 }
-
 
 export default Options

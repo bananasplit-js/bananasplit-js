@@ -8,7 +8,6 @@
 const hq = require( "alias-hq" )
 const { defaults } = require( "jest-config" )
 
-
 module.exports = {
 	...defaults,
 	roots: [ "<rootDir>/tests" ],
