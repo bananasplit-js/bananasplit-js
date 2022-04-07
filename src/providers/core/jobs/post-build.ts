@@ -131,7 +131,7 @@ const $packageJson: any = packageJson
 $packageJson.scripts.dev && delete $packageJson.scripts.dev
 $packageJson.scripts.build && delete $packageJson.scripts.build
 $packageJson.scripts["build:stack"] && delete $packageJson.scripts["build:stack"]
-$packageJson.scripts["route:list"] && delete $packageJson.scripts["routes:list"]
+$packageJson.scripts["route:list"] && delete $packageJson.scripts["route:list"]
 $packageJson.scripts["generator:create"] && delete $packageJson.scripts["generator:create"]
 $packageJson.scripts.test && delete $packageJson.scripts.test
 $packageJson.scripts["test:watch"] && delete $packageJson.scripts["test:watch"]
