@@ -1,0 +1,9 @@
+{
+  "upgrade": true,
+  "reject": [
+    "chalk",
+    "boxen",
+		"faker",
+		"@types/faker"
+  ]
+}
