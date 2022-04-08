@@ -7,8 +7,8 @@
  *  @author diegoulloao
  * 
  */
-import { spawnSync, SpawnSyncReturns } from "child_process"
 
+import { spawnSync, SpawnSyncReturns } from "child_process"
 
 /**
  * 
@@ -18,20 +18,18 @@ import { spawnSync, SpawnSyncReturns } from "child_process"
  *  @returns { void }
  * 
  */
-const Abort = ( msg: string ): void => {
+const Abort = (msg: string): void => {
 	console.error(msg)
 	process.exit(1)
 }
-
 
 // System package manager used
 const npmUserAgent: string = process.env.npm_config_user_agent!
 
 // If no npm agent founded then exits
-if ( !npmUserAgent )
+if ( !npmUserAgent ) {
 	Abort("The npm package manager could not be identified. Please run the stack upgrade manually")
-;
-
+}
 
 // Map to the package manager name
 const getPackageManager = (): string => {
@@ -50,18 +48,17 @@ const getPackageManager = (): string => {
 	}
 }
 
-
 // npm|yarn executor
 const packageManager: string = getPackageManager()
 
-if ( !packageManager )
+if ( !packageManager ) {
 	Abort("The npm package manager could not be identified. Please run the stack upgrade manually")
-;
+}
 
 // Runs the ncu upgrade
 const $process: SpawnSyncReturns <Buffer> = spawnSync(
 	(process.platform === "win32") ? "npx.cmd" : "npx",
-	["ncu", "--doctor", "--packageManager", packageManager, "-u", ...process.argv.slice(2)],
+	["ncu", "--doctor", "--packageManager", packageManager, ...process.argv.slice(2)],
 	{ cwd: process.cwd(), stdio: "inherit" }
 )
 
