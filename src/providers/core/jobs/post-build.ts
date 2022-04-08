@@ -16,7 +16,7 @@ import chalk from "chalk"
 import { spawnSync } from "child_process"
 
 // Types
-import { CopyOptions } from "fs"
+import { CopyOptionsSync } from "fs-extra"
 
 // Require prevents module not found notifications by editor
 const tsconfigJson: any = require("@root/tsconfig.json")
@@ -90,7 +90,7 @@ const bananaLocalExcludes: string[] = bananasplitLocalJSON.dist.exclude
 const excludes: string[] = [...bananaExcludes, ...bananaLocalExcludes]
 
 // Fs copy partial options
-const options: Partial<CopyOptions> = bananasplitLocalJSON.dist.options || {}
+const options: Partial<CopyOptionsSync> = bananasplitLocalJSON.dist.options || {}
 
 if (includes.length) {
 	console.log(" ", chalk.cyanBright(`Copying included files`))
@@ -102,7 +102,7 @@ if (includes.length) {
 		const dest: string = Array.isArray(include) ? `${dist}/${include[1]}` : `${dist}/${include}`
 
 		try {
-			const copyOptions: CopyOptions = {
+			const copyOptions: CopyOptionsSync = {
 				...options,
 
 				// exclude filter
@@ -115,19 +115,23 @@ if (includes.length) {
 				}
 			}
 
-			// TODO: check if file exists in first place
 			// Copy the file or dist recursively
-			fs.copy(src, dest, copyOptions)
+			fs.copySync(src, dest, copyOptions)
 
-		} catch (err: any) {
-			Abort(err)
+			// File copy success log
+			console.log(
+				chalk.cyan("    ✔ "),
+				chalk.cyan( `${src} ${src !== dest.replace(new RegExp(`^${dist}/`), "") ? `-> ${dest}` : ""}`)
+			)
+
+		} catch (e: any) {
+			// File copy error log
+			console.log(
+				chalk.red(`    ✘  ${src} ${src !== dest.replace(new RegExp(`^${dist}/`), "") ? `-> ${dest}` : ""}\n`)
+			)
+
+			process.exit(1)
 		}
-
-		// File copied log
-		console.log(
-			chalk.cyan("    ✔ "),
-			chalk.cyan(`${src} ${src !== dest.replace(new RegExp(`^${dist}/`), "") ? `-> ${dest}` : ""}`)
-		)
 	})
 
 	console.log(`\n${chalk.green("● Post-build:")} files copied successfully!`)
