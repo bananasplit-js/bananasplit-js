@@ -9,7 +9,6 @@
 
 import { Express } from "@bananasplit-js"
 
-
 /* ------------------------------------------------
  *  
  *  You can specify ports:
@@ -17,9 +16,7 @@ import { Express } from "@bananasplit-js"
  *  
  * -----------------------------------------------*/
 
-
 // Express server provider
 const express: Express = Express.provide()
-
 
 export { express }

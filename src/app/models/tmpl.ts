@@ -10,14 +10,11 @@
 import { Model } from "@bananasplit-js"
 import { DataTypes, ModelAttributes } from "sequelize"
 
-
 class SingularName extends Model {
-
 	/**
 	 *  columns
 	 */
 	public id!: number
-
 
 	/**
 	 *  attributes
@@ -31,19 +28,15 @@ class SingularName extends Model {
 		},
 	}
 
-
 	/**
 	 *  options
 	 */
 	public static $options: object = {
 		timestamps: true
 	}
-
 }
-
 
 // Init the model
 SingularName.init()
-
 
 export default SingularName

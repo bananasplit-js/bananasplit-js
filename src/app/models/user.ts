@@ -10,9 +10,7 @@
 import { Model } from "@bananasplit-js"
 import { DataTypes, ModelAttributes } from "sequelize"
 
-
 class User extends Model {
-
 	/**
 	 *  columns
 	 */
@@ -21,7 +19,6 @@ class User extends Model {
 	public lastname!: string
 	public email!: string
 	public password!: string
-
 
 	/**
 	 *  attributes
@@ -55,19 +52,15 @@ class User extends Model {
 		}
 	}
 
-
 	/**
 	 *  options
 	 */
 	public static $options: object = {
 		timestamps: true
 	}
-
 }
-
 
 // Init the model
 User.init()
-
 
 export default User

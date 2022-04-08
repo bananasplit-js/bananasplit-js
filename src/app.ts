@@ -10,10 +10,8 @@
 import { Stack } from "@bananasplit-js"
 import { express } from "@services"
 
-
 const services = Stack([
 	express
 ])
-
 
 services.serve()
