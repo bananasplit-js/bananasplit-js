@@ -22,13 +22,22 @@ const { getRouters } = require("@core/helpers/resources")
 const { IModule } = require("@core/interfaces")
 
 // Require prevents module not found notifications by editor
-const packageJson = require( "@root/package.json" )
-const tsconfigJson = require( "@root/tsconfig.json" )
-const tsconfigPathsJson = require( "@root/tsconfig.paths.json" )
+const packageJson: any = require( "@root/package.json" )
+const tsconfigJson: any = require( "@root/tsconfig.json" )
+const tsconfigPathsJson: any = require( "@root/tsconfig.paths.json" )
 
+// Prettier conf if exists
+let prettierJson: any = null
 
+try {
+	prettierJson = require("@root/.prettierrc")
+
+} catch (_) {
+	prettierJson = { tabWidth: 2 }
+}
+
+// Preparing build log
 console.log(`\n${chalk.yellow("○ Preparing to build...")}`)
-
 
 /**
  * 
@@ -54,12 +63,10 @@ try {
 	Abort("Key paths does not exists at tsconfig.json")
 }
 
-
 // Aborts when no paths founded in the list
 if ( !pathsPair.length ) {
 	Abort("There is no path defined into property paths at tsconfig.json")
 }
-
 
 // Type "any" allow index the object by string
 var _moduleAliases: any = {}
@@ -70,10 +77,8 @@ const prefix: string = tsconfigJson.compilerOptions.outDir
 // Regex for clean /* from path alias
 const cRex: RegExp[] = [/\/\*$/, /\/\//]
 
-
 // Parse each path pair to package.json compatible format
 pathsPair.forEach((pathPair: [string, string[]]) => {
-
 	// Removes /* at the end of each path alias: @path-alias/* -> @path-alias
 	const index: string = pathPair[0].replace(cRex[0], "")
 
@@ -82,25 +87,26 @@ pathsPair.forEach((pathPair: [string, string[]]) => {
 
 
 	// Removes /* at the end of each system path: path/to/module/* -> path/to/module
-	if ( !/@?root/.test(pathPair[0]) )
+	if ( !/@?root/.test(pathPair[0]) ) {
 		distPath = `${prefix}/${pathPair[1][0].replace(cRex[0], "").replace(cRex[1], "/")}`
-
-	else
+	}
+	else {
 		distPath = pathPair[1][0].replace(cRex[0], "").replace(cRex[1], "/")
-	;
+	}
 
 	// Adds package.json compatible path format to the list
 	_moduleAliases[index] = distPath
 })
 
-
 // Assigns new formatted paths to package.json
 packageJson._moduleAliases = _moduleAliases
 
-
 try {
 	// Writes the changes in package.json
-	fs.writeFileSync(path.resolve("./package.json"), JSON.stringify(packageJson, null, 2))
+	fs.writeFileSync(
+		path.resolve("./package.json"),
+		JSON.stringify(packageJson, null, prettierJson.tabWidth || 2)
+	)
 
 } catch ( err: any ) {
 	console.error(err)
@@ -133,6 +139,4 @@ if ( !modulePaths.length ) {
 }
 
 console.log("")
-
-
 console.log(chalk.yellow("○ Building...\n"))

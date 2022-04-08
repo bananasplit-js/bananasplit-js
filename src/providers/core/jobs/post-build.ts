@@ -19,19 +19,30 @@ import { spawnSync } from "child_process"
 import { CopyOptions } from "fs"
 
 // Require prevents module not found notifications by editor
-const tsconfigJson = require("@root/tsconfig.json")
+const tsconfigJson: any = require("@root/tsconfig.json")
 
 // Outdir from tsconfig or dist
 const dist: string = tsconfigJson.compilerOptions.outDir.replace(/\/$/, "") || "dist"
 
 // Require prevents module not found notifications by editor
-const tsconfigPathsJson = require("@root/tsconfig.paths.json")
-const bananasplitLocalJSON = require("@root/bananasplit.json")
-const bananasplitJSON = require("@core/bananasplit.json")
+const tsconfigPathsJson: any = require("@root/tsconfig.paths.json")
+const bananasplitLocalJSON: any = require("@root/bananasplit.json")
+const bananasplitJSON: any = require("@core/bananasplit.json")
 
 // Dist package.json
-const packageJson = require(path.resolve(process.cwd(), `${dist}/package.json`))
+const packageJson: any = require(path.resolve(process.cwd(), `${dist}/package.json`))
 
+// Prettier conf if exists
+let prettierJson: any = null
+
+try {
+	prettierJson = require("@root/.prettierrc")
+
+} catch (_) {
+	prettierJson = { tabWidth: 2 }
+}
+
+// Build logs
 console.log(`\n${chalk.green("● Build:")} app compiled to ${dist}!\n`)
 console.log(chalk.yellow("○ Packing..."))
 
@@ -174,7 +185,10 @@ $packageJson.main = packageJson.main.replace(/\.ts$/, ".js")
 
 try {
 	// Writes the changes into dist/package.json
-	fs.writeFileSync(path.resolve(`./${dist}/package.json`), JSON.stringify($packageJson, null, 2))
+	fs.writeFileSync(
+		path.resolve(`./${dist}/package.json`),
+		JSON.stringify($packageJson, null, prettierJson.tabWidth || 2)
+	)
 
 	// All right!
 	console.log(`${chalk.green("● Post-build:")} ${dist}/package.json is ready for production 🚀`)
