@@ -12,10 +12,8 @@ import { Application, Router } from "express"
 const $: Router = Router()
 
 export default (app: Application): Router => {
-
 	$.route("/")
 		.get(/* controller */)
 
 	return $
-
 }
