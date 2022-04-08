@@ -15,7 +15,7 @@
 		"test:coverage": "jest --coverage --runInBand",
 		"test:cache": "jest --clearCache",
 		"route:list": "ts-node -r tsconfig-paths/register src/providers/core/jobs/route-list",
-		"upgrade:stack": "ts-node src/providers/core/jobs/upgrade-stack",
+		"upgrade:stack": "ts-node src/providers/core/jobs/upgrade-stack -x 'chalk boxen faker @types/faker'",
 		"lint": "eslint src tests",
 		"lint:fix": "eslint src tests --fix",
 		"prebuild": "ts-node src/providers/core/jobs/pre-build",
