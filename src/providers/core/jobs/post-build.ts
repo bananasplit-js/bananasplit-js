@@ -163,7 +163,12 @@ $packageJson.devDependencies && delete $packageJson.devDependencies
 
 // Assigns new values to ${dist}/package.json
 $packageJson._moduleAliases = _moduleAliases
-$packageJson.scripts.start = packageJson.scripts.start.replace(new RegExp(`${dist}/|\\s--exec\\s${dist}\\s?`, "g"), "")
+
+$packageJson.scripts.start = packageJson.scripts.start.replace(
+	new RegExp(`(${dist}|dist)/|\\s--exec\\s(${dist}|dist)\\s?`, "g"),
+	""
+)
+
 $packageJson.scripts["build:database"] = packageJson.scripts["build:database"].replace(" && sequelize db:seed:all", "")
 $packageJson.main = packageJson.main.replace(/\.ts$/, ".js")
 
