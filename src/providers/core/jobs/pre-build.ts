@@ -131,10 +131,10 @@ if ( !modulePaths.length ) {
 	)
 
 	if ( $process.status === 0 ) {
-		console.log(`${chalk.green("● Pre-build:")} ${chalk.cyan("no routes detected -> default were copied")}`)
+		console.log(`${chalk.green("● Pre-build:")} ${chalk.cyan("no routes detected -> defaults were added")}`)
 
 	} else {
-		console.log(`${chalk.red("● Pre-build:")} no routes detected -> defaults could not be copied`)
+		console.log(`${chalk.red("● Pre-build:")} no routes detected -> defaults could not be added`)
 	}
 }
 

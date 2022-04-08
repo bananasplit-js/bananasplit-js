@@ -205,5 +205,8 @@ spawnSync(
 	{ cwd: process.cwd(), stdio: "ignore" }
 )
 
+// Output message
+console.log(chalk.gray(`\nOutput: ${path.resolve(process.cwd(), `${dist}/`)}`))
+
 // Success output message
 console.log(`${chalk.bgGreen.black.bold("\n Build done! ")} ✨\n`)
