@@ -1,8 +1,7 @@
 {
 	"dist": {
 		"include": [
-			"public",
-			"LICENSE"
+			"public"
 		],
 		"exclude": [
 			"public/.gitignore"

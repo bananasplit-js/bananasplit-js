@@ -1,0 +1,10 @@
+{
+	"dist": {
+		"include": [
+			"LICENSE",
+			".sequelizerc"
+		],
+		"exclude": [
+		]
+	}
+}
