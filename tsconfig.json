@@ -12,14 +12,15 @@
 		"forceConsistentCasingInFileNames": true,
 		"resolveJsonModule": true
 	},
-	"include": ["src/**/*", "package.json"],
+	"include": ["src/**/*", "package.json", "tests/**/*"],
 	"exclude": [
 		"src/database/generators",
 		"src/database/seeders",
 		"src/providers/core/jobs/*",
 		"src/providers/core/app/controllers",
 		"src/providers/core/app/routes",
-		"src/**/*/tmpl.*"
+		"src/**/*/tmpl.*",
+		"tests/**/*/tmpl.*"
 	],
 	"extends": "./tsconfig.paths.json"
 }

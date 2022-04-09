@@ -25,7 +25,6 @@ const tsconfigJson: any = require("@root/tsconfig.json")
 const dist: string = tsconfigJson.compilerOptions.outDir.replace(/\/$/, "") || "dist"
 
 // Require prevents module not found notifications by editor
-const tsconfigPathsJson: any = require("@root/tsconfig.paths.json")
 const bananasplitLocalJSON: any = require("@root/bananasplit.json")
 const bananasplitJSON: any = require("@core/bananasplit.json")
 
@@ -121,6 +120,29 @@ if (includes.length) {
 	console.log(`\n${chalk.green("● Post-build:")} files copied successfully!`)
 }
 
+// Remove ts-jest preset from jest.config.js
+try {
+	// Read the file
+	let jestConfigData: string = fs.readFileSync(
+		path.resolve(process.cwd(), `${dist}/jest.config.js`),
+		"utf-8"
+	)
+
+	// Delete ts-node string between double quotes
+	jestConfigData = jestConfigData.replace("\"ts-jest\"", "\"\"")
+
+	// Write changes in the same file
+	fs.writeFileSync(
+		path.resolve(process.cwd(), `${dist}/jest.config.js`),
+		jestConfigData
+	)
+
+	console.log(`${chalk.green("● Post-build:")} jest.config.js updated!`)
+
+} catch(_) {
+	Abort("Could not remove ts-node preset from jest.config.js")
+}
+
 // Type "any" allow to use delete
 const $packageJson: any = packageJson
 
@@ -130,7 +152,6 @@ $packageJson.scripts.build && delete $packageJson.scripts.build
 $packageJson.scripts["build:stack"] && delete $packageJson.scripts["build:stack"]
 $packageJson.scripts["route:list"] && delete $packageJson.scripts["route:list"]
 $packageJson.scripts["generator:create"] && delete $packageJson.scripts["generator:create"]
-$packageJson.scripts.test && delete $packageJson.scripts.test
 $packageJson.scripts["test:watch"] && delete $packageJson.scripts["test:watch"]
 $packageJson.scripts["test:coverage"] && delete $packageJson.scripts["test:coverage"]
 $packageJson.scripts["test:cache"] && delete $packageJson.scripts["test:cache"]
@@ -148,15 +169,15 @@ $packageJson.main = packageJson.main.replace(/\.ts$/, ".js")
 try {
 	// Writes the changes into dist/package.json
 	fs.writeFileSync(
-		path.resolve(`./${dist}/package.json`),
+		path.resolve(process.cwd(), `${dist}/package.json`),
 		JSON.stringify($packageJson, null, prettierJson.tabWidth || 2)
 	)
 
 	// All right!
 	console.log(`${chalk.green("● Post-build:")} ${dist}/package.json is ready for production 🚀`)
 
-} catch (e: any) {
-	Abort(e)
+} catch (_) {
+	Abort("Could not write changes in package.json")
 }
 
 // Silent: Remove setup.routes from routes folder if were copied
@@ -167,7 +188,7 @@ spawnSync(
 )
 
 // Output message
-console.log(chalk.gray(`\nOutput: ${path.resolve(process.cwd(), `${dist}/`)}`))
+console.log(chalk.gray(`\nOutput directory: ${path.resolve(process.cwd(), `${dist}/`)}`))
 
 // Success output message
 console.log(`${chalk.bgGreen.black.bold("\n Build done! ")} ✨\n`)

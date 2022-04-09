@@ -8,8 +8,8 @@
  * 
  */
 
-const { express } = require( "@services" )
-const { Sequelize } = require( "@bananasplit-js" )
+import { express } from "@services"
+import { Sequelize } from "@bananasplit-js"
 
 import request, { Response } from "supertest"
 import http from "http"

@@ -3,6 +3,7 @@
 		"include": [
 			"LICENSE",
 			".sequelizerc",
+			"jest.config.js",
 			["tsconfig.paths.json", "tsconfig.json"]
 		],
 		"exclude": [

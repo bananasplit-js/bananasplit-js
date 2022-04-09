@@ -172,7 +172,7 @@ RunNpmProcess(["add", databaseDriverPackages])
 console.log("\n\033[1;33mDatabase drivers installed.\033[0m\n")
 
 RunNpmProcess(["run", "build:database"])
-console.log("\n\033[1;33mDatabase created.\033[0m\n")
+console.log("\033[1;33mDatabase created.\033[0m\n")
 
 RunNpmProcess(["test", "setup"])
 
