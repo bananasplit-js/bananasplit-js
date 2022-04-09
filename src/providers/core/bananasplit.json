@@ -2,7 +2,8 @@
 	"dist": {
 		"include": [
 			"LICENSE",
-			".sequelizerc"
+			".sequelizerc",
+			["tsconfig.paths.json", "tsconfig.json"]
 		],
 		"exclude": [
 		]

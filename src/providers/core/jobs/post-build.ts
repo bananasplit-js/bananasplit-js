@@ -59,22 +59,6 @@ const Abort = (msg: string): void => {
 	process.exit(1)
 }
 
-// Stores path alias and system path as pair
-let pathsPair: [string, string[]][] = []
-
-try {
-	// Parse to array of arrays containing path-alias and system-path
-	pathsPair = Object.entries(tsconfigPathsJson.compilerOptions.paths)
-
-} catch (_) {
-	Abort("Key paths does not exists at tsconfig.json")
-}
-
-// Aborts when no paths founded in the list
-if (!pathsPair.length) {
-	Abort("There is no path defined into property paths at tsconfig.json")
-}
-
 // Banana default includes and local banana includes
 const bananaIncludes: Array<string|string[]> = bananasplitJSON.dist.include
 const localIncludes: Array<string|string[]> = bananasplitLocalJSON.dist.include
@@ -137,25 +121,6 @@ if (includes.length) {
 	console.log(`\n${chalk.green("● Post-build:")} files copied successfully!`)
 }
 
-// Type "any" allow index the object by string
-var _moduleAliases: any = {}
-
-// Regex for clean /* from path alias
-const cRex: RegExp[] = [/\/\*$/, /\/\//]
-
-/*
- * 
- *  Removes /* from the end of each path pair
- *  @path-alias/*: path/to/module/* -> @path-alias: path/to/module
- * 
- */
-pathsPair.forEach((pathPair: [string, string[]]) => {
-	const index: string = pathPair[0].replace(cRex[0], "")
-	const distPath: string = pathPair[1][0].replace(cRex[0], "").replace(cRex[1], "/")
-
-	_moduleAliases[index] = distPath
-})
-
 // Type "any" allow to use delete
 const $packageJson: any = packageJson
 
@@ -176,14 +141,7 @@ $packageJson.scripts.prebuild && delete $packageJson.scripts.prebuild
 $packageJson.scripts.postbuild && delete $packageJson.scripts.postbuild
 $packageJson.devDependencies && delete $packageJson.devDependencies
 
-// Assigns new values to ${dist}/package.json
-$packageJson._moduleAliases = _moduleAliases
-
-$packageJson.scripts.start = packageJson.scripts.start.replace(
-	new RegExp(`(${dist}|dist)/|\\s--exec\\s(${dist}|dist)\\s?`, "g"),
-	""
-)
-
+$packageJson.scripts.start = "node src/app"
 $packageJson.scripts["build:database"] = packageJson.scripts["build:database"].replace(" && sequelize db:seed:all", "")
 $packageJson.main = packageJson.main.replace(/\.ts$/, ".js")
 
@@ -197,9 +155,8 @@ try {
 	// All right!
 	console.log(`${chalk.green("● Post-build:")} ${dist}/package.json is ready for production 🚀`)
 
-} catch (err: any) {
-	console.error(err)
-	process.exit(1)
+} catch (e: any) {
+	Abort(e)
 }
 
 // Silent: Remove setup.routes from routes folder if were copied
