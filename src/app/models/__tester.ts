@@ -1,9 +1,9 @@
 /**
  *
  *  Model: Tester
- *  @module app/models/tester
+ *  @module app/models/__tester
  * 
- *  @description tester model
+ *  @description setup tester model
  * 
  */
 
