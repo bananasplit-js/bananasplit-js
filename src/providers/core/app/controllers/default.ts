@@ -9,7 +9,7 @@
 
 import { Request, Response } from "express"
 
-export default class defaultController {
+export default class DefaultController {
 	/**
 	 *  @description default route
 	 */

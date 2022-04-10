@@ -99,18 +99,22 @@ if (includes.length) {
 			}
 
 			// Copy the file or dist recursively
-			fs.copySync(src, dest, copyOptions)
+			fs.copySync(path.resolve(process.cwd(), src), path.resolve(process.cwd(), dest), copyOptions)
 
 			// File copy success log
 			console.log(
 				chalk.cyan("    ✔ "),
-				chalk.cyan( `${src} ${src !== dest.replace(new RegExp(`^${dist}/`), "") ? `-> ${dest}` : ""}`)
+				chalk.cyan(
+					`${src} ${src !== dest.replace(new RegExp(`^${dist}/`), "") ? `-> ${dest}` : ""}`
+				)
 			)
 
 		} catch (e: any) {
 			// File copy error log
 			console.log(
-				chalk.red(`    ✘  ${src} ${src !== dest.replace(new RegExp(`^${dist}/`), "") ? `-> ${dest}` : ""}\n`)
+				chalk.red(
+					`    ✘  ${src} ${src !== dest.replace(new RegExp(`^${dist}/`), "") ? `-> ${dest}` : ""}\n`
+				)
 			)
 
 			process.exit(1)
