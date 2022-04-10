@@ -40,16 +40,18 @@ if ( !modulePaths.length ) {
 	const $process = spawnSync(
 		"cp",
 		[
-			path.resolve("./src/providers/core/app/routes/default.routes.ts"),
-			path.resolve("./src/app/routes")
+			path.resolve(process.cwd(), "src/providers/core/app/routes/default.routes.ts"),
+			path.resolve(process.cwd(), "src/app/routes")
 		],
 		{ cwd: process.cwd(), stdio: "inherit" }
 	)
 
+	// No routes detected message
 	if ( $process.status === 0 ) {
 		console.log(`\n${chalk.green("● Pre-build:")} ${chalk.cyan("no routes detected -> defaults were added")}`)
 
 	} else {
+		// Error message when adding defaults routes
 		console.log(`\n${chalk.red("● Pre-build:")} no routes detected -> defaults could not be added`)
 	}
 }

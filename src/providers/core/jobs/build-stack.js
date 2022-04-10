@@ -112,18 +112,15 @@ const getPackageManager = () => {
 	// Check for windows
 	const isWindows = (process.platform === "win32")
 
-	switch ( true ) {
+	switch (true) {
 		case /^yarn/.test(npmUserAgent):
 			return isWindows ? "yarn.cmd" : "yarn"
-		;
 
 		case /^npm/.test(npmUserAgent):
 			return isWindows ? "npm.cmd" : "npm"
-		;
 
 		default:
 			return false
-		;
 	}
 }
 
@@ -141,13 +138,13 @@ if ( !packageManagerExec ) {
 
 // Runs any sync process
 const RunProcess = (cmd, args, options={}) => {
-	// Run the process
 	const $process = spawnSync(
 		cmd,
 		args,
 		{ cwd: process.cwd(), stdio: "inherit", ...options }
 	)
 
+	// Only show error and exit if pass is false (default)
 	if (!options.pass) {
 		// if an error ocurrs it prints it and exits
 		if ($process.status === 1) {
@@ -159,7 +156,7 @@ const RunProcess = (cmd, args, options={}) => {
 	return $process
 }
 
-// Runs sync npm process
+// Runs a sync npm process
 const RunNpmProcess = (args, options={}) => 
 	RunProcess(packageManagerExec, args, options)
 
@@ -167,38 +164,48 @@ const RunNpmProcess = (args, options={}) =>
 RunNpmProcess(["install"])
 console.log("\n\033[1;33mPackages installed.\033[0m\n")
 
+// Install database drivers
 RunNpmProcess(["add", databaseDriverPackages])
 console.log("\n\033[1;33mDatabase drivers installed.\033[0m\n")
 
+// Test database creation, runs migrations and seeders
 RunNpmProcess(["run", "build:database"])
 console.log("\033[1;33mDatabase ready.\033[0m\n")
 
+// Setup test absolute path
 const setupTestPath = path.resolve(
 	process.cwd(),
 	"tests/integration test/__setup.test.ts"
 )
 
+// If setup test file exists, then run it
 if (fs.existsSync(setupTestPath)) {
 	RunProcess("jest", ["test", "__setup", "--runInBand"])
 
 } else {
+	// Else run all local tests
 	RunNpmProcess(["test"])
 }
 
+// Cleaning up process message
 console.log("\n\033[0;32mCleaning up...\033[0m")
 
+// Tester migration absolute path
 const testerMigrationPath = path.resolve(
 	process.cwd(),
 	"src/database/migrations/20200216155557-create-tester-table.js"
 )
 
+// Determines if stack was cleaned
 let stackCleaned = false
 
+// If tester table migration exists, then undo migration
 if (fs.existsSync(testerMigrationPath)) {
 	RunProcess("sequelize", ["db:migrate:undo"])
 	stackCleaned = true
 }
 
+// Delete all setup and tester files
 RunProcess(
 	"rm",
 	[
@@ -212,16 +219,23 @@ RunProcess(
 	{ stdio: "ignore", pass: true }
 )
 
-if (stackCleaned) {
+// Determines if project has a git repository
+const hasGitRepository = fs.existsSync(path.resolve(process.cwd(), ".git"))
+
+// If stack was cleaned and has git repository
+if (stackCleaned && hasGitRepository) {
+	// Then commit changes
 	const cleanCommitProcess = RunProcess(
 		"git",
 		["commit", "-am", "Stack cleaned"]
 	)
 
+	// Commit success message
 	if (cleanCommitProcess.status === 0) {
 		console.log("\n\033[1;33mCleaned.\033[0m")
 
 	} else {
+		// Committing rror message
 		console.error(
 			"\nCould not commit the changes after clean up.\n",
 			"Please commitm manually."
