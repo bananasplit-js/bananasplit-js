@@ -40,7 +40,7 @@ if ( !modulePaths.length ) {
 	const $process = spawnSync(
 		"cp",
 		[
-			path.resolve("./src/providers/core/app/routes/setup.routes.ts"),
+			path.resolve("./src/providers/core/app/routes/default.routes.ts"),
 			path.resolve("./src/app/routes")
 		],
 		{ cwd: process.cwd(), stdio: "inherit" }

@@ -5,7 +5,7 @@
  * 
  */
 
-const up = (queryInterface, DataTypes) => {
+exports.up = (queryInterface, DataTypes) => {
 	return queryInterface.createTable("PluralName", {
 		id: {
 			type: DataTypes.INTEGER.UNSIGNED,
@@ -28,6 +28,6 @@ const up = (queryInterface, DataTypes) => {
 	})
 }
 
-const down = (queryInterface, Sequelize) => {
+exports.down = (queryInterface, Sequelize) => {
 	return queryInterface.dropTable("PluralName")
 }

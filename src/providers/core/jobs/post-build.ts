@@ -183,7 +183,7 @@ try {
 // Silent: Remove setup.routes from routes folder if were copied
 spawnSync(
 	"rm",
-	[path.resolve("./src/app/routes/setup.routes.ts")],
+	[path.resolve("./src/app/routes/default.routes.ts")],
 	{ cwd: process.cwd(), stdio: "ignore" }
 )
 

@@ -10,7 +10,7 @@ import http from "http"
 import Express from "express"
 
 import CustomSettings from "@settings/express"
-import SetupRouter from "@core/app/routes/setup.routes"
+import DefaultRouter from "@core/app/routes/default.routes"
 
 import { loadResources, getRouters, getMiddleware } from "@core/helpers/resources"
 
@@ -199,7 +199,7 @@ export default
 				return routers
 			}
 
-			const defaultRouter: Express.Router = SetupRouter(this.service)
+			const defaultRouter: Express.Router = DefaultRouter(this.service)
 			this.service.use(defaultRouter)
 
 			return {}

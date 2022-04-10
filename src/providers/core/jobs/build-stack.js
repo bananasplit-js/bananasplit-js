@@ -8,10 +8,9 @@
  * 
  */
 
-const { spawnSync } = require( "child_process" )
-const fs = require( "fs" )
-const path = require( "path" )
-
+const { spawnSync } = require("child_process")
+const fs = require("fs")
+const path = require("path")
 
 /**
  * 
@@ -25,7 +24,6 @@ const Abort = (msg) => {
 	console.log(msg)
 	process.exit(1)
 }
-
 
 // Return the dialect used in DB_DIALECT
 const findDialect = () => {
@@ -51,7 +49,6 @@ const findDialect = () => {
 	return dialect
 }
 
-
 // Store the database dialect
 const dialect = findDialect()
 
@@ -67,7 +64,6 @@ if ( !dialect ) {
 	Abort(noDialectMessage.join(""))
 }
 
-
 // Map to the database drivers package as string
 const getDatabaseDriverPackages = (dialect) => {
 	// Key-value pairs of driver-packages
@@ -81,7 +77,6 @@ const getDatabaseDriverPackages = (dialect) => {
 
 	return packages[dialect] || ""
 }
-
 
 // Gets database driver packages based on the dialect
 const databaseDriverPackages = getDatabaseDriverPackages(dialect)
@@ -99,7 +94,6 @@ if ( !databaseDriverPackages ) {
 	Abort(invalidDialect.join(""))
 }
 
-
 // System package manager used
 const npmUserAgent = process.env.npm_config_user_agent
 
@@ -112,7 +106,6 @@ if ( !npmUserAgent ) {
 
 	Abort(noNpmAgentMessage.join(""))
 }
-
 
 // Map to the used package manager executor (cross-platform)
 const getPackageManager = () => {
@@ -134,7 +127,6 @@ const getPackageManager = () => {
 	}
 }
 
-
 // npm|yarn executor
 const packageManagerExec = getPackageManager()
 
@@ -147,22 +139,29 @@ if ( !packageManagerExec ) {
 	Abort(noNpmAgentMessage.join(""))
 }
 
-
-// Runs sync npm process
-const RunNpmProcess = (cmd) => {
+// Runs any sync process
+const RunProcess = (cmd, args, options={}) => {
 	// Run the process
 	const $process = spawnSync(
-		packageManagerExec,
 		cmd,
-		{ cwd: process.cwd(), stdio: "inherit" }
+		args,
+		{ cwd: process.cwd(), stdio: "inherit", ...options }
 	)
 
-	// if an error ocurrs it prints it and exits
-	if ( $process.status === 1 ) {
-		console.error($process.error || "")
-		process.exit(1)
+	if (!options.pass) {
+		// if an error ocurrs it prints it and exits
+		if ($process.status === 1) {
+			console.error($process.error || "")
+			process.exit(1)
+		}
 	}
+
+	return $process
 }
+
+// Runs sync npm process
+const RunNpmProcess = (args, options={}) => 
+	RunProcess(packageManagerExec, args, options)
 
 // Builds the stack
 RunNpmProcess(["install"])
@@ -172,11 +171,65 @@ RunNpmProcess(["add", databaseDriverPackages])
 console.log("\n\033[1;33mDatabase drivers installed.\033[0m\n")
 
 RunNpmProcess(["run", "build:database"])
-console.log("\033[1;33mDatabase created.\033[0m\n")
+console.log("\033[1;33mDatabase ready.\033[0m\n")
 
-RunNpmProcess(["test", "setup"])
+const setupTestPath = path.resolve(
+	process.cwd(),
+	"tests/integration test/setup.test.ts"
+)
+
+if (fs.existsSync(setupTestPath)) {
+	RunProcess("jest", ["test", "setup", "--runInBand"])
+
+} else {
+	RunNpmProcess(["test"])
+}
+
+console.log("\n\033[0;32mCleaning up...\033[0m")
+
+const testerMigrationPath = path.resolve(
+	process.cwd(),
+	"src/database/migrations/20200216155557-create-tester-table.js"
+)
+
+let stackCleaned = false
+
+if (fs.existsSync(testerMigrationPath)) {
+	RunProcess("sequelize", ["db:migrate:undo"])
+	stackCleaned = true
+}
+
+RunProcess(
+	"rm",
+	[
+		path.resolve(process.cwd(), setupTestPath),
+		path.resolve(process.cwd(), testerMigrationPath),
+		path.resolve(process.cwd(), "src/app/controllers/setup.ts"),
+		path.resolve(process.cwd(), "src/app/models/tester.ts"),
+		path.resolve(process.cwd(), "src/app/routes/setup.routes.ts"),
+		path.resolve(process.cwd(), "src/database/seeders/tester-table-seeder.js")
+	],
+	{ stdio: "ignore", pass: true }
+)
+
+if (stackCleaned) {
+	const cleanCommitProcess = RunProcess(
+		"git",
+		["commit", "-am", "Stack cleaned"]
+	)
+
+	if (cleanCommitProcess.status === 0) {
+		console.log("\n\033[1;33mCleaned.\033[0m")
+
+	} else {
+		console.error(
+			"\nCould not commit the changes after clean up.\n",
+			"Please commitm manually."
+		)
+	}
+}
 
 // Success Output message
 console.log("")
-console.log('\x1B[43m\x1B[30m\x1B[1m Bananasplit-js is ready! \x1B[22m\x1B[39m\x1B[49m')
+console.log("\x1B[43m\x1B[30m\x1B[1m Bananasplit-js is ready! \x1B[22m\x1B[39m\x1B[49m")
 console.log("")

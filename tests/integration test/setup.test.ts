@@ -73,9 +73,8 @@ test("Database migrations are ok", async () => {
 
 	// case insensitive fixs the problem on windows tables name
 	expect(JSONResponse[0][tablesKey]).toMatch(/SequelizeMeta/i)
-	expect(JSONResponse[1][tablesKey]).toMatch(/Users/i)
+	expect(JSONResponse[1][tablesKey]).toMatch(/Tester/i)
 })
-
 
 /**
  *  @test Database seeders are ok
