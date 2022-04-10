@@ -10,7 +10,7 @@
 import { Router, Application } from "express"
 
 // Controller
-import SetupController from "@core/app/controllers/setup"
+import SetupController from "@controllers/setup"
 
 const $: Router = Router()
 
