@@ -7,11 +7,11 @@
 
 const createSingularName = require("@generators/create-{singular_name}")
 
-const up = (queryInterface) => {
+exports.up = (queryInterface) => {
 	const singular_name = createSingularName.amount(10)
 	return queryInterface.bulkInsert("PluralName", plural_name, {})
 }
 
-const down = (queryInterface) => {
+exports.down = (queryInterface) => {
 	return queryInterface.bulkDelete("PluralName", null, {})
 }

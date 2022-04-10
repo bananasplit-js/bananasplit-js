@@ -1,20 +1,22 @@
 /**
  *
- *  Model: {SingularName}
- *  @module app/models/{singular_name}
+ *  Model: Tester
+ *  @module app/models/tester
  * 
- *  @description model for {singular_name}
+ *  @description tester model
  * 
  */
 
 import { Model } from "@bananasplit-js"
 import { DataTypes, ModelAttributes, ModelOptions } from "sequelize"
 
-class SingularName extends Model {
+class Tester extends Model {
 	/**
 	 *  columns
 	 */
 	public id!: number
+	public key!: string
+	public value!: string
 
 	/**
 	 *  attributes
@@ -25,17 +27,28 @@ class SingularName extends Model {
 			autoIncrement: true,
 			primaryKey: true
 		},
+
+		key: {
+			type: DataTypes.STRING,
+			allowNull: false
+		},
+
+		value: {
+			type: DataTypes.STRING,
+			allowNull: false
+		}
 	}
 
 	/**
 	 *  options
 	 */
 	public static $options: ModelOptions = {
-		timestamps: true
+		tableName: "Tester",
+		timestamps: false
 	}
 }
 
 // Init the model
-SingularName.init()
+Tester.init()
 
-export default SingularName
+export default Tester
