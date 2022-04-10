@@ -175,11 +175,11 @@ console.log("\033[1;33mDatabase ready.\033[0m\n")
 
 const setupTestPath = path.resolve(
 	process.cwd(),
-	"tests/integration test/setup.test.ts"
+	"tests/integration test/__setup.test.ts"
 )
 
 if (fs.existsSync(setupTestPath)) {
-	RunProcess("jest", ["test", "setup", "--runInBand"])
+	RunProcess("jest", ["test", "__setup", "--runInBand"])
 
 } else {
 	RunNpmProcess(["test"])
@@ -204,10 +204,10 @@ RunProcess(
 	[
 		path.resolve(process.cwd(), setupTestPath),
 		path.resolve(process.cwd(), testerMigrationPath),
-		path.resolve(process.cwd(), "src/app/controllers/setup.ts"),
-		path.resolve(process.cwd(), "src/app/models/tester.ts"),
-		path.resolve(process.cwd(), "src/app/routes/setup.routes.ts"),
-		path.resolve(process.cwd(), "src/database/seeders/tester-table-seeder.js")
+		path.resolve(process.cwd(), "src/app/controllers/__tester.ts"),
+		path.resolve(process.cwd(), "src/app/models/__tester.ts"),
+		path.resolve(process.cwd(), "src/app/routes/__tester.routes.ts"),
+		path.resolve(process.cwd(), "src/database/seeders/__tester-table-seeder.js")
 	],
 	{ stdio: "ignore", pass: true }
 )

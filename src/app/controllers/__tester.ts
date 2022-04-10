@@ -1,9 +1,9 @@
 /**
  * 
- *  Controller: Setup
- *  @module providers/core/app/controllers/setup
+ *  Controller: Tester
+ *  @module providers/core/app/controllers/__tester
  * 
- *  @description controller for setup test
+ *  @description controller for setup tester
  * 
  */
 
@@ -13,7 +13,7 @@ import { Sequelize } from "@core"
 /**
  *  model
  */
-import Tester from "@models/tester"
+import Tester from "@models/__tester"
 
 export default class TesterController {
 	/**
@@ -56,7 +56,7 @@ export default class TesterController {
 	/**
 	 *  @description Tester table migration test
 	 */
-	public static async testerTableMigrationTest (_: Request, res: Response) {
+	public static async tableMigrationTest (_: Request, res: Response) {
 		try {
 			const [result] = await Sequelize.query("SHOW TABLES")
 			res.status(200).send(result)
@@ -71,7 +71,7 @@ export default class TesterController {
 	/**
 	 *  @description Tester table seeder test
 	 */
-	public static async testerTableSeederTest (_: Request, res: Response) {
+	public static async tableSeederTest (_: Request, res: Response) {
 		try {
 			const result = await Tester.findAll()
 			res.status(200).send(result)
