@@ -1,14 +1,14 @@
 
-# Bananasplit-test: this will protect your master branch from bugs
+# Bananasplit-js test
 
 name: bananasplit-test
 
 on:
   push:
-    branches: [ main/template ]
+    branches: [main/template]
     
   pull_request:
-    branches: [ main/template ]
+    branches: [main/template]
 
 jobs:
   test:
@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [ 17.x ]
+        node-version: [17.x]
 
     env:
       NODE_ENV: test
@@ -51,7 +51,7 @@ jobs:
         run: npx sequelize db:seed:all
 
       - name: Test with jest
-        run: npm test setup
+        run: npm test __setup
     
     services:
       mysql:
