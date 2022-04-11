@@ -28,7 +28,8 @@ const generatorName: string | undefined = process.argv[2]
 
 // Check if generator name is specified
 if (!generatorName) {
-	console.log(chalk.bgRed.black(" Must to specify a generator. "), "\n")
+	console.log(`\n${chalk.bgRed.black.bold(` Error ` )}`)
+	console.log(chalk.red("Must to specify a generator."), "\n")
 	process.exit(1)
 }
 
@@ -37,7 +38,8 @@ const amount: number | undefined = process.argv[3] ? parseInt(process.argv[3]) :
 
 // Check if value parsed is a valid number (not NaN)
 if (amount !== undefined && (isNaN(amount) || amount < 0)) {
-	console.log(chalk.bgRed.black(" Must to specify a valid amount. "), "\n")
+	console.log(`\n${chalk.bgRed.black.bold(` Error ` )}`)
+	console.log(chalk.red("Must to specify a valid amount."), "\n")
 	process.exit(1)
 }
 
@@ -56,12 +58,9 @@ try {
 	}
 
 } catch (e: any) {
-	console.log(e)
-	console.log("")
-	console.log(chalk.bgRed.black(" Check your extend object. Must contain a JSON format. "))
-
-	console.log("")
-	console.log("Do not forget to add double quotes to all the keys.", "\n")
+	console.log(`\n${chalk.bgRed.black.bold(` Error ` )}`)
+	console.log(chalk.red("Check your extend object. Must contain a JSON format."))
+	console.log("\nDo not forget to add double quotes to all the keys.\n")
 
 	process.exit(1)
 }
@@ -115,7 +114,6 @@ try {
 	console.log(chalk.yellow("Copied to clipboard!"), "📋", "\n")
 
 } catch (e: any) {
-	console.log(e)
-	console.log("")
-	console.log(chalk.bgRed.black(` Error: Generator "${generatorName}" not found. ` ), "\n")
+	console.log(`\n${chalk.bgRed.black.bold(` Error ` )}`)
+	console.log(chalk.red(`Generator "${chalk.bold(generatorName)}" not found.\n`))
 }
