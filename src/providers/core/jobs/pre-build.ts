@@ -14,6 +14,10 @@ import path from "path"
 import chalk from "chalk"
 import { spawnSync } from "child_process"
 
+/*
+ *	Note: Require prevents missing module warning by LSP
+ */
+
 // Helpers
 const { getRouters } = require("@core/helpers/resources")
 
@@ -23,19 +27,10 @@ const { IModule } = require("@core/interfaces")
 // Preparing build log
 console.log(`\n${chalk.yellow("○ Preparing to build...")}`)
 
-/**
- * 
- *  Abort the execution of the script
- * 
- *  @param { string } msg
- *  @returns { void }
- * 
- */
-
 // Copy default routes if no routes were added
 const modulePaths: typeof IModule[] = getRouters()
 
-if ( !modulePaths.length ) {
+if (!modulePaths.length) {
 	// Copy default routes file
 	const $process = spawnSync(
 		"cp",
@@ -47,7 +42,7 @@ if ( !modulePaths.length ) {
 	)
 
 	// No routes detected message
-	if ( $process.status === 0 ) {
+	if ($process.status === 0) {
 		console.log(`\n${chalk.green("● Pre-build:")} ${chalk.cyan("no routes detected -> defaults were added")}`)
 
 	} else {
@@ -56,5 +51,6 @@ if ( !modulePaths.length ) {
 	}
 }
 
+// Next step message (build)
 console.log("")
 console.log(chalk.yellow("○ Building...\n"))

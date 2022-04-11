@@ -18,8 +18,28 @@ import { spawnSync } from "child_process"
 // Types
 import { CopyOptionsSync } from "fs-extra"
 
-// Require prevents module not found notifications by editor
+/*
+ *	Note: Require prevents missing module error by LSP
+ */
+
+// TS Config json
 const tsconfigJson: any = require("@root/tsconfig.json")
+
+/**
+ * 
+ *  Abort the execution of the script
+ * 
+ *  @param { string } msg
+ *  @returns { void }
+ * 
+ */
+const Abort = (msg: string): void => {
+	console.error(chalk.red(`\n${msg}`))
+	process.exit(1)
+}
+
+
+// Script begins ----------------------------------------------------------------------
 
 // Outdir from tsconfig or dist
 const dist: string = tsconfigJson.compilerOptions.outDir.replace(/\/$/, "") || "dist"
@@ -44,19 +64,6 @@ try {
 // Build logs
 console.log(`\n${chalk.green("● Build:")} app compiled to ${dist}!\n`)
 console.log(chalk.yellow("○ Packing..."))
-
-/**
- * 
- *  Abort the execution of the script
- * 
- *  @param { string } msg
- *  @returns { void }
- * 
- */
-const Abort = (msg: string): void => {
-	console.error(chalk.red(`\n${msg}`))
-	process.exit(1)
-}
 
 // Banana default includes and local banana includes
 const bananaIncludes: Array<string|string[]> = bananasplitJSON.dist.include
@@ -99,7 +106,11 @@ if (includes.length) {
 			}
 
 			// Copy the file or dist recursively
-			fs.copySync(path.resolve(process.cwd(), src), path.resolve(process.cwd(), dest), copyOptions)
+			fs.copySync(
+				path.resolve(process.cwd(), src),
+				path.resolve(process.cwd(), dest),
+				copyOptions
+			)
 
 			// File copy success log
 			console.log(
@@ -187,7 +198,7 @@ try {
 // Silent: Remove setup.routes from routes folder if were copied
 spawnSync(
 	"rm",
-	[path.resolve("./src/app/routes/default.routes.ts")],
+	[path.resolve(process.cwd(), "src/app/routes/default.routes.ts")],
 	{ cwd: process.cwd(), stdio: "ignore" }
 )
 
