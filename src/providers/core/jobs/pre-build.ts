@@ -1,6 +1,6 @@
 /**
  * 
- *  Pre Build
+ *  Pre-build
  *  @script src/providers/core/jobs/pre-build
  * 
  *  @description updates module aliases at package.json
@@ -12,7 +12,7 @@ import "tsconfig-paths/register"
 
 import path from "path"
 import chalk from "chalk"
-import { spawnSync } from "child_process"
+import { spawnSync, SpawnSyncReturns } from "child_process"
 
 /*
  *	Note: Require prevents missing module warning by LSP
@@ -32,7 +32,7 @@ const modulePaths: typeof IModule[] = getRouters()
 
 if (!modulePaths.length) {
 	// Copy default routes file
-	const $process = spawnSync(
+	const $process: SpawnSyncReturns<Buffer> = spawnSync(
 		"cp",
 		[
 			path.resolve(process.cwd(), "src/providers/core/app/routes/default.routes.ts"),

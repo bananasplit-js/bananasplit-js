@@ -33,7 +33,7 @@ const Abort = (msg) => {
  * 
  */
 const findDialect = () => {
-	const envPath = path.resolve(".env")
+	const envPath = path.resolve(process.cwd(), ".env")
 
 	// Checks if .env exists
 	fs.existsSync(envPath) || Abort(".env file missing")
@@ -64,16 +64,16 @@ const findDialect = () => {
  * 
  */
 const getDatabaseDriverPackages = (dialect) => {
-	// Key-value pairs of driver-packages
+	// Key-value pairs of driver packages
 	const packages = {
-		mysql: "mysql2",
-		mariadb: "mariadb",
-		postgres: "pg pg-hstore",
-		mssql: "tedious",
-		sqlite: "sqlite3"
+		mysql: ["mysql2"],
+		mariadb: ["mariadb"],
+		postgres: ["pg", "pg-hstore"],
+		mssql: ["tedious"],
+		sqlite: ["sqlite3"]
 	}
 
-	return packages[dialect] || ""
+	return packages[dialect]
 }
 
 /**
@@ -118,12 +118,9 @@ const RunProcess = (cmd, args, options={}) => {
 	)
 
 	// Only show error and exit if pass is false (default)
-	if (!options.pass) {
-		// if an error ocurrs it prints it and exits
-		if ($process.status === 1) {
-			console.error($process.error || "")
-			process.exit(1)
-		}
+	if (!options.pass && $process.status === 1) {
+		console.error($process.error)
+		process.exit(1)
 	}
 
 	return $process
@@ -152,7 +149,7 @@ const RunNpmProcess = (...args) => RunProcess(packageManagerExec, ...args)
 const checkForMissingDrivers = (drivers) => {
 	const driversStatuses = drivers.map((d) => {
 		const { status } = RunProcess(
-			"npm",
+			(process.platform === "win32") ? "npm.cmd" : "npm",
 			["ls", d, "--depth", "0"],
 			{ stdio: "ignore", pass: true }
 		)
@@ -227,12 +224,12 @@ RunNpmProcess(["install"])
 console.log("\n\033[1;33mPackages installed.\033[0m\n")
 
 // Check if missing database drivers
-const missingDrivers = checkForMissingDrivers(databaseDriverPackages.split(" "))
+const missingDrivers = checkForMissingDrivers(databaseDriverPackages)
 
 // If one missing, then install them
 if (missingDrivers) {
 	// Install database drivers
-	RunNpmProcess(["add", databaseDriverPackages])
+	RunNpmProcess(["add", ...databaseDriverPackages])
 	console.log("\n\033[1;33mDatabase drivers installed.\033[0m\n")
 }
 
@@ -294,7 +291,7 @@ const hasGitRepository = fs.existsSync(path.resolve(process.cwd(), ".git"))
 if (stackCleaned && hasGitRepository) {
 	// Then commit changes
 	const cleanCommitProcess = RunProcess(
-		"git",
+		(process.platform === "win32") ? "git.cmd" : "git",
 		["commit", "-am", "Stack cleaned"]
 	)
 
