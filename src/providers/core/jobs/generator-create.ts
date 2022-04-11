@@ -8,6 +8,8 @@
  * 
  */
 
+import "tsconfig-paths/register"
+
 import path from "path"
 import chalk from "chalk"
 import clipboard from "clipboardy"
@@ -19,14 +21,13 @@ interface IGenerator extends Function {
 	hasAdapter: boolean
 }
 
-
 // Generator to use
 const generatorName: string | undefined = process.argv[2]
 	? process.argv[2].toLowerCase().trim()
 	: undefined
 
 // Check if generator name is specified
-if ( !generatorName ) {
+if (!generatorName) {
 	console.log(chalk.bgRed.black(" Must to specify a generator. "), "\n")
 	process.exit(1)
 }
@@ -35,7 +36,7 @@ if ( !generatorName ) {
 const amount: number | undefined = process.argv[3] ? parseInt(process.argv[3]) : undefined
 
 // Check if value parsed is a valid number (not NaN)
-if ( amount !== undefined && (isNaN(amount) || amount < 0) ) {
+if (amount !== undefined && (isNaN(amount) || amount < 0)) {
 	console.log(chalk.bgRed.black(" Must to specify a valid amount. "), "\n")
 	process.exit(1)
 }
@@ -50,7 +51,7 @@ let extend: object = {}
 
 try {
 	// Converts "extend" string to a real object
-	if ( extendString ) {
+	if (extendString) {
 		extend = JSON.parse(extendString)
 	}
 
@@ -64,7 +65,6 @@ try {
 
 	process.exit(1)
 }
-
 
 try {
 	// Absolute path to where generator is
@@ -97,17 +97,17 @@ try {
 	console.log("")
 
 	// If has adapter message
-	if ( Generator.hasAdapter ) {
+	if (Generator.hasAdapter) {
 		console.log(chalk.cyan(`Adapter`), chalk.bgGreen.black(" true "))
 	}
 
 	// If was extended message
-	if ( Object.keys(extend).length ) {
+	if (Object.keys(extend).length) {
 		console.log(chalk.cyan(`Extend `), chalk.bgGreen.black(" true "))
 	}
 
 	// Resources amount messsage
-	if ( Generator.hasAdapter || Object.keys(extend).length ) console.log("")
+	if (Generator.hasAdapter || Object.keys(extend).length) console.log("")
 	console.log(chalk.cyan.bold(`Generated resources: ${amount || 1}`))
 
 	// Show copied to clipboard message
