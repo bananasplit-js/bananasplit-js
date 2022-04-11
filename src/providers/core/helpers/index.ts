@@ -6,9 +6,9 @@
  *  @description contains common helpers used in providers
  * 
  */
+
 import chalk from "chalk"
 import boxen from "boxen"
-
 
 /**
  * 
@@ -19,20 +19,17 @@ import boxen from "boxen"
  *  @returns { void }
  * 
  */
-export const serviceLog = ( output: string ): void => {
-
+export const serviceLog = (output: string): void => {
+	// Output message by parts
 	let message: string[] = [
 		`${chalk.yellow.bold("Bananasplit-js")}\n\n`,
 		`${output}\n\n`,
-		`${chalk.green(`[${process.env.NODE_ENV!.toLowerCase()} mode]`)}`
+		`${chalk.green(`[${process.env.NODE_ENV!.toLowerCase()} mode]`)}`,
+		`${(process.env.NODE_ENV!.toLowerCase() === "production") ? chalk.green(" ●") : ""}`
 	]
 
+	// Print server status box
 	console.log(
-		boxen(message.join(""), {
-			padding: 1,
-			margin: 1,
-			borderColor: "yellow"
-		})
+		boxen(message.join(""), { padding: 1, margin: 1, borderColor: "yellow" })
 	)
-
 }
