@@ -19,7 +19,7 @@ import { spawnSync, SpawnSyncReturns } from "child_process"
  * 
  */
 const Abort = (msg: string): void => {
-	console.error(`\n${msg}\n`)
+	console.error(msg)
 	process.exit(1)
 }
 
@@ -51,14 +51,14 @@ const npmUserAgent: string = process.env.npm_config_user_agent!
 
 // If no npm agent founded then exits
 if (!npmUserAgent) {
-	Abort("The npm package manager could not be identified.\nPlease run the stack upgrade manually")
+	Abort("\nThe npm package manager could not be identified.\nPlease run the stack upgrade manually\n")
 }
 
 // npm|yarn executor
 const packageManager: string = getPackageManager()
 
 if (!packageManager) {
-	Abort("The npm package manager could not be identified.\nPlease run the stack upgrade manually")
+	Abort("\nThe npm package manager could not be identified.\nPlease run the stack upgrade manually\n")
 }
 
 // Runs the ncu upgrade
