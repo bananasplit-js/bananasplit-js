@@ -23,33 +23,42 @@ const Abort = (msg: string): void => {
 	process.exit(1)
 }
 
-// System package manager used
-const npmUserAgent: string = process.env.npm_config_user_agent!
-
-// If no npm agent founded then exits
-if (!npmUserAgent) {
-	Abort("The npm package manager could not be identified.\nPlease run the stack upgrade manually")
-}
-
-// Map to the package manager name
+/**
+ * 
+ *  Map to the used package manager executor (cross-platform)
+ *
+ *  @returns { string }
+ * 
+ */
 const getPackageManager = (): string => {
+	// Check for windows
+	const isWindows: boolean = (process.platform === "win32")
+
 	switch (true) {
 		case /^yarn/.test(npmUserAgent):
-			return "yarn"
+			return isWindows ? "yarn.cmd" : "yarn"
 
 		case /^npm/.test(npmUserAgent):
-			return "npm"
+			return isWindows ? "npm.cmd" : "npm"
 
 		default:
 			return ""
 	}
 }
 
+// System package manager used
+const npmUserAgent: string = process.env.npm_config_user_agent!
+
+// If no npm agent founded then exits
+if (!npmUserAgent) {
+	Abort("\nThe npm package manager could not be identified.\nPlease run the stack upgrade manually\n")
+}
+
 // npm|yarn executor
 const packageManager: string = getPackageManager()
 
 if (!packageManager) {
-	Abort("The npm package manager could not be identified.\nPlease run the stack upgrade manually")
+	Abort("\nThe npm package manager could not be identified.\nPlease run the stack upgrade manually\n")
 }
 
 // Runs the ncu upgrade
@@ -67,6 +76,6 @@ const $process: SpawnSyncReturns<Buffer> = spawnSync(
 
 // If an error ocurrs it prints it and exits
 if ($process.status === 1) {
-	console.error($process.error || "")
+	console.error($process.error)
 	process.exit(1)
 }

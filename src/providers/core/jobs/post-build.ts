@@ -34,7 +34,7 @@ const tsconfigJson: any = require("@root/tsconfig.json")
  * 
  */
 const Abort = (msg: string): void => {
-	console.error(chalk.red(`\n${msg}`))
+	console.error(msg)
 	process.exit(1)
 }
 
@@ -155,7 +155,7 @@ try {
 	console.log(`${chalk.green("● Post-build:")} jest.config.js updated!`)
 
 } catch(_) {
-	Abort("Could not remove ts-node preset from jest.config.js")
+	Abort("\nCould not remove ts-node preset from jest.config.js")
 }
 
 // Type "any" allow to use delete
@@ -192,7 +192,7 @@ try {
 	console.log(`${chalk.green("● Post-build:")} ${dist}/package.json is ready for production 🚀`)
 
 } catch (_) {
-	Abort("Could not write changes in package.json")
+	Abort("\nCould not write changes in package.json")
 }
 
 // Silent: Remove setup.routes from routes folder if were copied
