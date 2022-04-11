@@ -19,8 +19,31 @@ import { spawnSync, SpawnSyncReturns } from "child_process"
  * 
  */
 const Abort = (msg: string): void => {
-	console.error(msg)
+	console.error(`\n${msg}\n`)
 	process.exit(1)
+}
+
+/**
+ * 
+ *  Map to the used package manager executor (cross-platform)
+ *
+ *  @returns { string }
+ * 
+ */
+const getPackageManager = (): string => {
+	// Check for windows
+	const isWindows: boolean = (process.platform === "win32")
+
+	switch (true) {
+		case /^yarn/.test(npmUserAgent):
+			return isWindows ? "yarn.cmd" : "yarn"
+
+		case /^npm/.test(npmUserAgent):
+			return isWindows ? "npm.cmd" : "npm"
+
+		default:
+			return ""
+	}
 }
 
 // System package manager used
@@ -29,20 +52,6 @@ const npmUserAgent: string = process.env.npm_config_user_agent!
 // If no npm agent founded then exits
 if (!npmUserAgent) {
 	Abort("The npm package manager could not be identified.\nPlease run the stack upgrade manually")
-}
-
-// Map to the package manager name
-const getPackageManager = (): string => {
-	switch (true) {
-		case /^yarn/.test(npmUserAgent):
-			return "yarn"
-
-		case /^npm/.test(npmUserAgent):
-			return "npm"
-
-		default:
-			return ""
-	}
 }
 
 // npm|yarn executor
@@ -67,6 +76,6 @@ const $process: SpawnSyncReturns<Buffer> = spawnSync(
 
 // If an error ocurrs it prints it and exits
 if ($process.status === 1) {
-	console.error($process.error || "")
+	console.error($process.error)
 	process.exit(1)
 }
