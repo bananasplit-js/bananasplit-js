@@ -3,6 +3,7 @@
 	"reject": [
 		"chalk",
 		"boxen",
+		"clipboardy",
 		"faker",
 		"@types/faker"
 	]
