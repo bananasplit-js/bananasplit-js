@@ -139,7 +139,29 @@ const RunProcess = (cmd, args, options={}) => {
  *  @returns { object | void }
  * 
  */
-const RunNpmProcess = (...args) => RunProcess(packageManagerExec, args)
+const RunNpmProcess = (...args) => RunProcess(packageManagerExec, ...args)
+
+/**
+ * 
+ *  Checks if some database driver is missing
+ * 
+ *  @param { string[] } drivers
+ *  @returns { boolean }
+ * 
+ */
+const checkForMissingDrivers = (drivers) => {
+	const driversStatuses = drivers.map((d) => {
+		const { status } = RunProcess(
+			"npm",
+			["ls", d, "--depth", "0"],
+			{ stdio: "ignore", pass: true }
+		)
+
+		return status
+	})
+
+	return driversStatuses.includes(1)
+}
 
 
 // Script begins ----------------------------------------------------------------------
@@ -204,9 +226,15 @@ if (!packageManagerExec) {
 RunNpmProcess(["install"])
 console.log("\n\033[1;33mPackages installed.\033[0m\n")
 
-// Install database drivers
-RunNpmProcess(["add", databaseDriverPackages])
-console.log("\n\033[1;33mDatabase drivers installed.\033[0m\n")
+// Check if missing database drivers
+const missingDrivers = checkForMissingDrivers(databaseDriverPackages.split(" "))
+
+// If one missing, then install them
+if (missingDrivers) {
+	// Install database drivers
+	RunNpmProcess(["add", databaseDriverPackages])
+	console.log("\n\033[1;33mDatabase drivers installed.\033[0m\n")
+}
 
 // Test database creation, runs migrations and seeders
 RunNpmProcess(["run", "build:database"])
