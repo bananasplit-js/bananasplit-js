@@ -40,6 +40,9 @@ const Abort = (msg: string): void => {
 	process.exit(1)
 }
 
+// Test dependencies
+const testDependencies: string[] = ["jest", "supertest"]
+
 
 // Script begins ----------------------------------------------------------------------
 
@@ -219,9 +222,15 @@ if (hasTests) {
 	$packageJson.scripts.test && delete $packageJson.scripts.test
 
 	// Delete test dependencies included by bananasplit-js
-	;["jest", "supertest"].forEach((d: string) => {
+	testDependencies.forEach((d: string) => {
 		$packageJson.dependencies[d] && delete $packageJson.dependencies[d]
 	})
+
+	// Test dependencies removed log
+	console.log(
+		`\n${chalk.green("● Post-build:")} `,
+		chalk.cyan(`no test files detected -> jest config and dependencies ${testDependencies.join(", ")} removed`)
+	)
 }
 
 // Removes all non-production package.json key:values
