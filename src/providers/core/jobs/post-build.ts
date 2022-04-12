@@ -115,25 +115,17 @@ if (includes.length) {
 		const src: string = Array.isArray(include) ? include[0] : include
 		const dest: string = Array.isArray(include) ? `${dist}/${include[1]}` : `${dist}/${include}`
 
+		// If filename exists in exclude list, then escape
+		if (excludes.includes(src.trim())) {
+			return
+		}
+
 		try {
-			const copyOptions: CopyOptionsSync = {
-				...options,
-
-				// exclude filter
-				filter: (src: string): boolean => {
-					// Check for windows
-					const isWindows: boolean = (process.platform === "win32")
-					src = isWindows ? src.replace(/\\/g, "/") : src
-
-					return excludes.includes(src) ? false : true
-				}
-			}
-
 			// Copy the file or dist recursively
 			fs.copySync(
 				path.resolve(process.cwd(), src),
 				path.resolve(process.cwd(), dest),
-				copyOptions
+				{ ...options }
 			)
 
 			// File copy success log
@@ -213,7 +205,7 @@ if (hasTests) {
 
 		// Remove --passWithNoTests because if no tests, then test script is removed
 		$packageJson.scripts.test = $packageJson.scripts.test
-			? $packageJson.scripts.test.replace(/--passWithNoTests\s?/, "")
+			? $packageJson.scripts.test.replace(/\s?--passWithNoTests\s?/, "")
 			: "jest --runInBand"
 
 		console.log(`${chalk.green("● Post-build:")} jest.config.js updated!`)
