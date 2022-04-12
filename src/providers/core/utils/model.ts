@@ -47,10 +47,9 @@ export default class Model extends SequelizeModel {
 	 *  init the model
 	 */
 	public static init (this: any): any {
-		super.init
 		return super.init.call(
 			this,
-			this.model,
+			this.attributes,
 			{ ...this.options, ...this.$options as ModelOptions }
 		)
 	}
