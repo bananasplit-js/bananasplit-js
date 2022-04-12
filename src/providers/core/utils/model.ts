@@ -21,7 +21,7 @@ import sequelize from '@core/libs/sequelize'
  *  @abstract Model
  *  @extends SequelizeModel
  *
- *  @description provides a more simply layer to use models
+ *  @description provides a simpler layer to use models
  * 
  */
 export default abstract class Model extends SequelizeModel {
@@ -50,7 +50,7 @@ export default abstract class Model extends SequelizeModel {
 		return super.init.call(
 			this,
 			this.attributes,
-			{ ...this.options, ...this.$options as ModelOptions }
+			{ ...this.options, ...this.$options }
 		)
 	}
 }
