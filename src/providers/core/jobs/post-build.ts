@@ -228,8 +228,8 @@ if (hasTests) {
 
 	// Test dependencies removed log
 	console.log(
-		`\n${chalk.green("● Post-build:")} `,
-		chalk.cyan(`no test files detected -> jest config and dependencies ${testDependencies.join(", ")} removed`)
+		`${chalk.green("● Post-build:")}`,
+		chalk.cyan(`no tests detected -> jest config and dependencies ${testDependencies.join(", ")} removed`)
 	)
 }
 

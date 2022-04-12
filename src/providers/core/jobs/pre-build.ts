@@ -43,7 +43,7 @@ if (!modulePaths.length) {
 
 	// No routes detected message
 	if ($process.status === 0) {
-		console.log(`\n${chalk.green("● Pre-build:")} ${chalk.cyan("no routes detected -> defaults were added")}`)
+		console.log(`\n${chalk.green("● Pre-build:")} ${chalk.cyan("no routes detected -> default added")}`)
 
 	} else {
 		// Error message when adding defaults routes
