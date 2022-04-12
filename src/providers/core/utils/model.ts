@@ -18,13 +18,13 @@ import sequelize from '@core/libs/sequelize'
 
 /**
  * 
- *  @class Model
+ *  @abstract Model
  *  @extends SequelizeModel
  *
  *  @description provides a more simply layer to use models
  * 
  */
-export default class Model extends SequelizeModel {
+export default abstract class Model extends SequelizeModel {
 	/**
 	 *  default options
 	 */

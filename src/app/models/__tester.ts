@@ -14,9 +14,9 @@ class Tester extends Model {
 	/**
 	 *  columns
 	 */
-	public id!: number
-	public key!: string
-	public value!: string
+	declare id: number
+	declare key: string
+	declare value: string
 
 	/**
 	 *  attributes
