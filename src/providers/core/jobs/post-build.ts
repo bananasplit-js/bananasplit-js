@@ -25,6 +25,7 @@ import { CopyOptionsSync } from "fs-extra"
 // TS Config json
 const tsconfigJson: any = require("@root/tsconfig.json")
 const sequelizerc: any = require("@root/.sequelizerc")
+const jestConfig: any = require("@root/jest.config.js")
 
 /**
  * 
@@ -38,6 +39,9 @@ const Abort = (msg: string): void => {
 	console.error(msg)
 	process.exit(1)
 }
+
+// Test dependencies
+const testDependencies: string[] = ["jest", "supertest"]
 
 
 // Script begins ----------------------------------------------------------------------
@@ -62,6 +66,23 @@ try {
 	prettierJson = { tabWidth: 2 }
 }
 
+// Get all tests folder roots
+const testConfigPaths: string[] = jestConfig.roots
+
+// Check if at least one folder exists
+const hasTests: boolean | undefined = testConfigPaths.some((f: string) => {
+	// Dist tests folder absolute path
+	const distTestFolderPath: string = path.resolve(
+		process.cwd(),
+		path.join(dist, f.replace("<rootDir>/", ""))
+	)
+
+	console.log(distTestFolderPath)
+
+	// Return true if exists, otherwise false
+	return fs.existsSync(distTestFolderPath)
+})
+
 // Build logs
 console.log(`\n${chalk.green("● Build:")} app compiled to ${dist}!\n`)
 console.log(chalk.yellow("○ Packing..."))
@@ -80,6 +101,11 @@ const bananaLocalExcludes: string[] = bananasplitLocalJSON.dist.exclude
 // Picks excludes files/dir from both bananasplit.json
 const excludes: string[] = [...bananaExcludes, ...bananaLocalExcludes]
 
+// If no tests then add jest.config to the excludes list
+if (!hasTests) {
+	excludes.push("jest.config.js")
+}
+
 // Fs copy partial options
 const options: Partial<CopyOptionsSync> = bananasplitLocalJSON.dist.options || {}
 
@@ -92,25 +118,17 @@ if (includes.length) {
 		const src: string = Array.isArray(include) ? include[0] : include
 		const dest: string = Array.isArray(include) ? `${dist}/${include[1]}` : `${dist}/${include}`
 
+		// If filename exists in exclude list, then escape
+		if (excludes.includes(src.trim())) {
+			return
+		}
+
 		try {
-			const copyOptions: CopyOptionsSync = {
-				...options,
-
-				// exclude filter
-				filter: (src: string): boolean => {
-					// Check for windows
-					const isWindows: boolean = (process.platform === "win32")
-					src = isWindows ? src.replace(/\\/g, "/") : src
-
-					return excludes.includes(src) ? false : true
-				}
-			}
-
 			// Copy the file or dist recursively
 			fs.copySync(
 				path.resolve(process.cwd(), src),
 				path.resolve(process.cwd(), dest),
-				copyOptions
+				{ ...options }
 			)
 
 			// File copy success log
@@ -167,31 +185,53 @@ if (!fs.existsSync(distDatabasePath)) {
 	// Else omit and continue
 }
 
-// Remove ts-jest preset from jest.config.js
-try {
-	// Read the file
-	let jestConfigData: string = fs.readFileSync(
-		path.resolve(process.cwd(), `${dist}/jest.config.js`),
-		"utf-8"
-	)
-
-	// Delete ts-node string between double quotes
-	jestConfigData = jestConfigData.replace("\"ts-jest\"", "\"\"")
-
-	// Write changes in the same file
-	fs.writeFileSync(
-		path.resolve(process.cwd(), `${dist}/jest.config.js`),
-		jestConfigData
-	)
-
-	console.log(`${chalk.green("● Post-build:")} jest.config.js updated!`)
-
-} catch(_) {
-	Abort("\nCould not remove ts-node preset from jest.config.js\n")
-}
-
 // Type "any" allow to use delete
 const $packageJson: any = packageJson
+
+// If there are tests then remove ts-jest preset from jest.config.js
+if (hasTests) {
+	try {
+		// Read the file
+		let jestConfigData: string = fs.readFileSync(
+			path.resolve(process.cwd(), `${dist}/jest.config.js`),
+			"utf-8"
+		)
+
+		// Delete ts-node string between double quotes
+		jestConfigData = jestConfigData.replace("\"ts-jest\"", "\"\"")
+
+		// Write changes in the same file
+		fs.writeFileSync(
+			path.resolve(process.cwd(), `${dist}/jest.config.js`),
+			jestConfigData
+		)
+
+		// Remove --passWithNoTests because if no tests, then test script is removed
+		$packageJson.scripts.test = $packageJson.scripts.test
+			? $packageJson.scripts.test.replace(/\s?--passWithNoTests\s?/, "")
+			: "jest --runInBand"
+
+		console.log(`${chalk.green("● Post-build:")} jest.config.js updated!`)
+
+	} catch(_) {
+		Abort("\nCould not remove ts-node preset from jest.config.js\n")
+	}
+
+} else {
+	// If there are no tests, then delete test script from package.json
+	$packageJson.scripts.test && delete $packageJson.scripts.test
+
+	// Delete test dependencies included by bananasplit-js
+	testDependencies.forEach((d: string) => {
+		$packageJson.dependencies[d] && delete $packageJson.dependencies[d]
+	})
+
+	// Test dependencies removed log
+	console.log(
+		`${chalk.green("● Post-build:")}`,
+		chalk.cyan(`no tests detected -> jest config and dependencies ${testDependencies.join(", ")} removed`)
+	)
+}
 
 // Removes all non-production package.json key:values
 $packageJson.scripts.dev && delete $packageJson.scripts.dev
