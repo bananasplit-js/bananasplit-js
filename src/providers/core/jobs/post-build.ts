@@ -13,7 +13,7 @@ import "tsconfig-paths/register"
 import fs from "fs-extra"
 import path from "path"
 import chalk from "chalk"
-import { spawnSync } from "child_process"
+import { spawnSync, SpawnSyncReturns } from "child_process"
 
 // Types
 import { CopyOptionsSync } from "fs-extra"
@@ -24,6 +24,7 @@ import { CopyOptionsSync } from "fs-extra"
 
 // TS Config json
 const tsconfigJson: any = require("@root/tsconfig.json")
+const sequelizerc: any = require("@root/.sequelizerc")
 
 /**
  * 
@@ -135,6 +136,37 @@ if (includes.length) {
 	console.log(`\n${chalk.green("● Post-build:")} files copied successfully!`)
 }
 
+// Migrations and database absolute paths
+const distMigrationsPath: string = path.resolve(
+	process.cwd(),
+	path.join(dist, sequelizerc["migrations-path"].replace(process.cwd(), ""))
+)
+ 
+const distDatabasePath: string = path.normalize(distMigrationsPath.replace(/\/[A-Za-z0-9_-]+$/, ""))
+
+// Migrations relative path to the project
+const distMigrationsRelativePath: string = (
+	path.normalize(distMigrationsPath.replace(process.cwd(), ""))
+		.replace(/^\//, "")
+)
+
+// Check if database folder exists
+if (!fs.existsSync(distDatabasePath)) {
+	// Adds database and migrations folders. This avoid "no migrations folder found" when running migrations
+	const $createMigrationsFolderProcess: SpawnSyncReturns<Buffer> = (
+		spawnSync("mkdir", [distDatabasePath, distMigrationsPath], { stdio: "ignore" })
+	)
+
+	// If migrations folder creation fails, log an error message
+	if ($createMigrationsFolderProcess.status === 1) {
+		console.error("\nCould not create migrations folders.")
+		console.error("This can cause \"no such file or directory migrations\" message when running migrations.")
+		console.error("\nTo avoid this add it manually: ", chalk.gray(distMigrationsRelativePath))
+	}
+
+	// Else omit and continue
+}
+
 // Remove ts-jest preset from jest.config.js
 try {
 	// Read the file
@@ -155,7 +187,7 @@ try {
 	console.log(`${chalk.green("● Post-build:")} jest.config.js updated!`)
 
 } catch(_) {
-	Abort("\nCould not remove ts-node preset from jest.config.js")
+	Abort("\nCould not remove ts-node preset from jest.config.js\n")
 }
 
 // Type "any" allow to use delete
@@ -192,7 +224,7 @@ try {
 	console.log(`${chalk.green("● Post-build:")} ${dist}/package.json is ready for production 🚀`)
 
 } catch (_) {
-	Abort("\nCould not write changes in package.json")
+	Abort("\nCould not write changes in package.json\n")
 }
 
 // Silent: Remove setup.routes from routes folder if were copied
