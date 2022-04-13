@@ -72,7 +72,14 @@ try {
 	)
 	
 	// Generator function
-	const Generator: IGenerator = require(generatorPath).default
+	const Generator: IGenerator = require(generatorPath)
+
+	// Check if generator is a function
+	if (typeof Generator !== "function") {
+		console.log(`\n${chalk.bgRed.black.bold(` Error ` )}`)
+		console.log(chalk.red(`create-${generatorName}.js does not export a function\n`))
+		process.exit(1)
+	}
 
 	// Top label
 	console.log("")
