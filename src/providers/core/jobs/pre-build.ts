@@ -8,7 +8,7 @@
  * 
  */
 
-import "tsconfig-paths/register"
+require("alias-hq").get("module-alias")
 
 import path from "path"
 import chalk from "chalk"

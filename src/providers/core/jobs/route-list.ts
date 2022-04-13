@@ -8,7 +8,7 @@
  * 
  */
 
-import "tsconfig-paths/register"
+require("alias-hq").get("module-alias")
 
 import routerDex from "router-dex/inspector"
 
@@ -17,7 +17,7 @@ import routerDex from "router-dex/inspector"
  */
 
 const { express } = require("@services")
-const packageJson = require("package.json")
+const packageJson = require("@root/package.json")
 
 // Types
 import Express from "express"
