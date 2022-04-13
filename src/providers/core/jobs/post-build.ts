@@ -8,7 +8,7 @@
  * 
  */
 
-import "tsconfig-paths/register"
+require("alias-hq").get("module-alias")
 
 import fs from "fs-extra"
 import path from "path"

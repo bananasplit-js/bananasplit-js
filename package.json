@@ -4,7 +4,7 @@
 	"description": "A bananasplit app",
 	"main": "src/app.ts",
 	"scripts": {
-		"dev": "nodemon --exec ts-node -r tsconfig-paths/register src/app",
+		"dev": "nodemon --exec ts-node src/app",
 		"build": "tsc",
 		"build:database": "sequelize db:create && sequelize db:migrate && sequelize db:seed:all",
 		"build:stack": "node src/providers/core/jobs/build-stack",
@@ -81,7 +81,6 @@
 		"router-dex": "^1.0.0",
 		"ts-jest": "^27.1.4",
 		"ts-node": "^10.7.0",
-		"tsconfig-paths": "^3.14.1",
 		"typescript": "^4.6.3"
 	}
 }
