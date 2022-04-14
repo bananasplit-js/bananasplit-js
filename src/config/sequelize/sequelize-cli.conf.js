@@ -1,10 +1,10 @@
 /**
- * 
+ *
  *  Sequelize Client: custom options
  *  @config
- * 
+ *
  *  @description custom options for sequelize client
- * 
+ *
  */
 
 module.exports = {
@@ -14,7 +14,7 @@ module.exports = {
 	development: {
 		dialectOptions: {
 			bigNumberStrings: true
-		},
+		}
 	},
 
 	/**
@@ -23,7 +23,7 @@ module.exports = {
 	test: {
 		dialectOptions: {
 			bigNumberStrings: true
-		},
+		}
 	},
 
 	/**
@@ -33,6 +33,6 @@ module.exports = {
 		dialectOptions: {
 			bigNumberStrings: true,
 			ssl: {}
-		},
+		}
 	}
 }

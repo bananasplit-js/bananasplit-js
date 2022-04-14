@@ -1,17 +1,17 @@
 /**
- * 
+ *
  *  Test: {Name}
  *  @module "tests/unit test/{name}"
- * 
+ *
  *  @description {description}
- * 
+ *
  */
 
-import { express } from "@services"
-import { Sequelize } from "@bananasplit-js"
+import { express } from '@services'
+import { Sequelize } from '@bananasplit-js'
 
-import request, { Response } from "supertest"
-import http from "http"
+import request, { Response } from 'supertest'
+import http from 'http'
 
 // Express server
 let Express: http.Server
@@ -19,15 +19,15 @@ let Express: http.Server
 /**
  *  Do something before run the tests
  */
-beforeAll( () => {
+beforeAll(() => {
 	Express = express.serve(6627)
 })
 
 /**
  *  @description Here the action I describe
  */
-test("Here the action I describe", async () => {
-	const response: Response = await request(Express).get("/")
+test('Here the action I describe', async () => {
+	const response: Response = await request(Express).get('/')
 	expect(response.status).toBe(200)
 })
 

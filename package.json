@@ -8,15 +8,15 @@
 		"build": "ts-node src/providers/core/jobs/build.ts tsc",
 		"build:database": "sequelize db:create && sequelize db:migrate && sequelize db:seed:all",
 		"build:stack": "node src/providers/core/jobs/build-stack",
+		"upgrade:stack": "ts-node src/providers/core/jobs/upgrade-stack",
+		"route:list": "ts-node src/providers/core/jobs/route-list",
 		"generator:create": "ts-node src/providers/core/jobs/generator-create",
 		"test": "jest --runInBand --passWithNoTests",
 		"test:watch": "jest --watch --runInBand --passWithNoTests",
 		"test:coverage": "jest --coverage --runInBand --passWithNoTests",
 		"test:cache": "jest --clearCache",
-		"route:list": "ts-node src/providers/core/jobs/route-list",
-		"upgrade:stack": "ts-node src/providers/core/jobs/upgrade-stack",
-		"lint": "eslint src tests",
-		"lint:fix": "eslint src tests --fix"
+		"lint": "eslint src tests --ext ts,js",
+		"lint:fix": "eslint src tests --fix --ext ts,js"
 	},
 	"repository": {
 		"type": "git",
@@ -43,16 +43,16 @@
 	},
 	"engines": {},
 	"dependencies": {
-		"npm": "^8.6.0",
-		"express": "^4.17.3",
-		"morgan": "^1.10.0",
-		"sequelize": "^6.18.0",
-		"sequelize-cli": "^6.4.1",
 		"alias-hq": "^5.3.2",
 		"boxen": "5.1.2",
 		"chalk": "4.1.2",
 		"dotenv": "^16.0.0",
+		"express": "^4.17.3",
 		"jest": "^27.5.1",
+		"morgan": "^1.10.0",
+		"npm": "^8.6.0",
+		"sequelize": "^6.18.0",
+		"sequelize-cli": "^6.4.1",
 		"supertest": "^6.2.2"
 	},
 	"devDependencies": {

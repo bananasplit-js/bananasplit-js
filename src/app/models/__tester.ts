@@ -2,13 +2,13 @@
  *
  *  Model: Tester
  *  @module app/models/__tester
- * 
+ *
  *  @description setup tester model
- * 
+ *
  */
 
-import { Model } from "@bananasplit-js"
-import { DataTypes, ModelAttributes, ModelOptions } from "sequelize"
+import { Model } from '@bananasplit-js'
+import { DataTypes, ModelAttributes, ModelOptions } from 'sequelize'
 
 class Tester extends Model {
 	/**
@@ -43,7 +43,7 @@ class Tester extends Model {
 	 *  options
 	 */
 	public static $options: ModelOptions = {
-		tableName: "Tester",
+		tableName: 'Tester',
 		timestamps: false
 	}
 }

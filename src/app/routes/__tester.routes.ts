@@ -1,39 +1,34 @@
 /**
- * 
+ *
  *  Router: Setup
  *  @module providers/core/app/routes/__tester
- * 
+ *
  *  @description routes for setup tester
- * 
+ *
  */
 
-import { Router, Application } from "express"
+import { Router } from 'express'
 
 // Controller
-import TesterController from "@controllers/__tester"
+import TesterController from '@controllers/__tester'
 
 const $: Router = Router()
 
-export default (_: Application): Router => {
+export default (): Router => {
 	// Express server test
-	$.route("/")
-		.get(TesterController.expressTest)
+	$.route('/').get(TesterController.expressTest)
 
 	// Database connection test
-	$.route("/test/connection")
-		.get(TesterController.databaseConnectionTest)
+	$.route('/test/connection').get(TesterController.databaseConnectionTest)
 
 	// Database query test
-	$.route("/test/query")
-		.get(TesterController.databaseQueryTest)
+	$.route('/test/query').get(TesterController.databaseQueryTest)
 
 	// User table migration test
-	$.route("/test/migration")
-		.get(TesterController.tableMigrationTest)
+	$.route('/test/migration').get(TesterController.tableMigrationTest)
 
 	// User table seeder test
-	$.route("/test/seeder")
-		.get(TesterController.tableSeederTest)
+	$.route('/test/seeder').get(TesterController.tableSeederTest)
 
 	return $
 }
