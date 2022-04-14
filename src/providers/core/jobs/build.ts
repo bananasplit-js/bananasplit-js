@@ -46,7 +46,7 @@ const testDependencies: string[] = ['jest', 'supertest']
 let prettierJson: any = null
 
 try {
-	prettierJson = require('@root/.prettierrc')
+	prettierJson = require('@root/.prettierrc.json')
 } catch (_) {
 	prettierJson = { tabWidth: 2 }
 }
