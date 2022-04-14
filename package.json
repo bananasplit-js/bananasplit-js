@@ -15,8 +15,8 @@
 		"test:watch": "jest --watch --runInBand --passWithNoTests",
 		"test:coverage": "jest --coverage --runInBand --passWithNoTests",
 		"test:cache": "jest --clearCache",
-		"lint": "eslint src tests --ext ts,js",
-		"lint:fix": "eslint src tests --fix --ext ts,js"
+		"lint": "eslint . --ext ts,js,json",
+		"lint:fix": "eslint . --fix --ext ts,js,json"
 	},
 	"repository": {
 		"type": "git",
@@ -68,8 +68,9 @@
 		"@typescript-eslint/parser": "^5.18.0",
 		"cli-table3": "^0.6.1",
 		"clipboardy": "2.3.0",
-		"eslint": "^8.12.0",
+		"eslint": "^8.13.0",
 		"eslint-config-prettier": "^8.5.0",
+		"eslint-plugin-json": "^3.1.0",
 		"eslint-plugin-prettier": "^4.0.0",
 		"faker": "5.5.3",
 		"fs-extra": "^10.0.1",
