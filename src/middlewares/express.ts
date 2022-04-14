@@ -16,10 +16,10 @@ import dontenv from 'dotenv'
 dontenv.config()
 
 export default (app: Application, routers: IRouters): void => {
-	if (process.env.NODE_ENV === 'development') {
-		app.use(Morgan('dev'))
-	}
+	// Http Request Logger
+	app.use(Morgan(process.env.NODE_ENV === 'development' ? 'dev' : 'combined'))
 
+	// Incoming JSON Request Parser
 	app.use(Express.json())
 
 	// Public
