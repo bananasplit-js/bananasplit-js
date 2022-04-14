@@ -54,7 +54,7 @@ npx bananasplit-js new "my-app" --apollo
 
 ### 2. Setup the stack
 **Add your database access to `.env`**
-<sub><sup><a href="https://github.com/bananasplit-js/bananasplit-client/blob/master/README.md" target="_blank"> (example)</a></sup></sub>
+<sub><sup><a href="https://gist.github.com/diegoulloao/0bec57a988532e890146d57409076277#file-env" target="_blank"> (example)</a></sup></sub>
 
 ```bash
 yarn build:stack | npm run build:stack
