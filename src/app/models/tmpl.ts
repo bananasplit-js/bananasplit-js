@@ -2,13 +2,13 @@
  *
  *  Model: {SingularName}
  *  @module app/models/{singular_name}
- * 
+ *
  *  @description model for {singular_name}
- * 
+ *
  */
 
-import { Model } from "@bananasplit-js"
-import { DataTypes, ModelAttributes, ModelOptions } from "sequelize"
+import { Model } from '@bananasplit-js'
+import { DataTypes, ModelAttributes, ModelOptions } from 'sequelize'
 
 class SingularName extends Model {
 	/**
@@ -24,7 +24,7 @@ class SingularName extends Model {
 			type: DataTypes.INTEGER.UNSIGNED,
 			autoIncrement: true,
 			primaryKey: true
-		},
+		}
 	}
 
 	/**

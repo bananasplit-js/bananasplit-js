@@ -1,20 +1,19 @@
 /**
- * 
+ *
  *  Sequelize Client: options
  *  @config
- * 
+ *
  *  @description manage default and custom sequelize client options
  *
  */
-const dotenv = require("dotenv")
-const CustomOptions = require("@config/sequelize/sequelize-cli.conf")
+const dotenv = require('dotenv')
+const CustomOptions = require('@config/sequelize/sequelize-cli.conf')
 
 dotenv.config()
 
 module.exports = {
-
 	/**
-	 *  development 
+	 *  development
 	 */
 	development: {
 		dialect: eval(`"${process.env.DB_DIALECT}"`),
@@ -32,7 +31,6 @@ module.exports = {
 
 		...CustomOptions.development
 	},
-
 
 	/**
 	 *  test
@@ -54,7 +52,6 @@ module.exports = {
 		...CustomOptions.test
 	},
 
-
 	/**
 	 *  production
 	 */
@@ -75,5 +72,4 @@ module.exports = {
 
 		...CustomOptions.production
 	}
-
 }

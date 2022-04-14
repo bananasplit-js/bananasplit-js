@@ -1,12 +1,12 @@
 /**
- * 
+ *
  *  Migration: Tester
  *  @description tester migration
- * 
+ *
  */
 
 exports.up = (queryInterface, DataTypes) => {
-	return queryInterface.createTable("Tester", {
+	return queryInterface.createTable('Tester', {
 		id: {
 			type: DataTypes.INTEGER.UNSIGNED,
 			autoIncrement: true,
@@ -26,5 +26,5 @@ exports.up = (queryInterface, DataTypes) => {
 }
 
 exports.down = (queryInterface) => {
-	return queryInterface.dropTable("Tester")
+	return queryInterface.dropTable('Tester')
 }

@@ -1,13 +1,13 @@
 /**
- * 
+ *
  *  Middleware: {Name}
  *  @module middlewares/{name}
- * 
+ *
  *  @description {description}
- * 
+ *
  */
 
-import { Request, Response, NextFunction } from "express"
+import { Request, Response, NextFunction } from 'express'
 
 /**
  *
