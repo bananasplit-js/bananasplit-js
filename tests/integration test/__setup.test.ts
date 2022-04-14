@@ -1,19 +1,19 @@
 /**
- * 
+ *
  *  Test: Setup test
  *  @module "tests/unit test/setup"
- * 
+ *
  *  @description tests the entire stack setup
  *  * you can remove or modify this file *
- * 
+ *
  */
 
-import { express } from "@services"
-import { Sequelize } from "@bananasplit-js"
+import { express } from '@services'
+import { Sequelize } from '@bananasplit-js'
 
-import request, { Response } from "supertest"
-import http from "http"
-import dotenv from "dotenv"
+import request, { Response } from 'supertest'
+import http from 'http'
+import dotenv from 'dotenv'
 
 dotenv.config()
 
@@ -27,46 +27,45 @@ beforeAll(async () => {
 /**
  *  @test Express server is ok
  */
-test("Express server is ok", async () => {
-	const response: Response = await request(Express).get("/")
+test('Express server is ok', async () => {
+	const response: Response = await request(Express).get('/')
 
 	expect(response.status).toBe(200)
-	expect(response.text ).toBe("GET 200 /")
+	expect(response.text).toBe('GET 200 /')
 })
 
 /**
  *  @test Database connection is ok
  */
-test("Database connection is ok", async () => {
-	const response: Response = await request(Express).get("/test/connection")
+test('Database connection is ok', async () => {
+	const response: Response = await request(Express).get('/test/connection')
 
 	expect(response.status).toBe(200)
-	expect(response.text).toBe("Connection has been established successfully.")
+	expect(response.text).toBe('Connection has been established successfully.')
 })
-
 
 /**
  *  @test Database queries are ok
  */
-test("Database queries are ok", async () => {
+test('Database queries are ok', async () => {
 	interface IResponse {
 		result: String
 	}
 
-	const response: Response = await request(Express).get("/test/query")
+	const response: Response = await request(Express).get('/test/query')
 	const JSONResponse: IResponse[] = JSON.parse(response.text)
 
 	expect(response.status).toBe(200)
-	expect(JSONResponse[0].result).toBe("Hello from database!")
+	expect(JSONResponse[0].result).toBe('Hello from database!')
 })
 
 /**
  *  @test Database migrations are ok
  */
-test("Database migrations are ok", async () => {
-	const tablesKey: string = `Tables_in_${process.env.DB_DATABASE}`
+test('Database migrations are ok', async () => {
+	const tablesKey = `Tables_in_${process.env.DB_DATABASE}`
 
-	const response: Response = await request(Express).get("/test/migration")
+	const response: Response = await request(Express).get('/test/migration')
 	const JSONResponse: any[] = JSON.parse(response.text)
 
 	expect(response.status).toBe(200)
@@ -79,8 +78,8 @@ test("Database migrations are ok", async () => {
 /**
  *  @test Database seeders are ok
  */
-test("Database seeders are ok", async () => {
-	const response: Response = await request(Express).get("/test/seeder")
+test('Database seeders are ok', async () => {
+	const response: Response = await request(Express).get('/test/seeder')
 	const JSONResponse: object[] = await JSON.parse(response.text)
 
 	expect(response.status).toBe(200)

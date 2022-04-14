@@ -15,8 +15,8 @@
 		"test:watch": "jest --watch --runInBand --passWithNoTests",
 		"test:coverage": "jest --coverage --runInBand --passWithNoTests",
 		"test:cache": "jest --clearCache",
-		"lint": "eslint src --ext ts,js",
-		"lint:fix": "eslint src --fix --ext ts,js"
+		"lint": "eslint src tests --ext ts,js",
+		"lint:fix": "eslint src tests --fix --ext ts,js"
 	},
 	"repository": {
 		"type": "git",
