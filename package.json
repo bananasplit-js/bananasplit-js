@@ -5,7 +5,7 @@
 	"main": "src/app.ts",
 	"scripts": {
 		"dev": "nodemon --exec ts-node src/app",
-		"build": "tsc",
+		"build": "ts-node src/providers/core/jobs/build.ts tsc",
 		"build:database": "sequelize db:create && sequelize db:migrate && sequelize db:seed:all",
 		"build:stack": "node src/providers/core/jobs/build-stack",
 		"generator:create": "ts-node src/providers/core/jobs/generator-create",
@@ -16,9 +16,7 @@
 		"route:list": "ts-node src/providers/core/jobs/route-list",
 		"upgrade:stack": "ts-node src/providers/core/jobs/upgrade-stack",
 		"lint": "eslint src tests",
-		"lint:fix": "eslint src tests --fix",
-		"prebuild": "ts-node src/providers/core/jobs/pre-build",
-		"postbuild": "ts-node src/providers/core/jobs/post-build"
+		"lint:fix": "eslint src tests --fix"
 	},
 	"repository": {
 		"type": "git",
