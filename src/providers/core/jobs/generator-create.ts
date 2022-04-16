@@ -65,12 +65,13 @@ if (extendString) {
 	try {
 		// Converts "extend" string to a real object
 		extend = JSON.parse(extendString)
-
 	} catch (e: any) {
-		Abort([
-			chalk.red('Check your extend object. Must contain a JSON format.'),
-			'\nDo not forget to add double quotes to all the keys.\n'
-		].join(""))
+		Abort(
+			[
+				chalk.red('Check your extend object. Must contain a JSON format.'),
+				'\nDo not forget to add double quotes to all the keys.\n'
+			].join('')
+		)
 	}
 }
 

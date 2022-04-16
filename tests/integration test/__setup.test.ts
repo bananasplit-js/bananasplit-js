@@ -89,8 +89,8 @@ test('Database seeders are ok', async () => {
 
 	expect(response.status).toBe(200)
 	expect(JSONResponse.length).toBeGreaterThan(0)
-	expect(JSONResponse[0]?.key).toBe("foo")
-	expect(JSONResponse[0]?.value).toBe("bar")
+	expect(JSONResponse[0]?.key).toBe('foo')
+	expect(JSONResponse[0]?.value).toBe('bar')
 })
 
 afterAll(async () => {

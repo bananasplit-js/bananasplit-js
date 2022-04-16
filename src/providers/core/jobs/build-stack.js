@@ -96,7 +96,7 @@ const getPackageManager = () => {
 			return isWindows ? 'npm.cmd' : 'npm'
 
 		default:
-			return ""
+			return ''
 	}
 }
 
