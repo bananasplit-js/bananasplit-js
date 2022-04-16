@@ -1,6 +1,7 @@
 /**
  *
  *  Helpers: Resources
+ *
  *  @module providers/core/helpers/resources
  *
  *  @description contains resources handlers
@@ -18,6 +19,7 @@ import { IModule } from '@core/interfaces'
 /**
  *
  *  Resources types returned by modules
+ *
  *  @type
  *
  */
@@ -29,9 +31,18 @@ interface IM {
 	readonly excludeList: string[]
 	modulesList?: IModule[]
 }
+
+interface ILR {
+	readonly service: Express.Application
+	readonly modulePaths: IModule[]
+	readonly moduleParams?: any[]
+	callback?: Function
+}
+
 /**
  *
  *  Get modules
+ *
  *  @description gets all modules path in a directory recursively
  *
  *  @param { IM } params
@@ -42,7 +53,7 @@ export const getModules = (params: IM): IModule[] => {
 	const { dir, criteria, excludeList } = params
 	let { modulesList = [] } = params
 
-	const modulePrefix: string = getModulePrefix() // includes slash
+	const modulePrefix: string = getModulePrefix()
 	const modulesDir: string = path.resolve(`${modulePrefix}${dir}`)
 	const modules: string[] = fs.readdirSync(modulesDir)
 
@@ -69,6 +80,7 @@ export const getModules = (params: IM): IModule[] => {
 /**
  *
  *  Get routers
+ *
  *  @description gets all router modules path from app routes directory
  *
  *  @returns { IModule[] }
@@ -86,6 +98,7 @@ export const getRouters = (): IModule[] => {
 /**
  *
  *  Get middleware
+ *
  *  @description gets express middleware module path from middlewares directory
  *
  *  @returns { IModule[] }
@@ -98,15 +111,10 @@ export const getMiddleware = (): IModule[] => {
 	return getModules({ dir, criteria, excludeList: [] })
 }
 
-interface ILR {
-	readonly service: Express.Application
-	readonly modulePaths: IModule[]
-	readonly moduleParams?: any[]
-	callback?: Function
-}
 /**
  *
  *  Load resources
+ *
  *  @description loads external resources and executes them
  *
  *  @param { ILR } params
@@ -141,6 +149,7 @@ export const loadResources = (params: ILR): void => {
 /**
  *
  *  Get module prefix
+ *
  *  @description get the prefix to start compiled app from relative path (not dist)
  *
  *  @returns { string }

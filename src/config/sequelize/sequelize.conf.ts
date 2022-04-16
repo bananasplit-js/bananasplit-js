@@ -1,13 +1,14 @@
 /**
  *
  *  Sequelize: database configuration
+ *
  *  @description sequelize options
  *
  */
 
 import { Options as SequelizeOptions } from 'sequelize'
 
-const Options: SequelizeOptions = {
+const options: SequelizeOptions = {
 	/**
 	 *
 	 *  Options
@@ -24,4 +25,4 @@ const Options: SequelizeOptions = {
 	sync: {}
 }
 
-export default Options
+export default options

@@ -1,6 +1,7 @@
 /**
  *
  *  Controller: {PluralName}
+ *
  *  @module controllers/{plural_name}
  *
  *  @description controller for {plural_name}

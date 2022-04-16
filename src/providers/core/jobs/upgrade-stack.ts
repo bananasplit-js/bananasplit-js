@@ -1,6 +1,7 @@
 /**
  *
  *  Upgrade Stack
+ *
  *  @script src/provideres/core/jobs/upgrade-stack
  *
  *  @description cross-platform solution for upgrade the bananasplit stack
@@ -65,15 +66,15 @@ if (!packageManager) {
 	)
 }
 
-// Runs the ncu upgrade
+// Runs ncu upgrade
 const $process: SpawnSyncReturns<Buffer> = spawnSync(
 	process.platform === 'win32' ? 'npx.cmd' : 'npx',
 	['ncu', '--doctor', '--packageManager', packageManager, ...process.argv.slice(2)],
 	{ cwd: process.cwd(), stdio: 'inherit' }
 )
 
-// If an error ocurrs it prints it and exits
-if ($process.status === 1) {
+// If an error ocurrs then print and exit
+if ($process.status !== 0) {
 	console.error($process.error)
 	process.exit(1)
 }

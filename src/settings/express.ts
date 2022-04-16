@@ -1,6 +1,7 @@
 /**
  *
  *  Settings: Express
+ *
  *  @module settings/express
  *
  *  @description contains all express server settings

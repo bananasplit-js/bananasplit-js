@@ -1,6 +1,7 @@
 /**
  *
  *  Sequelize Client: custom options
+ *
  *  @config
  *
  *  @description custom options for sequelize client

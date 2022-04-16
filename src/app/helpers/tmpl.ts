@@ -1,6 +1,7 @@
 /**
  *
  *  Helpers: {Name}
+ *
  *  @module app/helpers/{name}
  *
  * 	@description {description}

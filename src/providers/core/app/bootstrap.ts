@@ -1,6 +1,7 @@
 /**
  *
  *  Providers: Bootstrap (Stack)
+ *
  *  @module providers/core/jobs/bootstrap
  *
  *  @description runs bananasplit services!
@@ -16,6 +17,7 @@ interface IStack {
 /**
  *
  *  Stack
+ *
  *  @description receives a stack and run each service
  *
  *  @param { any[] } services - an array of services

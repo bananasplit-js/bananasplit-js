@@ -1,6 +1,7 @@
 /**
  * 
  *  Migration: {PluralName}
+
  *  @description migration for {plural_name} table
  * 
  */

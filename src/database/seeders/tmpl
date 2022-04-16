@@ -1,6 +1,7 @@
 /**
  * 
  *  Seeder: {PluralName}
+
  *  @description seeds the {plural_name} table with fake data
  * 
  */

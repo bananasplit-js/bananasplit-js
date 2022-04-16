@@ -1,6 +1,7 @@
 /**
  *
  *  Router: Default
+ *
  *  @module app/routes/default
  *
  *  @description default routes

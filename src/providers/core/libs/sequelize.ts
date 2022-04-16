@@ -1,13 +1,15 @@
 /**
  *
  *  Provider: Sequelize
+ *
  *  @module providers/core/libs/sequelize
  *
  *  @description provides an ORM for interact with the database
  *
  */
+
 import { Sequelize, Options } from 'sequelize'
-import CustomOptions from '@config/sequelize/sequelize.conf'
+import customOptions from '@config/sequelize/sequelize.conf'
 
 import dotenv from 'dotenv'
 
@@ -16,6 +18,7 @@ dotenv.config()
 /**
  *
  *  Definitions for database auth
+ *
  *  @typedef
  *
  */
@@ -28,6 +31,7 @@ interface DBAuth {
 /**
  *
  *  @class SequelizeProvider
+ *
  *  @description provides an ORM for interact with database
  *
  */
@@ -42,6 +46,7 @@ class SequelizeProvider {
 	/**
 	 *
 	 *  Singleton instance
+	 *
 	 *  @property { SequelizeProvider } instance
 	 *
 	 */
@@ -52,7 +57,7 @@ class SequelizeProvider {
 	 *  @constructor
 	 *
 	 *  Not accesible
-	 *  Implements: singleton pattern
+	 *  Singleton pattern
 	 *
 	 */
 	private constructor() {
@@ -62,6 +67,7 @@ class SequelizeProvider {
 	/**
 	 *
 	 *  Singleton
+	 *
 	 *  @description build or returns a singleton instance
 	 *
 	 *  @method build
@@ -73,12 +79,12 @@ class SequelizeProvider {
 			this.instance = new SequelizeProvider()
 
 			const DBAuth: DBAuth | string = this.instance.makeAuth()
-			const $Options: Options = this.instance.makeOptions()
+			const options: Options = this.instance.makeOptions()
 
 			this.instance.service =
 				DBAuth instanceof Object
-					? new Sequelize(...Object.values(DBAuth), $Options)
-					: new Sequelize(DBAuth, $Options)
+					? new Sequelize(...Object.values(DBAuth), options)
+					: new Sequelize(DBAuth, options)
 		}
 
 		return this.instance
@@ -87,6 +93,7 @@ class SequelizeProvider {
 	/**
 	 *
 	 *  Builds the DB auth
+	 *
 	 *  @method makeAuth
 	 *
 	 *  @returns { DBAuth | string }
@@ -107,6 +114,7 @@ class SequelizeProvider {
 	 *  Builds the configuration options
 	 *
 	 *  @method makeOptions
+	 *
 	 *  @returns { Options }
 	 *
 	 */
@@ -123,7 +131,7 @@ class SequelizeProvider {
 			idle: 10000
 		},
 
-		...CustomOptions
+		...customOptions
 	})
 
 	/**
@@ -131,6 +139,7 @@ class SequelizeProvider {
 	 *  Returns the sequelize provider instance
 	 *
 	 *  @method getInstance
+	 *
 	 *  @returns { SequelizeProvider }
 	 *
 	 */
@@ -140,11 +149,12 @@ class SequelizeProvider {
 	 *
 	 *  Returns the sequelize instance
 	 *
-	 *  @method application
+	 *  @method getApplication
+	 *
 	 *  @returns { Sequelize }
 	 *
 	 */
-	public application = (): Sequelize => SequelizeProvider.getInstance().service
+	public getApplication = (): Sequelize => SequelizeProvider.getInstance().service
 }
 
-export default SequelizeProvider.provide().application()
+export default SequelizeProvider.provide().getApplication()

@@ -1,6 +1,7 @@
 /**
  *
  *  Router: Setup
+ *
  *  @module providers/core/app/routes/__tester
  *
  *  @description routes for setup tester

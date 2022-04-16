@@ -1,6 +1,7 @@
 /**
  *
  *  Router: {PluralName}
+ *
  *  @module app/routes/{plural_name}
  *
  *  @description routes for {plural_name}

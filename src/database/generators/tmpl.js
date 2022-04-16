@@ -1,6 +1,7 @@
 /**
  *
  *  Generator: {SingularName}
+ *
  *  @description creates an {singular_name} object based on fake data
  *
  */

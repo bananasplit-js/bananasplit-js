@@ -1,6 +1,7 @@
 /**
  *
  *  Provider: Express
+ *
  *  @module providers/core/libs/express
  *
  *  @description the express nodejs provider
@@ -9,8 +10,8 @@
 import http from 'http'
 import Express from 'express'
 
-import CustomSettings from '@settings/express'
-import DefaultRouter from '@core/app/routes/default.routes'
+import customSettings from '@settings/express'
+import defaultRouterReturner from '@core/app/routes/default.routes'
 
 import { loadResources, getRouters, getMiddleware } from '@core/helpers/resources'
 
@@ -35,11 +36,12 @@ interface IC {
  *  @typedef { Router }
  *
  */
-type Router = (app?: Express.Application) => Express.Router
+type IRouterReturner = (app?: Express.Application) => Express.Router
 
 export default /**
  *
  *  @class ExpressProvider
+ *
  *  @description provides an express server
  *
  */
@@ -68,6 +70,7 @@ class ExpressProvider {
 	/**
 	 *
 	 *  Singleton instance
+	 *
 	 *  @property { ExpressProvider } instance
 	 *
 	 */
@@ -78,7 +81,7 @@ class ExpressProvider {
 	 *  @constructor
 	 *
 	 *  Not accesible
-	 *  Implements: singleton pattern
+	 *  Singleton pattern
 	 *
 	 */
 	private constructor() {
@@ -88,11 +91,11 @@ class ExpressProvider {
 	/**
 	 *
 	 *  Singleton
-	 *  @description provides or returns a singleton instance for ExpressProvider
 	 *
 	 *  @method provide
-	 *  @param { IC } config - config object
+	 *  @description provides or returns a singleton instance for ExpressProvider
 	 *
+	 *  @param { IC } config - config object
 	 *  @returns { ExpressProvider }
 	 *
 	 */
@@ -114,6 +117,7 @@ class ExpressProvider {
 	 *  Returns the ExpressProvider singleton instance
 	 *
 	 *  @method getInstance
+	 *
 	 *  @returns { ExpressProvider }
 	 *
 	 */
@@ -124,6 +128,7 @@ class ExpressProvider {
 	 *  Gets the express server application
 	 *
 	 *  @method getApplication
+	 *
 	 *  @returns { Express.Application }
 	 *
 	 */
@@ -135,7 +140,7 @@ class ExpressProvider {
 	 *
 	 *  @method settings
 	 *
-	 *  @params { IC } config object
+	 *  @param { IC } config object
 	 *  @returns { void }
 	 *
 	 */
@@ -143,8 +148,8 @@ class ExpressProvider {
 		this.port = config?.port || <number>(process.env.PORT || this.port)
 		this.service.set('port', this.port)
 
-		/** Custom settings @overwrite */
-		CustomSettings(this.service)
+		/** Custom settings overwrite */
+		customSettings(this.service)
 	}
 
 	/**
@@ -152,6 +157,7 @@ class ExpressProvider {
 	 *  Sets the main middleware
 	 *
 	 *  @method middlewares
+	 *
 	 *  @returns { void }
 	 *
 	 */
@@ -172,6 +178,7 @@ class ExpressProvider {
 	 *  Collects all routers
 	 *
 	 *  @method routers
+	 *
 	 *  @returns { IRouters }
 	 *
 	 */
@@ -185,13 +192,13 @@ class ExpressProvider {
 				const { default: Module } = require(module.path)
 				const key: string = module.filename.replace(/\.routes\.(ts|js)$/, '')
 
-				routers[key] = (Module as Router)(this.service)
+				routers[key] = (Module as IRouterReturner)(this.service)
 			})
 
 			return routers
 		}
 
-		const defaultRouter: Express.Router = (DefaultRouter as Router)(this.service)
+		const defaultRouter: Express.Router = (defaultRouterReturner as IRouterReturner)(this.service)
 		this.service.use(defaultRouter)
 
 		return {}
@@ -202,6 +209,7 @@ class ExpressProvider {
 	 *  Serve express in the specified port
 	 *
 	 *  @method serve
+	 *
 	 *  @returns { http.Server }
 	 *
 	 */

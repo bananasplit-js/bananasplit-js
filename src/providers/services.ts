@@ -1,6 +1,7 @@
 /**
  *
  *  Services
+ *
  *  @module providers/services
  *
  *  @description services provided by bananasplit

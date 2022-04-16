@@ -1,6 +1,7 @@
 /**
  *
  *  Utils: Model
+ *
  *  @module providers/core/utils/model
  *
  *  @description provides an easy to handle sequelize model
@@ -14,6 +15,7 @@ import sequelize from '@core/libs/sequelize'
 /**
  *
  *  @abstract Model
+ *
  *  @extends SequelizeModel
  *
  *  @description provides a simpler layer to use models

@@ -1,6 +1,7 @@
 /**
  *
  *  Helpers
+ *
  *  @module providers/core/helpers
  *
  *  @description contains common helpers used in providers
@@ -13,6 +14,7 @@ import boxen from 'boxen'
 /**
  *
  *  Service log
+ *
  *  @description print to console services status
  *
  *  @param { string } output - content to print

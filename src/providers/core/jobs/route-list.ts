@@ -1,6 +1,7 @@
 /**
  *
  *  Route List
+ *
  *  @script src/providers/core/jobs/route-list
  *
  *  @description lists all server routes
@@ -15,7 +16,6 @@ import routerDex from 'router-dex/inspector'
 /*
  *	Note: Require prevents missing module error by LSP
  */
-
 const { express } = require('@services')
 const packageJson = require('@root/package.json')
 

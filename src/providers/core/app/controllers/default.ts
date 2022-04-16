@@ -1,6 +1,7 @@
 /**
  *
  *  Controller: Default
+ *
  *  @module controllers/default
  *
  *  @description default controller

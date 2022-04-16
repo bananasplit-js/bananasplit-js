@@ -1,6 +1,7 @@
 /**
  *
  *  Utils: Generator
+ *
  *  @module providers/core/utils/generator
  *
  *  @description extends generator with functionallities

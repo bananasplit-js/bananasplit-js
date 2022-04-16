@@ -1,6 +1,7 @@
 /**
  *
  *  Model: Tester
+ *
  *  @module app/models/__tester
  *
  *  @description setup tester model
