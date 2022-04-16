@@ -1,6 +1,7 @@
 /**
  *
  *  Express Middleware
+ *
  *  @module middlewares/express
  *
  *  @description main middleware
@@ -17,7 +18,8 @@ dontenv.config()
 
 export default (app: Application, routers: IRouters): void => {
 	// Http Request Logger
-	app.use(Morgan(process.env.NODE_ENV === 'development' ? 'dev' : 'combined'))
+	process.env.NODE_ENV === 'production' && app.use(Morgan('combined'))
+	process.env.NODE_ENV === 'development' && app.use(Morgan('dev'))
 
 	// Incoming JSON Request Parser
 	app.use(Express.json())

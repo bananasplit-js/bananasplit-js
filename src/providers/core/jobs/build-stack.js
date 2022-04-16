@@ -1,6 +1,7 @@
 /**
  *
  *  Build Stack
+ *
  *  @script src/providers/core/jobs/build-stack
  *
  *  @description cross-platform solution for build the entire bananasplit stack
@@ -95,7 +96,7 @@ const getPackageManager = () => {
 			return isWindows ? 'npm.cmd' : 'npm'
 
 		default:
-			return false
+			return ''
 	}
 }
 
@@ -114,7 +115,7 @@ const RunProcess = (cmd, args, options = {}) => {
 	const $process = spawnSync(cmd, args, { cwd: process.cwd(), stdio: 'inherit', ...options })
 
 	// Only show error and exit if pass is false (default)
-	if (!options.pass && $process.status === 1) {
+	if (!options.pass && $process.status !== 0) {
 		console.error($process.error)
 		process.exit(1)
 	}
@@ -288,7 +289,7 @@ if (stackCleaned && hasGitRepository) {
 	])
 
 	// Commit success message
-	if (cleanCommitProcess.status === 1) {
+	if (cleanCommitProcess.status !== 0) {
 		// Committing rror message
 		console.error('\nCould not commit the changes after clean up.\n', 'Please commitm manually.')
 	}

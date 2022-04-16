@@ -1,10 +1,10 @@
 /**
  *
  *  Test: Setup test
+ *
  *  @module "tests/unit test/setup"
  *
  *  @description tests the entire stack setup
- *  * you can remove or modify this file *
  *
  */
 
@@ -79,11 +79,18 @@ test('Database migrations are ok', async () => {
  *  @test Database seeders are ok
  */
 test('Database seeders are ok', async () => {
+	interface ITesterDataRow {
+		key: string
+		value: string
+	}
+
 	const response: Response = await request(Express).get('/test/seeder')
-	const JSONResponse: object[] = await JSON.parse(response.text)
+	const JSONResponse: ITesterDataRow[] = await JSON.parse(response.text)
 
 	expect(response.status).toBe(200)
 	expect(JSONResponse.length).toBeGreaterThan(0)
+	expect(JSONResponse[0]?.key).toBe('foo')
+	expect(JSONResponse[0]?.value).toBe('bar')
 })
 
 afterAll(async () => {

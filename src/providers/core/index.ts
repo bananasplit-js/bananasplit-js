@@ -1,6 +1,7 @@
 /**
  *
  *  Providers
+ *
  *  @module providers/core
  *
  *  @description the providers index point to import

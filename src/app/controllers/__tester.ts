@@ -1,6 +1,7 @@
 /**
  *
  *  Controller: Tester
+ *
  *  @module providers/core/app/controllers/__tester
  *
  *  @description controller for setup tester

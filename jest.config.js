@@ -1,6 +1,7 @@
 /**
  *
  *  Jest configuration file
+ *
  *  @config
  *
  */

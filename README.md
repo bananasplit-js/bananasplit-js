@@ -31,7 +31,7 @@
 | **[supertest](https://www.npmjs.com/package/supertest)** | http-based test support for jest |
 | **[faker](https://www.npmjs.com/package/faker)** | generates fake data inside your generators and seeders |
 | **[npm-check-updates](https://www.npmjs.com/package/npm-check-updates)** | auto updates your project dependencies in secure mode |
-| **[alias-hq](https://www.npmjs.com/package/alias-hq)** | custom paths support for typescript, jest and transpiled code |
+| **[alias-hq](https://www.npmjs.com/package/alias-hq)** | custom paths support for typescript, jest and javascript |
 | **[eslint](https://www.npmjs.com/package/eslint)** | auto lints/fixes your code |
 | **[prettier](https://www.npmjs.com/package/prettier)** | makes your code prettier |
 | **[chalk](https://www.npmjs.com/package/chalk)** | highlights console outputs in a nice way |

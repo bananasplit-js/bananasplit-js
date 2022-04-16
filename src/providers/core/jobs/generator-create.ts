@@ -1,6 +1,7 @@
 /**
  *
  *  Generate Data Resource
+ *
  *  @script src/providers/core/jobs/generate
  *
  *  @description generates a data resource
@@ -17,8 +18,21 @@ import clipboard from 'clipboardy'
 // Local Types
 interface IGenerator extends Function {
 	amount: Function
-	//adapt: (bool: boolean) => void
 	hasAdapter: boolean
+}
+
+/**
+ *
+ *  Abort the execution of the script
+ *
+ *  @param { string } msg
+ *  @returns { void }
+ *
+ */
+const Abort = (msg: string): void => {
+	console.log(`\n${chalk.bgRed.black.bold(` Error `)}`)
+	console.log(msg)
+	process.exit(1)
 }
 
 // Generator to use
@@ -28,9 +42,7 @@ const generatorName: string | undefined = process.argv[2]
 
 // Check if generator name is specified
 if (!generatorName) {
-	console.log(`\n${chalk.bgRed.black.bold(` Error `)}`)
-	console.log(chalk.red('Must to specify a generator.'), '\n')
-	process.exit(1)
+	Abort(chalk.red('Must to specify a generator.\n'))
 }
 
 // Generator amount if specified
@@ -38,9 +50,7 @@ const amount: number | undefined = process.argv[3] ? parseInt(process.argv[3]) :
 
 // Check if value parsed is a valid number (not NaN)
 if (amount !== undefined && (isNaN(amount) || amount < 0)) {
-	console.log(`\n${chalk.bgRed.black.bold(` Error `)}`)
-	console.log(chalk.red('Must to specify a valid amount.'), '\n')
-	process.exit(1)
+	Abort(chalk.red('Must to specify a valid amount.\n'))
 }
 
 // Extend string if passed
@@ -51,23 +61,24 @@ const extendString: string | undefined = process.argv[4]?.includes('--extend=')
 // Extend object is empty by default
 let extend: object = {}
 
-try {
-	// Converts "extend" string to a real object
-	if (extendString) {
+if (extendString) {
+	try {
+		// Converts "extend" string to a real object
 		extend = JSON.parse(extendString)
+	} catch (e: any) {
+		Abort(
+			[
+				chalk.red('Check your extend object. Must contain a JSON format.'),
+				'\nDo not forget to add double quotes to all the keys.\n'
+			].join('')
+		)
 	}
-} catch (e: any) {
-	console.log(`\n${chalk.bgRed.black.bold(` Error `)}`)
-	console.log(chalk.red('Check your extend object. Must contain a JSON format.'))
-	console.log('\nDo not forget to add double quotes to all the keys.\n')
-
-	process.exit(1)
 }
 
 try {
 	// Absolute path to where generator is
 	const generatorPath: string = path.normalize(
-		`${process.cwd()}/src/database/generators/create-${generatorName}.js`
+		`${process.cwd()}/src/database/generators/create-${generatorName!}.js`
 	)
 
 	// Generator function
@@ -75,16 +86,14 @@ try {
 
 	// Check if generator is a function
 	if (typeof Generator !== 'function') {
-		console.log(`\n${chalk.bgRed.black.bold(` Error `)}`)
-		console.log(chalk.red(`create-${generatorName}.js does not export a function\n`))
-		process.exit(1)
+		Abort(chalk.red(`create-${generatorName!}.js does not export a function\n`))
 	}
 
 	// Top label
 	console.log('')
 	console.log(
 		chalk.bgYellow.black.bold(
-			` Generator: ${generatorName.charAt(0).toUpperCase() + generatorName.substring(1)} `
+			` Generator: ${generatorName!.charAt(0).toUpperCase() + generatorName!.substring(1)} `
 		)
 	)
 
@@ -111,7 +120,10 @@ try {
 	}
 
 	// Resources amount messsage
-	if (Generator.hasAdapter || Object.keys(extend).length) console.log('')
+	if (Generator.hasAdapter || Object.keys(extend).length) {
+		console.log('')
+	}
+
 	console.log(chalk.cyan.bold(`Generated resources: ${amount || 1}`))
 
 	// Show copied to clipboard message
@@ -119,5 +131,7 @@ try {
 	console.log(chalk.yellow('Copied to clipboard!'), '📋', '\n')
 } catch (e: any) {
 	console.log(`\n${chalk.bgRed.black.bold(` Error `)}`)
-	console.log(chalk.red(`Generator "${chalk.bold(generatorName)}" not found.\n`))
+	console.log(chalk.red(`Generator "${chalk.bold(generatorName!)}" not found.\n`))
 }
+
+process.exit(0)

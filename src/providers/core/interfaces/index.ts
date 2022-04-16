@@ -1,9 +1,13 @@
 /**
  *
- *  Module autoimport
- *  @interface { IModule }
+ *  Interfaces
+ *
+ *  @module providers/core/interfaces
+ *
+ *  @description provides shared interfaces in the core
  *
  */
+
 import Express from 'express'
 
 export interface IModule {

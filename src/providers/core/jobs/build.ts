@@ -1,6 +1,7 @@
 /**
  *
  *  Build
+ *
  *  @script src/providers/core/jobs/build
  *
  *  @description builds the application to dist and optimize it
@@ -178,7 +179,7 @@ if (!modulePaths.length) {
 | Build
 |----------------------------------------------------------------------------------------------
 |
-| - Transpiles the application to the specified dist directory
+| 1. Transpiles the application to the specified dist directory
 |
 */
 
@@ -224,7 +225,7 @@ const includes: Array<string | string[]> = [...bananaIncludes, ...localIncludes]
 const bananaExcludes: string[] = bananasplitJSON.dist.exclude
 const bananaLocalExcludes: string[] = bananasplitLocalJSON.dist.exclude
 
-// Picks excludes files/dir from both bananasplit.json
+// Picks excludes files or directories from both local and provider bananasplit.json
 const excludes: string[] = [...bananaExcludes, ...bananaLocalExcludes]
 
 // Check if at least one folder exists
@@ -235,6 +236,7 @@ if (!hasTests) {
 	excludes.push('jest.config.js')
 }
 
+// Copy dist included files
 if (includes.length) {
 	console.log(' ', chalk.cyanBright('Copying included files'))
 
@@ -250,6 +252,7 @@ const distMigrationsPath: string = path.resolve(
 	path.join(dist, sequelizerc['migrations-path'].replace(process.cwd(), ''))
 )
 
+// Gets the database path from migration path replacing last directory name in it
 const distDatabasePath: string = path.normalize(distMigrationsPath.replace(/\/[A-Za-z0-9_-]+$/, ''))
 
 // Migrations relative path to the project
@@ -267,7 +270,7 @@ if (!fs.existsSync(distDatabasePath)) {
 	)
 
 	// If migrations folder creation fails, log an error message
-	if ($createMigrationsFolderProcess.status === 1) {
+	if ($createMigrationsFolderProcess.status !== 0) {
 		console.error('\nCould not create migrations folders.')
 		console.error(
 			'This can cause "no such file or directory migrations" message when running migrations.'
@@ -338,12 +341,13 @@ packageJson.scripts.prebuild && delete packageJson.scripts.prebuild
 packageJson.scripts.postbuild && delete packageJson.scripts.postbuild
 packageJson.devDependencies && delete packageJson.devDependencies
 
+// Updates main script format and some script commands
+packageJson.main = packageJson.main.replace(/\.ts$/, '.js')
 packageJson.scripts.start = 'node src/app'
 packageJson.scripts['build:database'] = packageJson.scripts['build:database'].replace(
 	' && sequelize db:seed:all',
 	''
 )
-packageJson.main = packageJson.main.replace(/\.ts$/, '.js')
 
 try {
 	// Writes the changes into dist/package.json

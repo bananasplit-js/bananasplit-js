@@ -1,6 +1,7 @@
 /**
  *
  *  Model: {SingularName}
+ *
  *  @module app/models/{singular_name}
  *
  *  @description model for {singular_name}
@@ -14,7 +15,7 @@ class SingularName extends Model {
 	/**
 	 *  columns
 	 */
-	public id!: number
+	declare id: number
 
 	/**
 	 *  attributes
