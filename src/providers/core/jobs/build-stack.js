@@ -238,7 +238,12 @@ const setupTestPath = path.resolve(process.cwd(), 'tests/integration test/__setu
 
 // If setup test file exists, then run it
 if (fs.existsSync(setupTestPath)) {
-	RunProcess('jest', ['test', '__setup', '--runInBand'])
+	RunProcess(process.platform === 'win32' ? 'npx.cmd' : 'cmd', [
+		'jest',
+		'test',
+		'__setup',
+		'--runInBand'
+	])
 } else {
 	// Else run all local tests
 	RunNpmProcess(['test'])
@@ -258,7 +263,7 @@ let stackCleaned = false
 
 // If tester table migration exists, then undo migration
 if (fs.existsSync(testerMigrationPath)) {
-	RunProcess('sequelize', ['db:migrate:undo'])
+	RunProcess(process.platform === 'win32' ? 'npx.cmd' : 'npx', ['sequelize', 'db:migrate:undo'])
 	stackCleaned = true
 }
 
@@ -282,11 +287,7 @@ const hasGitRepository = fs.existsSync(path.resolve(process.cwd(), '.git'))
 // If stack was cleaned and has git repository
 if (stackCleaned && hasGitRepository) {
 	// Then commit changes
-	const cleanCommitProcess = RunProcess(process.platform === 'win32' ? 'git.cmd' : 'git', [
-		'commit',
-		'-am',
-		'Stack cleaned'
-	])
+	const cleanCommitProcess = RunProcess('git', ['commit', '-am', 'Stack cleaned'])
 
 	// Commit success message
 	if (cleanCommitProcess.status !== 0) {
