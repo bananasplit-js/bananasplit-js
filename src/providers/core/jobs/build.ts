@@ -187,10 +187,14 @@ if (!modulePaths.length) {
 console.log(`\n${chalk.yellow('○ Building...')}\n`)
 
 // Build process
-const $buildProcess: SpawnSyncReturns<Buffer> = spawnSync(process.argv[0], process.argv.slice(1), {
-	stdio: 'inherit',
-	cwd: process.cwd()
-})
+const $buildProcess: SpawnSyncReturns<Buffer> = spawnSync(
+	process.platform === 'win32' ? 'npx.cmd' : 'npx',
+	process.argv,
+	{
+		stdio: 'inherit',
+		cwd: process.cwd()
+	}
+)
 
 // If build fails, abort process
 if ($buildProcess.status !== 0) {
@@ -294,7 +298,7 @@ if (hasTests) {
 		)
 
 		// Delete ts-node string between double quotes
-		jestConfigData = jestConfigData.replace('"ts-jest"', '""')
+		jestConfigData = jestConfigData.replace('"ts-jest"', '""').replace("'ts-jest'", "''")
 
 		// Write changes in the same file
 		fs.writeFileSync(path.resolve(process.cwd(), `${dist}/jest.config.js`), jestConfigData)
