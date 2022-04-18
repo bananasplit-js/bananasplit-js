@@ -292,7 +292,7 @@ if (stackCleaned && hasGitRepository) {
 	// Commit success message
 	if (cleanCommitProcess.status !== 0) {
 		// Committing rror message
-		console.warn('\nCould not commit the changes after clean up.\n', 'Please commitm manually.')
+		console.warn('\nCould not commit the changes after clean up.\n', 'Please commit manually.')
 	}
 }
 
