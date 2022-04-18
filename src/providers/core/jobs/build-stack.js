@@ -287,12 +287,12 @@ const hasGitRepository = fs.existsSync(path.resolve(process.cwd(), '.git'))
 // If stack was cleaned and has git repository
 if (stackCleaned && hasGitRepository) {
 	// Then commit changes
-	const cleanCommitProcess = RunProcess('git', ['commit', '-am', 'Stack cleaned'])
+	const cleanCommitProcess = RunProcess('git', ['commit', '-am', 'Stack cleaned'], { pass: true })
 
 	// Commit success message
 	if (cleanCommitProcess.status !== 0) {
 		// Committing rror message
-		console.error('\nCould not commit the changes after clean up.\n', 'Please commitm manually.')
+		console.warn('\nCould not commit the changes after clean up.\n', 'Please commitm manually.')
 	}
 }
 
