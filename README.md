@@ -35,6 +35,7 @@
 | **[eslint](https://www.npmjs.com/package/eslint)** | auto lints/fixes your code |
 | **[prettier](https://www.npmjs.com/package/prettier)** | makes your code prettier |
 | **[chalk](https://www.npmjs.com/package/chalk)** | highlights console outputs in a nice way |
+| **[boxen](https://www.npmjs.com/package/chalk)** | shows service status in command-line |
 
 # Get started!
 
