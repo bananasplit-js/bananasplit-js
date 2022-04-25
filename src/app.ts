@@ -8,8 +8,6 @@
  *
  */
 
-require('alias-hq').get('module-alias')
-
 import { Stack } from '@bananasplit-js'
 import { express } from '@services'
 
