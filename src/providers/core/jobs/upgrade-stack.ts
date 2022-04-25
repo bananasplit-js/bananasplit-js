@@ -69,7 +69,13 @@ if (!packageManager) {
 // Runs ncu upgrade
 const $process: SpawnSyncReturns<Buffer> = spawnSync(
 	process.platform === 'win32' ? 'npx.cmd' : 'npx',
-	['ncu', '--doctor', '--packageManager', packageManager.replace('.cmd', ''), ...process.argv.slice(2)],
+	[
+		'ncu',
+		'--doctor',
+		'--packageManager',
+		packageManager.replace('.cmd', ''),
+		...process.argv.slice(2)
+	],
 	{ cwd: process.cwd(), stdio: 'inherit' }
 )
 
