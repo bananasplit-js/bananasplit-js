@@ -238,7 +238,7 @@ const setupTestPath = path.resolve(process.cwd(), 'tests/integration test/__setu
 
 // If setup test file exists, then run it
 if (fs.existsSync(setupTestPath)) {
-	RunProcess(process.platform === 'win32' ? 'npx.cmd' : 'cmd', [
+	RunProcess(process.platform === 'win32' ? 'npx.cmd' : 'npx', [
 		'jest',
 		'test',
 		'__setup',
