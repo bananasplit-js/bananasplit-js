@@ -347,7 +347,7 @@ packageJson.devDependencies && delete packageJson.devDependencies
 
 // Updates main script format and some script commands
 packageJson.main = packageJson.main.replace(/\.ts$/, '.js')
-packageJson.scripts.start = 'node src/app'
+packageJson.scripts.start = 'node -r alias-hq/init src/app'
 packageJson.scripts['build:database'] = packageJson.scripts['build:database'].replace(
 	' && sequelize db:seed:all',
 	''

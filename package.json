@@ -4,7 +4,7 @@
 	"description": "A bananasplit app",
 	"main": "src/app.ts",
 	"scripts": {
-		"dev": "nodemon --exec ts-node src/app",
+		"dev": "nodemon --exec ts-node -r alias-hq/init src/app",
 		"build": "ts-node src/providers/core/jobs/build.ts tsc",
 		"build:database": "sequelize db:create && sequelize db:migrate && sequelize db:seed:all",
 		"build:stack": "node src/providers/core/jobs/build-stack",
@@ -43,7 +43,7 @@
 	},
 	"engines": {},
 	"dependencies": {
-		"alias-hq": "^5.3.2",
+		"alias-hq": "^5.4.0",
 		"boxen": "5.1.2",
 		"chalk": "4.1.2",
 		"dotenv": "^16.0.0",
