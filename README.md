@@ -66,7 +66,7 @@ yarn build:stack | npm run build:stack
 yarn dev | npm run dev
 ```
 
-**Read more about configuration:** https://bananasplit.js.org/docs/#config
+**Read more about configuration:** https://bananasplit.js.org/docs/v2/#config
 
 <a href="http://gitpod.io/#https://github.com/bananasplit-js/bananasplit-js/tree/main/gitpod/template" target="_blank">
   <img src="https://gitpod.io/button/open-in-gitpod.svg" alt="">
@@ -74,7 +74,7 @@ yarn dev | npm run dev
 
 # Read the docs
 
-### Check the documentation: https://bananasplit.js.org/docs
+### Check the documentation: https://bananasplit.js.org/docs/v2
 
 # Contributing
 **Bananasplit-js** is an **open source** project.
